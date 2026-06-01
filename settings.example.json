@@ -1,0 +1,18 @@
+{
+  "_comment": "PayneSDD dogfood config. Copy to .claude/settings.json (git-ignored) to activate the Step 4 gate as an enforced Claude Code Stop-hook. PAYNE_TEST_CMD here runs THIS repo's self-check (syntax of the shell hooks); in your own project swap it for your real test command, e.g. 'npm test', 'pytest -q', 'swift test'. Then `touch .payne-active` to arm the gate for a task, `rm .payne-active` when done.",
+  "env": {
+    "PAYNE_TEST_CMD": "bash scripts/payne-check.sh"
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/hooks/payne-gate.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
