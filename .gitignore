@@ -1,0 +1,10 @@
+# Local README preview tooling (not part of the published protocol)
+.preview/
+.claude/
+
+# PayneSDD per-task gate marker (runtime, never committed)
+.payne-active
+
+# OS / editor noise
+.DS_Store
+*.swp
