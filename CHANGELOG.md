@@ -3,6 +3,35 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 0.2.0 — 2026-06-02
+
+### Added
+- **Execution tiers** (Step 0): Trivial / Light / Full. The agent proposes the
+  tier (one-line justification, human veto/bump). LIGHT is a new
+  lightweight-but-verified path — skips the analyst subagent and the depth menu,
+  keeps a one-line consent STOP, the FULL machine gate, and a short
+  self-adversarial pass. A HARD FLOOR (billing, concurrency, migrations,
+  public-facing, SDK, security, …) forces FULL; "when in doubt, bump up" guards
+  against self-under-classification.
+- **Decision Log (core)** at `.payne/decisions.log` (committed, append-only):
+  `[APPROVED]` / `[REJECTED]` / `[DEVIATION]` one-liners the agent writes on any
+  Light/Full task. Audit trail, anti-drift, cross-session memory — no script, no
+  hook.
+- `benchmark/` — a human-checkable benchmark task (a Swift image-downloader app)
+  to run through the protocol after big changes, with a plain pass checklist.
+- A plain-language communication rule: label internally for traceability, but
+  explain to the human in plain words (no undecoded AC / fork-ID shorthand).
+
+### Changed
+- Steps 1.5 / 1.6 / 4 / 5 reconciled for tiers: 1.5 (analyst + depth) is
+  FULL-tier; the 1.6 consent STOP and the Step 4 machine gate run on both Light
+  and Full; Step 5 is an independent subagent on FULL, a self-review on LIGHT.
+- README cycle table, `CLAUDE.md`, `ROLES.md` updated for tiers + the decision
+  log.
+
+### Known limits (honest)
+- Still not battle-tested. The RU mirror is not yet synced to 0.2.0.
+
 ## 0.1.0 — 2026-06-01
 
 First public release.

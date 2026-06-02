@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-early%20%C2%B7%20not%20battle--tested-yellow.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -40,15 +40,21 @@ mandatory steps.
 
 | Step | What it enforces |
 |---|---|
-| **0** | Decide if the task even needs the full cycle (trivial → just do it). |
+| **0** | Classify the task and **pick the tier** — Trivial (skip) / Light (lightweight-but-verified) / Full (whole cycle). A hard floor forces Full for risky work; when in doubt, bump up. |
 | **1** | Write the **contract** (behavior + verifiable acceptance criteria) before code. |
-| **1.5** | **Interrogate**: an analyst subagent maps the real forks; *you* pick depth (fast / normal / thorough); ask exactly that many questions. |
+| **1.5** | **Interrogate** *(Full tier; Light lists forks inline)*: an analyst subagent maps the real forks; *you* pick depth (fast / normal / thorough); ask exactly that many questions. |
 | **1.6** | **Plan-approval STOP**: answers ≠ approval. Show the assembled plan, wait for an explicit "go". |
 | **2** | Plan, budget, escalation rules. |
 | **3** | Execute strictly per the contract. |
 | **4** | **Machine gate**: "done" is confirmed by tests / typecheck / lint — or a deterministic source-of-truth check — not by eyeballing. |
 | **5** | **Adversarial**: an independent "break it" pass; every finding must be tied to a source or it's rejected. |
 | **6** | **Verdict**: PASS / ITERATE / ESCALATE, with evidence. |
+
+Two things run *across* the cycle, not as a single step: the **machine gate**
+(Step 4, on both Light and Full) and a **core decision log** at
+`.payne/decisions.log` — committed `[APPROVED]` / `[REJECTED]` / `[DEVIATION]`
+one-liners the agent writes on every Light/Full task, for an audit trail and
+cross-session memory.
 
 ## Install
 
@@ -102,7 +108,7 @@ logic, but on-request, not blocking. The lock is loosened, not removed.
 ## A 60-second walk-through
 
 1. You: *"add a retry helper with backoff"*
-2. Agent classifies it (Step 0: important), then `/payne-spec retry` drafts a
+2. Agent classifies it (Step 0: Full tier), then `/payne-spec retry` drafts a
    `SPEC.md` with verifiable acceptance criteria.
 3. **Step 1.5** — an analyst subagent lists the real forks; you pick depth; the
    agent asks exactly that many questions.
@@ -113,6 +119,11 @@ logic, but on-request, not blocking. The lock is loosened, not removed.
 7. `/payne-review` runs an independent break-it subagent; only source-tied
    findings get fixed.
 8. Gate green + findings adjudicated → **PASS**, with evidence.
+
+*Light-tier variant:* for an obvious-but-real change the agent proposes "Light",
+lists the forks inline (no analyst subagent, no depth menu), asks a one-line
+*"doing X — ok?"*, then runs the same machine gate + a short self-review. Same
+guarantees, less ceremony.
 
 ## The personality is optional
 
@@ -127,9 +138,10 @@ never invented, escalation stays honest.
 
 ## Status
 
-**v0.1.0 — first public release.** Honest status: this is a strong, opinionated
-protocol, **not yet a battle-tested product** — no production mileage behind it.
-Use it, break it, file what doesn't hold. See [`CHANGELOG.md`](CHANGELOG.md).
+**v0.2.0 — adds execution tiers + a core decision log.** Honest status: this is a
+strong, opinionated protocol, **not yet a battle-tested product** — no production
+mileage behind it. Use it, break it, file what doesn't hold. See
+[`CHANGELOG.md`](CHANGELOG.md).
 
 ## License
 

@@ -12,6 +12,9 @@ For a normal task (a function, a screen, a support reply) DO NOT use roles —
 the plain single-agent protocol is faster and the adversarial subagent (Step 5)
 already gives you independent review. Roles are a scale tool, not a default.
 
+In tier terms (Step 0): roles are a FULL-tier tool for LARGE tasks — they never
+apply to the Light or Trivial tiers.
+
 The human decides ON/OFF — same spirit as the depth choice in Step 1.5b.
 If unsure → roles OFF.
 
