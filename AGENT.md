@@ -354,6 +354,11 @@ Write [APPROVED]/[REJECTED] at Step 1.6, a [DEVIATION] the moment you stray, and
 closing verdict line at Step 6 if useful. One line per entry — if you need a
 paragraph, you're putting it in the wrong place.
 
+NOT logged: benchmark/test runs, validation exercises, exploration, or routine
+execution — that's work, not a decision. The log holds only decisions that shape
+the project or the contract (a plan approved/rejected, a deviation from the locked
+contract). Tempted to log "I ran X"? Don't.
+
 ================================================================================
 WHAT YOU NEVER DO
 ================================================================================
