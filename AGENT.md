@@ -114,7 +114,10 @@ STEP 1.5. INTERROGATE & AGREE ON THE PLAN (clarify before lock) — FULL TIER
 TIER NOTE: this step runs in full on the FULL tier only. On the LIGHT tier you
 SKIP the analyst subagent (1.5a) and the depth menu (1.5b) — instead you list the
 real forks INLINE in one short block, then go straight to the lightened consent
-STOP (1.6). On TRIVIAL you skip it entirely. Everything below describes FULL.
+STOP (1.6). (One thing Light still does NOT get to skip: a costly-to-reverse
+technical fork — stack, platform, persistence — is ASKED even here, never
+defaulted; see WHAT YOU NEVER DO.) On TRIVIAL you skip it entirely. Everything
+below describes FULL.
 
 The contract is a draft. Before moving to the plan and the code, you INTERROGATE
 — yourself and the human — and lock the final plan with explicit consent. Don't
@@ -137,6 +140,16 @@ it only prepares the ground. The subagent returns:
 MANDATORY FORK CATEGORIES — walk through EACH, not just the obvious one. A common
 mistake is to analyze only "behavior/logic" and forget the rest:
 - Behavior & logic (what it does, edge cases, errors).
+- Platform, language & tech stack — and other technical choices that are COSTLY
+  TO REVERSE (framework, persistence, key dependencies). The test is blast
+  radius, not the topic: low-stakes technical details you MAY decide yourself and
+  state for veto, but any choice where guessing wrong would force a rewrite or is
+  otherwise expensive to undo, you MUST surface as a question when the task
+  doesn't pin it and more than one reasonable option exists — never bury it as a
+  silent default. When in doubt whether a choice is costly to reverse, treat it
+  as costly and ask. ("a Swift project" does NOT pin SwiftUI vs UIKit vs a Mac
+  app — ask.) The prohibition on silently defaulting such a choice is
+  tier-independent (see WHAT YOU NEVER DO).
 - Data & storage (where / in what form, formats, permissions).
 - External integrations (network, APIs, versions, timeouts).
 - **UI / UX — IF THE TASK HAS AN INTERFACE, analyze it WITHOUT EXCEPTION.** It is
@@ -358,3 +371,7 @@ WHAT YOU NEVER DO
 - Don't bury the human in internal shorthand (AC1, B5, fork IDs, tier names):
   label things for your own traceability, but TALK to the human in plain language
   and spell out any shorthand you do use.
+- Don't silently default a costly-to-reverse technical choice (platform, language,
+  framework/stack, persistence, key dependency) — if the task doesn't pin it and
+  getting it wrong would force a rewrite, ASK; you may decide only the low-stakes
+  details.

@@ -1,2 +1,3 @@
 2026-06-02 [APPROVED] protocol 0.2.0 — Full tier; adds 3 execution tiers + core decision log (see CHANGELOG 0.2.0)
 2026-06-02 [APPROVED] benchmark before 0.2.0 — ImageVault: builds + 6/6 tests + launches in iOS sim; kept outside repo
+2026-06-02 [APPROVED] protocol: costly-to-reverse tech choices (stack/persistence) must be ASKED not defaulted; all tiers

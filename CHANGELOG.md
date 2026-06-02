@@ -3,6 +3,17 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 0.2.1 — 2026-06-02
+
+### Changed
+- Step 1.5 gains a mandatory fork category for **costly-to-reverse technical
+  choices** (platform, language, framework/stack, persistence, key dependencies):
+  the agent may decide low-stakes details itself, but must ASK — never silently
+  default — when guessing wrong would force a rewrite ("when in doubt, treat it
+  as costly and ask"). Reinforced by a new `WHAT YOU NEVER DO` rule and a
+  Light-tier note, so it binds on every tier. Closes a gap where the agent could
+  pick a stack (e.g. SwiftUI vs UIKit) without asking.
+
 ## 0.2.0 — 2026-06-02
 
 ### Added
