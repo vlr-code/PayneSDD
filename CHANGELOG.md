@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.2.3 — 2026-06-05
 
 ### Changed
 - Step 4 (machine gate) hardened: before declaring a gate tool unavailable and

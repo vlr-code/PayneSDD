@@ -3,3 +3,4 @@
 2026-06-05 [APPROVED] protocol: mandatory end-of-task summary (Done/Remaining/Open) folded into Step 6 — Full tier; Light+Full, honor-system, EN labels, checkbox format
 2026-06-05 [DEVIATION] summary sweep also touched commands/payne-review.md — adversarial pass found it ended Step 6 at "verdict" with no summary; outside the locked file list, added for consistency
 2026-06-05 [APPROVED] release version 0.2.2 (user overrode my 0.3.0 semver default) — ships the Step 6 closing summary
+2026-06-05 [APPROVED] release 0.2.3 — Step 4 hardening (verify a gate tool is genuinely absent before escalating); user said go

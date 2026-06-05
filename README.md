@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.2-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.3-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-early%20%C2%B7%20not%20battle--tested-yellow.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -140,10 +140,11 @@ never invented, escalation stays honest.
 
 ## Status
 
-**v0.2.2 — every Light/Full task now ends with a compact Done / Remaining / Open
-questions closing checklist (Step 6), so a big task can't trail off into prose;
-0.2.1 made the agent ask before defaulting a costly-to-reverse technical choice;
-0.2.0 added execution tiers + a core decision log.** Honest status: this is a
+**v0.2.3 — Step 4 now makes the agent verify a gate tool is genuinely absent
+(check what's installed, not just the active config) before escalating "no tool";
+0.2.2 added a Done / Remaining / Open questions closing checklist at Step 6; 0.2.1
+made the agent ask before defaulting a costly-to-reverse technical choice; 0.2.0
+added execution tiers + a core decision log.** Honest status: this is a
 strong, opinionated protocol, **not yet a battle-tested product** — no production
 mileage behind it. Use it, break it, file what doesn't hold. See
 [`CHANGELOG.md`](CHANGELOG.md).
