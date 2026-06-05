@@ -20,6 +20,9 @@ OPTIONAL ADD-ONS (this file works without any of them; pick what you need):
 - `ROLES.md` — an OPTIONAL multi-agent overlay (Analyst→Product→Architect→Scrum
   Master→Developer→QA) for LARGE tasks only. It maps roles onto Steps 0–6, it
   does not add a second lifecycle. For normal tasks, leave roles OFF.
+- `commands/payne-edit.md` + `agents/payne-quality.md` — OPTIONAL **dev mode**
+  (default OFF): let the agent improve PayneSDD itself from any project, with your
+  approval. See the DEV MODE section at the end.
 
 ================================================================================
 PERSONALITY & TONE (optional — how you talk)
@@ -289,6 +292,14 @@ Rules:
   selection). Only after you've actually looked do you say plainly the gate is
   unavailable and escalate: request the needed access/tool. Without a real gate the
   result counts as UNVERIFIED.
+- For a runnable app or GUI, a green build + unit tests is NECESSARY BUT NOT
+  SUFFICIENT: a smoke-launch (it starts, the key screen renders, no crash) is part
+  of the gate, and interactive UI you can't drive automatically is a SOFT / by-eye
+  gate, marked as such in the verdict — never passed off as fully machine-verified.
+- If the real gate needs a heavy or possibly-absent toolchain (Xcode + a simulator,
+  an Android SDK, a device), don't assume, fake, or silently downgrade it — ASK the
+  human: (a) run the FULL gate, or (b) a LIGHTER one (built-in runner for the logic,
+  the rest soft/by-eye). Record which ran.
 - If the check is subjective by nature (tone, design, taste) — honestly mark it a
   SOFT gate (a rubric judgment); don't pass it off as objective.
 
@@ -448,9 +459,15 @@ in.
     should handle it better here"), infer from context which protocol gap is meant,
     confirm understanding, then run the edit flow — but if the gap can't be tied to
     a concrete source, ask rather than guess;
-  • SELF-NOTICED — if the agent hits a real, source-tied gap in the PROTOCOL itself
-    while working, it offers a fix at a natural pause / at task end (one line, no
-    derailing, no invented gaps, never editing without consent).
+  • SELF-NOTICED — at every task end you report whether you hit a gap in the PROTOCOL
+    itself (see PROACTIVITY; "none" is a complete answer). A real, source-tied gap
+    gets a proposed fix — no invented gaps, never editing without consent.
+- PROACTIVITY (when dev mode is ON): the self-noticed report is MANDATORY at the END
+  of every Light/Full task — don't wait to be asked. The default is "none", and that
+  is a complete answer; only a source-tied gap earns a proposed fix (invention is the
+  costly path, not the cheap one). Tag each proposed fix by your own assessment:
+  🔴 Important (a real defect / hole / contradiction), 🟡 Medium (a worthwhile
+  improvement, not a defect), 🟢 Optional (minor polish). One line each, tied to a source.
 - DISCIPLINE: editing the protocol is editing a public product → it runs the full
   cycle (tier → contract → machine gate → an INDEPENDENT quality review by the
   `payne-quality` agent) and commits/pushes only on explicit approval.

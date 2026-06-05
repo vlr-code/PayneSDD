@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.3-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.3.0-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-early%20%C2%B7%20not%20battle--tested-yellow.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -21,20 +21,29 @@
 
 ## What it is
 
-PayneSDD is a single operating protocol you paste into your agent's system
-instructions. It takes plain Spec-Driven Development and adds the parts SDD
-leaves out: a **consent gate** before any code, an **enforced machine gate** on
-"done", and an **independent break-it review** — plus an optional drill-sergeant
-persona that refuses to accept a lazy spec.
+AI coding agents are confident — they'll happily "finish" a task that's subtly
+wrong, and you find out later. PayneSDD is a short set of rules you paste into your
+agent's instructions to stop that. It makes the agent:
+
+1. **Agree on the plan with you before writing any code** — so it builds what you
+   meant, not what it guessed.
+2. **Prove the work is actually done** — confirmed by running the tests or the app,
+   not by the agent saying "done".
+3. **Try to break its own result** — a separate, skeptical pass that has to back
+   every complaint with evidence before anything gets "fixed".
+
+You spend a minute up front agreeing on the work, and get back something that does
+what you asked — instead of a confident pile of code you have to re-check by hand.
 
 ```
 contract → interrogate & pick depth → plan-approval STOP → machine gate → adversarial check → verdict + summary
 ```
 
-The core idea: **"the agent said so" is not proof** — neither when it generates
-nor when it critiques. The arbiters are an objective machine gate and a
-tie-to-source rule for every LLM finding. PayneSDD just makes those two arbiters
-mandatory steps.
+The one idea underneath it all: **"the agent said so" is not proof** — not when it
+writes the code, not when it reviews it. The only things that settle it are an
+objective check (tests / a build that runs) and a rule that every claim must point
+to a real source. PayneSDD just makes those two the rule, not an afterthought —
+checked every time, not skipped because the agent felt sure.
 
 ## The cycle
 
@@ -142,14 +151,21 @@ never invented, escalation stays honest.
 
 ## Status
 
-**v0.2.3 — Step 4 now makes the agent verify a gate tool is genuinely absent
-(check what's installed, not just the active config) before escalating "no tool";
-0.2.2 added a Done / Remaining / Open questions closing checklist at Step 6; 0.2.1
-made the agent ask before defaulting a costly-to-reverse technical choice; 0.2.0
-added execution tiers + a core decision log.** Honest status: this is a
-strong, opinionated protocol, **not yet a battle-tested product** — no production
-mileage behind it. Use it, break it, file what doesn't hold. See
-[`CHANGELOG.md`](CHANGELOG.md).
+**Early — a strong, opinionated protocol, not yet battle-tested** (no production
+mileage behind it yet). Latest release: **v0.3.0**.
+
+Recent additions, plainly:
+- an optional **dev mode** for maintainers — the agent can improve PayneSDD itself
+  from any project and commit with your approval, checked by a separate quality
+  reviewer (0.3.0);
+- every task now ends with a short **Done / Remaining / Open questions** summary, so
+  a big job can't trail off into a wall of text (0.2.2);
+- the agent must check a tool is *really* missing before giving up on the gate —
+  no more "can't test it" when the tool was just inactive (0.2.3);
+- **execution tiers** (skip trivial work, full ceremony for risky work) and a
+  committed **decision log** (0.2.0).
+
+Use it, break it, file what doesn't hold. See [`CHANGELOG.md`](CHANGELOG.md).
 
 ## License
 

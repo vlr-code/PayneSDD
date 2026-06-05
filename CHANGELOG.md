@@ -3,19 +3,29 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.3.0 — 2026-06-05
 
 ### Added
 - **Dev mode** (optional, default OFF): a self-improvement capability — the agent
   can edit the canonical PayneSDD repo and commit to it from inside ANY project,
   with explicit approval, via the new `/payne-edit` command. Triggers: the command,
   free text ("improve PayneSDD here" — inferred from context), or a self-noticed
-  protocol gap (offered at a pause, never acting without consent). Install-time ask
-  + an on/off marker toggle (`~/.claude/.payne-dev-mode`). Changes run the full
-  cycle (tier → contract → gate → an independent `payne-quality` reviewer agent)
-  before commit, and can optionally bump the version, tag, and cut a GitHub release
-  on request. Artifacts: `commands/payne-edit.md`, `agents/payne-quality.md`. Never
-  touches the project you're working in.
+  protocol gap (MANDATORY at task end when dev mode is on — stated even when "none",
+  tagged 🔴 Important / 🟡 Medium / 🟢 Optional; never acting without consent).
+  Install-time ask + an on/off marker toggle (`~/.claude/.payne-dev-mode`). Changes
+  run the full cycle (tier → contract → gate → an independent `payne-quality`
+  reviewer agent) before commit, and can optionally bump the version, tag, and cut a
+  GitHub release on request. Artifacts: `commands/payne-edit.md`,
+  `agents/payne-quality.md`. Never touches the project you're working in.
+
+### Changed
+- **Step 4** (machine gate): for a runnable app/GUI a green build + unit tests is
+  necessary but NOT sufficient — a smoke-launch is part of the gate, and interactive
+  UI that can't be auto-driven is a soft/by-eye gate (stated as such in the verdict).
+  When the gate needs a heavy or possibly-absent toolchain (Xcode + simulator, an
+  Android SDK, a device), the agent must ASK the human to choose: run the FULL gate,
+  or a LIGHTER alternative that installs no extra IDE/deps. Born from the PresetLab
+  benchmark, where build + unit tests were green but the app crashed on first launch.
 
 ## 0.2.3 — 2026-06-05
 

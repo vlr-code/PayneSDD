@@ -5,3 +5,6 @@
 2026-06-05 [APPROVED] release version 0.2.2 (user overrode my 0.3.0 semver default) — ships the Step 6 closing summary
 2026-06-05 [APPROVED] release 0.2.3 — Step 4 hardening (verify a gate tool is genuinely absent before escalating); user said go
 2026-06-05 [APPROVED] dev mode — /payne-edit skill (edit+commit PayneSDD from any project) + free-text & self-proposal triggers + separate payne-quality reviewer + install-ask & on/off marker toggle; Full tier, skill shipped in public repo
+2026-06-05 [APPROVED] dev-mode self-test: AGENT.md OPTIONAL ADD-ONS now lists dev mode (closed top-of-file drift) — Light; via /payne-edit, payne-quality verdict SHIP
+2026-06-05 [APPROVED] dev mode: self-noticed proactivity now MANDATORY + severity tags (red/yellow/green); Step 4 — GUI smoke-launch necessary-not-sufficient + ASK full-vs-lighter gate when toolchain heavy/absent; Full tier, payne-quality verdict SHIP
+2026-06-05 [APPROVED] release 0.3.0 — dev mode (self-improvement) + Step 4 GUI smoke-launch/ASK + mandatory severity-tagged proactivity; user chose minor bump

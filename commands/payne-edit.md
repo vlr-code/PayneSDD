@@ -50,6 +50,11 @@ contract → (FULL: real forks / depth) → execute against the contract.
 ## 5. Quality review (Step 5) — the SEPARATE quality agent
 Spawn the **payne-quality** agent (independent, not yourself) on the diff. It guards
 coherence, anti-bloat, fidelity to principles, and cross-reference integrity.
+- FALLBACK: file-based agents load only at session start, so in the same session you
+  first install dev mode `payne-quality` won't be a known agent type yet. If it isn't
+  available, run the SAME reviewer brief via a general subagent — never skip the
+  review. It loads normally next session (dev mode is usually invoked from another
+  project = a fresh session, so this only bites the install session).
 Adjudicate by the tie-to-source rule: fix only source-tied findings, reject the rest
 with a reason, then re-run the gate.
 
