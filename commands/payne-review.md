@@ -15,6 +15,7 @@ Do this:
 3. Adjudicate the findings yourself (the verifier is not an oracle): accept and
    fix only source-tied findings; reject the rest and say why.
 4. Re-run the machine gate (Step 4) after any fix. Then give the Step 6 verdict:
-   PASS / ITERATE / ESCALATE, with evidence.
+   PASS / ITERATE / ESCALATE, with evidence — and, on Light/Full, the compact
+   Done / Remaining / Open questions closing summary.
 
 Do not fix findings the reviewer could not prove.

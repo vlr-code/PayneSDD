@@ -35,7 +35,7 @@ step. Mapping onto AGENT.md:
 | **Architect** | Step 2 (plan) | SPEC.md | design + dependency-ordered approach |
 | **Scrum Master** | Step 2 (decompose) | design | task list (each task ties to AC IDs) |
 | **Developer** | Step 3 (execute) | one task | code for that task, referencing `// B*` |
-| **QA** | Steps 4 + 5 | code + SPEC.md | gate result + adversarial findings + verdict |
+| **QA** | Steps 4 + 5 | code + SPEC.md | gate result + adversarial findings + verdict (incl. the Step 6 Done / Remaining / Open-questions closing summary) |
 
 ## Hard rules so roles don't become the monster
 - **The gates do not move.** Step 1.6 plan-approval STOP still happens (after

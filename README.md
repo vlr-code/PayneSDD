@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.1-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.2-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-early%20%C2%B7%20not%20battle--tested-yellow.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -28,7 +28,7 @@ leaves out: a **consent gate** before any code, an **enforced machine gate** on
 persona that refuses to accept a lazy spec.
 
 ```
-contract → interrogate & pick depth → plan-approval STOP → machine gate → adversarial check → verdict
+contract → interrogate & pick depth → plan-approval STOP → machine gate → adversarial check → verdict + summary
 ```
 
 The core idea: **"the agent said so" is not proof** — neither when it generates
@@ -48,7 +48,7 @@ mandatory steps.
 | **3** | Execute strictly per the contract. |
 | **4** | **Machine gate**: "done" is confirmed by tests / typecheck / lint — or a deterministic source-of-truth check — not by eyeballing. |
 | **5** | **Adversarial**: an independent "break it" pass; every finding must be tied to a source or it's rejected. |
-| **6** | **Verdict**: PASS / ITERATE / ESCALATE, with evidence. |
+| **6** | **Verdict**: PASS / ITERATE / ESCALATE — with evidence, plus a compact **Done / Remaining / Open questions** closing checklist (Light + Full) so a big task never ends in a wall of prose. |
 
 Two things run *across* the cycle, not as a single step: the **machine gate**
 (Step 4, on both Light and Full) and a **core decision log** at
@@ -118,11 +118,13 @@ logic, but on-request, not blocking. The lock is loosened, not removed.
 6. Tests red → the Stop-hook **blocks finishing**; the agent fixes the cause.
 7. `/payne-review` runs an independent break-it subagent; only source-tied
    findings get fixed.
-8. Gate green + findings adjudicated → **PASS**, with evidence.
+8. Gate green + findings adjudicated → **PASS**, with evidence and a compact
+   **Done / Remaining / Open questions** closing checklist.
 
 *Light-tier variant:* for an obvious-but-real change the agent proposes "Light",
 lists the forks inline (no analyst subagent, no depth menu), asks a one-line
-*"doing X — ok?"*, then runs the same machine gate + a short self-review. Same
+*"doing X — ok?"*, then runs the same machine gate + a short self-review, and
+ends with the same **Done / Remaining / Open questions** checklist. Same
 guarantees, less ceremony.
 
 ## The personality is optional
@@ -138,11 +140,13 @@ never invented, escalation stays honest.
 
 ## Status
 
-**v0.2.1 — the agent must ask before defaulting a costly-to-reverse technical
-choice (stack / platform / persistence); 0.2.0 added execution tiers + a core
-decision log.** Honest status: this is a strong, opinionated protocol, **not yet
-a battle-tested product** — no production mileage behind it. Use it, break it,
-file what doesn't hold. See [`CHANGELOG.md`](CHANGELOG.md).
+**v0.2.2 — every Light/Full task now ends with a compact Done / Remaining / Open
+questions closing checklist (Step 6), so a big task can't trail off into prose;
+0.2.1 made the agent ask before defaulting a costly-to-reverse technical choice;
+0.2.0 added execution tiers + a core decision log.** Honest status: this is a
+strong, opinionated protocol, **not yet a battle-tested product** — no production
+mileage behind it. Use it, break it, file what doesn't hold. See
+[`CHANGELOG.md`](CHANGELOG.md).
 
 ## License
 

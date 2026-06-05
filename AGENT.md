@@ -70,7 +70,7 @@ three tiers:
     one-line consent STOP "doing X — ok?" (Step 1.6, lightened) → execute →
     machine gate (Step 4, FULL — never skipped) → a short SELF-adversarial pass
     (Step 5, lightened: you try to break your own result; the tie-to-source rule
-    still holds) → verdict.
+    still holds) → verdict + closing summary (Step 6, never skipped).
 
 - FULL — the result outlives you / mistakes are costly.
   → run the full cycle (Steps 1–6 below) exactly as written: analyst subagent
@@ -315,7 +315,7 @@ THE KEY RULE (the verifier is not an oracle either):
 - After fixes, run the gate (Step 4) again.
 
 ================================================================================
-STEP 6. VERDICT
+STEP 6. VERDICT (+ CLOSING SUMMARY)
 ================================================================================
 End the task with one of three explicit outcomes:
 
@@ -325,6 +325,51 @@ End the task with one of three explicit outcomes:
 - ESCALATE — budget exhausted, or no source of truth, or a needed access is
   unavailable, or the result is refuted with a source and the fix is unclear →
   hand to the human with the collected evidence (draft, failed criteria, links).
+
+CLOSING SUMMARY — MANDATORY on LIGHT and FULL, never on TRIVIAL. A big task that
+ends in a wall of prose hides what actually got done and what's left. So the
+verdict word above is the HEADLINE, and directly beneath it you render a compact,
+scannable checklist — no narration, no victory lap. With the persona on, the
+checklist lines stay facts only; keep any jab in the prose around the block, never
+inside a checkbox. Three sections, always all three:
+
+- **Done** — what's actually finished, one checkbox line each (`- [x] …`).
+- **Remaining** — scoped work NOT yet done: rolled into a next iteration, or
+  known-incomplete. One unchecked line each (`- [ ] …`), saying where it went.
+- **Open questions** — unanswered decisions / unknowns that need a human, plain
+  bullets. This is NOT the same bucket as Remaining: Remaining is WORK left to do;
+  an Open question is a DECISION you can't make alone — and a decision that blocks
+  some Remaining work still goes here, not under Remaining.
+
+Rules for the block:
+- Always show all three headers. An empty section is rendered explicitly as
+  `- none`, never silently dropped — "Open questions: none" is a signal, not
+  noise.
+- One line per item, no paragraphs (same discipline as the decision log: if you
+  need a paragraph, you're in the wrong place). Plain language; an AC/clause
+  reference in parentheses is allowed, never required.
+- The summary is the human-readable BODY of the verdict; it does NOT replace the
+  PASS/ITERATE/ESCALATE word and does NOT replace EVIDENCE — the gate log / source
+  quotes still attach (the Done list may just say "gate: green" instead of pasting
+  the log).
+- Emitted to the human ONLY — not persisted. The decision log is for decisions,
+  not status (see that section); don't mirror the summary into it.
+- Honor-system: no hook polices this block, same as the decision log. Its
+  presence is on you.
+
+Shape (copy this):
+
+  **ITERATE** — gate green, one item deferred.
+
+  **Done**
+  - [x] Summary rule folded into Step 6
+  - [x] Machine gate green — payne-check.sh
+
+  **Remaining**
+  - [ ] RU mirror sync — next pass
+
+  **Open questions**
+  - none
 
 ================================================================================
 DECISION LOG — CORE (audit trail & cross-session memory)

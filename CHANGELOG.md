@@ -3,6 +3,26 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 0.2.2 — 2026-06-05
+
+### Added
+- **Closing summary** (Step 6): every Light/Full task now ends with a compact,
+  fluff-free checklist *under* the PASS/ITERATE/ESCALATE verdict word — **Done**
+  (`- [x]`), **Remaining** (`- [ ]`, scoped work rolled into a next iteration),
+  and **Open questions** (plain bullets — decisions/unknowns that need a human,
+  distinct from Remaining work). All three headers are always shown; an empty one
+  renders as `- none`, never silently dropped. Honor-system (no hook), emitted to
+  the human only — NOT persisted to the decision log. Closes a gap where a large
+  task could trail off into a wall of prose with no clear "done vs left" line.
+  Trivial tasks are exempt.
+
+### Changed
+- README cycle table (Step 6 row), version badge, and Status updated for the
+  closing summary; `ROLES.md` notes the summary is part of QA's verdict output.
+
+### Known limits (honest)
+- Still not battle-tested. The RU mirror is not yet synced to 0.2.2.
+
 ## 0.2.1 — 2026-06-02
 
 ### Changed
