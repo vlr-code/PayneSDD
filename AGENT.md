@@ -366,7 +366,7 @@ Shape (copy this):
   - [x] Machine gate green — payne-check.sh
 
   **Remaining**
-  - [ ] RU mirror sync — next pass
+  - [ ] Edge-case tests for the error path — next iteration
 
   **Open questions**
   - none

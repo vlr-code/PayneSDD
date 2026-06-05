@@ -21,7 +21,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   closing summary; `ROLES.md` notes the summary is part of QA's verdict output.
 
 ### Known limits (honest)
-- Still not battle-tested. The RU mirror is not yet synced to 0.2.2.
+- Still not battle-tested.
 
 ## 0.2.1 — 2026-06-02
 
@@ -61,7 +61,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   log.
 
 ### Known limits (honest)
-- Still not battle-tested. The RU mirror is not yet synced to 0.2.0.
+- Still not battle-tested.
 
 ## 0.1.0 — 2026-06-01
 
