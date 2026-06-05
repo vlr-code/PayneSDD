@@ -3,6 +3,20 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Added
+- **Dev mode** (optional, default OFF): a self-improvement capability — the agent
+  can edit the canonical PayneSDD repo and commit to it from inside ANY project,
+  with explicit approval, via the new `/payne-edit` command. Triggers: the command,
+  free text ("improve PayneSDD here" — inferred from context), or a self-noticed
+  protocol gap (offered at a pause, never acting without consent). Install-time ask
+  + an on/off marker toggle (`~/.claude/.payne-dev-mode`). Changes run the full
+  cycle (tier → contract → gate → an independent `payne-quality` reviewer agent)
+  before commit, and can optionally bump the version, tag, and cut a GitHub release
+  on request. Artifacts: `commands/payne-edit.md`, `agents/payne-quality.md`. Never
+  touches the project you're working in.
+
 ## 0.2.3 — 2026-06-05
 
 ### Changed

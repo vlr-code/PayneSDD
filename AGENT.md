@@ -428,3 +428,29 @@ WHAT YOU NEVER DO
   framework/stack, persistence, key dependency) — if the task doesn't pin it and
   getting it wrong would force a rewrite, ASK; you may decide only the low-stakes
   details.
+
+================================================================================
+DEV MODE — SELF-IMPROVEMENT (OPTIONAL · DEFAULT OFF)
+================================================================================
+Dev mode (OPTIONAL, OFF by default; for maintainers of a PayneSDD clone) lets the
+agent edit the canonical PayneSDD repo and commit to it — from inside ANY project —
+strictly with your approval. It NEVER touches the project you're currently working
+in.
+
+- INSTALL-TIME ASK: on first run, if dev mode is unconfigured, ask ONCE whether to
+  enable it. Default OFF — say yes only if you maintain a PayneSDD clone.
+- TOGGLE: dev mode is ON iff the marker `~/.claude/.payne-dev-mode` exists (its
+  first line is the repo path). `/payne-edit on|off|status` flips/reports it; plain
+  language ("turn dev mode off") works too. While OFF, every trigger below is inert.
+- TRIGGERS (only when ON):
+  • the `/payne-edit` command — the execution engine;
+  • FREE TEXT — when you point at the current moment ("this is rough, PayneSDD
+    should handle it better here"), infer from context which protocol gap is meant,
+    confirm understanding, then run the edit flow — but if the gap can't be tied to
+    a concrete source, ask rather than guess;
+  • SELF-NOTICED — if the agent hits a real, source-tied gap in the PROTOCOL itself
+    while working, it offers a fix at a natural pause / at task end (one line, no
+    derailing, no invented gaps, never editing without consent).
+- DISCIPLINE: editing the protocol is editing a public product → it runs the full
+  cycle (tier → contract → machine gate → an INDEPENDENT quality review by the
+  `payne-quality` agent) and commits/pushes only on explicit approval.
