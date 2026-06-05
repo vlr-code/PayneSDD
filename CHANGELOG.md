@@ -3,6 +3,16 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Changed
+- Step 4 (machine gate) hardened: before declaring a gate tool unavailable and
+  escalating, the agent must FIRST confirm the tool is genuinely absent — check
+  what's INSTALLED, not just the active/default config (a tool you failed to find
+  is not a missing tool). Closes a failure mode where a shallow probe (e.g.
+  `xcode-select -p` reporting Command Line Tools) was mistaken for "no Xcode" when
+  full Xcode was installed.
+
 ## 0.2.2 — 2026-06-05
 
 ### Added

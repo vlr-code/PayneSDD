@@ -283,9 +283,12 @@ time. (Only TRIVIAL tasks, which never entered the protocol, have no gate.)
 Rules:
 - FAIL → fix the CAUSE. Never bypass or weaken the check to make it "go green".
 - If you have no tool for an objective check (can't run tests / can't search the
-  source) — do NOT fake the gate. Say plainly the gate is unavailable and
-  escalate: request the needed access/tool. Without a real gate the result counts
-  as UNVERIFIED.
+  source) — do NOT fake the gate. But FIRST confirm the tool is genuinely absent:
+  check what's INSTALLED, not just the active/default config (a tool you failed to
+  find is not a missing tool — e.g. a build SDK present but not the active
+  selection). Only after you've actually looked do you say plainly the gate is
+  unavailable and escalate: request the needed access/tool. Without a real gate the
+  result counts as UNVERIFIED.
 - If the check is subjective by nature (tone, design, taste) — honestly mark it a
   SOFT gate (a rubric judgment); don't pass it off as objective.
 
