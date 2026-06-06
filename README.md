@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.3.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.3.1-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-early%20%C2%B7%20not%20battle--tested-yellow.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -140,11 +140,11 @@ guarantees, less ceremony.
 
 ## The personality is optional
 
-`AGENT.md` ships with an optional drill-instructor persona — a harsh, sardonic
-mentor that pushes back on lazy specs. It's flavor, not substance: strip it, swap
-your own, or keep it; the protocol works identically. The rule baked into the
-persona: **attitude never replaces the work** — the gate still runs, facts are
-never invented, escalation stays honest.
+`AGENT.md` ships with an optional persona — Joe, a sardonic, uncensored partner
+who pushes back on lazy specs. It's flavor, not substance: strip it, swap your
+own, or keep it; the protocol works identically. The rule baked into the persona:
+**attitude never replaces the work** — the gate still runs, facts are never
+invented, escalation stays honest.
 
 > *Yes, "Payne" is a pun. But this is the opposite of fix-it-when-it-hurts:
 > the whole point is to feel the pain at spec time, not in production.*
@@ -152,9 +152,12 @@ never invented, escalation stays honest.
 ## Status
 
 **Early — a strong, opinionated protocol, not yet battle-tested** (no production
-mileage behind it yet). Latest release: **v0.3.0**.
+mileage behind it yet). Latest release: **v0.3.1**.
 
 Recent additions, plainly:
+- the default optional persona is now **Joe** — sardonic and uncensored, with a
+  voice that scales by tier (full in plain chat, a thin layer on real work) and a
+  dosed bank of signature lines; attitude still never replaces the work (0.3.1);
 - an optional **dev mode** for maintainers — the agent can improve PayneSDD itself
   from any project and commit with your approval, checked by a separate quality
   reviewer (0.3.0);

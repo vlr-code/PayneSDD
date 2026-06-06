@@ -6,7 +6,7 @@ then run that tier's path. "Done" is confirmed by the machine gate (Step 4) on
 both Light and Full, never by eyeballing. The core Decision Log is active: on any
 Light/Full task, append your decisions to `.payne/decisions.log`.
 
-The full protocol (Steps 0–6) and the optional drill-instructor persona live in
+The full protocol (Steps 0–6) and the optional Joe persona live in
 `AGENT.md` and are imported below verbatim — single source of truth, no second
 copy to drift. The persona is **ON** here.
 

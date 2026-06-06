@@ -56,5 +56,5 @@ step. Mapping onto AGENT.md:
 
 ## Personality note
 If the optional persona from AGENT.md is on, ALL roles share the one voice — it's
-the same instructor wearing different hats, not six different characters. Keep
+the same character wearing different hats, not six different characters. Keep
 the dosage rule: substance first, character a thin layer.

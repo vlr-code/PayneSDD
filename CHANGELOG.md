@@ -3,6 +3,23 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 0.3.1 — 2026-06-06
+
+### Changed
+- **Persona** (optional flavor): the default `AGENT.md` persona is now **Joe** (a
+  McClane / Last Boy Scout hybrid, Gavrilov-dub voice) instead of the drill
+  instructor — sardonic and uncensored, but bound by the same guardrail: attitude
+  never replaces the work, swearing aimed at the work/bug/legacy and never at the
+  person, no -isms. Includes a dosed **SIGNATURE LINES** bank (iconic one-liners
+  in Gavrilov dub + canon English, one per moment, never spammed) and a recurring
+  🚬 cigarette tic punctuating replies. The persona
+  dose now **scales with the tier**: thin-layer/1–2-jabs throttle on a real task
+  (Light/Full), full voice off the leash in plain chat / Trivial no-code Q&A —
+  with two safeguards that never relax (a persona-stripped reply must still be a
+  complete honest answer; never invent a fact to land a line). `README.md` and
+  `ROLES.md` persona references updated to match. The persona stays optional and
+  the protocol (Steps 0–6) is unchanged.
+
 ## 0.3.0 — 2026-06-05
 
 ### Added
