@@ -3,6 +3,17 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Added
+- **`DEPLOYMENT.md`** — an optional guide for running PayneSDD on a token-metered
+  / always-on agent (a chat bot, a metered API): the **slim-core** pattern — the
+  Step 0 tier classifier + the two persona-honesty safeguards (complete honest
+  answer; never invent a fact) stay always-loaded, the full protocol (Steps 1–6 +
+  decision log) is read **on demand** only when a task is Light/Full. Most chat pays ~0 protocol tokens; full discipline stays one read
+  away. Linked from the README add-ons table. Born from porting PayneSDD onto an
+  OpenClaw + Kimi Telegram bot.
+
 ## 0.3.1 — 2026-06-06
 
 ### Changed

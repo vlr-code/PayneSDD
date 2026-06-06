@@ -88,6 +88,7 @@ The protocol in `AGENT.md` is self-contained. These are opt-in:
 | [`hooks/payne-gate-core.sh`](hooks/payne-gate-core.sh) | Portable gate engine — runs your test command, red = exit 1 | Any agent |
 | [`hooks/payne-gate.sh`](hooks/payne-gate.sh) | Claude Code Stop-hook; blocks "done" on red tests when a spec is active | Claude Code |
 | [`ROLES.md`](ROLES.md) | Multi-agent overlay (Analyst→Product→Architect→Scrum Master→Developer→QA) on Steps 0–6 | LARGE tasks only |
+| [`DEPLOYMENT.md`](DEPLOYMENT.md) | Slim-core pattern: run the full protocol on a token-metered / always-on agent without paying for it every message | Chat bots · metered APIs |
 
 ### Enable the enforced gate (Claude Code)
 
