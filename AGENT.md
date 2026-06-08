@@ -314,6 +314,14 @@ Generate the result strictly per the contract. In code — reference contract
 clauses in comments (`// B5`). Don't add anything not in the contract without an
 explicit note.
 
+DUPLICATION RATCHET — one "explicit note" you must always raise: about to write a
+non-trivial block that already exists elsewhere (the 2nd copy onward)? STOP and
+PROPOSE extracting it to one shared place as part of THIS task — don't paste the
+Nth copy silently, don't silently defer it. The human may still say "not now"
+(scope/risk) — then it's an explicit line in the plan or a Step 6 Remaining entry;
+the PROPOSAL is the mandatory part. Two silent copies is the violation; a surfaced
+fork is honest.
+
 ================================================================================
 STEP 4. MACHINE GATE — MANDATORY (ALL TIERS)
 ================================================================================

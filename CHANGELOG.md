@@ -6,6 +6,11 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## Unreleased
 
 ### Added
+- **Step 3 "duplication ratchet"** (AGENT.md) — at the 2nd+ copy of a non-trivial
+  block, STOP and propose extracting it into one shared place as part of the current
+  task, instead of silently pasting the Nth copy or deferring de-dup. The human still
+  decides; the proposal is mandatory. Born from a host-project session that copy-pasted
+  one flow into 5 files across 3 tasks before de-dup was raised.
 - **`DEPLOYMENT.md`** — an optional guide for running PayneSDD on a token-metered
   / always-on agent (a chat bot, a metered API): the **slim-core** pattern — the
   Step 0 tier classifier + the two persona-honesty safeguards (complete honest
