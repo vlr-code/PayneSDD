@@ -47,6 +47,10 @@ checked every time, not skipped because the agent felt sure.
 
 ## The cycle
 
+<div align="center" markdown="1">
+<img src="assets/cycle.png" alt="PayneSDD — the cycle, Steps 0–6" width="100%">
+</div>
+
 | Step | What it enforces |
 |---|---|
 | **0** | Classify the task and **pick the tier** — Trivial (skip) / Light (lightweight-but-verified) / Full (whole cycle). A hard floor forces Full for risky work; when in doubt, bump up. |
