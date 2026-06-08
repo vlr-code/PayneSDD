@@ -121,10 +121,14 @@ finishing; with no marker the gate stays silent (trivial tasks aren't punished).
 only. On other agents run `hooks/payne-gate-core.sh` directly — same red/green
 logic, but on-request, not blocking. The lock is loosened, not removed.
 
-## A 60-second walk-through
+## A worked example: Add password reset to the login flow
 
-1. You: *"add a retry helper with backoff"*
-2. Agent classifies it (Step 0: Full tier), then `/payne-spec retry` drafts a
+<div align="center" markdown="1">
+<img src="assets/example.png" alt="Same task, two outcomes — Add password reset to the login flow, without vs with PayneSDD" width="100%">
+</div>
+
+1. You: *"add password reset to the login flow"*
+2. Agent classifies it (Step 0: Full tier), then `/payne-spec reset` drafts a
    `SPEC.md` with verifiable acceptance criteria.
 3. **Step 1.5** — an analyst subagent lists the real forks; you pick depth; the
    agent asks exactly that many questions.
