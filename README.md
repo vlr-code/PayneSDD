@@ -7,8 +7,8 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)](CHANGELOG.md)
-[![Status](https://img.shields.io/badge/status-early%20%C2%B7%20not%20battle--tested-yellow.svg)](#status)
+[![Version](https://img.shields.io/badge/version-0.4.1-blue.svg)](CHANGELOG.md)
+[![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
 
@@ -160,8 +160,8 @@ invented, escalation stays honest.
 
 ## Status
 
-**Early — a strong, opinionated protocol, not yet battle-tested** (no production
-mileage behind it yet). Latest release: **v0.4.0**.
+**Actively used on real projects** — a strong, opinionated protocol, refined across
+many iterations and driving real day-to-day development work. Latest release: **v0.4.1**.
 
 Recent additions, plainly:
 - the source of truth now beats memory — when a fresh source conflicts with what the

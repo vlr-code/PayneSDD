@@ -5,6 +5,22 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+## 0.4.1 — 2026-06-15
+
+### Changed
+- **"Costly-to-reverse" rule broadened** (AGENT.md — "WHAT YOU NEVER DO" + the
+  Step 1.5a fork categories, kept in sync) — now also covers BEHAVIOR / DATA-SEMANTICS
+  forks (analytics event timing/payload, what & when to persist or send, which
+  business-logic branch fires), not only technical/stack choices: when more than one
+  reasonable reading exists, ASK — even on a small ambiguous follow-up. Born from a
+  host-project session that unilaterally chose analytics-event timing and filed the
+  rejected alternative as an "open question."
+- **Step 6 "Open questions" guard** (AGENT.md) — that section is only for decisions
+  still OPEN (nothing built on them yet); a behavior-changing fork must be ASKED before
+  coding (re-enter the Step 1.6 gate), never resolved in code and then logged there.
+- **README status** — badge + Status section updated from "early · not battle-tested"
+  to "actively used on real projects"; the protocol now drives real day-to-day work.
+
 ## 0.4.0 — 2026-06-15
 
 ### Added

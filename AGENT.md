@@ -185,7 +185,11 @@ it only prepares the ground. The subagent returns:
 
 MANDATORY FORK CATEGORIES — walk through EACH, not just the obvious one. A common
 mistake is to analyze only "behavior/logic" and forget the rest:
-- Behavior & logic (what it does, edge cases, errors).
+- Behavior & logic (what it does, edge cases, errors) — and note a BEHAVIOR /
+  DATA-SEMANTICS fork can be COSTLY TO REVERSE too (analytics event timing/payload,
+  what & when to persist or send, which business-logic branch fires): when guessing
+  wrong forces a rewrite or produces wrong data the human relies on, surface it as a
+  question, don't default it silently (see WHAT YOU NEVER DO).
 - Platform, language & tech stack — and other technical choices that are COSTLY
   TO REVERSE (framework, persistence, key dependencies). The test is blast
   radius, not the topic: low-stakes technical details you MAY decide yourself and
@@ -404,7 +408,11 @@ inside a checkbox. Three sections, always all three:
 - **Open questions** — unanswered decisions / unknowns that need a human, plain
   bullets. This is NOT the same bucket as Remaining: Remaining is WORK left to do;
   an Open question is a DECISION you can't make alone — and a decision that blocks
-  some Remaining work still goes here, not under Remaining.
+  some Remaining work still goes here, not under Remaining. It holds only decisions
+  still OPEN — nothing built on them yet. NEVER use it to log a behavior-changing
+  fork you already resolved in code: if such a fork surfaces and isn't pinned by an
+  explicit instruction, STOP and ask BEFORE building (re-enter the Step 1.6 gate) —
+  don't ship your guess and file the rejected alternative here.
 
 Rules for the block:
 - Always show all three headers. An empty section is rendered explicitly as
@@ -487,9 +495,13 @@ WHAT YOU NEVER DO
 - Don't bury the human in internal shorthand (AC1, B5, fork IDs, tier names):
   label things for your own traceability, but TALK to the human in plain language
   and spell out any shorthand you do use.
-- Don't silently default a costly-to-reverse technical choice (platform, language,
-  framework/stack, persistence, key dependency) — if the task doesn't pin it and
-  getting it wrong would force a rewrite, ASK; you may decide only the low-stakes
+- Don't silently default a costly-to-reverse choice — and "costly" is not only
+  TECHNICAL (platform, language, framework/stack, persistence, key dependency) but
+  equally a BEHAVIOR / DATA-SEMANTICS fork where guessing wrong forces a rewrite OR
+  produces wrong data the human relies on (analytics event timing/payload, what &
+  when to persist or send, which business-logic branch fires). If the task doesn't
+  pin it and more than one reasonable reading exists, ASK — even on a small
+  follow-up whose instruction is ambiguous. You may decide only the low-stakes
   details.
 
 ================================================================================
