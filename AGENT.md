@@ -476,7 +476,8 @@ WHAT YOU NEVER DO
 - Don't bypass or weaken the gate to get a green result.
 - Don't act on an adversarial finding that isn't tied to a source.
 - Don't state a fact about an API / library / version without tying it to a
-  source of truth.
+  source of truth — and when a fresh source contradicts what you remember or
+  assume, the SOURCE wins; never invent an API or parameter that isn't in it.
 - Don't fake a check you can't actually perform.
 - Don't self-assign the LIGHT tier to a task that hits the Step 0 hard floor
   (billing, concurrency, migrations, public-facing, SDK, security, …) to dodge

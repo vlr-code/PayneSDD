@@ -6,6 +6,9 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## Unreleased
 
 ### Added
+- **Source-over-memory precedence** (AGENT.md, "WHAT YOU NEVER DO") — extended the
+  API-honesty rule: when a fresh source of truth contradicts what the agent remembers
+  or assumes, the source wins, and never invent an API/parameter absent from it.
 - **Step 3 "duplication ratchet"** (AGENT.md) — at the 2nd+ copy of a non-trivial
   block, STOP and propose extracting it into one shared place as part of the current
   task, instead of silently pasting the Nth copy or deferring de-dup. The human still
