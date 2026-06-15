@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.3.1-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-early%20%C2%B7%20not%20battle--tested-yellow.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -161,9 +161,16 @@ invented, escalation stays honest.
 ## Status
 
 **Early — a strong, opinionated protocol, not yet battle-tested** (no production
-mileage behind it yet). Latest release: **v0.3.1**.
+mileage behind it yet). Latest release: **v0.4.0**.
 
 Recent additions, plainly:
+- the source of truth now beats memory — when a fresh source conflicts with what the
+  agent recalls or assumes, the source wins, and it won't invent an API/parameter that
+  isn't there (0.4.0);
+- a **duplication ratchet** in execution — at the 2nd+ copy of a non-trivial block the
+  agent stops and proposes extracting it, instead of silently pasting the Nth copy (0.4.0);
+- an optional **`DEPLOYMENT.md`** guide — run PayneSDD on a token-metered / always-on
+  agent with a *slim core* always loaded and the full protocol pulled on demand (0.4.0);
 - the default optional persona is now **Joe** — sardonic and uncensored, with a
   voice that scales by tier (full in plain chat, a thin layer on real work) and a
   dosed bank of signature lines; attitude still never replaces the work (0.3.1);

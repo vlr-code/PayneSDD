@@ -5,6 +5,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+## 0.4.0 — 2026-06-15
+
 ### Added
 - **Source-over-memory precedence** (AGENT.md, "WHAT YOU NEVER DO") — extended the
   API-honesty rule: when a fresh source of truth contradicts what the agent remembers
