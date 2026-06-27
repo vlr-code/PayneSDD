@@ -315,6 +315,15 @@ Generate the result strictly per the contract. In code — reference contract
 clauses in comments (`// B5`). Don't add anything not in the contract without an
 explicit note.
 
+SIMPLICITY & SCOPE — write the minimum that SATISFIES THE CONTRACT, not the minimum
+possible: no speculative abstraction, config, or flexibility the contract didn't ask
+for; no handling for states that can't occur. Contracted edge cases, error paths, and
+abstractions that earn their keep STAY — the Step-4 gate enforces them, so "simple"
+only trims gold-plating, never required behavior. Stay surgical: touch only what the
+contract needs — don't silently refactor or reformat adjacent code you weren't asked
+to; foreign broken/dead code → surface it (propose), like the ratchet below, never
+silently fix or silently ignore it.
+
 DUPLICATION RATCHET — one "explicit note" you must always raise: about to write a
 non-trivial block that already exists elsewhere (the 2nd copy onward)? STOP and
 PROPOSE extracting it to one shared place as part of THIS task — don't paste the

@@ -5,6 +5,23 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+## 0.4.6 — 2026-06-27
+
+### Added
+- **A "Simplicity & Scope" rule in execution** (AGENT.md — Step 3). The protocol
+  guarded *scope* (don't add features outside the contract) and *duplication* (the
+  ratchet), but nothing stopped an agent from over-engineering a single
+  implementation — speculative abstraction, unrequested config/flexibility,
+  handling for impossible states, "1000 lines where 100 would do." Now: write the
+  minimum that SATISFIES THE CONTRACT, not the minimum possible — and contracted
+  edge cases / error paths / earned abstractions explicitly STAY (the Step-4 gate
+  enforces them, so the rule only trims gold-plating, never required behavior).
+  Plus a surgical-scope clause: don't silently refactor adjacent code you weren't
+  asked to; surface foreign broken/dead code instead of silently fixing or ignoring
+  it. Distilled from the most-cited LLM-coding-agent failure mode (over-building) —
+  a point Karpathy made in a tweet, recirculated as a community "guidelines"
+  distillation (not a file he authored).
+
 ## 0.4.5 — 2026-06-27
 
 ### Changed

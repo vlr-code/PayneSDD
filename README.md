@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.4.5-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.4.6-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -161,9 +161,14 @@ invented, escalation stays honest.
 ## Status
 
 **Actively used on real projects** — a strong, opinionated protocol, refined across
-many iterations and driving real day-to-day development work. Latest release: **v0.4.5**.
+many iterations and driving real day-to-day development work. Latest release: **v0.4.6**.
 
 Recent additions, plainly:
+- a **simplicity & scope** rule in execution — write the minimum that *satisfies the
+  contract* (not the minimum possible: contracted error-handling and earned
+  abstractions stay, enforced by the gate), don't over-engineer a single
+  implementation, and don't silently refactor adjacent code you weren't asked to
+  (0.4.6);
 - the iteration loop now **stops early when it's stuck** (two tries that don't move
   the same failing check → escalate), not only when it runs out of tries; and the
   built-in quality reviewer now loads every file it cross-checks so it can't miss a
