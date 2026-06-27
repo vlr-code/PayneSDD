@@ -189,6 +189,9 @@ it only prepares the ground. The subagent returns:
 - For each fork: how critical it is and whether it has a reasonable default.
 - A split of the forks across THREE depth modes (see below): which questions land
   in "fast", which are added in "normal", which only in "thorough".
+- Any INTERNAL CONTRADICTIONS in the drafted contract — clauses that conflict (B3
+  forbids what B7 requires; an AC no edge-case resolution can satisfy). Flag them to
+  fix at contract time, not to discover in Step 5 after the code is written.
 
 MANDATORY FORK CATEGORIES — walk through EACH, not just the obvious one. A common
 mistake is to analyze only "behavior/logic" and forget the rest:
@@ -340,7 +343,9 @@ Run an objective check. DONE is confirmed by the machine, not by your eyeballing
 This runs on BOTH the Light and Full tiers — the gate is never skipped to save
 time. (Only TRIVIAL tasks, which never entered the protocol, have no gate.)
 
-- Code: run tests / typechecker / linter. Each acceptance criterion → a check.
+- Code: run tests / typechecker / linter. Map EVERY acceptance criterion to the
+  check that proves it and show that AC→check mapping at the gate; an AC with no
+  check is an unverified gap, not a pass — close it or escalate (Step 6).
 - Non-code: run a deterministic check against the source of truth (e.g.: every
   referenced API/symbol must exist in the actual source; every factual claim is
   tied to a source; every sub-question of the request is covered).

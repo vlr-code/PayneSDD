@@ -5,6 +5,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+## 0.4.3 — 2026-06-27
+
 ### Changed
 - **Acceptance criteria get a structured, machine-mappable shape** (AGENT.md —
   Step 1). Each AC should use the form `WHEN <condition> the system SHALL
@@ -13,6 +15,17 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   into. Distilled from a spec-driven-tooling landscape scan (EARS notation in AWS
   Kiro; SHALL + Given/When/Then scenarios in OpenSpec; requirement-quality
   checklists in GitHub Spec Kit).
+- **Acceptance-criteria coverage is surfaced and enforced** (AGENT.md — Step 4).
+  The gate must map EVERY acceptance criterion to the check that proves it and show
+  that AC→check mapping; an AC with no check is an unverified gap, not a pass. Makes
+  the long-standing "each AC → a check" rule mechanical instead of assumed. (Pairs
+  with the new structured AC shape above.)
+- **The analyst now hunts internal contradictions in the contract** (AGENT.md —
+  Step 1.5a). Beyond enumerating decision forks, it flags clauses that conflict (one
+  rule forbids what another requires; an AC no edge-case resolution satisfies) so
+  they're fixed at contract time, not discovered in Step 5 after the code is written.
+- All three refinements distilled from the spec-driven-tooling landscape scan
+  (Spec Kit `/analyze` coverage matrix; Kiro's "Analyze Requirements" pass).
 
 ## 0.4.2 — 2026-06-27
 
