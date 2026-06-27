@@ -25,8 +25,8 @@ Coding with an AI agent normally goes: **you describe a task → it writes code 
 read it over → you ship.** Most of the time that's fine. But every so often the agent
 *confidently* "finishes" something subtly wrong, and you find out later — in review,
 or in production. So in practice you re-check everything by hand, because the agent's
-"done" doesn't mean anything on its own. That's the tax of vibe-coding through raw
-prompts: speed up front, paid back as distrust.
+"done" doesn't mean anything on its own. That's the tax of agentic coding through
+raw prompts: speed up front, paid back as distrust.
 
 PayneSDD is a short set of rules you paste into your agent's instructions. It gives
 you three things a raw prompt doesn't:

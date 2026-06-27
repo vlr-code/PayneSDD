@@ -10,7 +10,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ### Changed
 - **README overhaul — plainer opening, deeper protocol, less water.** Reworked the
   landing copy: a new plain-language **"What you get"** opening that says what a
-  programmer gains over raw-prompt / vibe-coding (plan agreed before code, "done"
+  programmer gains over raw-prompt agentic coding (plan agreed before code, "done"
   proven by the machine, an independent skeptic) instead of three paragraphs
   restating the same idea. The **cycle table** now describes what each step actually
   enforces today — EARS acceptance criteria, the AC→check coverage matrix, the
