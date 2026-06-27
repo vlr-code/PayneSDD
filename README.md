@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.4.6-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.4.7-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -19,31 +19,35 @@
 
 ---
 
-## What it is
+## What you get
 
-AI coding agents are confident — they'll happily "finish" a task that's subtly
-wrong, and you find out later. PayneSDD is a short set of rules you paste into your
-agent's instructions to stop that. It makes the agent:
+Coding with an AI agent normally goes: **you describe a task → it writes code → you
+read it over → you ship.** Most of the time that's fine. But every so often the agent
+*confidently* "finishes" something subtly wrong, and you find out later — in review,
+or in production. So in practice you re-check everything by hand, because the agent's
+"done" doesn't mean anything on its own. That's the tax of vibe-coding through raw
+prompts: speed up front, paid back as distrust.
 
-1. **Agree on the plan with you before writing any code** — so it builds what you
-   meant, not what it guessed.
-2. **Prove the work is actually done** — confirmed by running the tests or the app,
-   not by the agent saying "done".
-3. **Try to break its own result** — a separate, skeptical pass that has to back
-   every complaint with evidence before anything gets "fixed".
+PayneSDD is a short set of rules you paste into your agent's instructions. It gives
+you three things a raw prompt doesn't:
 
-You spend a minute up front agreeing on the work, and get back something that does
-what you asked — instead of a confident pile of code you have to re-check by hand.
+1. **It builds what you meant, not what it guessed** — it settles the plan *with you*
+   before writing a single line, so a wrong assumption dies in 30 seconds instead of
+   after 200 lines you now have to unpick.
+2. **"Done" actually means done** — confirmed by running the tests / the build, not
+   by the agent saying so. A red check *blocks* "finished" — it can't be waved through.
+3. **A second, independent agent tries to break the result** — a skeptic that must
+   back every complaint with a real source (a line, a test) before anything is
+   "fixed". You stop being the only safety net.
+
+**The trade:** about a minute of up-front agreement, in exchange for code you don't
+re-read line by line — plus a committed paper trail of what was decided and why. The
+one idea under all of it: **"the agent said so" is not proof** — so a machine check
+and a tie-to-source rule settle it instead, every time, not when the agent feels sure.
 
 ```
 contract → interrogate & pick depth → plan-approval STOP → machine gate → adversarial check → verdict + summary
 ```
-
-The one idea underneath it all: **"the agent said so" is not proof** — not when it
-writes the code, not when it reviews it. The only things that settle it are an
-objective check (tests / a build that runs) and a rule that every claim must point
-to a real source. PayneSDD just makes those two the rule, not an afterthought —
-checked every time, not skipped because the agent felt sure.
 
 ## The cycle
 
@@ -51,23 +55,22 @@ checked every time, not skipped because the agent felt sure.
 <img src="assets/cycle.png" alt="PayneSDD — the cycle, Steps 0–6" width="100%">
 </div>
 
-| Step | What it enforces |
+| Step | What it enforces (the full rules live in [`AGENT.md`](AGENT.md)) |
 |---|---|
-| **0** | Classify the task and **pick the tier** — Trivial (skip) / Light (lightweight-but-verified) / Full (whole cycle). A hard floor forces Full for risky work; when in doubt, bump up. |
-| **1** | Write the **contract** (behavior + verifiable acceptance criteria) before code. |
-| **1.5** | **Interrogate** *(Full tier; Light lists forks inline)*: an analyst subagent maps the real forks; *you* pick depth (fast / normal / thorough); ask exactly that many questions. |
-| **1.6** | **Plan-approval STOP**: answers ≠ approval. Show the assembled plan, wait for an explicit "go". |
-| **2** | Plan, budget, escalation rules. |
-| **3** | Execute strictly per the contract. |
-| **4** | **Machine gate**: "done" is confirmed by tests / typecheck / lint — or a deterministic source-of-truth check — not by eyeballing. |
-| **5** | **Adversarial**: an independent "break it" pass; every finding must be tied to a source or it's rejected. |
-| **6** | **Verdict**: PASS / ITERATE / ESCALATE — with evidence, plus a compact **Done / Remaining / Open questions** closing checklist (Light + Full) so a big task never ends in a wall of prose. |
+| **0 — Classify** | Pick the tier per task: **Trivial** (just do it) / **Light** (lightweight, still gated) / **Full** (the whole cycle). A hard floor forces Full for risky work — auth, billing, migrations, anything public-facing — and when in doubt you bump up. You never pay full ceremony for a typo. |
+| **1 — Contract** | Before any code: goal, **non-goals**, behavior rules, **decided** edge cases, and acceptance criteria in a testable shape — `WHEN <condition> the system SHALL <behavior>` / `IF <failure> THEN …` — each tied to a named **source of truth** (a test, a reference implementation, a golden dataset). Vague "works correctly" is banned. |
+| **1.5 — Interrogate** | *(Full; Light lists the forks inline.)* An analyst subagent maps the real decision forks and hunts contradictions in the draft contract; **you** choose how much to be asked — fast / normal / thorough. A costly-to-reverse choice (stack, persistence) is never guessed silently. |
+| **1.6 — Approve** | A hard **STOP** before code. Your answers were raw material, not a yes — the agent assembles one plan block and waits for an explicit "go". |
+| **2 — Plan** | Sub-tasks, an iteration **budget**, escalation rules. The loop ends two ways, not one: out of tries — **or stuck**, when two iterations don't move the same failing check, so it escalates instead of looping forever. |
+| **3 — Execute** | Build *exactly* the contract — no more. A **simplicity rule** bars over-engineering one implementation (no speculative abstraction or config you didn't ask for); a **duplication ratchet** stops the 2nd copy of a block and proposes extracting it. Contracted error-handling stays — the gate enforces it. |
+| **4 — Machine gate** | "Done" is the machine's call, never the agent's eye. Every acceptance criterion is **mapped to the check that proves it** (an uncovered criterion is a gap, not a pass); for a runnable app, a real end-to-end run, not a by-eye glance. The check is never weakened to go green. |
+| **5 — Adversarial** | An **independent** "break it" pass — a *different* agent than the one that wrote the code. Every finding must be tied to a source (a line, a doc, a test) or it's rejected. No vibes, no rubber-stamp, no fixing what can't be proven. |
+| **6 — Verdict** | **PASS / ITERATE / ESCALATE**, with evidence — plus a compact **Done / Remaining / Open questions** checklist (Light + Full) so a big task never trails off into a wall of prose. |
 
-Two things run *across* the cycle, not as a single step: the **machine gate**
-(Step 4, on both Light and Full) and a **core decision log** at
-`.payne/decisions.log` — committed `[APPROVED]` / `[REJECTED]` / `[DEVIATION]`
-one-liners the agent writes on every Light/Full task, for an audit trail and
-cross-session memory.
+Two things run *across* the cycle, not as one step: the **machine gate** (Step 4, on
+both Light and Full) and a committed **decision log** (`.payne/decisions.log`) — the
+agent writes one-line `[APPROVED]` / `[REJECTED]` / `[DEVIATION]` entries as it goes,
+giving you an audit trail and cross-session memory without re-reading the chat.
 
 ## Install
 
@@ -127,25 +130,34 @@ logic, but on-request, not blocking. The lock is loosened, not removed.
 <img src="assets/example.png" alt="Same task, two outcomes — Add password reset to the login flow, without vs with PayneSDD" width="100%">
 </div>
 
-1. You: *"add password reset to the login flow"*
-2. Agent classifies it (Step 0: Full tier), then `/payne-spec reset` drafts a
-   `SPEC.md` with verifiable acceptance criteria.
-3. **Step 1.5** — an analyst subagent lists the real forks; you pick depth; the
-   agent asks exactly that many questions.
-4. **Step 1.6** — the agent shows ONE plan block and asks *"build it or revise?"*
-   — then stops. Your answers were raw material, not approval.
-5. You say "go". Agent writes code, `touch .payne-active`, runs the gate.
-6. Tests red → the Stop-hook **blocks finishing**; the agent fixes the cause.
-7. `/payne-review` runs an independent break-it subagent; only source-tied
-   findings get fixed.
-8. Gate green + findings adjudicated → **PASS**, with evidence and a compact
-   **Done / Remaining / Open questions** closing checklist.
+1. **You:** *"add password reset to the login flow."*
+2. **Classify + contract (Step 0–1).** Auth is on the hard floor → **Full** tier. The
+   agent drafts the contract: goal, non-goals (*no SSO, no "remember me" yet*), and
+   acceptance criteria pinned to tests — e.g. *WHEN the reset link is older than 1 hour
+   the system SHALL reject it and show "link expired"*, *IF the email isn't registered
+   THEN respond identically, with no account-enumeration leak*.
+3. **Interrogate (Step 1.5).** An analyst subagent lists the real forks — token TTL?
+   email provider? rate-limit? — and flags that two draft criteria conflict. You pick
+   *normal* depth; it asks exactly those questions and lists the rest as defaults for
+   your veto.
+4. **Approve (Step 1.6).** The agent shows ONE plan block and asks *"build it or
+   revise?"* — then stops. Nothing is written yet; your answers were raw material.
+5. **You say "go".** It writes the **minimum that meets the contract** — no speculative
+   "pluggable notifier" you didn't ask for — referencing each clause in the code.
+6. **Gate (Step 4).** It shows the criterion→test map: every criterion has a test (an
+   uncovered one would be a gap, not a pass). Tests run — two go red. The Stop-hook
+   **blocks "finished"**; it fixes the *cause*, not the test. *(Had two tries failed to
+   move the same red check, it would stop and escalate instead of looping.)*
+7. **Break it (Step 5).** An *independent* subagent attacks the result and finds the
+   error path leaks a different message for known vs unknown emails — tied to a line, so
+   it's accepted and fixed. A vague "this feels insecure" with no source is rejected.
+8. **Verdict (Step 6).** Gate green, findings adjudicated → **PASS**, with the test log
+   and a **Done / Remaining / Open questions** checklist.
 
-*Light-tier variant:* for an obvious-but-real change the agent proposes "Light",
-lists the forks inline (no analyst subagent, no depth menu), asks a one-line
-*"doing X — ok?"*, then runs the same machine gate + a short self-review, and
-ends with the same **Done / Remaining / Open questions** checklist. Same
-guarantees, less ceremony.
+*Light-tier variant:* for an obvious-but-real change the agent proposes **Light** —
+forks listed inline (no analyst subagent, no depth menu), a one-line *"doing X — ok?"*,
+then the **same machine gate** and a short self-review, ending with the same **Done /
+Remaining / Open questions** checklist. Same guarantees, a fraction of the ceremony.
 
 ## The personality is optional
 
@@ -160,51 +172,27 @@ invented, escalation stays honest.
 
 ## Status
 
-**Actively used on real projects** — a strong, opinionated protocol, refined across
-many iterations and driving real day-to-day development work. Latest release: **v0.4.6**.
+**Actively used on real projects, and dogfooded** — PayneSDD develops itself under its
+own protocol: every change runs the full cycle and an independent review before it ships.
+Latest release: **v0.4.7**.
 
-Recent additions, plainly:
-- a **simplicity & scope** rule in execution — write the minimum that *satisfies the
-  contract* (not the minimum possible: contracted error-handling and earned
-  abstractions stay, enforced by the gate), don't over-engineer a single
-  implementation, and don't silently refactor adjacent code you weren't asked to
-  (0.4.6);
-- the iteration loop now **stops early when it's stuck** (two tries that don't move
-  the same failing check → escalate), not only when it runs out of tries; and the
-  built-in quality reviewer now loads every file it cross-checks so it can't miss a
-  version/step/changelog mismatch (0.4.5);
-- a **dehydration pass** — ~20 lines of redundancy and install-time clutter trimmed
-  from the always-loaded protocol, zero rules changed, so the file that loads every
-  session is leaner (0.4.4);
-- acceptance criteria now take a structured, testable shape (`WHEN <condition> the
-  system SHALL <behavior>`, `IF <failure> THEN ...`), the gate must show that every
-  criterion maps to a real check (no silent unverified criteria), and the analyst
-  hunts self-contradictions in the contract before any code (0.4.3);
-- the machine gate now resists by-eye shortcuts — before settling for a soft/by-eye
-  gate the agent must first try to close the loop automatically (drive the real
-  binary end-to-end as a subprocess), and the contract prefers an executable
-  reference (a golden dataset to diff against) over docs or eyeballing (0.4.2);
-- the source of truth now beats memory — when a fresh source conflicts with what the
-  agent recalls or assumes, the source wins, and it won't invent an API/parameter that
-  isn't there (0.4.0);
-- a **duplication ratchet** in execution — at the 2nd+ copy of a non-trivial block the
-  agent stops and proposes extracting it, instead of silently pasting the Nth copy (0.4.0);
-- an optional **`DEPLOYMENT.md`** guide — run PayneSDD on a token-metered / always-on
-  agent with a *slim core* always loaded and the full protocol pulled on demand (0.4.0);
-- the default optional persona is now **Joe** — sardonic and uncensored, with a
-  voice that scales by tier (full in plain chat, a thin layer on real work) and a
-  dosed bank of signature lines; attitude still never replaces the work (0.3.1);
-- an optional **dev mode** for maintainers — the agent can improve PayneSDD itself
-  from any project and commit with your approval, checked by a separate quality
-  reviewer (0.3.0);
-- every task now ends with a short **Done / Remaining / Open questions** summary, so
-  a big job can't trail off into a wall of text (0.2.2);
-- the agent must check a tool is *really* missing before giving up on the gate —
-  no more "can't test it" when the tool was just inactive (0.2.3);
-- **execution tiers** (skip trivial work, full ceremony for risky work) and a
-  committed **decision log** (0.2.0).
+Recent highlights:
+- a **simplicity & scope** rule — write the minimum that *satisfies the contract*, don't
+  over-engineer a single implementation, don't silently refactor adjacent code (0.4.6);
+- the iteration loop **stops early when it's stuck**, and the built-in reviewer loads
+  every file it cross-checks (0.4.5);
+- acceptance criteria take a **structured, testable shape** (`WHEN … the system SHALL …`),
+  the gate **maps every criterion to a check**, and the analyst hunts contract
+  contradictions before any code (0.4.3);
+- the machine gate **resists by-eye shortcuts** — automate the check before settling for
+  soft, and prefer an executable reference to diff against (0.4.2);
+- **source beats memory** — a fresh source outranks what the agent recalls, and it won't
+  invent an API that isn't there (0.4.0).
 
-Use it, break it, file what doesn't hold. See [`CHANGELOG.md`](CHANGELOG.md).
+Earlier: a dehydration pass (0.4.4), the `DEPLOYMENT.md` slim-core, a duplication ratchet
+(0.4.0), the Done / Remaining / Open-questions summary (0.2.2), execution tiers + the
+decision log (0.2.0), optional dev mode (0.3.0) and the Joe persona (0.3.1). Full history
+in [`CHANGELOG.md`](CHANGELOG.md) — use it, break it, file what doesn't hold.
 
 ## License
 

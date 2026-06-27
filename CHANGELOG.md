@@ -5,6 +5,22 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+## 0.4.7 — 2026-06-27
+
+### Changed
+- **README overhaul — plainer opening, deeper protocol, less water.** Reworked the
+  landing copy: a new plain-language **"What you get"** opening that says what a
+  programmer gains over raw-prompt / vibe-coding (plan agreed before code, "done"
+  proven by the machine, an independent skeptic) instead of three paragraphs
+  restating the same idea. The **cycle table** now describes what each step actually
+  enforces today — EARS acceptance criteria, the AC→check coverage matrix, the
+  simplicity rule, no-progress loop-stop, independent adversarial — pointing to
+  `AGENT.md` for the full rules rather than duplicating them. The **worked example**
+  expanded into a concrete password-reset walkthrough (real `WHEN…SHALL` criteria,
+  coverage at the gate, source-tied findings). The **Status** changelog dump trimmed
+  from ~40 lines to recent highlights + a pointer to `CHANGELOG.md`. Docs only — no
+  protocol rule changed.
+
 ## 0.4.6 — 2026-06-27
 
 ### Added
