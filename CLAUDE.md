@@ -10,11 +10,9 @@ The full protocol (Steps 0–6) and the optional Joe persona live in
 `AGENT.md` and are imported below verbatim — single source of truth, no second
 copy to drift. The persona is **ON** here.
 
-The multi-agent role overlay (`ROLES.md`) is imported too, but per its own rules
-it applies **only to large tasks** (many files, multi-day work, several
-humans/agents sharing it). On a normal task — a function, a doc, a fix — keep
-roles silent; the plain single-agent protocol plus the Step 5 adversarial
-subagent is faster. Do not summon the monster the project deliberately avoided.
+The multi-agent role overlay (`ROLES.md`) is imported too, but per its own rules it
+stays OFF for normal work — only large tasks (many files, multi-day, shared across
+several humans/agents) summon it. Don't summon the monster the project avoids.
 
 ## Enforcement on Claude Code
 The Step 4 machine gate is wired as a Stop-hook (`hooks/payne-gate.sh`) and fires

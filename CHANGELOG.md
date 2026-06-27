@@ -5,6 +5,21 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+## 0.4.4 — 2026-06-27
+
+### Changed
+- **Dehydration pass — ~20 lines of redundancy trimmed from the always-loaded
+  protocol, zero rules changed** (AGENT.md 553 → 533 lines). Removed: the install
+  instructions + optional-add-ons catalog (already covered, better, by the README —
+  AGENT.md now points there); the second full copy of the "costly-to-reverse" rule
+  (kept the operational one in Step 1.5a, reduced the WHAT-YOU-NEVER-DO entry to a
+  prohibition + pointer); several tier-applicability restatements collapsed to
+  pointers (the Step 4 header already says ALL TIERS; the Step 1.5c / 1.6 "Exception"
+  tails just pointed at their own tier notes). CLAUDE.md's ROLES paraphrase collapsed
+  to a pointer. Deliberately KEPT: the WHAT-YOU-NEVER-DO digest, ROLES gate
+  restatements, the "if you need a paragraph…" aphorism — load-bearing reinforcement,
+  not bloat. Driven by an independent two-auditor anti-bloat review.
+
 ## 0.4.3 — 2026-06-27
 
 ### Changed

@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.4.3-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.4.4-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -161,9 +161,12 @@ invented, escalation stays honest.
 ## Status
 
 **Actively used on real projects** — a strong, opinionated protocol, refined across
-many iterations and driving real day-to-day development work. Latest release: **v0.4.3**.
+many iterations and driving real day-to-day development work. Latest release: **v0.4.4**.
 
 Recent additions, plainly:
+- a **dehydration pass** — ~20 lines of redundancy and install-time clutter trimmed
+  from the always-loaded protocol, zero rules changed, so the file that loads every
+  session is leaner (0.4.4);
 - acceptance criteria now take a structured, testable shape (`WHEN <condition> the
   system SHALL <behavior>`, `IF <failure> THEN ...`), the gate must show that every
   criterion maps to a real check (no silent unverified criteria), and the analyst

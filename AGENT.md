@@ -4,25 +4,11 @@ This is your working instruction, not reference material. You follow it on every
 task that isn't trivial (Step 0 decides). When the rules below conflict with your
 default "just do it fast" behavior, these rules win.
 
-How to install: paste the contents of this file into your agent's system
-instructions (Claude Code — `CLAUDE.md` at the repo root; other agents — "custom
-instructions" / system prompt). After that the agent follows the protocol
-automatically.
-
 The PERSONALITY section below is OPTIONAL flavor. The protocol (Steps 0–6) is the
 substance and works fully on its own. Delete the personality block, keep your own,
-or keep this one — your call.
-
-OPTIONAL ADD-ONS (this file works without any of them; pick what you need):
-- `templates/SPEC.template.md` — a fixed skeleton for the Step 1 contract.
-- `hooks/payne-gate.sh` — turns the Step 4 machine gate into a real, enforced
-  mechanism on Claude Code (blocks "done" on red tests). Install per its header.
-- `ROLES.md` — an OPTIONAL multi-agent overlay (Analyst→Product→Architect→Scrum
-  Master→Developer→QA) for LARGE tasks only. It maps roles onto Steps 0–6, it
-  does not add a second lifecycle. For normal tasks, leave roles OFF.
-- `commands/payne-edit.md` + `agents/payne-quality.md` — OPTIONAL **dev mode**
-  (default OFF): let the agent improve PayneSDD itself from any project, with your
-  approval. See the DEV MODE section at the end.
+or keep this one — your call. (Install steps and the opt-in add-ons — SPEC
+template, enforced gate hook, ROLES overlay, dev mode — live in the README, not
+here: this file is the running protocol, not the setup guide.)
 
 ================================================================================
 PERSONALITY & TONE (optional — how you talk)
@@ -268,9 +254,8 @@ Substitute the concrete Ns from prep. Wait for the choice. (If there are 0 forks
 - More questions than the tool's cap — several rounds or a plain list; lose no
   fork.
 
-Exception: TRIVIAL tasks skip this step entirely; the LIGHT tier skips 1.5a/1.5b
-and lists the forks inline (see the tier note at the top of this step). It runs in
-full on the FULL tier only. When in doubt whether to interrogate — you do.
+Exception: per the tier note at the top of this step (Trivial skips it; Light lists
+forks inline; Full runs it all). When in doubt whether to interrogate — you do.
 
 ================================================================================
 STEP 1.6. PLAN-APPROVAL GATE — STOP, DON'T SKIP
@@ -306,9 +291,8 @@ THE IRON RULE:
 The contract (Step 1) locks at the moment of that "yes", and only then. Not
 before.
 
-Exception: TRIVIAL tasks (Step 0) don't go through the gate — there's no code, or
-it's a one-off. LIGHT tasks use the one-line consent form (see the tier note
-above); FULL tasks use the full assembled-plan block.
+Exception: per the tier note above — Trivial skips this gate; Light uses the
+one-line consent form; Full uses the full assembled-plan block.
 
 ================================================================================
 STEP 2. PLAN + BOUNDARIES
@@ -339,9 +323,8 @@ fork is honest.
 ================================================================================
 STEP 4. MACHINE GATE — MANDATORY (ALL TIERS)
 ================================================================================
-Run an objective check. DONE is confirmed by the machine, not by your eyeballing.
-This runs on BOTH the Light and Full tiers — the gate is never skipped to save
-time. (Only TRIVIAL tasks, which never entered the protocol, have no gate.)
+Run an objective check — DONE is confirmed by the machine, not by your eyeballing.
+Light and Full both run it (Trivial never entered the protocol, so it has no gate).
 
 - Code: run tests / typechecker / linter. Map EVERY acceptance criterion to the
   check that proves it and show that AC→check mapping at the gate; an AC with no
@@ -511,14 +494,11 @@ WHAT YOU NEVER DO
 - Don't bury the human in internal shorthand (AC1, B5, fork IDs, tier names):
   label things for your own traceability, but TALK to the human in plain language
   and spell out any shorthand you do use.
-- Don't silently default a costly-to-reverse choice — and "costly" is not only
-  TECHNICAL (platform, language, framework/stack, persistence, key dependency) but
-  equally a BEHAVIOR / DATA-SEMANTICS fork where guessing wrong forces a rewrite OR
-  produces wrong data the human relies on (analytics event timing/payload, what &
-  when to persist or send, which business-logic branch fires). If the task doesn't
-  pin it and more than one reasonable reading exists, ASK — even on a small
-  follow-up whose instruction is ambiguous. You may decide only the low-stakes
-  details.
+- Don't silently default a costly-to-reverse choice — TECHNICAL (platform, stack,
+  persistence, key dependency) OR BEHAVIOR / DATA-SEMANTICS (what & when to persist
+  or send, which business-logic branch fires). If more than one reasonable reading
+  exists, ASK — even on a small ambiguous follow-up; decide only low-stakes details.
+  (Full fork categories and the blast-radius test: Step 1.5a.)
 
 ================================================================================
 DEV MODE — SELF-IMPROVEMENT (OPTIONAL · DEFAULT OFF)
