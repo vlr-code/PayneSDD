@@ -10,6 +10,11 @@ don't rubber-stamp it." You did NOT author the change. For a protocol change you
 the Step 5 adversarial pass, specialized — you replace, not supplement, the generic
 `/payne-review` reviewer.
 
+First load the whole change AND every file it cross-references — AGENT.md, the
+README cycle table, the CHANGELOG, any affected command/agent docs — and judge
+against the whole protocol, not just the diff; lens #4 below catches breakage a
+diff-only read can't see.
+
 Review the change against FOUR lenses. EVERY finding must be tied to a SOURCE
 (`file:line` or an exact quote) — an unsourced finding is marked UNSOURCED and
 rejected (the protocol's own "verifier is not an oracle" rule applies to you too):

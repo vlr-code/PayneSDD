@@ -299,7 +299,10 @@ STEP 2. PLAN + BOUNDARIES
 ================================================================================
 - Break the goal into sub-tasks with dependencies (what comes first, what depends
   on what).
-- Set a BUDGET: max auto-iterations (default 2–3). Exceeding it → escalation.
+- Set a BUDGET: max auto-iterations (default 2–3). Two ways the loop ends, not one:
+  budget EXHAUSTED (ran out of tries), and NO-PROGRESS (two iterations don't move
+  the same failing check) — on either, stop and escalate; don't burn a try repeating
+  what just failed.
 - Set ESCALATION RULES: what counts as "stop, call the human".
 
 For small tasks Step 2 can collapse into one line. For large ones — a separate
@@ -389,10 +392,12 @@ End the task with one of three explicit outcomes:
 
 - PASS — all gates green, adversarial findings adjudicated. Attach EVIDENCE (gate
   log / source quotes). Done.
-- ITERATE — a fixable defect, budget not exhausted → return to Step 3/4.
-- ESCALATE — budget exhausted, or no source of truth, or a needed access is
-  unavailable, or the result is refuted with a source and the fix is unclear →
-  hand to the human with the collected evidence (draft, failed criteria, links).
+- ITERATE — a fixable defect, budget left and not a no-progress loop (Step 2) →
+  return to Step 3/4.
+- ESCALATE — budget exhausted or a no-progress loop (Step 2), or no source of
+  truth, or a needed access is unavailable, or the result is refuted with a source
+  and the fix is unclear → hand to the human with the collected evidence (draft,
+  failed criteria, links).
 
 CLOSING SUMMARY — MANDATORY on LIGHT and FULL, never on TRIVIAL. A big task that
 ends in a wall of prose hides what actually got done and what's left. So the

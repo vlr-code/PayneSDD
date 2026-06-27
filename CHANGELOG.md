@@ -5,6 +5,21 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+## 0.4.5 — 2026-06-27
+
+### Changed
+- **The iteration loop now stops when it's stuck, not only when it's out of tries**
+  (AGENT.md — Step 2 + Step 6). The budget already capped auto-iterations by count;
+  now NO-PROGRESS (two iterations that don't move the same failing check) is a
+  distinct escalation trigger alongside budget-exhausted — don't burn a try
+  repeating what just failed. Borrowed from agent-loop safety practice (OpenHands'
+  "same action repeated without progress" pathological-state detection).
+- **The protocol's quality reviewer (`payne-quality`) now loads what it checks**
+  (agents/payne-quality.md). Its cross-reference lens (versions / step numbers /
+  CHANGELOG / cycle table must line up) was blind to anything outside the diff; it
+  is now told to load the whole change plus every cross-referenced file before
+  judging — so it can actually catch the breakage that lens exists for.
+
 ## 0.4.4 — 2026-06-27
 
 ### Changed
