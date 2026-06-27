@@ -5,6 +5,15 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+### Changed
+- **Acceptance criteria get a structured, machine-mappable shape** (AGENT.md —
+  Step 1). Each AC should use the form `WHEN <condition> the system SHALL
+  <observable behavior>` (and `IF <failure> THEN ...` for error/edge paths) — a
+  shape that maps 1:1 to a Step-4 check and that a vague criterion can't be cast
+  into. Distilled from a spec-driven-tooling landscape scan (EARS notation in AWS
+  Kiro; SHALL + Given/When/Then scenarios in OpenSpec; requirement-quality
+  checklists in GitHub Spec Kit).
+
 ## 0.4.2 — 2026-06-27
 
 ### Changed

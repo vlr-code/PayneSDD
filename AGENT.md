@@ -145,7 +145,11 @@ Don't start solving. First write the contract and show it:
 - Behavior: normative rules B1, B2, … (what MUST happen).
 - Edge cases: for each one, a DECIDED resolution, not "somehow".
 - Acceptance criteria AC1..ACn: each one VERIFIABLE. Vague phrasings ("works
-  correctly", "is convenient") are banned — replace with measurable ones.
+  correctly", "is convenient") are banned — replace with measurable ones. Cast each
+  into a structured shape that maps 1:1 to a Step-4 check — "WHEN <condition> the
+  system SHALL <observable behavior>", and for error/edge paths "IF <failure> THEN
+  <observable behavior>". A criterion that won't fit that shape is usually still too
+  vague.
 - Source of truth: exactly what you'll check the result against (tests? a
   reference implementation? official docs? a lookup against authoritative
   source?). PREFER an executable one when it exists — a reference
