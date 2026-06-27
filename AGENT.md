@@ -148,8 +148,11 @@ Don't start solving. First write the contract and show it:
   correctly", "is convenient") are banned — replace with measurable ones.
 - Source of truth: exactly what you'll check the result against (tests? a
   reference implementation? official docs? a lookup against authoritative
-  source?). If there's nothing to name — STOP, escalate (see Step 6): without a
-  source of truth the cycle is meaningless.
+  source?). PREFER an executable one when it exists — a reference
+  implementation or golden dataset you can diff against beats docs or eyeballing;
+  build that comparison harness FIRST, before the main code. If there's nothing to
+  name — STOP, escalate (see Step 6): without a source of truth the cycle is
+  meaningless.
 
 If the task changes an existing contract — fix the contract first, then the code.
 Never the other way around.
@@ -349,8 +352,12 @@ Rules:
   result counts as UNVERIFIED.
 - For a runnable app or GUI, a green build + unit tests is NECESSARY BUT NOT
   SUFFICIENT: a smoke-launch (it starts, the key screen renders, no crash) is part
-  of the gate, and interactive UI you can't drive automatically is a SOFT / by-eye
-  gate, marked as such in the verdict — never passed off as fully machine-verified.
+  of the gate. Before settling for a SOFT / by-eye gate, make an HONEST attempt to
+  automate the loop — drive the real artifact end-to-end (spawn the CLI/binary as a
+  subprocess over stdin/stdout, script the run) so the agent, not a human validator,
+  sees the result. "Can't automate it" is a justified last resort, not a default;
+  only genuinely undriveable interactive UI stays SOFT, marked as such in the
+  verdict — never passed off as fully machine-verified.
 - If the real gate needs a heavy or possibly-absent toolchain (Xcode + a simulator,
   an Android SDK, a device), don't assume, fake, or silently downgrade it — ASK the
   human: (a) run the FULL gate, or (b) a LIGHTER one (built-in runner for the logic,

@@ -5,6 +5,21 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+## 0.4.2 — 2026-06-27
+
+### Changed
+- **Soft-gate is now a justified last resort, not a default** (AGENT.md — Step 4).
+  Before settling for a SOFT / by-eye gate on a runnable app/GUI, the agent must
+  make an honest attempt to close the loop automatically (drive the real artifact
+  end-to-end — spawn the CLI/binary as a subprocess over stdin/stdout, script the
+  run) so the agent, not a human validator, sees the result. Only genuinely
+  undriveable interactive UI stays SOFT. Closes a permissive escape hatch.
+- **Source of truth prefers an executable reference** (AGENT.md — Step 1). When a
+  reference implementation or golden dataset exists, diff against it rather than
+  docs/eyeballing, and build that comparison harness first, before the main code.
+- Both refinements distilled from the JPoint 2026 talk "своя СУБД за час с Claude
+  Code" (functional tests vs a reference DB; human-as-validator anti-pattern).
+
 ## 0.4.1 — 2026-06-15
 
 ### Changed

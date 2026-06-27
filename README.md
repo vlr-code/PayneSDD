@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.4.1-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.4.2-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -161,9 +161,13 @@ invented, escalation stays honest.
 ## Status
 
 **Actively used on real projects** — a strong, opinionated protocol, refined across
-many iterations and driving real day-to-day development work. Latest release: **v0.4.1**.
+many iterations and driving real day-to-day development work. Latest release: **v0.4.2**.
 
 Recent additions, plainly:
+- the machine gate now resists by-eye shortcuts — before settling for a soft/by-eye
+  gate the agent must first try to close the loop automatically (drive the real
+  binary end-to-end as a subprocess), and the contract prefers an executable
+  reference (a golden dataset to diff against) over docs or eyeballing (0.4.2);
 - the source of truth now beats memory — when a fresh source conflicts with what the
   agent recalls or assumes, the source wins, and it won't invent an API/parameter that
   isn't there (0.4.0);
