@@ -1,5 +1,6 @@
 ---
 description: Dev mode — improve PayneSDD itself from any project: edit the canonical repo live, gate it, quality-review, then commit/push (and optionally release) with your approval.
+disable-model-invocation: true
 ---
 
 # /payne-edit — PayneSDD self-improvement (dev mode)
@@ -35,9 +36,10 @@ The request can arrive as an explicit `/payne-edit <ask>`, a free-text trigger
 - Ask "fix it this way?" and STOP. Do not edit until an explicit yes.
 
 ## 3. Run the PayneSDD protocol on the change (Step 0–3)
-Editing the protocol is editing a public product → Step 0 tier is normally FULL
-(hard floor: public-facing / SDK). A pure typo may be Trivial. Follow the tier:
-contract → (FULL: real forks / depth) → execute against the contract.
+Editing the protocol is editing a public product → Step 0 tier is FULL — the hard
+floor (public-facing / SDK) applies however small the edit looks, typos included
+(a typo just has 0 forks, so Step 1.5 collapses; the gate and review still run).
+Run the cycle: contract → real forks / depth → execute against the contract.
 
 ## 4. Machine gate (Step 4)
 - `bash "<repo>/scripts/payne-check.sh"` is the gate for any SHELL edits — it lints
@@ -66,9 +68,9 @@ Dev-mode edits are Full-tier, so the normal decision-log rule applies: append
 - Show `git -C "<repo>" diff`. On ONE explicit "yes": commit (end the message with
   the `Co-Authored-By` trailer) and push to `main`.
 - NEVER commit or push without that explicit yes.
-- **Release** only if the user asks: bump the version badge + Status, promote the
-  CHANGELOG `## Unreleased` entry to the version, tag `vX.Y.Z`, `gh release create`
-  — each with approval.
+- **Release** only if the user asks: bump the version badge + Status + the
+  `AGENT.md` header stamp, promote the CHANGELOG `## Unreleased` entry to the
+  version, tag `vX.Y.Z`, `gh release create` — each with approval.
 
 ## 8. Close with the Step 6 summary
 End with the verdict word + the **Done / Remaining / Open questions** checklist.

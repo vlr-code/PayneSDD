@@ -41,6 +41,9 @@ These are NOT automated unit tests of PayneSDD. They are a human-checkable
 ### Note on the machine gate
 
 This task is an iOS app, so a real gate needs a Mac with **full Xcode** (not just
-Command Line Tools) and an iOS simulator. Without them the app can't be built or
-run, so the gate can't be honest — in that case the protocol says escalate, not
-fake a pass.
+Command Line Tools) and an iOS simulator. Before declaring that gate unavailable,
+the agent must check what's actually INSTALLED — not just the active/default
+selection (Step 4). If the toolchain is genuinely heavy or absent, it must ASK
+the human: run the FULL gate, or a LIGHTER one (built-in runner for the logic,
+the rest soft/by-eye) — and record which ran. Only when neither is possible does
+the protocol say escalate, not fake a pass.

@@ -1,0 +1,20 @@
+name: gate
+
+# The repo's own Step 4 machine gate — the same check the dogfood Stop-hook
+# runs locally, here on every push and PR (blocking merges needs branch
+# protection on top; without it this is a loud red X, not a lock).
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  payne-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install shellcheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+      - name: Run the machine gate
+        run: bash scripts/payne-check.sh

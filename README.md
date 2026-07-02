@@ -7,13 +7,12 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.4.7-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.5.0-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
 
-*A drop-in operating protocol that turns an AI coding agent from*
-*"describe → it does it → you eyeball it → ship"* *into a verifiable cycle.*
+*A drop-in operating protocol that turns AI coding into a verifiable cycle.*
 
 </div>
 
@@ -76,7 +75,10 @@ giving you an audit trail and cross-session memory without re-reading the chat.
 
 Paste [`AGENT.md`](AGENT.md) into your agent's system instructions:
 
-- **Claude Code** → `CLAUDE.md` at the repo root.
+- **Claude Code** → `CLAUDE.md` at the repo root — or better, import instead of
+  pasting: an `@/path/to/PayneSDD/AGENT.md` line in `CLAUDE.md` (project or
+  `~/.claude/CLAUDE.md`) loads it live from your clone, so `git pull` updates it
+  everywhere. Paste is for agents without `@`-imports.
 - **Other agents** (Cursor, Cline, custom) → "custom instructions" / system prompt.
 
 That's it — the agent then follows the protocol automatically.
@@ -95,34 +97,71 @@ The protocol in `AGENT.md` is self-contained. These are opt-in:
 | [`hooks/payne-gate-core.sh`](hooks/payne-gate-core.sh) | Portable gate engine — runs your test command, red = exit 1 | Any agent |
 | [`hooks/payne-gate.sh`](hooks/payne-gate.sh) | Claude Code Stop-hook; blocks "done" on red tests when a spec is active | Claude Code |
 | [`ROLES.md`](ROLES.md) | Multi-agent overlay (Analyst→Product→Architect→Scrum Master→Developer→QA) on Steps 0–6 | LARGE tasks only |
-| [`DEPLOYMENT.md`](DEPLOYMENT.md) | Slim-core pattern: run the full protocol on a token-metered / always-on agent without paying for it every message | Chat bots · metered APIs |
+| [`DEPLOYMENT.md`](DEPLOYMENT.md) | Variant installs: slim-core for token-metered / always-on agents, and zero-footprint — the full cycle with nothing written to the project | Chat bots · metered APIs · no-files repos |
+
+**Where these install (Claude Code):** slash commands go into your project's
+`.claude/commands/` or globally into `~/.claude/commands/`; the `payne-quality`
+agent into `.claude/agents/` or `~/.claude/agents/` (copy — or symlink, so they
+auto-update with your clone). `ROLES.md` rides next to `AGENT.md` in the same
+instructions file (e.g. a second import line). Dev mode, once its command is
+installed, toggles with `/payne-edit on|off|status`.
 
 ### Enable the enforced gate (Claude Code)
+
+1. Copy `hooks/payne-gate.sh` **and** `hooks/payne-gate-core.sh` into your
+   project (keep them side by side — the wrapper calls the core), then:
 
 ```bash
 chmod +x hooks/payne-gate.sh hooks/payne-gate-core.sh
 ```
 
+2. Wire the hook — copy [`settings.example.json`](settings.example.json) to
+   `.claude/settings.json` and set `PAYNE_TEST_CMD` to your project's real test
+   command, or add it by hand:
+
 ```jsonc
-// .claude/settings.json
+// .claude/settings.json (shared, normally committed) — or put your personal
+// variant in .claude/settings.local.json (auto-git-ignored by Claude Code)
 {
   "env": { "PAYNE_TEST_CMD": "npm test" },
   "hooks": {
     "Stop": [
       { "hooks": [ { "type": "command",
-                     "command": "$CLAUDE_PROJECT_DIR/hooks/payne-gate.sh" } ] }
+                     "command": "\"$CLAUDE_PROJECT_DIR\"/hooks/payne-gate.sh",
+                     "timeout": 1800 } ] }
     ]
   }
 }
 ```
 
 Per task: `touch .payne-active` when a spec is in play, `rm .payne-active` when
-done. With the marker present, a red `PAYNE_TEST_CMD` blocks the agent from
-finishing; with no marker the gate stays silent (trivial tasks aren't punished).
+done (or honestly escalated). With the marker present, a red `PAYNE_TEST_CMD`
+blocks the agent from finishing — up to 3 consecutive blocks (`PAYNE_MAX_BLOCKS`),
+after which the stop is **released with an explicit UNVERIFIED warning**: the
+iteration budget (Step 2) is spent and the call belongs to the human, not the
+loop. (Claude Code itself force-ends after 8 consecutive Stop-hook blocks, so
+"blocked forever" was never on the table anyway.) With no marker the gate stays
+silent (trivial tasks aren't punished). Add `.payne-active*` to your
+`.gitignore` — the marker and its block counter are runtime files, never
+committed.
+
+Two honest notes:
+- **`timeout`** (seconds) must exceed your suite's worst case — a timed-out
+  hook silently does *not* block.
+- **`PAYNE_TEST_CMD` is a command the gate executes on every stop.** In a
+  shared repo where `.claude/settings.json` is committed, review changes to it
+  like code — it runs with your user's permissions.
 
 **Portability, honestly:** the *enforcement* (auto-block on stop) is Claude-Code
 only. On other agents run `hooks/payne-gate-core.sh` directly — same red/green
 logic, but on-request, not blocking. The lock is loosened, not removed.
+
+**Zero-install variant** (Claude Code ≥ v2.1.139): type
+`/goal npm test exits 0, or stop after 3 tries` — a session-scoped condition a
+separate small model re-checks after every turn, blocking "done" until it holds.
+Nothing written to the repo, nothing to install or clean up; softer than the
+hook (the evaluator judges what the agent surfaced in the transcript — it
+doesn't run commands itself).
 
 ## A worked example: Add password reset to the login flow
 
@@ -174,9 +213,15 @@ invented, escalation stays honest.
 
 **Actively used on real projects, and dogfooded** — PayneSDD develops itself under its
 own protocol: every change runs the full cycle and an independent review before it ships.
-Latest release: **v0.4.7**.
+Latest release: **v0.5.0**. After an install (or any big protocol change), run the fixed
+sanity task in [`benchmark/README.md`](benchmark/README.md) and walk its checklist.
 
 Recent highlights:
+- the **enforced gate is honest and loop-safe** — the Stop-hook honors
+  `stop_hook_active` and releases a stuck-red gate as **UNVERIFIED** after 3 blocks
+  instead of looping; the self-check now gates the docs too (versions, links,
+  copies) and runs in **CI**; edge cases come from a fixed **sweep**, prohibitions
+  get **negative ACs**, and the adversarial pass **audits the tests themselves** (0.5.0);
 - a **simplicity & scope** rule — write the minimum that *satisfies the contract*, don't
   over-engineer a single implementation, don't silently refactor adjacent code (0.4.6);
 - the iteration loop **stops early when it's stuck**, and the built-in reviewer loads

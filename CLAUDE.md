@@ -19,7 +19,8 @@ The Step 4 machine gate is wired as a Stop-hook (`hooks/payne-gate.sh`) and fire
 ONLY when a `.payne-active` marker is present, so trivial work and plain chat
 pass untouched.
 - `touch .payne-active` — arm the gate when a spec is in play.
-- `rm .payne-active` — disarm it when the task is done or abandoned.
+- `rm .payne-active` — disarm it when the task is done, abandoned, or honestly
+  ESCALATED (Step 6, red log attached — an honest escalation is not a bypass).
 
 The gate command for this markdown+shell repo is `scripts/payne-check.sh`
 (wired as `PAYNE_TEST_CMD` in the git-ignored `.claude/settings.json`; a

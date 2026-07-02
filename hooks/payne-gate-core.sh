@@ -25,13 +25,17 @@ if [ -z "$TEST_CMD" ]; then
 fi
 
 echo "PayneSDD gate: running → $TEST_CMD" >&2
-GATE_LOG="$(cd "$PROJECT_DIR" && eval "$TEST_CMD" 2>&1)"
+# Run the command in a FRESH shell with default options, so this script's
+# set -u / pipefail do not leak into the user's command semantics.
+GATE_LOG="$(cd "$PROJECT_DIR" && bash -c "$TEST_CMD" 2>&1)"
 GATE_RC=$?
 
 if [ $GATE_RC -ne 0 ]; then
   echo "──────────────────────────────────────────────────────────" >&2
   echo "PayneSDD GATE FAILED (exit $GATE_RC). You may NOT declare done." >&2
-  echo "Fix the CAUSE — do not weaken or bypass the check. Then run the gate again." >&2
+  echo "If iterating: fix the CAUSE — do not weaken or bypass the check — then run the gate again." >&2
+  echo "If the budget is spent (Step 2): ESCALATE per Step 6, quoting this red log as evidence —" >&2
+  echo "an honest escalation is not a bypass. Never claim done on a red gate." >&2
   echo "── gate output (tail) ──" >&2
   echo "$GATE_LOG" | tail -n 30 >&2
   exit 1

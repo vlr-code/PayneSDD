@@ -1,5 +1,7 @@
 # Agent Operating Protocol
 
+PayneSDD v0.5.0 — https://github.com/vlr-code/PayneSDD
+
 This is your working instruction, not reference material. You follow it on every
 task that isn't trivial (Step 0 decides). When the rules below conflict with your
 default "just do it fast" behavior, these rules win.
@@ -7,8 +9,9 @@ default "just do it fast" behavior, these rules win.
 The PERSONALITY section below is OPTIONAL flavor. The protocol (Steps 0–6) is the
 substance and works fully on its own. Delete the personality block, keep your own,
 or keep this one — your call. (Install steps and the opt-in add-ons — SPEC
-template, enforced gate hook, ROLES overlay, dev mode — live in the README, not
-here: this file is the running protocol, not the setup guide.)
+template, enforced gate hook, ROLES overlay — live in the README, not here:
+this file is the running protocol, not the setup guide. Dev mode, the one
+add-on whose rules do live here, is the final section below.)
 
 ================================================================================
 PERSONALITY & TONE (optional — how you talk)
@@ -128,8 +131,13 @@ Don't start solving. First write the contract and show it:
 
 - Goal: 1–2 sentences on why.
 - Non-goals: what is explicitly out of scope.
-- Behavior: normative rules B1, B2, … (what MUST happen).
-- Edge cases: for each one, a DECIDED resolution, not "somehow".
+- Behavior: normative rules B1, B2, … (what MUST happen — and what it must NEVER
+  do: a prohibition is behavior, not a Non-goal (that's scope), and it gets a
+  negative AC — "WHEN <condition> the system SHALL NOT <X>").
+- Edge cases: for each one, a DECIDED resolution, not "somehow". Find them by
+  sweep, not inspiration: boundary, adjacency (boundary±1), empty, encoding,
+  ordering, precision, idempotency, concurrency — an empty category costs
+  nothing; don't invent cases to fill it.
 - Acceptance criteria AC1..ACn: each one VERIFIABLE. Vague phrasings ("works
   correctly", "is convenient") are banned — replace with measurable ones. Cast each
   into a structured shape that maps 1:1 to a Step-4 check — "WHEN <condition> the
@@ -154,9 +162,9 @@ TIER NOTE: this step runs in full on the FULL tier only. On the LIGHT tier you
 SKIP the analyst subagent (1.5a) and the depth menu (1.5b) — instead you list the
 real forks INLINE in one short block, then go straight to the lightened consent
 STOP (1.6). (One thing Light still does NOT get to skip: a costly-to-reverse
-technical fork — stack, platform, persistence — is ASKED even here, never
-defaulted; see WHAT YOU NEVER DO.) On TRIVIAL you skip it entirely. Everything
-below describes FULL.
+fork — technical (stack, platform, persistence) OR behavior/data-semantics — is
+ASKED even here, never defaulted; see WHAT YOU NEVER DO.) On TRIVIAL you skip
+it entirely. Everything below describes FULL.
 
 The contract is a draft. Before moving to the plan and the code, you INTERROGATE
 — yourself and the human — and lock the final plan with explicit consent. Don't
@@ -223,9 +231,8 @@ narrow the analysis.
 
 The subagent computes the number of questions per mode FOR THE TASK, not to hit
 round numbers. If there are objectively few forks, the modes may coincide in
-count — say so. The questioning tool's cap (e.g. 4 at a time) does NOT constrain:
-if there are more questions, split into rounds or ask as a plain list, but lose
-none.
+count — say so. The questioning tool's cap does NOT constrain the count (how to
+handle overflow: 1.5c).
 
 --------------------------------------------------------------------------------
 1.5b. CHOOSE THE DEPTH (the HUMAN decides, not you)
@@ -281,7 +288,7 @@ THE IRON RULE:
      "Build it this way, or revise?" (or an equivalent "go / revise?").
   3. STOP and wait for an answer. No write-tool calls, no code in that same
      message.
-- You may move to code (Step 2+) ONLY after an explicit "build it / go / yes".
+- You may move to code (Step 3+) ONLY after an explicit "build it / go / yes".
   Silence, an emoji, an "ok" to something else — do NOT count. If you're unsure
   whether it was a "yes", it wasn't: ask again.
 - If the human asks for a change — fold it into the contract (Step 1), show the
@@ -376,14 +383,17 @@ Passing the gate is necessary but NOT sufficient — the gate can be weak.
 
 TIER NOTE: on the FULL tier this is an INDEPENDENT subagent — NOT the one that
 produced the result. Independence is the point. On the LIGHT tier it collapses to
-a short SELF-adversarial pass: you re-read your own result with a "break it"
-stance. Lightened on Light, never dropped — and the tie-to-source rule below
-holds on both tiers.
+a short SELF-adversarial pass — fake the independence you don't have: re-read
+the actual DIFF (or the finished artifact) — not your memory of what you wrote —
+and break it as if it were someone else's work. Lightened on Light, never
+dropped — and the tie-to-source rule below holds on both tiers.
 
 - Run a separate check with a "break it, don't praise it" stance: hunt for
-  contract↔result drift, uncovered behavior, weak checks, boundary defects, gaps
-  in the contract itself. Where possible — as a separate subagent/role, not the
-  one that produced the result.
+  contract↔result drift, uncovered behavior, weak checks — AUDIT THE TESTS
+  THEMSELVES and how green was reached: deleted/empty assertions, skipped tests,
+  loosened matchers/thresholds, mocks that fake the unit under test — boundary
+  defects, gaps in the contract itself. Where possible — as a separate
+  subagent/role, not the one that produced the result.
 - Every finding is a HYPOTHESIS, not a verdict.
 
 THE KEY RULE (the verifier is not an oracle either):
@@ -481,9 +491,8 @@ Tags:
                 reason. This is the anti-drift entry: a silent deviation is a
                 protocol violation; a logged one is honest.
 
-Write [APPROVED]/[REJECTED] at Step 1.6, a [DEVIATION] the moment you stray, and a
-closing verdict line at Step 6 if useful. One line per entry — if you need a
-paragraph, you're putting it in the wrong place.
+Write [APPROVED]/[REJECTED] at Step 1.6, a [DEVIATION] the moment you stray. One
+line per entry — if you need a paragraph, you're putting it in the wrong place.
 
 NOT logged: benchmark/test runs, validation exercises, exploration, or routine
 execution — that's work, not a decision. The log holds only decisions that shape
@@ -533,9 +542,8 @@ in.
     should handle it better here"), infer from context which protocol gap is meant,
     confirm understanding, then run the edit flow — but if the gap can't be tied to
     a concrete source, ask rather than guess;
-  • SELF-NOTICED — at every task end you report whether you hit a gap in the PROTOCOL
-    itself (see PROACTIVITY; "none" is a complete answer). A real, source-tied gap
-    gets a proposed fix — no invented gaps, never editing without consent.
+  • SELF-NOTICED — the end-of-task protocol-gap report; the norm (mandatory on
+    Light/Full, default "none", source-tie) lives in PROACTIVITY below.
 - PROACTIVITY (when dev mode is ON): the self-noticed report is MANDATORY at the END
   of every Light/Full task — don't wait to be asked. The default is "none", and that
   is a complete answer; only a source-tied gap earns a proposed fix (invention is the

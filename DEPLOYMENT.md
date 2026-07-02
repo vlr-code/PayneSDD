@@ -4,7 +4,7 @@
 assistant) where the cost of carrying the full protocol is paid once per task and
 nobody cares. On an **always-on, token-metered agent** — a chat bot, a Telegram
 assistant, anything billed per message — that math flips: the whole of `AGENT.md`
-(~4.8k words ≈ 7–8k tokens — plus the persona and `ROLES.md` if you pasted them)
+(~5.2k words ≈ 7–8k tokens — plus the persona and `ROLES.md` if you pasted them)
 rides in **every** message, including the 90% that are plain chat (Trivial), where
 no protocol runs at all. You pay for discipline you aren't using.
 
@@ -87,3 +87,27 @@ Trivial turn because it isn't in context until the agent reads it. Measure your
 host's per-message input before and after on a *fresh* session (history inflates
 live numbers); the slim core should add only a few hundred tokens to the idle
 baseline while keeping the entire protocol one read away.
+
+## Variant: zero-footprint (full cycle, nothing written to the project)
+
+`AGENT.md` assumes it may leave files in the repo: the committed
+`.payne/decisions.log`, the `.payne-active` marker for the enforced Stop-hook,
+an optional `SPEC.md`. In repos where protocol artifacts are unwelcome (client
+codebases, dozens of small projects, repos you don't own), run the protocol as
+pure reasoning discipline — every step still executes, nothing touches the
+working tree. Override three things in your always-loaded instructions (e.g. a
+global `CLAUDE.md`):
+
+- **Decision log → OFF.** No `.payne/decisions.log`; decisions live in the chat.
+- **Contract/SPEC → INLINE** in the conversation; a `SPEC.md` file only on
+  explicit request.
+- **Enforced gate → honor-system.** No `.payne-active`, no Stop-hook — but Step 4
+  still runs the project's real check (tests / lint / build) every time; only the
+  OS-level *blocking* is gone.
+
+**What you give up, honestly:** the committed audit trail and cross-session
+memory (a later session can't re-read what was decided — the chat is the only
+record), and the machine block on a false "done" (the gate becomes a promise the
+agent keeps, not one the OS enforces). Everything else — tiers, contract, consent
+STOP, the gate itself, the adversarial pass, the verdict — is unchanged. The
+committed setup stays the default because it carries the stronger guarantee.

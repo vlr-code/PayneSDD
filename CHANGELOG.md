@@ -5,6 +5,57 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+## 0.5.0 — 2026-07-02
+
+### Fixed
+- **The enforced gate is now honest and loop-safe** (hooks + snippets + docs).
+  The Stop-hook reads its stdin JSON and honors `stop_hook_active`; a stuck-red
+  gate blocks up to `PAYNE_MAX_BLOCKS` times (default 3 — the Step 2 iteration
+  budget), then RELEASES the stop with an explicit UNVERIFIED / ESCALATE message
+  instead of looping (Claude Code force-ends after 8 consecutive blocks anyway —
+  the old "literally cannot end" overclaim is gone). The hook path is quoted (a
+  project path with a space used to fail OPEN: exit 127 = no gate), the user
+  command runs in a fresh shell via `bash -c` (the core's `set -u`/`pipefail` no
+  longer leak false REDs), and the snippets ship a `timeout` (a timed-out hook
+  silently doesn't block). Honest escalation documented: disarm the marker on
+  done, abandoned, or ESCALATED with the red log attached.
+- **The self-gate now checks the product, not just two hook files**
+  (`scripts/payne-check.sh`): syntax+shellcheck for `hooks/` AND `scripts/`, one
+  version everywhere (badge = Latest = CHANGELOG = the new `AGENT.md` header
+  stamp), README links and `CLAUDE.md` imports must resolve, dogfood command
+  copies must match canon. Plus the first CI (`.github/workflows/gate.yml`) —
+  the gate runs on every push and PR.
+- **Install docs actually install** (README): a copy-the-hooks step, where slash
+  commands / the `payne-quality` agent / `ROLES.md` go, a
+  `settings.example.json` pointer, the "(git-ignored)" falsehood about
+  `.claude/settings.json` corrected (`settings.local.json` is the personal
+  variant), and a security note — `PAYNE_TEST_CMD` is executed on every stop,
+  review changes to it like code.
+
+### Changed
+- **Contract sweeps** (AGENT.md — Step 1): edge cases are found by a fixed sweep
+  (boundary, adjacency, empty, encoding, ordering, precision, idempotency,
+  concurrency), not inspiration; and prohibitions are behavior — "must NEVER do
+  X" gets a negative AC (`WHEN … SHALL NOT`), distinct from Non-goals (scope).
+- **The adversarial pass audits the tests themselves** (Step 5 +
+  `/payne-review`): deleted/empty assertions, skips, loosened
+  matchers/thresholds, mocks faking the unit under test — how green was reached
+  is in scope. On Light, the self-review re-reads the actual diff from disk and
+  breaks it as someone else's code — fake the independence you don't have.
+- **Consistency fixes across the protocol**: the Light tier note now names
+  behavior/data-semantics forks as never-defaulted (synced with 0.4.1); the 1.6
+  gate says code = Step 3+ (matching ROLES' placement); ROLES' QA outputs a
+  *recommended* verdict — the main thread adjudicates and issues Step 6; the
+  decision-log "closing verdict line" contradiction removed; dev-mode
+  SELF-NOTICED deduped into PROACTIVITY; `/payne-edit`'s "a typo may be Trivial"
+  carve-out removed (the hard floor applies — a typo just has 0 forks);
+  `payne-spec`/`payne-edit` opt out of model auto-invocation (the skills merge);
+  the SPEC template caught up with EARS ACs and executable references; `AGENT.md`
+  carries a version stamp the gate verifies; README/`DEPLOYMENT.md` document the
+  zero-footprint variant, `@`-import install, and the `/goal` zero-install gate;
+  assorted doc drift repaired (ROLES `PRD`→`SPEC` and "medium task", DEPLOYMENT
+  word count, benchmark gate note, README tagline dedup + benchmark link).
+
 ## 0.4.7 — 2026-06-27
 
 ### Changed
