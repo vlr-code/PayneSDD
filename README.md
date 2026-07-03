@@ -20,8 +20,9 @@
 
 ## The problem
 
-You prompt → the agent codes → it says **"done"** → you re-read everything
-anyway, because an agent's "done" means nothing on its own. That's the tax of
+You prompt → the agent codes → it says **"done"** → and now you either re-read
+everything anyway, or play the release quiz: *so… what exactly went out just
+now?* An agent's "done" means nothing on its own. That's the tax of
 vibe-coding: speed up front, paid back as distrust.
 
 ## What PayneSDD does about it
