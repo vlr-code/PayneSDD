@@ -1,16 +1,18 @@
 # Deploying PayneSDD on a token-metered / always-on agent
 
-`AGENT.md` is written to be pasted whole into a per-task tool (Claude Code, an IDE
-assistant) where the cost of carrying the full protocol is paid once per task and
-nobody cares. On an **always-on, token-metered agent** — a chat bot, a Telegram
-assistant, anything billed per message — that math flips: the whole of `AGENT.md`
+`AGENT.md` can be pasted whole into a per-task tool (Claude Code, an IDE
+assistant) when you accept the always-on cost. On an **always-on, token-metered
+agent** — a chat bot, a Telegram assistant, anything billed per message — that
+math breaks: the whole of `AGENT.md`
 (~5.5k words ≈ 8.1k tokens, measured — see the README token table; plus `ROLES.md` if you pasted it)
 rides in **every** message, including the 90% that are plain chat (Trivial), where
 no protocol runs at all. You pay for discipline you aren't using.
 
 This guide is the pattern that fixes it without losing any capability:
-**slim-core always loaded, full protocol on demand.** It is optional — if your
-agent isn't token-metered, ignore this and paste `AGENT.md` whole.
+**slim-core always loaded, full protocol on demand** — the digest install the
+README recommends is this exact pattern, shipped. Two general sections also
+live at the bottom of this file, linked from the README: the **enforced
+Stop-hook setup** and **where the add-ons install**.
 
 ## The idea: tier-aware LOADING, not just tier-aware behavior
 
@@ -131,3 +133,69 @@ record), and the machine block on a false "done" (the gate becomes a promise the
 agent keeps, not one the OS enforces). Everything else — tiers, contract, consent
 STOP, the gate itself, the adversarial pass, the verdict — is unchanged. The
 committed setup stays the default because it carries the stronger guarantee.
+
+## Enforced Stop-hook setup (Claude Code)
+
+1. Copy `hooks/payne-gate.sh` **and** `hooks/payne-gate-core.sh` into your
+   project (keep them side by side — the wrapper calls the core), then:
+
+```bash
+chmod +x hooks/payne-gate.sh hooks/payne-gate-core.sh
+```
+
+2. Wire the hook — copy [`settings.example.json`](settings.example.json) to
+   `.claude/settings.json` and set `PAYNE_TEST_CMD` to your project's real test
+   command, or add it by hand:
+
+```jsonc
+// .claude/settings.json (shared, normally committed) — or put your personal
+// variant in .claude/settings.local.json (auto-git-ignored by Claude Code)
+{
+  "env": { "PAYNE_TEST_CMD": "npm test" },
+  "hooks": {
+    "Stop": [
+      { "hooks": [ { "type": "command",
+                     "command": "\"$CLAUDE_PROJECT_DIR\"/hooks/payne-gate.sh",
+                     "timeout": 1800 } ] }
+    ]
+  }
+}
+```
+
+Per task: `touch .payne-active` when a spec is in play, `rm .payne-active` when
+done (or honestly escalated). With the marker present, a red `PAYNE_TEST_CMD`
+blocks the agent from finishing — up to 3 consecutive blocks (`PAYNE_MAX_BLOCKS`),
+after which the stop is **released with an explicit UNVERIFIED warning**: the
+iteration budget (Step 2) is spent and the call belongs to the human, not the
+loop. (Claude Code itself force-ends after 8 consecutive Stop-hook blocks, so
+"blocked forever" was never on the table anyway.) With no marker the gate stays
+silent (trivial tasks aren't punished). Add `.payne-active*` to your
+`.gitignore` — the marker and its block counter are runtime files, never
+committed.
+
+Two honest notes:
+- **`timeout`** (seconds) must exceed your suite's worst case — a timed-out
+  hook silently does *not* block.
+- **`PAYNE_TEST_CMD` is a command the gate executes on every stop.** In a
+  shared repo where `.claude/settings.json` is committed, review changes to it
+  like code — it runs with your user's permissions.
+
+**Portability, honestly:** the *enforcement* (auto-block on stop) is Claude-Code
+only. On other agents run `hooks/payne-gate-core.sh` directly — same red/green
+logic, but on-request, not blocking. The lock is loosened, not removed.
+
+**Zero-install variant** (Claude Code ≥ v2.1.139): type
+`/goal npm test exits 0, or stop after 3 tries` — a session-scoped condition a
+separate small model re-checks after every turn, blocking "done" until it holds.
+Nothing written to the repo, nothing to install or clean up; softer than the
+hook (the evaluator judges what the agent surfaced in the transcript — it
+doesn't run commands itself).
+
+## Where the add-ons install (Claude Code)
+
+Slash commands go into your project's `.claude/commands/` or globally into
+`~/.claude/commands/`; the `payne-quality` agent into `.claude/agents/` or
+`~/.claude/agents/` (copy — or symlink, so they auto-update with your clone).
+`ROLES.md` rides next to `AGENT.md` in the same instructions file (e.g. a
+second import line). Dev mode, once its command is installed, toggles with
+`/payne-edit on|off|status`.
