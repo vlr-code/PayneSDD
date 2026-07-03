@@ -5,6 +5,22 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+## 0.5.1 — 2026-07-03
+
+### Added
+- **Failure → contract ratchet** (Step 4 + Step 5): a failed gate — or an accepted
+  adversarial finding — must ask whether it exposed a hole the contract never
+  covered (a missed edge case, a missing negative AC). If yes, the clause plus the
+  named check that proves it land FIRST, then the code fix. A bug class the
+  contract never learns is a bug you fix twice.
+- **Caller-drift check in the fork sweep** (Step 1.5a): when the delivery surface /
+  public API already exists, check the new shape against its CURRENT callers
+  (cite the caller, file:line) instead of assuming they still match.
+- **Compact subagent reports** (Step 5): every protocol subagent (analyst,
+  adversarial, quality reviewer) returns one line per finding/fork — source tie +
+  claim + proposed fix, an explicit "none" when empty. The main thread's context
+  is the budget they spend.
+
 ## 0.5.0 — 2026-07-02
 
 ### Fixed

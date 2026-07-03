@@ -13,9 +13,13 @@ Do this:
    assertions, skipped tests, loosened matchers/thresholds, mocks that fake the
    unit under test — boundary defects, and gaps in the contract itself. Every
    finding MUST cite a source (file:line, a doc quote, a concrete test). Findings
-   with no source tie are marked "unconfirmed", not asserted as bugs.
+   with no source tie are marked "unconfirmed", not asserted as bugs. The report
+   comes back COMPACT: one line per finding — source tie + claim + proposed fix;
+   an explicit "none" when clean.
 3. Adjudicate the findings yourself (the verifier is not an oracle): accept and
-   fix only source-tied findings; reject the rest and say why.
+   fix only source-tied findings; reject the rest and say why. When an accepted
+   finding exposes a hole in the contract itself, ratchet: the clause plus the
+   named check that proves it land first, then the fix (Step 4).
 4. Re-run the machine gate (Step 4) after any fix. Then give the Step 6 verdict:
    PASS / ITERATE / ESCALATE, with evidence — and, on Light/Full, the compact
    Done / Remaining / Open questions closing summary.

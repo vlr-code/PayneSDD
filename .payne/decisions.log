@@ -31,3 +31,6 @@
 2026-07-02 [APPROVED] vetted-improvements package (user pre-approved via vetting criterion): 16 taken of 20 judged + 9 mechanical drift-repairs; +9 lines always-loaded total. Rejected: S10 inline-contract persistence (zero-trace), S18 triage-trio (dup of tie-to-source), S19 PBT-preference (test-craft), S17 demoted (overlaps S15).
 2026-07-02 [APPROVED] decisions.log discipline: future entries = one short line (~200 chars, what+why; details go to CHANGELOG/commit); rule unchanged, old 0.4.x paragraphs stay — append-only.
 2026-07-02 [APPROVED] release 0.5.0 — critical enforcement fixes (loop-safe honest hook, product self-gate, first CI) + 25 vetted revision items (+12 lines always-loaded); payne-quality SHIP after its off-by-one catch fixed; user chose minor bump.
+2026-07-03 [APPROVED] v0.5.1 additions from an external SDD-tooling research pass — FULL tier; take: failure→contract ratchet (Step 4/5), caller-drift check (1.5a), compact subagent reports (Step 5), benchmark-methodology note, SPEC.md-proposal right in user config
+2026-07-03 [REJECTED] plain-warnings persona rule (persona yields on destructive-op warnings) — user veto: readers parse jokes fine, rule not needed
+2026-07-03 [DEVIATION] benchmark-methodology note → benchmark/README.md (+memory), not Desktop roadmap — the roadmap file no longer exists on Desktop

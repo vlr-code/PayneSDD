@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.5.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.5.1-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -213,10 +213,14 @@ invented, escalation stays honest.
 
 **Actively used on real projects, and dogfooded** — PayneSDD develops itself under its
 own protocol: every change runs the full cycle and an independent review before it ships.
-Latest release: **v0.5.0**. After an install (or any big protocol change), run the fixed
+Latest release: **v0.5.1**. After an install (or any big protocol change), run the fixed
 sanity task in [`benchmark/README.md`](benchmark/README.md) and walk its checklist.
 
 Recent highlights:
+- every gate failure now asks what the **contract** missed — the new clause + its
+  named check land first, then the code fix; the fork sweep checks **existing
+  callers** of a changed surface, and subagent reports come back **one line per
+  finding** (0.5.1);
 - the **enforced gate is honest and loop-safe** — the Stop-hook honors
   `stop_hook_active` and releases a stuck-red gate as **UNVERIFIED** after 3 blocks
   instead of looping; the self-check now gates the docs too (versions, links,

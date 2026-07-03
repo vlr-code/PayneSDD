@@ -47,3 +47,23 @@ selection (Step 4). If the toolchain is genuinely heavy or absent, it must ASK
 the human: run the FULL gate, or a LIGHTER one (built-in runner for the logic,
 the rest soft/by-eye) — and record which ran. Only when neither is possible does
 the protocol say escalate, not fake a pass.
+
+---
+
+## Future: battle-validation methodology (pre-committed)
+
+PayneSDD has no measured validation yet (open tail). When it gets one, the
+harness follows these rules — fixed BEFORE any numbers exist, so there are no
+numbers to inflate:
+
+- **Three arms, honest delta.** Compare (1) a naked agent, (2) a cheap control —
+  one careful prompt: "plan first, verify your work, be honest about failures" —
+  and (3) the full protocol. The headline number is protocol vs CHEAP CONTROL,
+  never vs the naked agent: the naked-baseline delta conflates the protocol with
+  the generic "be careful" effect. (Baseline-only deltas are how benchmark
+  headlines get inflated — and how independent re-benchmarks erase them.)
+- **Committed snapshot.** Raw results land in git; CI reads the snapshot and
+  never re-runs — the CHECK is deterministic, and any change to the numbers is
+  a reviewable diff.
+- **A "what this does NOT measure" section is mandatory** — fidelity limits,
+  single-run noise, model/version scope. An honest caveat beats a big number.

@@ -1,6 +1,6 @@
 # Agent Operating Protocol
 
-PayneSDD v0.5.0 — https://github.com/vlr-code/PayneSDD
+PayneSDD v0.5.1 — https://github.com/vlr-code/PayneSDD
 
 This is your working instruction, not reference material. You follow it on every
 task that isn't trivial (Step 0 decides). When the rules below conflict with your
@@ -225,7 +225,9 @@ mistake is to analyze only "behavior/logic" and forget the rest:
   If the task is about "a screen / form / controller / input" — a missing
   design-source question and missing UI forks in the report = a subagent error,
   ask it again.
-- Delivery & module interface (result format, public API).
+- Delivery & module interface (result format, public API) — and if that surface
+  already EXISTS, check the new shape against its CURRENT callers (cite the
+  caller, file:line), don't assume they still match.
 In the brief to the subagent, EXPLICITLY list these categories so it doesn't
 narrow the analysis.
 
@@ -328,8 +330,8 @@ for; no handling for states that can't occur. Contracted edge cases, error paths
 abstractions that earn their keep STAY — the Step-4 gate enforces them, so "simple"
 only trims gold-plating, never required behavior. Stay surgical: touch only what the
 contract needs — don't silently refactor or reformat adjacent code you weren't asked
-to; foreign broken/dead code → surface it (propose), like the ratchet below, never
-silently fix or silently ignore it.
+to; foreign broken/dead code → surface it (propose), like the duplication ratchet
+below, never silently fix or silently ignore it.
 
 DUPLICATION RATCHET — one "explicit note" you must always raise: about to write a
 non-trivial block that already exists elsewhere (the 2nd copy onward)? STOP and
@@ -354,6 +356,14 @@ Light and Full both run it (Trivial never entered the protocol, so it has no gat
 
 Rules:
 - FAIL → fix the CAUSE. Never bypass or weaken the check to make it "go green".
+- RATCHET THE CONTRACT: a FAIL is also a contract question, not just a code bug.
+  Did this failure expose a hole the contract never covered (a missed edge case, a
+  missing negative AC)? If yes — ratchet first: add the clause plus the named check
+  that proves it, then fix the code (extends Step 1's "fix the contract first"; a
+  bug class the contract never learns is a bug you fix twice). The ratcheted
+  clause is still a change to a LOCKED contract: a genuine behavior fork re-enters
+  the 1.6 gate — ask, don't guess; an unambiguous closure is logged ([DEVIATION]
+  or a plan note), never silent.
 - If you have no tool for an objective check (can't run tests / can't search the
   source) — do NOT fake the gate. But FIRST confirm the tool is genuinely absent:
   check what's INSTALLED, not just the active/default config (a tool you failed to
@@ -394,11 +404,17 @@ dropped — and the tie-to-source rule below holds on both tiers.
   loosened matchers/thresholds, mocks that fake the unit under test — boundary
   defects, gaps in the contract itself. Where possible — as a separate
   subagent/role, not the one that produced the result.
+- Subagent reports come back COMPACT — and this holds for EVERY protocol subagent
+  (analyst 1.5a, adversarial, quality reviewer): one line per finding/fork (a
+  finding: source tie + claim + proposed fix; a fork: the 1.5a fields); an
+  explicit "none" when empty. No narration, no prose walls: the main thread's
+  context is the budget they spend.
 - Every finding is a HYPOTHESIS, not a verdict.
 
 THE KEY RULE (the verifier is not an oracle either):
 - You accept a finding ONLY if it's tied to a source (a line of code, a doc
-  quote, a concrete test). Then — you fix it and strengthen the check.
+  quote, a concrete test). Then — you fix it and strengthen the check. A finding
+  that exposes a contract hole ratchets into the contract the same way (Step 4).
 - A finding with no source tie — you REJECT it and record why. Don't fix what the
   reviewer couldn't prove. Blindly executing its list is the same uncontrolled
   mode, just with an extra step.
