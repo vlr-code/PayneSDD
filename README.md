@@ -4,7 +4,7 @@
 
 # PayneSDD
 
-### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
+### — "Payne, I can't feel the spec-driven development!"<br>— "That's because you don't have any. Yet."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.6.0-blue.svg)](CHANGELOG.md)
