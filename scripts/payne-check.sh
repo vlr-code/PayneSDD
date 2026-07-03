@@ -74,7 +74,31 @@ else
   fail=1
 fi
 
-# AC5: dogfood copies must not drift — any local .claude/commands/*.md that
+# AC5: DIGEST.md (the always-on compression of AGENT.md) must exist, be pinned
+# to the CURRENT AGENT.md, and stay inside its size band — a ceiling so it
+# can't bloat back into a second full file, and a floor so a gutted stub can't
+# pass. The digest is hand-maintained, so the pin forces a review on every
+# AGENT.md edit (re-pin AFTER the review: scripts/payne-digest-stamp.sh).
+if [ -f "$ROOT/DIGEST.md" ]; then
+  pin="$(grep -Eo 'pin: AGENT\.md sha256=[0-9a-f]{64}' "$ROOT/DIGEST.md" | grep -Eo '[0-9a-f]{64}' || true)"
+  if command -v sha256sum >/dev/null 2>&1; then
+    agent_sha="$(sha256sum "$ROOT/AGENT.md" | cut -d' ' -f1)"
+  else
+    agent_sha="$(shasum -a 256 "$ROOT/AGENT.md" | cut -d' ' -f1)"
+  fi
+  digest_size="$(wc -c < "$ROOT/DIGEST.md" | tr -d ' ')"
+  if [ -n "$pin" ] && [ "$pin" = "$agent_sha" ] && [ "$digest_size" -le 10500 ] && [ "$digest_size" -ge 8000 ]; then
+    echo "ok   (digest)      DIGEST.md pinned to current AGENT.md, ${digest_size} chars (band 8000-10500)"
+  else
+    echo "FAIL (digest)      pin/size mismatch (pin='${pin:-none}', AGENT.md=${agent_sha}, size=${digest_size}, band 8000-10500) — AGENT.md changed? review DIGEST.md, then run scripts/payne-digest-stamp.sh" >&2
+    fail=1
+  fi
+else
+  echo "FAIL (digest)      DIGEST.md missing — it ships with the repo; restore it from git" >&2
+  fail=1
+fi
+
+# AC6: dogfood copies must not drift — any local .claude/commands/*.md that
 # shadows a canonical commands/*.md must be byte-identical to it.
 copy_fail=0
 for c in "$ROOT"/.claude/commands/*.md; do

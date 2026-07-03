@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "Good. That means it's working."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.5.1-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.6.0-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -89,6 +89,7 @@ The protocol in `AGENT.md` is self-contained. These are opt-in:
 
 | File | What it adds | When |
 |---|---|---|
+| [`DIGEST.md`](DIGEST.md) | Tested ~2.4k-token always-on digest of the protocol, checksum-pinned to `AGENT.md` | Token-metered / always-loaded setups |
 | [`templates/SPEC.template.md`](templates/SPEC.template.md) | A fixed contract skeleton for Step 1 | Always handy |
 | [`commands/payne-spec.md`](commands/payne-spec.md) | Slash command: start a contract from the template | Claude Code |
 | [`commands/payne-review.md`](commands/payne-review.md) | Slash command: run the adversarial review | Claude Code |
@@ -213,10 +214,13 @@ invented, escalation stays honest.
 
 **Actively used on real projects, and dogfooded** — PayneSDD develops itself under its
 own protocol: every change runs the full cycle and an independent review before it ships.
-Latest release: **v0.5.1**. After an install (or any big protocol change), run the fixed
+Latest release: **v0.6.0**. After an install (or any big protocol change), run the fixed
 sanity task in [`benchmark/README.md`](benchmark/README.md) and walk its checklist.
 
 Recent highlights:
+- the protocol now ships a **tested always-on digest** — [`DIGEST.md`](DIGEST.md),
+  ~2.4k tokens instead of the full file's 8.1k, checksum-pinned against drift,
+  holding every gate in live behavioral tests (0.6.0);
 - every gate failure now asks what the **contract** missed — the new clause + its
   named check land first, then the code fix; the fork sweep checks **existing
   callers** of a changed surface, and subagent reports come back **one line per
@@ -242,6 +246,36 @@ Earlier: a dehydration pass (0.4.4), the `DEPLOYMENT.md` slim-core, a duplicatio
 (0.4.0), the Done / Remaining / Open-questions summary (0.2.2), execution tiers + the
 decision log (0.2.0), optional dev mode (0.3.0) and the Joe persona (0.3.1). Full history
 in [`CHANGELOG.md`](CHANGELOG.md) — use it, break it, file what doesn't hold.
+
+## Token cost — measured
+
+The protocol is not free: whatever you always-load rides in every session. We
+measured it instead of guessing (static sizes: tiktoken `o200k_base`; live
+costs: real `claude -p` calls, usage read from the API's own JSON):
+
+| Always-on load | Static size | Measured Δ input per call (live) |
+|---|---:|---:|
+| Full `AGENT.md` (protocol + persona) | 8,111 tok | ≈ +9,050 tok |
+| [`DIGEST.md`](DIGEST.md) (the shipped digest) | ≈2,360 tok | ≈ +2,254 tok |
+| `ROLES.md` (opt-in overlay) | 875 tok | read on demand |
+
+Behavior under the digest was live-tested against the full file: ≈50 scored
+runs across several rounds (three arms bare/digest/full, then both arms
+re-measured under an identical fresh-sandbox harness, n=6 per arm on the risky
+probe), scoring done by script, not by eye — the committed run summary is
+[`benchmark/token-tests-0.6.0.md`](benchmark/token-tests-0.6.0.md). The digest
+held every gate the full file held — zero premature code on a hard-floor
+payment probe in every digest run of every round (16/16), consent-before-code
+on the coding probe 3/3 (the full arm: 1/3), trivial questions answered
+directly and cheaply, persona markers present at least as often as under the
+full file.
+
+What this does NOT measure: long multi-turn sessions, models other than the
+one tested, significance beyond n=6 per cell — the full caveat list lives in
+the snapshot. The pre-committed methodology for the future QUALITY validation
+(cheap-control arms, committed snapshots, honesty sections):
+[`benchmark/README.md`](benchmark/README.md). Installing the digest variant:
+[`DEPLOYMENT.md`](DEPLOYMENT.md).
 
 ## License
 

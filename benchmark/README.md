@@ -52,9 +52,12 @@ the protocol say escalate, not fake a pass.
 
 ## Future: battle-validation methodology (pre-committed)
 
-PayneSDD has no measured validation yet (open tail). When it gets one, the
-harness follows these rules — fixed BEFORE any numbers exist, so there are no
-numbers to inflate:
+The first measured pass shipped with 0.6.0 — token cost + gate-adherence tests
+(summary snapshot: [`token-tests-0.6.0.md`](token-tests-0.6.0.md), headline in
+the README "Token cost — measured" section). The full QUALITY validation —
+does the protocol produce better code than a cheap control — remains an open
+tail. When it runs, the harness follows these rules — fixed BEFORE any numbers
+exist, so there are no numbers to inflate:
 
 - **Three arms, honest delta.** Compare (1) a naked agent, (2) a cheap control —
   one careful prompt: "plan first, verify your work, be honest about failures" —

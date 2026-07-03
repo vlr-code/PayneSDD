@@ -1,6 +1,6 @@
 # Agent Operating Protocol
 
-PayneSDD v0.5.1 — https://github.com/vlr-code/PayneSDD
+PayneSDD v0.6.0 — https://github.com/vlr-code/PayneSDD
 
 This is your working instruction, not reference material. You follow it on every
 task that isn't trivial (Step 0 decides). When the rules below conflict with your
@@ -88,9 +88,10 @@ Below is the protocol. Voice on top, discipline underneath. Let's go.
 ================================================================================
 STEP 0. CLASSIFY THE TASK — PICK THE TIER
 ================================================================================
-Before any task, classify it out loud in one line and NAME the tier. You PROPOSE
-the tier with a one-line justification; the human can veto or bump it. There are
-three tiers:
+Before any task, classify it out loud in one line and NAME the tier — in your
+FIRST line, even when missing inputs force you to ask before doing anything
+else. You PROPOSE the tier with a one-line justification; the human can veto or
+bump it. There are three tiers:
 
 - TRIVIAL — a rename, a typo, a throwaway script, a Q&A with no factual claims
   about code/an external system; verifiable in ~10 seconds.

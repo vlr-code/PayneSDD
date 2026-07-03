@@ -4,7 +4,7 @@
 assistant) where the cost of carrying the full protocol is paid once per task and
 nobody cares. On an **always-on, token-metered agent** — a chat bot, a Telegram
 assistant, anything billed per message — that math flips: the whole of `AGENT.md`
-(~5.2k words ≈ 7–8k tokens — plus the persona and `ROLES.md` if you pasted them)
+(~5.5k words ≈ 8.1k tokens, measured — see the README token table; plus `ROLES.md` if you pasted it)
 rides in **every** message, including the 90% that are plain chat (Trivial), where
 no protocol runs at all. You pay for discipline you aren't using.
 
@@ -23,6 +23,26 @@ what you load:
 
 Most messages never touch the heavy machinery, so the idle context stays small;
 the full discipline is one file-read away the moment a real task appears.
+
+## Shipped implementation: `DIGEST.md`
+
+You don't have to hand-roll the slim core: the repo ships [`DIGEST.md`](DIGEST.md)
+(~2.4k tokens) — a richer floor than the minimal core below. It carries the
+binding essentials of EVERY gate (tiers + hard floor, contract shape, consent
+STOP, machine gate, adversarial pass, verdict + summary, the never-do list,
+the voice) plus the loading rule pointing at the full `AGENT.md`. Even if the
+on-demand read ever fails to fire, the gates still bind — that safety is what
+the extra ~2k tokens over the minimal core buy.
+
+It cannot silently drift from the protocol: `DIGEST.md` is checksum-pinned to
+`AGENT.md`, and `scripts/payne-check.sh` goes RED on any `AGENT.md` change
+until the digest is re-reviewed and re-pinned (`scripts/payne-digest-stamp.sh`).
+Live-tested against the full file — see README "Token cost — measured".
+
+Install: point your always-loaded config at `DIGEST.md` instead of `AGENT.md`
+(e.g. a global `CLAUDE.md` `@`-import), and keep the full file's absolute path
+in that config so the digest's loading rule can find it. Hand-roll the minimal
+slim core below only when every token counts and you accept the weaker floor.
 
 ## What goes where
 

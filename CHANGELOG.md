@@ -5,6 +5,33 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+## 0.6.0 — 2026-07-03
+
+### Added
+- **`DIGEST.md` — the always-on digest**: a ~2.4k-token compressed floor of the
+  protocol (tiers + hard floor, every gate, the never-do list, the voice) for
+  always-loaded / token-metered setups — ~29% of the full file's 8.1k tokens.
+  Opens with the loading rule: on any Light/Full task, read the full `AGENT.md`
+  BEFORE the contract. The digest is the floor; `AGENT.md` stays the single
+  source of truth. A shipped, tested implementation of the `DEPLOYMENT.md`
+  slim-core pattern.
+- **Digest drift gate**: `DIGEST.md` carries a sha256 pin of `AGENT.md`;
+  `scripts/payne-check.sh` goes RED on any `AGENT.md` edit until the digest is
+  re-reviewed and re-pinned (`scripts/payne-digest-stamp.sh`), and enforces a
+  size band (8,000–10,500 chars) so the digest can neither bloat back into a
+  second full file nor be gutted to a stub that still passes.
+- **Measured token costs** (README "Token cost — measured"): live behavioral
+  tests — real `claude -p` runs, mechanical scoring — show the digest holds
+  every gate the full file holds (no premature code on a hard-floor probe,
+  consent before code, cheap trivial answers, persona intact) at roughly a
+  quarter of the always-on cost. Committed run summary:
+  `benchmark/token-tests-0.6.0.md`.
+
+### Changed
+- **Step 0**: the tier is named in your FIRST line — even when missing inputs
+  force you to ask before doing anything else. One line, backported from the
+  digest's operationalization of the existing "classify out loud" rule.
+
 ## 0.5.1 — 2026-07-03
 
 ### Added
