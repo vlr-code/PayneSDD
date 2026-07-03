@@ -45,17 +45,23 @@ formal part, and gives you three things a raw prompt doesn't:
 The trade: about a minute of up-front agreement, in exchange for code you
 don't re-read line by line — plus a committed one-line log of every decision.
 
-## Install in one message
+## Install — one message, then it interviews you
 
-**Just ask your agent** — paste this into Claude Code and you're done:
+**Paste this into Claude Code:**
 
-> Install PayneSDD from https://github.com/vlr-code/PayneSDD: clone it to a
-> permanent location (e.g. ~/PayneSDD), then do the "Claude Code — recommended"
-> install from its README (the two CLAUDE.md lines, with real absolute paths).
-> Don't remove anything already in my CLAUDE.md.
+> Install PayneSDD from https://github.com/vlr-code/PayneSDD. First ask me
+> where to keep the clone (a permanent path — your config will point at it),
+> clone there, read its AGENT.md and README — then run the installation itself
+> as your first task under that protocol: ask me the remaining setup questions
+> (which projects — all or specific ones; the ≈2.4k-token digest or the full
+> file always-on; persona on or off; enforced Stop-hook or honor-system gate),
+> show one plan, and touch only my config after my explicit "go" — apply my
+> choices there, never by editing the cloned files, and remove nothing that's
+> already in my config.
 
-The agent clones the repo, writes the import lines with real paths, and you
-review the diff. Prefer your own hands? The manual version:
+The protocol interviews you, you say "go", it installs itself. That's the
+whole product in one demo: **the first task PayneSDD runs on is PayneSDD.**
+Prefer your own hands? The manual version:
 
 ```bash
 git clone https://github.com/vlr-code/PayneSDD.git
