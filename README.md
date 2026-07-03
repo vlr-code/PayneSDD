@@ -26,11 +26,14 @@ vibe-coding: speed up front, paid back as distrust.
 
 ## What PayneSDD does about it
 
-One file of rules your agent actually follows. Three things a raw prompt
-doesn't give you:
+One file of rules your agent actually follows. You keep writing requests the
+way you always did — plain words, no specs, no plans. The protocol does the
+formal part, and gives you three things a raw prompt doesn't:
 
-1. **The plan is agreed with you BEFORE code.** A wrong assumption dies in a
-   30-second question — not in 200 lines you now have to unpick.
+1. **It asks you — not the other way around.** The agent maps the open
+   decisions in your request, asks the few questions that actually matter,
+   and shows one plan for your "go". A wrong assumption dies in a 30-second
+   question — not in 200 lines you now have to unpick.
 2. **"Done" is the machine's word, not the agent's.** Every task ends by
    running your real tests / build — and the optional Stop-hook makes a red
    check *physically* block "finished".
@@ -41,7 +44,17 @@ doesn't give you:
 The trade: about a minute of up-front agreement, in exchange for code you
 don't re-read line by line — plus a committed one-line log of every decision.
 
-## Install in 30 seconds
+## Install in one message
+
+**Just ask your agent** — paste this into Claude Code and you're done:
+
+> Install PayneSDD from https://github.com/vlr-code/PayneSDD: clone it to a
+> permanent location (e.g. ~/PayneSDD), then do the "Claude Code — recommended"
+> install from its README (the two CLAUDE.md lines, with real absolute paths).
+> Don't remove anything already in my CLAUDE.md.
+
+The agent clones the repo, writes the import lines with real paths, and you
+review the diff. Prefer your own hands? The manual version:
 
 ```bash
 git clone https://github.com/vlr-code/PayneSDD.git
