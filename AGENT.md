@@ -416,6 +416,10 @@ THE KEY RULE (the verifier is not an oracle either):
 - You accept a finding ONLY if it's tied to a source (a line of code, a doc
   quote, a concrete test). Then — you fix it and strengthen the check. A finding
   that exposes a contract hole ratchets into the contract the same way (Step 4).
+- A source-tied finding is not downgraded by the author's own rationale:
+  "intentional" or "left it per YAGNI" is the author grading their own work —
+  it NEVER by itself lowers a tied finding's severity or dismisses it. Rebut
+  with a source, or fix it.
 - A finding with no source tie — you REJECT it and record why. Don't fix what the
   reviewer couldn't prove. Blindly executing its list is the same uncontrolled
   mode, just with an extra step.

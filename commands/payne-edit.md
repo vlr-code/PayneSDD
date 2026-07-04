@@ -41,6 +41,14 @@ floor (public-facing / SDK) applies however small the edit looks, typos included
 (a typo just has 0 forks, so Step 1.5 collapses; the gate and review still run).
 Run the cycle: contract → real forks / depth → execute against the contract.
 
+**Match the form to the failure when wording a clause.** Name the failure it
+targets, then fit the form — the wrong one backfires: discipline slip → a
+prohibition + a rationalization line; wrong-shaped output → a positive recipe
+(what the output IS, its parts in order); omission → a required slot in the
+template; context-dependent → a conditional keyed to an observable predicate.
+Bare prohibitions backfire on shaping problems, and a "…unless it matters" rider
+on a working recipe reopens the negotiation.
+
 ## 4. Machine gate (Step 4)
 - `bash "<repo>/scripts/payne-check.sh"` is the gate for any SHELL edits — it lints
   `hooks/*.sh` only. For a doc-only change it can't go red, so green there proves

@@ -42,3 +42,4 @@
 2026-07-03 [APPROVED] amendment to the same README pass: "What PayneSDD does" now states the user writes plain requests as usual — the protocol itself asks the questions and drafts the plan (user-requested emphasis)
 2026-07-03 [APPROVED] README "The problem" gains the release-quiz joke (user-dictated content, EN phrasing mine) — same marketing pass
 2026-07-03 [APPROVED] Install section v3: prompt no longer prescribes steps — it bootstraps the protocol (read AGENT.md) and runs the installation AS the first task under it (interview: which projects / digest vs full / persona / hook / clone path), config touched only after explicit go — user idea, self-demo marketing
+2026-07-04 [APPROVED] C6+C1 protocol edits (FULL, dev-mode) — Step 5 author-rationale anti-loophole (AGENT.md) + payne-edit "match form to failure"; borrowed from obra/superpowers, source-tied; DIGEST full-file-only, no version bump

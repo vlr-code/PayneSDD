@@ -5,6 +5,19 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+### Changed
+- **Step 5 anti-loophole**: a source-tied adversarial finding is not downgraded
+  by the author's own rationale ("intentional" / "left it per YAGNI") — the
+  symmetric counterpart to "the verifier is not an oracle", now closing the
+  author side too. Borrowed from obra/superpowers' task-reviewer "Do Not Trust
+  the Report".
+
+### Added
+- **Dev-mode clause-authoring rule** (`/payne-edit`): "match the form to the
+  failure" — name the failure a clause targets, then pick the form (prohibition,
+  positive recipe, structural slot, predicate conditional) that fits it, since
+  the wrong form backfires. Borrowed from obra/superpowers' writing-skills.
+
 ## 0.6.0 — 2026-07-03
 
 ### Added
