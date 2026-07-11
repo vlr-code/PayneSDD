@@ -41,6 +41,14 @@ It cannot silently drift from the protocol: `DIGEST.md` is checksum-pinned to
 until the digest is re-reviewed and re-pinned (`scripts/payne-digest-stamp.sh`).
 Live-tested against the full file — see README "Token cost — measured".
 
+Model floor, measured honestly: the digest's gates were validated on
+Sonnet-class models. On a weaker model (a Haiku-class benchmark epoch) the
+same gates held only ~40–60% of runs — and ADDING emphasis text made adherence
+WORSE, not better (+8% digest size correlated with drops across every
+discipline metric; density beats placement). If your agent runs on a small
+model, don't fatten the digest — import the full `AGENT.md` and accept the
+token cost, or accept the softer floor knowingly.
+
 Install: point your always-loaded config at `DIGEST.md` instead of `AGENT.md`
 (e.g. a global `CLAUDE.md` `@`-import), and keep the full file's absolute path
 in that config so the digest's loading rule can find it. Hand-roll the minimal

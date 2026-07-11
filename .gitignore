@@ -8,3 +8,6 @@
 # OS / editor noise
 .DS_Store
 *.swp
+
+# local benchmark harness + run artifacts (never committed; see benchmark/local/README.md)
+benchmark/local/

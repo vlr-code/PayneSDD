@@ -6,6 +6,11 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## Unreleased
 
 ### Changed
+- **DEPLOYMENT: measured model floor for the digest** — the digest's gates were
+  validated on Sonnet-class models; on a Haiku-class benchmark epoch they held
+  only ~40–60% of runs, and ADDING emphasis text made adherence worse (+8%
+  digest size, drops across every discipline metric — density beats placement).
+  Guidance: on a small model import the full `AGENT.md`, don't fatten the digest.
 - **Step 5 anti-loophole**: a source-tied adversarial finding is not downgraded
   by the author's own rationale ("intentional" / "left it per YAGNI") — the
   symmetric counterpart to "the verifier is not an oracle", now closing the
