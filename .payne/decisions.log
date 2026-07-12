@@ -69,3 +69,4 @@
 2026-07-12 [APPROVED] make_sheets.py — Trivial tier; warehouse pick-list generator (orders.csv → sheet_*.txt); groups order lines by order_id, packs greedily into 5-pos sheets without splitting orders, preserves CSV order, outputs formatted sheets with header + line items; tested on 4-order sample (13 lines, 3 sheets).
 70	2026-07-12 [COMPLETED] Benchmark D11 naked run-1 allocate.py — Trivial tier; amount allocation by weight with exact-sum guarantee (floor → fractional-part ordering for remainder).
 71	2026-07-12 [COMPLETED] Benchmark D11 naked run-2 allocate.py — Trivial tier; amount allocation by weight with exact-sum guarantee (floor → fractional-part ordering for remainder).
+72	2026-07-12 [COMPLETED] Benchmark D12 naked run-2 consolidate.py — Trivial tier; CSV price-update journal consolidator selecting per-SKU latest timestamp (tie-break: later line wins); preserves first-seen SKU order; tested on multi-update sample (2 SKUs, equal/distinct timestamps).
