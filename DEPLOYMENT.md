@@ -47,7 +47,9 @@ same gates held only ~40–60% of runs — and ADDING emphasis text made adheren
 WORSE, not better (+8% digest size correlated with drops across every
 discipline metric; density beats placement). If your agent runs on a small
 model, don't fatten the digest — import the full `AGENT.md` and accept the
-token cost, or accept the softer floor knowingly.
+token cost, arm the enforced Stop-hook (see the gate section below) so the
+gate is machine-held rather than prose-held, or accept the softer floor
+knowingly.
 
 Install: point your always-loaded config at `DIGEST.md` instead of `AGENT.md`
 (e.g. a global `CLAUDE.md` `@`-import), and keep the full file's absolute path

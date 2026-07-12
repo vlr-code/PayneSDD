@@ -1,5 +1,8 @@
 # PayneSDD benchmarks
 
+**Measured findings (plain language): [FINDINGS.md](FINDINGS.md)** — what the
+harness taught us about the protocol, its competitors, and its limits.
+
 A fixed task you run through PayneSDD after any big change to the protocol, to
 check the protocol still produces a good, verifiable result. Run it as a normal
 request and compare the result against its checklist — by eye and by building it.
@@ -50,14 +53,14 @@ the protocol say escalate, not fake a pass.
 
 ---
 
-## Future: battle-validation methodology (pre-committed)
+## Battle-validation methodology (pre-committed; first runs done)
 
 The first measured pass shipped with 0.6.0 — token cost + gate-adherence tests
 (summary snapshot: [`token-tests-0.6.0.md`](token-tests-0.6.0.md), headline in
-the README "Token cost — measured" section). The full QUALITY validation —
-does the protocol produce better code than a cheap control — remains an open
-tail. When it runs, the harness follows these rules — fixed BEFORE any numbers
-exist, so there are no numbers to inflate:
+the README "Token cost — measured" section). The full QUALITY validation ran
+in July 2026 — plain-language results in [FINDINGS.md](FINDINGS.md), numbers in
+[`findings-2026-07.json`](findings-2026-07.json). The harness follows these
+rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
 
 - **Three arms, honest delta.** Compare (1) a naked agent, (2) a cheap control —
   one careful prompt: "plan first, verify your work, be honest about failures" —
@@ -67,6 +70,9 @@ exist, so there are no numbers to inflate:
   headlines get inflated — and how independent re-benchmarks erase them.)
 - **Committed snapshot.** Raw results land in git; CI reads the snapshot and
   never re-runs — the CHECK is deterministic, and any change to the numbers is
-  a reviewable diff.
+  a reviewable diff. (Refined 2026-07: "raw" = scores, aggregates and metadata
+  — e.g. `findings-2026-07.json`; full transcripts and generated test artifacts
+  stay git-ignored in `benchmark/local/`, per the standing artifacts-never-in-
+  history rule.)
 - **A "what this does NOT measure" section is mandatory** — fidelity limits,
   single-run noise, model/version scope. An honest caveat beats a big number.

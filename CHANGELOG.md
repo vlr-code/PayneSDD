@@ -5,6 +5,13 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+### Added
+- **`benchmark/FINDINGS.md` — measured findings, plain language**: version check
+  (7 improved / 0 regressed), competitors prescribe but don't behave, the
+  persona block is load-bearing, the zero-sum compliance budget on weak models,
+  the ask-bottleneck, the latent-contradiction blind spot. Numbers snapshot:
+  `benchmark/findings-2026-07.json`; all caveats inherited from the run reports.
+
 ### Changed
 - **DEPLOYMENT: measured model floor for the digest** — the digest's gates were
   validated on Sonnet-class models; on a Haiku-class benchmark epoch they held

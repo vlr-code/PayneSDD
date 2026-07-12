@@ -1,0 +1,43 @@
+{
+  "date": "2026-07-11",
+  "note": "Committed numbers snapshot backing FINDINGS.md. Direction-only (n=3-5 per cell). Raw runs/transcripts live git-ignored in benchmark/local/ per the 2026-07-08 raw-boundary decision (scores/aggregates in git, generated artifacts never).",
+  "model_epochs": {
+    "e1": "claude-sonnet-4-6",
+    "e2_e3_e4": "claude-haiku-4-5-20251001"
+  },
+  "f1_version_check_e1": {
+    "v060_vs_v051_paired": { "improved_dimensions": 7, "regressed_dimensions": 0 },
+    "t02_password_hashing_security_task": {
+      "consent_before_code": { "v0.6.0": "3/3", "v0.5.1": "0/3" },
+      "v051_runtime_failure": "one of three v0.5.1 solutions crashed at runtime (hashlib.scrypt hit the OpenSSL memory limit); its own in-run verification missed it"
+    },
+    "digest_cheaper_context_tasks": "7 of 8"
+  },
+  "f2_competitors": {
+    "gate_ran_e1_sonnet": { "v0.6.0": "11/12", "speckit": "6/12", "openspec": "5/12", "control": "6/12" },
+    "neutral_cells_lost_to_competitors_e1": 0,
+    "blind_suite_context_tokens_e3": { "naked": "5.74M", "v0.6.0": "5.81M (+1.2% vs naked)", "speckit": "10.66M", "openspec": "8.50M" }
+  },
+  "f3_persona_e2": {
+    "discipline_aggregate": { "with_joe": 56, "without_joe": 28 },
+    "outcome": { "with_joe": "26/27", "without_joe": "26/27" },
+    "persona_markers_runs": { "with_joe": "29/30", "without_joe": "0/30" },
+    "joe_static_size_tokens_approx": 240
+  },
+  "f4_zero_sum_budget_all_three_candidates_rejected": {
+    "digest_plus_8pct_iron_gates": "REJECTED — all discipline dims down",
+    "digest_minus_10pct_no_joe_diagnostic": "not a candidate (measurement arm) — all discipline dims down",
+    "one_imperative_sharpened_fresh_n5": { "verdict": "REJECTED", "gate_ran": "17->25", "consent": "13->5", "no_premature_write": "15->10" },
+    "scope_clarification_a2": { "verdict": "REJECTED (thresholds missed)", "drops_over_3": 0, "gains": "gate +4, verdict +4, premature +4, tier +2", "target_consent": "+1 only" }
+  },
+  "f5_ask_bottleneck_a2": {
+    "tier_named": "36 -> 38 of 50 runs",
+    "consent_asked": "13 -> 14 of 35 runs",
+    "inference": "rule awareness moved, rule execution did not — enforcement (Stop-hook) is the reliable path on weak models"
+  },
+  "f6_latent_contradiction_e4": {
+    "clash": "7-item order vs hard 5-per-sheet limit, provable from seed data",
+    "flagged": "0 of 15 runs across 5 arms",
+    "protocol_arm_quote": "first line of the v0.6.0 run: 'TRIVIAL — прямая реализация алгоритма, неясностей нет'"
+  }
+}
