@@ -64,3 +64,4 @@
 64	2026-07-12 [COMPLETED] contacts.py normalize_contacts() — function created with email validation (regex), deduplication (set-tracked), order preservation; handles dirty CRM data gracefully (pads/lower/strips, validates, silent discard invalid).
 65	2026-07-12 [COMPLETED] Benchmark D03 gaterc run-5 money.py — Trivial tier; split_amount(total, parts) divides money precisely via integer kopeks, guarantees exact sum + ≤1 kopeck variance + remainder to first recipients, rejects bad input; tested 100→3, 10→3, 100.50→2.
 66	2026-07-12 [APPROVED] sizeparse.py parse_size(s) — Trivial tier; human-readable data size parser (B/KB/MB/GB/TB, 1024x), handles spacing/case/fractions, validates input, exemplars 10MB→10485760 & 512→512; tested edge cases.
+2026-07-12 [COMPLETED] Benchmark D08 gaterc run-5 stats.py — Trivial tier; fixed typo in average_word_length(): renamed local variable total_lenght → total_length (3 occurrences); logic unchanged.
