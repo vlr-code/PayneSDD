@@ -23,7 +23,11 @@ rejected (the protocol's own "verifier is not an oracle" rule applies to you too
    Do tier rules, gates, and cross-references stay consistent end to end?
 2. **Anti-bloat** — does every added sentence earn its place? The protocol prizes
    leanness ("if you need a paragraph, you're in the wrong place"). Flag ceremony
-   creep, redundancy, a second lifecycle, or "the monster" the project avoids.
+   creep, redundancy, a second lifecycle, or "the monster" the project avoids —
+   and run the no-op test: a sentence that does not change agent behavior versus
+   the model's default is dead weight even when unique and coherent (deliberately
+   kept, evidence-backed reinforcements are exempt — keep-record: CHANGELOG 0.4.4
+   / benchmark FINDINGS).
 3. **Fidelity to principles** — the machine gate is the arbiter; tie-to-source for
    every claim; consent before code; substance over persona; roles/agents earn
    their cost. Does the change uphold these or erode them?

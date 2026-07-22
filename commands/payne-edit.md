@@ -49,6 +49,13 @@ template; context-dependent → a conditional keyed to an observable predicate.
 Bare prohibitions backfire on shaping problems, and a "…unless it matters" rider
 on a working recipe reopens the negotiation.
 
+**Run the no-op test on the prose you touch** (repo-wide only when the contract
+IS a dehydration pass). A sentence earns its place only if it changes agent
+behavior versus the model's DEFAULT; one that fails is deleted whole, never
+trimmed. A dispute over whether it fails is settled by a measured behavioral run
+(A/B on the benchmark stand — see `benchmark/README.md`), not by debate. Exempt: reinforcements the project deliberately kept on measured
+evidence (the CHANGELOG 0.4.4 keeps, the persona block) — they pass by prior data.
+
 ## 4. Machine gate (Step 4)
 - `bash "<repo>/scripts/payne-check.sh"` is the gate for any SHELL edits — it lints
   `hooks/*.sh` only. For a doc-only change it can't go red, so green there proves
@@ -73,8 +80,7 @@ Dev-mode edits are Full-tier, so the normal decision-log rule applies: append
 `[APPROVED]` / `[DEVIATION]` one-liners to `<repo>/.payne/decisions.log`.
 
 ## 7. Commit / push (one approval) — release only if asked
-- Show `git -C "<repo>" diff`. On ONE explicit "yes": commit (end the message with
-  the `Co-Authored-By` trailer) and push to `main`.
+- Show `git -C "<repo>" diff`. On ONE explicit "yes": commit and push to `main`.
 - NEVER commit or push without that explicit yes.
 - **Release** only if the user asks: bump the version badge + Status + the
   `AGENT.md` header stamp, promote the CHANGELOG `## Unreleased` entry to the

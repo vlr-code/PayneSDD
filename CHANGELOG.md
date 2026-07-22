@@ -12,6 +12,28 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   the ask-bottleneck, the latent-contradiction blind spot. Numbers snapshot:
   `benchmark/findings-2026-07.json`; all caveats inherited from the run reports.
 
+- **Dev-mode clause-authoring rule** (`/payne-edit`): "match the form to the
+  failure" — name the failure a clause targets, then pick the form (prohibition,
+  positive recipe, structural slot, predicate conditional) that fits it, since
+  the wrong form backfires. Borrowed from obra/superpowers' writing-skills.
+- **Step 5 test-audit: tautological assertions** — the audit list now names a
+  fifth fake-green tell: an expected value recomputed the way the code computes
+  it is green by construction; expecteds must come from an independent source
+  (a known-good literal, a worked example, the spec). Same list updated in
+  `/payne-review`. Borrowed from mattpocock/skills' tdd reference.
+- **The decision log is READ, not only written** — at contract time on a
+  Light/Full task, scan the log for prior decisions touching the same ground; a
+  resembling [REJECTED] is surfaced with its recorded reason as a question,
+  never silently re-proposed and never an automatic veto. Borrowed from
+  mattpocock/skills' triage out-of-scope knowledge base.
+- **Step 1.5c question ordering** — a question whose premise hangs on another
+  question still open in the same round waits for the next round.
+- **Dev-mode no-op test** (`/payne-edit` + `payne-quality` anti-bloat lens): a
+  sentence that does not change agent behavior versus the model's default is
+  deleted whole, never trimmed; disputes are settled by a measured behavioral
+  run, not debate; deliberately kept, evidence-backed reinforcements are exempt.
+  Borrowed from mattpocock/skills' writing-great-skills.
+
 ### Changed
 - **DEPLOYMENT: measured model floor for the digest** — the digest's gates were
   validated on Sonnet-class models; on a Haiku-class benchmark epoch they held
@@ -24,11 +46,9 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   author side too. Borrowed from obra/superpowers' task-reviewer "Do Not Trust
   the Report".
 
-### Added
-- **Dev-mode clause-authoring rule** (`/payne-edit`): "match the form to the
-  failure" — name the failure a clause targets, then pick the form (prohibition,
-  positive recipe, structural slot, predicate conditional) that fits it, since
-  the wrong form backfires. Borrowed from obra/superpowers' writing-skills.
+### Fixed
+- `/payne-edit` §7 no longer instructs a `Co-Authored-By` commit trailer — it
+  contradicted the maintainer's standing no-attribution rule.
 
 ## 0.6.0 — 2026-07-03
 

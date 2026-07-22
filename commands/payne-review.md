@@ -11,7 +11,9 @@ Do this:
    brief: hunt for contract↔result drift, uncovered behavior, weak checks —
    AUDIT THE TESTS THEMSELVES and how green was reached: deleted/empty
    assertions, skipped tests, loosened matchers/thresholds, mocks that fake the
-   unit under test — boundary defects, and gaps in the contract itself. Every
+   unit under test, tautological assertions (an expected value recomputed the way
+   the code computes it is green by construction — expecteds come from an
+   independent source) — boundary defects, and gaps in the contract itself. Every
    finding MUST cite a source (file:line, a doc quote, a concrete test). Findings
    with no source tie are marked "unconfirmed", not asserted as bugs. The report
    comes back COMPACT: one line per finding — source tie + claim + proposed fix;

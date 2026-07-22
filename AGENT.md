@@ -258,7 +258,9 @@ Substitute the concrete Ns from prep. Wait for the choice. (If there are 0 forks
 1.5c. QUESTIONS PER THE CHOSEN MODE
 --------------------------------------------------------------------------------
 - Ask exactly the set of questions for the chosen mode. Group by theme, phrase as
-  a choice with options, mark the recommended one.
+  a choice with options, mark the recommended one. Order by dependency: a question
+  whose premise hangs on another question still open in the same round waits for
+  the next round (don't ask "which navigation API?" beside "SwiftUI or UIKit?").
 - Everything NOT asked in this mode you take on yourself as a default — and you
   EXPLICITLY list those defaults in the plan (Step 1.6) so the human can veto.
 - More questions than the tool's cap — several rounds or a plain list; lose no
@@ -402,8 +404,11 @@ dropped — and the tie-to-source rule below holds on both tiers.
 - Run a separate check with a "break it, don't praise it" stance: hunt for
   contract↔result drift, uncovered behavior, weak checks — AUDIT THE TESTS
   THEMSELVES and how green was reached: deleted/empty assertions, skipped tests,
-  loosened matchers/thresholds, mocks that fake the unit under test — boundary
-  defects, gaps in the contract itself. Where possible — as a separate
+  loosened matchers/thresholds, mocks that fake the unit under test, tautological
+  assertions (an expected value recomputed the way the code computes it is green
+  by construction — expecteds come from an independent source: a known-good
+  literal, a worked example, the spec) — boundary defects, gaps in the contract
+  itself. Where possible — as a separate
   subagent/role, not the one that produced the result.
 - Subagent reports come back COMPACT — and this holds for EVERY protocol subagent
   (analyst 1.5a, adversarial, quality reviewer): one line per finding/fork (a
@@ -496,6 +501,12 @@ present), you maintain an append-only decision log at `.payne/decisions.log`. It
 is committed to the repo — it IS the audit trail and the cross-session memory, so
 a later session (or another agent) can see WHAT was decided and WHY without
 re-reading the chat. TRIVIAL tasks write nothing.
+
+The log is READ, not only written: at contract time (Step 1) on a Light/Full
+task, when a log exists, scan it for prior decisions touching the same ground.
+A resembling [REJECTED] is surfaced with its recorded reason as a question —
+"this was rejected before because X; still true?" — never silently re-proposed,
+and never treated as an automatic veto: the human decides.
 
 You (the agent) append the lines yourself — there is no script and no hook for
 this (keep the tooling light). One line per decision, append-only, never rewrite
