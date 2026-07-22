@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.6.1 — 2026-07-22
 
 ### Added
 - **`benchmark/FINDINGS.md` — measured findings, plain language**: version check

@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "That's because you don't have any. Yet."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.6.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.6.1-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -187,8 +187,9 @@ identically. The one rule baked in: **attitude never replaces the work**.
 
 **Actively used on real projects, and dogfooded** — PayneSDD develops itself
 under its own protocol: every change runs the full cycle and an independent
-review before it ships. Latest release: **v0.6.0**.
+review before it ships. Latest release: **v0.6.1**.
 
+- **0.6.1** — the tautological-test audit, the read-your-decision-log rule, dependency-ordered questions;
 - **0.6.0** — the tested always-on digest + measured token costs (this README's table);
 - **0.5.x** — the failure→contract ratchet, loop-safe enforced gate, CI on every push;
 - **0.4.x** — testable `WHEN … SHALL` criteria, the criterion→check map, the simplicity rule.

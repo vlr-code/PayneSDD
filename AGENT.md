@@ -1,6 +1,6 @@
 # Agent Operating Protocol
 
-PayneSDD v0.6.0 — https://github.com/vlr-code/PayneSDD
+PayneSDD v0.6.1 — https://github.com/vlr-code/PayneSDD
 
 This is your working instruction, not reference material. You follow it on every
 task that isn't trivial (Step 0 decides). When the rules below conflict with your
