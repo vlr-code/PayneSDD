@@ -34,8 +34,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   `/payne-edit` doc gate) — a capability/benefit claim in README/CHANGELOG
   exists only with its evidence, and wording may not outrun what was proven.
 
-All seven borrowed from Chachamaru127/claude-code-harness (adapted to
-protocol-shape; their enforcement machinery deliberately not taken). The six
+All seven distilled from a competitor-protocol scan (adapted to protocol-shape;
+the competitor's enforcement machinery deliberately not taken). The six
 AGENT.md rules are stand-validated on a sonnet-class arm (no discipline dim
 regressed beyond noise, outcome held); a haiku-class arm traded ceremony dims
 for honesty dims — consistent with the documented model floor.
