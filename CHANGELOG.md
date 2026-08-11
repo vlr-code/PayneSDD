@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.6.2 — 2026-08-11
 
 ### Added
 - **Step 4: direction asymmetry on check edits** — adding or strengthening a
