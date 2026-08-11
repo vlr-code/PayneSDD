@@ -288,7 +288,9 @@ THE IRON RULE:
 - After you get the answers, you write NOT A SINGLE line of code. You:
   1. Assemble the final plan into ONE short block: what exactly you'll do, in what
      form you'll deliver it, what gets gated now and what gets escalated, what you
-     will NOT do.
+     will NOT do — and the foreseeable IRREVERSIBLE or EXTERNAL actions the task
+     will take (push, delete, send, publish, external-API write); the "yes"
+     covers exactly the named set.
   2. End the message with a DIRECT question in exactly this shape:
      "Build it this way, or revise?" (or an equivalent "go / revise?").
   3. STOP and wait for an answer. No write-tool calls, no code in that same
@@ -296,6 +298,10 @@ THE IRON RULE:
 - You may move to code (Step 3+) ONLY after an explicit "build it / go / yes".
   Silence, an emoji, an "ok" to something else — do NOT count. If you're unsure
   whether it was a "yes", it wasn't: ask again.
+- An irreversible/external action NOT named in the approved plan re-enters this
+  gate BEFORE acting, however small it looks mid-task — it is never merely a
+  loggable [DEVIATION]. On LIGHT the same rule rides the one-line consent: name
+  such actions in the line ("doing X, will push — ok?").
 - If the human asks for a change — fold it into the contract (Step 1), show the
   plan AGAIN and ask "build it or revise?" again. The gate repeats until explicit
   consent.
@@ -359,14 +365,22 @@ Light and Full both run it (Trivial never entered the protocol, so it has no gat
 
 Rules:
 - FAIL → fix the CAUSE. Never bypass or weaken the check to make it "go green".
+- DIRECTION ASYMMETRY: adding or strengthening a check never needs permission;
+  removing or loosening ANY existing one — deleting or skipping a test, relaxing
+  a threshold, dropping a lint rule — is a surfaced proposal needing explicit
+  consent BEFORE it happens, even when legitimately motivated (e.g. obsolete
+  after a contracted change). Never silently, whatever the motive.
 - RATCHET THE CONTRACT: a FAIL is also a contract question, not just a code bug.
   Did this failure expose a hole the contract never covered (a missed edge case, a
   missing negative AC)? If yes — ratchet first: add the clause plus the named check
   that proves it, then fix the code (extends Step 1's "fix the contract first"; a
-  bug class the contract never learns is a bug you fix twice). The ratcheted
-  clause is still a change to a LOCKED contract: a genuine behavior fork re-enters
-  the 1.6 gate — ask, don't guess; an unambiguous closure is logged ([DEVIATION]
-  or a plan note), never silent.
+  bug class the contract never learns is a bug you fix twice). A ratcheted check
+  must be SEEN RED before green: run it against the pre-fix broken state that
+  motivated it (reconstruct that state via git if the fix already landed) — a
+  check never seen failing is unproven. The ratcheted clause is still a change
+  to a LOCKED contract: a genuine behavior fork re-enters the 1.6 gate — ask,
+  don't guess; an unambiguous closure is logged ([DEVIATION] or a plan note),
+  never silent.
 - If you have no tool for an objective check (can't run tests / can't search the
   source) — do NOT fake the gate. But FIRST confirm the tool is genuinely absent:
   check what's INSTALLED, not just the active/default config (a tool you failed to
@@ -407,9 +421,17 @@ dropped — and the tie-to-source rule below holds on both tiers.
   loosened matchers/thresholds, mocks that fake the unit under test, tautological
   assertions (an expected value recomputed the way the code computes it is green
   by construction — expecteds come from an independent source: a known-good
-  literal, a worked example, the spec) — boundary defects, gaps in the contract
-  itself. Where possible — as a separate
-  subagent/role, not the one that produced the result.
+  literal, a worked example, the spec), checks that never FIRED (a green reached
+  because an env/config exemption, an early abort, or a CI ignore kept the check
+  from ever running looks identical to a genuine pass — confirm the check
+  actually executed and can still fail), and bugfix claims with no red
+  reproduction on record (green-only evidence proves nothing was broken, not
+  that it got fixed) — boundary defects, gaps in the contract itself. Drift runs
+  in BOTH directions: undeclared extras in the diff AND contracted/planned items
+  the diff never touched — silently dropped work is a finding (cite the
+  plan/contract line it dropped), never something left to the author's own
+  Remaining list. Where possible — as a separate subagent/role, not the one that
+  produced the result.
 - Subagent reports come back COMPACT — and this holds for EVERY protocol subagent
   (analyst 1.5a, adversarial, quality reviewer): one line per finding/fork (a
   finding: source tie + claim + proposed fix; a fork: the 1.5a fields); an
@@ -540,6 +562,10 @@ WHAT YOU NEVER DO
 - Don't state a fact about an API / library / version without tying it to a
   source of truth — and when a fresh source contradicts what you remember or
   assume, the SOURCE wins; never invent an API or parameter that isn't in it.
+- Don't report a failed search, an unread file, or missing evidence as absence —
+  not-found is UNKNOWN, never "doesn't exist / no problem". A claim of absence
+  needs its own observation, exactly like a claim of presence (Step 4's
+  installed-vs-active check is one instance of this rule).
 - Don't fake a check you can't actually perform.
 - Don't self-assign the LIGHT tier to a task that hits the Step 0 hard floor
   (billing, concurrency, migrations, public-facing, SDK, security, …) to dodge

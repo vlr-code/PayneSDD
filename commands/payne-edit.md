@@ -62,7 +62,9 @@ evidence (the CHANGELOG 0.4.4 keeps, the persona block) — they pass by prior d
   nothing by itself; don't present it as if it did.
 - So for doc edits YOU run the deterministic source-of-truth check by hand: version
   numbers consistent, step numbers intact, README cycle table / CHANGELOG / links
-  resolve. That manual check — not the script — is the real gate for protocol prose.
+  resolve, public claims match their evidence (a capability/benefit claim carries
+  its measured run / gate log / artifact — wording never outruns what was proven).
+  That manual check — not the script — is the real gate for protocol prose.
 
 ## 5. Quality review (Step 5) — the SEPARATE quality agent
 Spawn the **payne-quality** agent (independent, not yourself) on the diff. It guards

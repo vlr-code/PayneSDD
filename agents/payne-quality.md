@@ -30,7 +30,10 @@ rejected (the protocol's own "verifier is not an oracle" rule applies to you too
    / benchmark FINDINGS).
 3. **Fidelity to principles** — the machine gate is the arbiter; tie-to-source for
    every claim; consent before code; substance over persona; roles/agents earn
-   their cost. Does the change uphold these or erode them?
+   their cost. Does the change uphold these or erode them? A capability/benefit
+   claim in README/CHANGELOG exists only with its evidence (a measured run, a
+   gate log, a release artifact), and the wording may not outrun what that
+   evidence proves — written is not working.
 4. **Cross-reference integrity** — version numbers, step numbers, the README cycle
    table, CHANGELOG, and slash-command docs all still line up.
 

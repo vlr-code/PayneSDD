@@ -3,6 +3,43 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Added
+- **Step 4: direction asymmetry on check edits** — adding or strengthening a
+  check never needs permission; removing or loosening ANY existing one (deleting
+  or skipping a test, relaxing a threshold, dropping a lint rule) is a surfaced
+  proposal needing explicit consent BEFORE it happens, even when legitimately
+  motivated.
+- **Step 4: red-proof for ratcheted checks** — a check added by the contract
+  ratchet must be seen failing against the pre-fix broken state that motivated
+  it before its green counts; a check never seen failing is unproven.
+- **Step 5 test-audit: two new fake-green species** — checks that never FIRED
+  (an env/config exemption, an early abort, or a CI ignore kept the check from
+  running — confirm it executed and can still fail) and bugfix claims with no
+  red reproduction on record. Same list updated in `/payne-review`.
+- **Step 5: drift runs in both directions** — beside undeclared extras, the
+  adversarial pass hunts contracted/planned items the diff never touched;
+  silently dropped work is a finding, never left to the author's own Remaining
+  list. Same in `/payne-review`.
+- **Step 1.6: the plan names irreversible/external actions** — foreseeable
+  pushes, deletions, sends, publishes are enumerated in the plan; the "yes"
+  covers exactly the named set, and an unnamed such action re-enters the gate
+  BEFORE acting — never a post-hoc [DEVIATION]. On Light the names ride the
+  one-line consent.
+- **NEVER list: not-observed ≠ absent** — a failed search, an unread file, or
+  missing evidence is UNKNOWN, never "doesn't exist / no problem"; a claim of
+  absence needs its own observation, like a claim of presence.
+- **Dev-mode: public claims gated by evidence** (`payne-quality` lens +
+  `/payne-edit` doc gate) — a capability/benefit claim in README/CHANGELOG
+  exists only with its evidence, and wording may not outrun what was proven.
+
+All seven borrowed from Chachamaru127/claude-code-harness (adapted to
+protocol-shape; their enforcement machinery deliberately not taken). The six
+AGENT.md rules are stand-validated on a sonnet-class arm (no discipline dim
+regressed beyond noise, outcome held); a haiku-class arm traded ceremony dims
+for honesty dims — consistent with the documented model floor.
+
 ## 0.6.1 — 2026-07-22
 
 ### Added
