@@ -12,7 +12,7 @@
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
 
-*One file of rules that turns AI vibe-coding into a verifiable cycle.*
+*An easy-going custom SDD protocol for agentic coding — the paperwork is the agent's problem, not yours.*
 
 </div>
 
