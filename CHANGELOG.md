@@ -3,6 +3,55 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Added
+- **Stop-hook behavior test** — `scripts/payne-gate-test.sh` drives the real
+  hook end to end (dormant / block / consecutive count / release after
+  `PAYNE_MAX_BLOCKS` / green and fresh-chain resets / unset `PAYNE_TEST_CMD` /
+  disarm-while-red) and, in `--mutants` mode, proves it can go red on six
+  deliberately broken hook copies. Wired as `payne-check.sh` AC7 (hard fail).
+- **Stop-hook: disarming while red is loud** — removing `.payne-active` while a
+  red-block counter is on record no longer passes silently: the next stop still
+  passes (dormant means dormant) but prints a user-facing `systemMessage`
+  naming the disarm and the UNVERIFIED state. Documented as a tripwire, not a
+  lock (`DEPLOYMENT.md`, README, hook header).
+- **Dev-mode reviewer checks the digest** — `payne-quality` now loads
+  `DIGEST.md`, judges it as a faithful compression of `AGENT.md` (never a
+  superset, never a different rule) and reports a required `Digest:` line
+  (FAITHFUL / RE-STAMP-ONLY with reason / REVISE).
+
+### Changed
+- **Step 5: no-subagent host on Full** — try a configured reviewer agent, then
+  any general subagent; only a host with no subagent mechanism at all falls
+  back to a DISCLOSED self-pass, and the verdict is then never PASS — ESCALATE
+  with the self-pass attached, the human is the independent reviewer (Step 6
+  names that unavailable reviewer). The stray "Where possible" sentence is gone.
+  Same clause in `/payne-review`; Step 1.5a gets the matching inline-sweep
+  fallback.
+- **Step 4: ratchet closures are logged** — an unambiguous contract ratchet
+  closes with a `[DEVIATION]` line only; the chat-only "plan note" alternative
+  contradicted the NEVER list and the digest ("closures logged, never silent").
+- **Dev mode: configured at install, not asked per run** — the un-keepable
+  "ask ONCE on first run" (an agent has no memory of a first run) became a
+  fifth install-interview question (default OFF); `/payne-edit on` writes the
+  resolved repo path as the marker's first line.
+- **Dev-mode discipline is trigger-agnostic** — the full cycle applies however
+  the request arrives, via `/payne-edit` or plain chat.
+- **ROLES: Product drafts before the Analyst** — the chain is now
+  `Product (draft SPEC) → Analyst → [human: depth + answers] → Product (final
+  SPEC) → …`, so the Analyst's contract-contradiction hunt has a contract to
+  inspect.
+- **DEPLOYMENT: `ROLES.md` on demand** — import it always-on only if you run
+  roles routinely; the digest's pointer is enough otherwise (~1k tokens per
+  session saved).
+
+### Fixed
+- `/payne-edit` §4 described the 0.3.0-era gate ("lints `hooks/*.sh` only,
+  can't go red on docs"); it now names the real checks — shell lint, one version
+  everywhere, links/imports, digest pin + size band, copy-sync, hook behavior —
+  and the digest re-review + re-pin step.
+
 ## 0.6.2 — 2026-08-11
 
 ### Added

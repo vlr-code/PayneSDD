@@ -188,6 +188,10 @@ it only prepares the ground. The subagent returns:
   forbids what B7 requires; an AC no edge-case resolution can satisfy). Flag them to
   fix at contract time, not to discover in Step 5 after the code is written.
 
+No subagent mechanism on this host at all (checked, not assumed)? Run the same
+fork sweep yourself, say so, and still offer the 1.5b depth menu — the menu is
+the human's choice, not a subagent product.
+
 MANDATORY FORK CATEGORIES — walk through EACH, not just the obvious one. A common
 mistake is to analyze only "behavior/logic" and forget the rest:
 - Behavior & logic (what it does, edge cases, errors) — and note a BEHAVIOR /
@@ -379,8 +383,8 @@ Rules:
   motivated it (reconstruct that state via git if the fix already landed) — a
   check never seen failing is unproven. The ratcheted clause is still a change
   to a LOCKED contract: a genuine behavior fork re-enters the 1.6 gate — ask,
-  don't guess; an unambiguous closure is logged ([DEVIATION] or a plan note),
-  never silent.
+  don't guess; an unambiguous closure is logged as a [DEVIATION] line, never
+  silent.
 - If you have no tool for an objective check (can't run tests / can't search the
   source) — do NOT fake the gate. But FIRST confirm the tool is genuinely absent:
   check what's INSTALLED, not just the active/default config (a tool you failed to
@@ -415,6 +419,14 @@ the actual DIFF (or the finished artifact) — not your memory of what you wrote
 and break it as if it were someone else's work. Lightened on Light, never
 dropped — and the tie-to-source rule below holds on both tiers.
 
+NO-SUBAGENT HOST (Full): try a configured reviewer agent if one exists, then any
+general subagent; only when the host offers no subagent mechanism at all (check
+what's installed, don't assume — a transient spawn error is retried once, still
+failing counts as unavailable) do you fall back: run the pass yourself as a
+DISCLOSED self-pass — findings are still hunted — and the verdict is then never
+PASS: hand over as ESCALATE with the self-pass attached; the human is the
+independent reviewer. Never present a self-pass as the independent review.
+
 - Run a separate check with a "break it, don't praise it" stance: hunt for
   contract↔result drift, uncovered behavior, weak checks — AUDIT THE TESTS
   THEMSELVES and how green was reached: deleted/empty assertions, skipped tests,
@@ -430,8 +442,7 @@ dropped — and the tie-to-source rule below holds on both tiers.
   in BOTH directions: undeclared extras in the diff AND contracted/planned items
   the diff never touched — silently dropped work is a finding (cite the
   plan/contract line it dropped), never something left to the author's own
-  Remaining list. Where possible — as a separate subagent/role, not the one that
-  produced the result.
+  Remaining list.
 - Subagent reports come back COMPACT — and this holds for EVERY protocol subagent
   (analyst 1.5a, adversarial, quality reviewer): one line per finding/fork (a
   finding: source tie + claim + proposed fix; a fork: the 1.5a fields); an
@@ -462,9 +473,9 @@ End the task with one of three explicit outcomes:
 - ITERATE — a fixable defect, budget left and not a no-progress loop (Step 2) →
   return to Step 3/4.
 - ESCALATE — budget exhausted or a no-progress loop (Step 2), or no source of
-  truth, or a needed access is unavailable, or the result is refuted with a source
-  and the fix is unclear → hand to the human with the collected evidence (draft,
-  failed criteria, links).
+  truth, or a needed access (incl. an independent reviewer, Step 5) is
+  unavailable, or the result is refuted with a source and the fix is unclear →
+  hand to the human with the collected evidence (draft, failed criteria, links).
 
 CLOSING SUMMARY — MANDATORY on LIGHT and FULL, never on TRIVIAL. A big task that
 ends in a wall of prose hides what actually got done and what's left. So the
@@ -589,8 +600,9 @@ agent edit the canonical PayneSDD repo and commit to it — from inside ANY proj
 strictly with your approval. It NEVER touches the project you're currently working
 in.
 
-- INSTALL-TIME ASK: on first run, if dev mode is unconfigured, ask ONCE whether to
-  enable it. Default OFF — say yes only if you maintain a PayneSDD clone.
+- CONFIGURED AT INSTALL: dev mode is one of the install-interview questions (see
+  the README) — default OFF; say yes only if you maintain a PayneSDD clone.
+  There is no per-run ask.
 - TOGGLE: dev mode is ON iff the marker `~/.claude/.payne-dev-mode` exists (its
   first line is the repo path). `/payne-edit on|off|status` flips/reports it; plain
   language ("turn dev mode off") works too. While OFF, every trigger below is inert.
@@ -610,4 +622,5 @@ in.
   improvement, not a defect), 🟢 Optional (minor polish). One line each, tied to a source.
 - DISCIPLINE: editing the protocol is editing a public product → it runs the full
   cycle (tier → contract → machine gate → an INDEPENDENT quality review by the
-  `payne-quality` agent) and commits/pushes only on explicit approval.
+  `payne-quality` agent) and commits/pushes only on explicit approval — however
+  the request arrives, via `/payne-edit` or plain chat.

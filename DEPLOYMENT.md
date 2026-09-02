@@ -183,7 +183,13 @@ silent (trivial tasks aren't punished). Add `.payne-active*` to your
 `.gitignore` — the marker and its block counter are runtime files, never
 committed.
 
-Two honest notes:
+Three honest notes:
+- **Disarming is loud, not impossible.** The marker is the agent's to remove —
+  that is the contract for done / abandoned / honestly escalated — and the hook
+  cannot tell an honest disarm from a dishonest one. It can make it visible: if
+  `.payne-active` disappears while a red-block counter is on record, the next
+  stop passes but prints a `systemMessage` to YOU naming the disarm and the
+  UNVERIFIED state. A tripwire for the human, not a lock on the agent.
 - **`timeout`** (seconds) must exceed your suite's worst case — a timed-out
   hook silently does *not* block.
 - **`PAYNE_TEST_CMD` is a command the gate executes on every stop.** In a
@@ -206,6 +212,7 @@ doesn't run commands itself).
 Slash commands go into your project's `.claude/commands/` or globally into
 `~/.claude/commands/`; the `payne-quality` agent into `.claude/agents/` or
 `~/.claude/agents/` (copy — or symlink, so they auto-update with your clone).
-`ROLES.md` rides next to `AGENT.md` in the same instructions file (e.g. a
-second import line). Dev mode, once its command is installed, toggles with
-`/payne-edit on|off|status`.
+`ROLES.md` is read on demand — import it always-on only if you run roles
+routinely; otherwise the digest's pointer ("read it from the repo when
+summoned") is enough, and its ~1k tokens stay out of every session. Dev
+mode, once its command is installed, toggles with `/payne-edit on|off|status`.

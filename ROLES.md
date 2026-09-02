@@ -21,17 +21,23 @@ If unsure → roles OFF.
 ## The chain (each role = a subagent, each arrow = one artifact)
 
 ```
-Analyst ─► Product ─► Architect ─► Scrum Master ─► Developer ─► QA
- forks      SPEC       design        task list       code      verdict
+Product ─► Analyst ─► [human] ─► Product ─► Architect ─► Scrum Master ─► Developer ─► QA
+ draft      forks     depth +     final      design        task list       code      verdict
+ SPEC                 answers     SPEC
 ```
+
+Product drafts the SPEC first, so the Analyst has a contract to interrogate
+(AGENT.md 1.5a hunts contradictions in the DRAFTED contract); the human's
+depth choice and answers (1.5b/1.5c) sit between them and the final SPEC — that
+turn belongs to the main thread, not to a role.
 
 Roles are not new ceremony bolted on top — they are WHO performs each existing
 step. Mapping onto AGENT.md:
 
 | Role | Owns which Step | INPUT | OUTPUT artifact |
 |---|---|---|---|
-| **Analyst** | Step 1.5a (prep) | raw request | fork structure (the depth analysis) |
-| **Product** | Step 1 (contract) | forks + answers | `SPEC.md` (filled from the template) |
+| **Product** | Step 1 (contract: draft, then final) | raw request; then forks + the human's answers | draft `SPEC.md`, then the final `SPEC.md` (filled from the template) |
+| **Analyst** | Step 1.5a (prep) | raw request + the draft SPEC | fork structure (the depth analysis) + contradictions found in the draft |
 | **Architect** | Step 2 (plan) | SPEC.md | design + dependency-ordered approach |
 | **Scrum Master** | Step 2 (decompose) | design | task list (each task ties to AC IDs) |
 | **Developer** | Step 3 (execute) | one task | code for that task, referencing `// B*` |

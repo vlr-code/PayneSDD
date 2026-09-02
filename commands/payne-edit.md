@@ -11,8 +11,10 @@ it edits a public product and writes to a real repo.
 
 ## 0. Precondition — dev mode must be ON
 Dev mode is ON iff the marker file `~/.claude/.payne-dev-mode` exists.
-- Subcommands, handle first and STOP: `on` → create the marker; `off` → remove it;
-  `status` → report ON/OFF + the resolved repo path.
+- Subcommands, handle first and STOP: `on` → create the marker with the repo
+  path as its first line (resolve it: `PAYNE_REPO`, else the clone path your
+  host config imports — `@…/DIGEST.md` or `@…/AGENT.md` — else ask; never
+  guess); `off` → remove it; `status` → report ON/OFF + the resolved repo path.
 - If a change is requested while dev mode is OFF → say so, mention `/payne-edit on`,
   and STOP. Edit nothing.
 
@@ -57,14 +59,20 @@ trimmed. A dispute over whether it fails is settled by a measured behavioral run
 evidence (the CHANGELOG 0.4.4 keeps, the persona block) — they pass by prior data.
 
 ## 4. Machine gate (Step 4)
-- `bash "<repo>/scripts/payne-check.sh"` is the gate for any SHELL edits — it lints
-  `hooks/*.sh` only. For a doc-only change it can't go red, so green there proves
-  nothing by itself; don't present it as if it did.
-- So for doc edits YOU run the deterministic source-of-truth check by hand: version
-  numbers consistent, step numbers intact, README cycle table / CHANGELOG / links
-  resolve, public claims match their evidence (a capability/benefit claim carries
-  its measured run / gate log / artifact — wording never outruns what was proven).
-  That manual check — not the script — is the real gate for protocol prose.
+- `bash "<repo>/scripts/payne-check.sh"` is the repo's gate, and it DOES go red on
+  prose: shell lint (bash -n + shellcheck), one version everywhere, README links
+  and CLAUDE.md imports resolve, DIGEST.md pinned to the current AGENT.md and
+  inside its size band, no drifting local command copies, and the Stop-hook
+  behavior suite (`scripts/payne-gate-test.sh`, incl. its red-proof mutants).
+- Any AGENT.md edit turns the digest check RED until you re-review DIGEST.md
+  against the change and re-pin (`scripts/payne-digest-stamp.sh`). The pin proves
+  a re-stamp; the review is yours: decide whether the digest needs text (it is a
+  floor — never a superset, never a different rule) and state the call in the
+  diff summary — the quality reviewer checks it (its `Digest:` line).
+- What stays manual — YOUR deterministic check by hand: step numbers intact,
+  README cycle table / CHANGELOG entries match the change, public claims match
+  their evidence (a capability/benefit claim carries its measured run / gate log
+  / artifact — wording never outruns what was proven).
 
 ## 5. Quality review (Step 5) — the SEPARATE quality agent
 Spawn the **payne-quality** agent (independent, not yourself) on the diff. It guards

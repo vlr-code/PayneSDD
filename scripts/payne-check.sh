@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 # PayneSDD — repo self-check = the Step 4 machine gate for THIS repo.
 #
-# The product is markdown + shell, so the gate checks BOTH: every shipped
+# The product is markdown + shell, so the gate checks all three: every shipped
 # shell file must be syntactically valid (lint-clean if shellcheck is
-# available), and the shipped docs must be internally consistent — one version
-# everywhere, no links to ghost files, no drifting dogfood copies. Wired as
-# PAYNE_TEST_CMD in .claude/settings.json and run by CI on every push;
-# runnable directly any time:  bash scripts/payne-check.sh
+# available), the Stop-hook must BEHAVE as documented (scripts/payne-gate-test.sh
+# incl. its red-proof mutants), and the shipped docs must be internally
+# consistent — one version everywhere, no links to ghost files, no drifting
+# dogfood copies. Wired as PAYNE_TEST_CMD in .claude/settings.json and run by CI
+# on every push; runnable directly any time:  bash scripts/payne-check.sh
 #
 # Exit codes: 0 = gate GREEN, 1 = gate RED.
 set -uo pipefail
@@ -111,5 +112,20 @@ for c in "$ROOT"/.claude/commands/*.md; do
   fi
 done
 [ "$copy_fail" -eq 0 ] && echo "ok   (copy-sync)   no drifting local command copies"
+
+# AC7: the Stop-hook must BEHAVE, not just parse — dormant / block / consecutive
+# count / release / green + fresh-chain resets / unset cmd / disarm-while-red —
+# and the suite must be able to go red: each deliberately broken hook copy in
+# its --mutants mode must FAIL it (a check never seen failing is unproven).
+# Hard fail.
+if bash "$ROOT/scripts/payne-gate-test.sh" >/dev/null 2>&1 \
+   && bash "$ROOT/scripts/payne-gate-test.sh" --mutants >/dev/null 2>&1; then
+  echo "ok   (hook-test)   payne-gate.sh behavior suite green, every mutant red"
+else
+  echo "FAIL (hook-test)   scripts/payne-gate-test.sh (suite or --mutants) — details:" >&2
+  bash "$ROOT/scripts/payne-gate-test.sh" 2>&1 | grep '^FAIL' >&2 || true
+  bash "$ROOT/scripts/payne-gate-test.sh" --mutants 2>&1 | grep '^FAIL' >&2 || true
+  fail=1
+fi
 
 exit "$fail"

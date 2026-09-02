@@ -8,7 +8,9 @@ Do this:
 1. Gather the current changes (e.g. `git diff` / the files just edited) and the
    relevant `SPEC.md` if one exists.
 2. Launch a SEPARATE subagent — not yourself — with a "break it, don't praise it"
-   brief: hunt for contract↔result drift, uncovered behavior, weak checks —
+   brief (on Full, a host with no subagent mechanism at all runs a DISCLOSED
+   self-pass instead, and the verdict is then never PASS — ESCALATE, the human
+   reviews): hunt for contract↔result drift, uncovered behavior, weak checks —
    AUDIT THE TESTS THEMSELVES and how green was reached: deleted/empty
    assertions, skipped tests, loosened matchers/thresholds, mocks that fake the
    unit under test, tautological assertions (an expected value recomputed the way

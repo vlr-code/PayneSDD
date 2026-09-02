@@ -34,6 +34,10 @@
 #   rm .payne-active        when the task is done, abandoned, or honestly
 #                           ESCALATED (Step 6, red log attached — an honest
 #                           escalation is not a gate bypass)
+#   Removing the marker while the gate is RED (a block counter on record) is
+#   allowed but LOUD: the next stop passes and prints a systemMessage to the
+#   USER naming the disarm and the UNVERIFIED state. A tripwire for the human,
+#   not a lock on the agent.
 #
 # The marker is per-project: one armed task per repo at a time — parallel
 # sessions in the same checkout share the gate.
@@ -63,7 +67,18 @@ fi
 
 # No active spec → gate is dormant. Trivial work and chat pass untouched.
 if [ ! -f "$MARKER" ]; then
-  rm -f "$ATTEMPTS"
+  if [ -f "$ATTEMPTS" ]; then
+    # The marker vanished while a red-block counter is still on record: the
+    # gate was DISARMED while RED, not passed. Dormant means dormant — never
+    # block here — but make it visible: systemMessage reaches the HUMAN (Claude
+    # never sees exit-0 stdout on Stop). The counter is cleared, so this fires
+    # once per disarm.
+    SPENT="$(cat "$ATTEMPTS" 2>/dev/null || true)"
+    case "$SPENT" in ''|*[!0-9]*) SPENT=0 ;; esac
+    rm -f "$ATTEMPTS"
+    printf '{"systemMessage":"PayneSDD gate: .payne-active was removed while the gate was RED (%s red block(s) on record) — the gate was disarmed, not passed. The result is UNVERIFIED unless the agent honestly ESCALATED with the red log; treat any done-claim accordingly."}\n' "$SPENT"
+    exit 0
+  fi
   exit 0
 fi
 

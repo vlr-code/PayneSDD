@@ -54,7 +54,8 @@ don't re-read line by line — plus a committed one-line log of every decision.
 > clone there, read its AGENT.md and README — then run the installation itself
 > as your first task under that protocol: ask me the remaining setup questions
 > (which projects — all or specific ones; the ≈2.4k-token digest or the full
-> file always-on; persona on or off; enforced Stop-hook or honor-system gate),
+> file always-on; persona on or off; enforced Stop-hook or honor-system gate;
+> dev mode — only if I maintain a PayneSDD clone, default off),
 > show one plan, and touch only my config after my explicit "go" — apply my
 > choices there, never by editing the cloned files, and remove nothing that's
 > already in my config.
@@ -170,7 +171,9 @@ The protocol in `AGENT.md` is self-contained. Everything else is opt-in:
 Copy the two hook files, wire `PAYNE_TEST_CMD` to your real test command, and
 `touch .payne-active` when you start a gated task — from then on a red test suite
 **physically blocks** the agent from saying "finished" (up to 3 blocks, then
-it releases with an explicit UNVERIFIED warning — the call goes back to you).
+it releases with an explicit UNVERIFIED warning — the call goes back to you;
+disarming the marker while red is allowed but announced to you as UNVERIFIED —
+a tripwire, not a lock).
 Full setup, honest caveats, and a zero-install `/goal` variant:
 [`DEPLOYMENT.md`](DEPLOYMENT.md#enforced-stop-hook-setup-claude-code).
 

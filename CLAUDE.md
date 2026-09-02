@@ -21,6 +21,7 @@ pass untouched.
 - `touch .payne-active` — arm the gate when a spec is in play.
 - `rm .payne-active` — disarm it when the task is done, abandoned, or honestly
   ESCALATED (Step 6, red log attached — an honest escalation is not a bypass).
+  Removing it while the gate is red is announced to the human by the hook.
 
 The gate command for this markdown+shell repo is `scripts/payne-check.sh`
 (wired as `PAYNE_TEST_CMD` in the git-ignored `.claude/settings.json`; a
