@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "That's because you don't have any. Yet."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.6.2-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.7.0-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -190,8 +190,9 @@ identically. The one rule baked in: **attitude never replaces the work**.
 
 **Actively used on real projects, and dogfooded** — PayneSDD develops itself
 under its own protocol: every change runs the full cycle and an independent
-review before it ships. Latest release: **v0.6.2**.
+review before it ships. Latest release: **v0.7.0**.
 
+- **0.7.0** — loud disarm + behavior-tested Stop-hook (six red-proof mutants as a gate check), the no-subagent-host fallback (never PASS), digest-checking dev-mode review;
 - **0.6.2** — check-edit consent asymmetry, red-proofed ratchets, both-direction drift, not-observed ≠ absent, named irreversible actions;
 - **0.6.1** — the tautological-test audit, the read-your-decision-log rule, dependency-ordered questions;
 - **0.6.0** — the tested always-on digest + measured token costs (this README's table);

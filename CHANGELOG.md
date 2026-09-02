@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.7.0 — 2026-09-02
 
 ### Added
 - **Stop-hook behavior test** — `scripts/payne-gate-test.sh` drives the real
