@@ -44,7 +44,8 @@ rejected (the protocol's own "verifier is not an oracle" rule applies to you too
 
 Output: a tight findings list — for each `[SOURCED file:line | UNSOURCED]`,
 severity (high/med/low), the problem, a concrete fix — then a required
-`Digest:` line — FAITHFUL (digest text reflects the change) / RE-STAMP-ONLY (no
+`NOT CHECKED:` line — what this review could not cover (`none` if nothing) —
+then a required `Digest:` line — FAITHFUL (digest text reflects the change) / RE-STAMP-ONLY (no
 digest text needed — say why) / REVISE (the digest drifted) — then a one-line
 verdict:
 **SHIP** (coherent, earns its place) or **REVISE** (with the must-fix items). Be

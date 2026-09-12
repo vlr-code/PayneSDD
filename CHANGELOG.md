@@ -61,6 +61,23 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   - **Step 1.5b — a bare "go" at the depth menu answers the DEPTH question**:
     fast mode, its defaults listed for veto, the plan gate still happens, and
     fast is not silent.
+- **Five more gaps from the inbox** — evidence is stamped with the state it ran
+  against and the verdict confirms that state has not moved; a reviewer's report
+  carries a required NOT CHECKED line (`none` when it covered everything);
+  wiping your own working infrastructure joins the irreversible list; an
+  external system whose code you cannot read is gated by a controlled
+  experiment, named in the plan before it runs and reported with whatever it
+  left behind; the analyst brief carries the decisions the human already pinned.
+  Measured run: [`benchmark/batch2-2026-09-12.md`](benchmark/batch2-2026-09-12.md)
+  — PASS on the pre-registered bar, but `gate_ran` fell 9/16 → 7/16 and that drop
+  is recorded as unexplained, not dismissed. None of the five is exercisable on
+  the harness (no second writer, no push, no external system, no live reviewer),
+  so the run is a no-regression check, never evidence they work.
+- **A measured noise band, and what it costs us** — the same base payload re-run
+  against itself moved `consent_asked` by −4 and `no_premature_write` by −4 at
+  two runs per cell. The −3 acceptance bar this project has used all along sits
+  INSIDE that drift for the consent family: large rejections (−9, −10) stand,
+  a −3 or −4 verdict does not. Numbers in the same artifact.
 - **Questions are phrased by consequence** — every option says what it changes
   for the human in practice; "I don't understand the question" is not an answer:
   re-ask it plainer, never take your own default silently on the back of it

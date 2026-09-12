@@ -6,7 +6,8 @@ You are running Step 5 (ADVERSARIAL) of the PayneSDD protocol.
 
 Do this:
 1. Gather the current changes (e.g. `git diff` / the files just edited) and the
-   relevant `SPEC.md` if one exists.
+   relevant `SPEC.md` if one exists — from a FIXED point (a commit or a stash),
+   so the review and the gate describe the same tree.
 2. Launch a SEPARATE subagent — not yourself — with a "break it, don't praise it"
    brief (on Full, a host with no subagent mechanism at all runs a DISCLOSED
    self-pass instead, and the verdict is then never PASS — ESCALATE, the human
@@ -28,7 +29,8 @@ Do this:
    concrete test). Findings
    with no source tie are marked "unconfirmed", not asserted as bugs. The report
    comes back COMPACT: one line per finding — source tie + claim + proposed fix;
-   an explicit "none" when clean.
+   an explicit "none" when clean, and a required NOT CHECKED line naming what
+   the pass could not cover — silence about an uncovered area reads as coverage.
 3. Adjudicate the findings yourself (the verifier is not an oracle): accept and
    fix only source-tied findings; reject the rest and say why. When an accepted
    finding exposes a hole in the contract itself, ratchet: the clause plus the

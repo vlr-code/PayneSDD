@@ -115,6 +115,15 @@ and the AT-EVERY-LEVEL paragraph, the two pieces a host config is told to copy �
 is untouched in that change (visible in the `AGENT.md` diff); what went was the
 third level's own lines and its name in the list of switch phrases.
 
+## Read these numbers with the noise band
+
+Measured after this page was written: the same payload re-run against itself
+moves `consent_asked` and `no_premature_write` by up to 4 at two runs per cell
+(`batch2-2026-09-12.md`). So the rejections recorded above at −9 and −10 stand
+well outside drift, while the second cut's −4 / −3 verdict is inside it — that
+cut may have been rejected for noise. The shipped level's numbers (worst −1)
+say "nothing large broke", not "nothing moved".
+
 ## What this does not measure
 
 Two runs per cell: direction only, no confidence intervals. One model snapshot.

@@ -151,7 +151,11 @@ Don't start solving. First write the contract and show it:
   implementation or golden dataset you can diff against beats docs or eyeballing;
   build that comparison harness FIRST, before the main code. If there's nothing to
   name — STOP, escalate (see Step 6): without a source of truth the cycle is
-  meaningless.
+  meaningless. For an external system whose code you cannot read, ITS DOCS ARE A
+  CLAIM, not the source of truth: gate against the system itself with a
+  controlled experiment (a known input, a predicted response, the real answer) —
+  named in the plan at 1.6 BEFORE it runs, since it writes to someone else's
+  system — and report what it left behind there, so it can be cleaned up.
 
 If the task changes an existing contract — fix the contract first, then the code.
 Never the other way around.
@@ -235,7 +239,10 @@ mistake is to analyze only "behavior/logic" and forget the rest:
   already EXISTS, check the new shape against its CURRENT callers (cite the
   caller, file:line), don't assume they still match.
 In the brief to the subagent, EXPLICITLY list these categories so it doesn't
-narrow the analysis.
+narrow the analysis — and the decisions the human has ALREADY PINNED (the
+decision log where it runs, this conversation otherwise), so it doesn't hand
+back forks that are already closed (one that CONTRADICTS the contract is still
+reported — that is the other half of its job).
 
 The subagent computes the number of questions per mode FOR THE TASK, not to hit
 round numbers. If there are objectively few forks, the modes may coincide in
@@ -301,8 +308,9 @@ THE IRON RULE:
   1. Assemble the final plan into ONE short block: what exactly you'll do, in what
      form you'll deliver it, what gets gated now and what gets escalated, what you
      will NOT do — and the foreseeable IRREVERSIBLE or EXTERNAL actions the task
-     will take (push, delete, send, publish, external-API write); the "yes"
-     covers exactly the named set.
+     will take (push, delete, send, publish, external-API write — and wiping
+     your own working infrastructure: a local database, a container or VM, a
+     simulator, git history); the "yes" covers exactly the named set.
   2. End the message with a DIRECT question in exactly this shape:
      "Build it this way, or revise?" (or an equivalent "go / revise?").
   3. STOP and wait for an answer. No write-tool calls, no code in that same
@@ -401,6 +409,11 @@ Light and Full both run it (Trivial never entered the protocol, so it has no gat
   this task, show it red ONCE against the state that should break it — for a
   ratcheted check, the pre-fix broken state that motivated it — then revert. A
   reverted proof is not the loosening DIRECTION ASYMMETRY forbids.
+- A green describes the STATE IT RAN AGAINST, and that state moves: name it with
+  the result (a commit, a stash, a content hash) and confirm at the verdict that
+  it has not moved — a shared tree someone else writes to, a source of truth that
+  was re-generated, a review read from a live checkout. Moved → the run is stale,
+  not green: re-run it, don't re-argue it.
 - Non-code: run a deterministic check against the source of truth (e.g.: every
   referenced API/symbol must exist in the actual source; every factual claim is
   tied to a source; every sub-question of the request is covered).
@@ -486,8 +499,11 @@ independent reviewer. Never present a self-pass as the independent review.
 - Subagent reports come back COMPACT — and this holds for EVERY protocol subagent
   (analyst 1.5a, adversarial, quality reviewer): one line per finding/fork (a
   finding: source tie + claim + proposed fix; a fork: the 1.5a fields); an
-  explicit "none" when empty. No narration, no prose walls: the main thread's
-  context is the budget they spend.
+  explicit "none" when empty, and a required NOT CHECKED line naming what the
+  pass could not cover (no access, no environment, out of budget) — `none` when
+  it covered everything, never invented to fill the slot; silence about an
+  uncovered area reads as coverage. No narration, no prose walls: the main thread's context is the
+  budget they spend.
 - Every finding is a HYPOTHESIS, not a verdict.
 
 THE KEY RULE (the verifier is not an oracle either):
@@ -510,7 +526,8 @@ STEP 6. VERDICT (+ CLOSING SUMMARY)
 ================================================================================
 End the task with one of three explicit outcomes:
 
-- PASS — all gates green, adversarial findings adjudicated. Attach EVIDENCE (gate
+- PASS — all gates green against a state that has not moved (Step 4), adversarial
+  findings adjudicated. Attach EVIDENCE (gate
   log / source quotes). Done.
 - ITERATE — a fixable defect, budget left and not a no-progress loop (Step 2) →
   return to Step 3/4.
