@@ -14,8 +14,9 @@ snapshot, three arms attached as system-prompt payloads:
 |---|---|
 | base | the shipped protocol, unchanged |
 | plain | the same protocol + the PLAIN block in the always-loaded config |
-| terse | the same protocol + the TERSE block in the always-loaded config |
+| terse | the same protocol + the TERSE block in the always-loaded config — **measured, then dropped before release** (see below) |
 
+Every table below therefore describes three arms while the protocol ships two.
 The dev-mode section was stripped from every payload so run agents could not
 reach the real gap inbox. Acceptance was pre-registered in the decision log
 BEFORE each launch: **no dimension may drop by 3 or more against base, and task
@@ -96,6 +97,23 @@ share in its closing-summary scenario fell from 0.45 to 0.06.
 Against the change: the persona marker 🚬 appears in 3 of 24 plain runs against
 7 of 24 on base. Small numbers on deliberately dry tasks, but it is a possible
 dip in voice and it is not dismissed here.
+
+## The third level was measured and dropped
+
+`terse` bought too little. Against `plain` it saved nothing on the median (185
+vs 186 words overall, 86 vs 85 on the plan-and-questions turn) and about 7% on
+the mean (164 vs 177); its Latin-token share was nearly double — 0.062 against
+0.034 on the median (definition and per-arm figures: the JSON beside this file)
+— so it read harder, not easier; on the synthetic set it came out longer (213 vs
+205). Its one real edge was the second turn, 80 words against 87. That does not
+buy a third level in a public protocol, a second recipe block in every user's
+always-on config and a third arm in every future run. The numbers are kept here
+as the reason it is gone.
+
+The `plain` numbers survive the removal: the plain recipe — the level's bullet
+and the AT-EVERY-LEVEL paragraph, the two pieces a host config is told to copy —
+is untouched in that change (visible in the `AGENT.md` diff); what went was the
+third level's own lines and its name in the list of switch phrases.
 
 ## What this does not measure
 

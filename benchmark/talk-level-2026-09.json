@@ -201,5 +201,30 @@
    "B": 2,
    "A": 1
   }
+ },
+ "shipped_levels": [
+  "standard",
+  "plain"
+ ],
+ "dropped": {
+  "terse": "no length win over plain (185 vs 186 median words), higher jargon share (0.136 vs 0.081); measured here, removed before release"
+ },
+ "jargon_share": {
+  "definition": "share of whitespace tokens matching ^[A-Za-z][A-Za-z0-9_.-]*$ in the assistant text of both turns, fenced and inline code removed; median over the arm's runs",
+  "talkbase": {
+   "median": 0.036,
+   "mean": 0.113,
+   "runs": 24
+  },
+  "talkplain4": {
+   "median": 0.034,
+   "mean": 0.039,
+   "runs": 24
+  },
+  "talkterse4": {
+   "median": 0.062,
+   "mean": 0.067,
+   "runs": 24
+  }
  }
 }

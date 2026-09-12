@@ -189,7 +189,7 @@ identically. The one rule baked in: **attitude never replaces the work**.
 
 ## Answers too long?
 
-`AGENT.md` carries an optional **talk level** — `standard` / `plain` / `terse`.
+`AGENT.md` carries an optional **talk level** — `standard` / `plain`.
 A short block in your always-loaded config names it and carries its recipe; you
 switch in plain words ("shorter", "back to standard"). It shapes how much is
 said, never what is done: gates, checks, the verdict — and the persona's own

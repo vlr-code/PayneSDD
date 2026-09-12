@@ -6,20 +6,24 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## Unreleased
 
 ### Added
-- **Talk level — an optional setting** (`standard` / `plain` / `terse`): how much
-  the agent says, never what it does. One line in the host's always-loaded config
-  names the level and carries its recipe (a short block, ≈400 tokens); the human
+- **Talk level — an optional setting** (`standard` / `plain`): how much the
+  agent says, never what it does. A short block in the host's always-loaded
+  config (≈430 tokens) names the level and carries its recipe; the human
   switches in plain words, and "remember it" rewrites that block. Gates, contract, checks, the verdict, the
   anchors (tier line, verdict word, summary headers, consent question) and the
   persona's own lines are exempt — the level shapes the substance, not the voice.
   Harness-validated before shipping (72 runs, three arms, pre-registered
-  thresholds): worst dimension −1 against base, outcomes 22/22 on both levels.
+  thresholds): worst dimension −1 against base, outcomes 22/22.
   Three earlier cuts of the wording were REJECTED — two for making agents skip
   the consent gate, the third for dropping the tier line. On those same runs
   replies came out ~39% shorter (the plan-and-questions turn −42%) while a
   blind, position-swapped judge over all 12 tasks found no quality drift
-  (2-2-8 and 1-2-9) — the pre-registered ≤60%-of-base length target was missed
-  narrowly, at 61%. Committed run summary:
+  (2-2-8) — the pre-registered ≤60%-of-base length target was missed
+  narrowly, at 61%. A third level (`terse`) was built, measured and DROPPED in
+  the same cycle: against `plain` it saved nothing on the median (185 vs 186
+  words), about 7% on the mean, and carried nearly double the Latin-token share
+  — not enough to earn a third level's cost.
+  Committed run summary:
   [`benchmark/talk-level-2026-09.md`](benchmark/talk-level-2026-09.md).
 - **Dev-mode inbox** — with dev mode ON, every gap the agent reports is also
   appended, once per task, as one self-contained line to a local inbox in the
