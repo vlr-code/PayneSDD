@@ -91,7 +91,26 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   What the change is worth, measured on the three identical-text pairs on disk:
   the old count rule ("no dimension may drop by 3 or more") fired on **two of
   three**, the z rule on **none**. Still none after the 2026-09-12 probe
-  repair, where the worst that identical text does to itself is z = −1.69.
+  repair. And the rule's false-alarm rate is now MEASURED rather than guessed —
+  as a magnitude, not a constant: 60 runs of one identical arm, split at random
+  into the exact shape a real comparison has, are rejected **a few percent of
+  the time, order one comparison in 30**
+  ([`noise-band-2026-09-12.json`](noise-band-2026-09-12.json)). Three
+  uncertainties sit under that, smallest first: 3.59 / 3.71 / 3.84 across seeds
+  at 20,000 splits each; **roughly 1–10%** when the 15 tasks themselves are
+  resampled; and 2.1% when the same estimator runs on a different epoch's 60
+  runs. The withdrawn "~9%" this project used to print sits inside that spread,
+  so the measurement replaces an unsourced figure — it does not refute it.
+  Two conditions travel with the number. The achievable worst-z values are
+  LUMPY: the atoms below −1 are −1.01, −1.44, −2.13 and −2.88, so on this null a
+  −1.5 cut and a −2 cut reject exactly the same splits — the threshold is not
+  resolved by this measurement, only the rule as a whole. And two of the six
+  gated dimensions (task outcome, verdict + summary) do not vary within a single
+  task in that epoch at all, so the null is carried almost entirely by the
+  consent pair. Under it the worst gated z reaches −2.88, median −1.01, 5th
+  percentile −1.44; the two-dimension clause never fired alone in 60,000 splits
+  and the task clause never fired — which is a statement about false alarms
+  only, never about power (see the open question below).
   What it is NOT worth: sensitivity. A ~20%
   relative degradation is invisible to both rules at this budget — z buys
   false-alarm control and invariance to n (a count threshold against an

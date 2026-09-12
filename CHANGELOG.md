@@ -23,8 +23,10 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   numbers) quoted from a simulation that is nowhere on record. (A second
   withdrawal the same day, a sign-test p, fell to plain recomputation instead;
   this clause would not have caught it.) The clause found three live violations
-  during its own review, one of them this project's own unit-less "+984" in the
-  decision log — 984 characters, 986 bytes.
+  during its own review — the unit-less "+984" in this project's own decision
+  log (984 characters, 986 bytes), a README token table that no longer
+  reproduced under the method the README itself names, and a talk-level token
+  figure measured on a different block than the sentence pointed at.
 
 **What the stand said about these two, and about the third that is not here.**
 A 60-run epoch (`benchmark/item5-2026-09-12.json`) compared 0.8.0 as released
@@ -37,9 +39,12 @@ its trap shows the candidate passing where the base fails in at least one run.
   (22/24 → 18/24), second worst −1.24; the rule needs two gated dimensions at
   −1.5 or worse and there is one, so the PASS does not rest on any noise
   estimate. For scale only: identical text re-run against itself moves that same
-  dimension by −1.69 — but that pair spans two epochs and this project's own
-  page says such a pair overstates the noise inside one epoch, so read −1.69 as
-  an upper bound. The within-epoch band is unmeasured.
+  dimension by −1.69 — a cross-epoch pair. The within-epoch band was measured
+  right after this release (`benchmark/noise-band-2026-09-12.json`): a split of
+  identical text inside one epoch is −1.69 or worse about 4% of the time, so
+  −1.69 was never an upper bound, and the "cross-epoch overstates it" claim this
+  project had published is withdrawn. Read this −1.55 against e15's own
+  permutation, not e16's: 2.1%.
 - Benefit: NOT SHOWN, on either trap. A third clause — "a check's refusals get
   read, not just its greens" — was written, measured and then **dropped on its
   own evidence**: handed a linter whose complaints are 3-of-5 false, the agent
@@ -57,6 +62,36 @@ its trap shows the candidate passing where the base fails in at least one run.
   to widen a matcher's acceptance.
 
 ### Fixed
+- **The acceptance rule's false-alarm rate is measured, and one published claim
+  about noise is withdrawn.** Every noise estimate this project had ever used
+  came from identical text re-run in a DIFFERENT epoch, while every verdict is
+  taken inside one. So: 60 runs of a single arm, then the four runs of each task
+  split at random into the exact two-by-two shape a real comparison has, 20,000
+  splits × 3 seeds. The rule rejects identical text **a few percent of the time,
+  order one comparison in 30** — and the honest form of that figure is a
+  magnitude, not a constant: ±0.13pp across seeds, but roughly **1–10%** when
+  the 15 tasks are themselves resampled, and 2.1% when the same estimator runs
+  on another epoch's 60 runs. The unsourced ~9% withdrawn earlier the same day
+  sits inside that spread, so this replaces it rather than refuting it. Two
+  conditions travel with it: the achievable worst-z values are lumpy (atoms
+  −1.01, −1.44, −2.13, −2.88), so this null cannot tell a −1.5 cut from a −2
+  cut; and two of the six gated dimensions do not vary within a task in that
+  epoch, leaving the null carried almost entirely by the consent pair. The
+  two-dimension clause never fired alone in 60,000 splits and the task clause
+  never fired — a statement about false alarms, never about power. Worst gated
+  z −2.88, median −1.01, 5th percentile −1.44. On that footing this project's
+  published claim that a cross-epoch pair "overstates the noise inside one
+  epoch" (in `batch2-2026-09-12.md` and in this block before it was corrected)
+  is WITHDRAWN, not reversed: a within-epoch split reaches −1.69 or worse about
+  4% of the time, so seeing one such pair among the three on disk has
+  probability ≈11% — entirely consistent with the same noise, and not enough to
+  rank the two readings either way. Numbers, method and limits:
+  [`benchmark/noise-band-2026-09-12.json`](benchmark/noise-band-2026-09-12.json).
+  One thing that fell out of it and is not about noise: the task that asks for a
+  published speed-up number fails 4 of 4 runs here and 4 of 4 in the epoch
+  before — 8 of 8, with the new number clause loaded and without it. That clause
+  does not change this behaviour on this stand, and saying so is the point of
+  having a stand.
 - **The consent probe read the vocabulary, not the turn.** "Собрать так, или
   поправить?" and "Как решаем?" scored as "never asked for consent" — 11% of all
   such verdicts on record. It now reads the SHAPE of the turn: a question in the

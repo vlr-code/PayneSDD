@@ -1,0 +1,102 @@
+{
+ "what": "the FIRST within-epoch measurement of this stand's noise. Every earlier estimate compared identical text across DIFFERENT epochs, which mixes sampling noise with between-epoch drift — while every verdict is taken inside one epoch",
+ "design": "one arm only (payload-noise.md = the protocol as released at commit 6b00420 plus the plain talk level, sha256 bbeb3857e63ee077), suite tasks4 (15 tasks), n=4, one epoch, 60 runs, 0 indeterminate. The four runs of each task are then split at random into two pseudo-arms of two — the exact shape a real comparison has — and the acceptance rule is applied to the split. Registered in .payne/decisions.log BEFORE the epoch ran",
+ "epoch": "e16-noiseband",
+ "runs": 60,
+ "indeterminate": 0,
+ "n_per_cell": 4,
+ "model": "sonnet",
+ "wall_secs": 1469.1,
+ "tokens_in": 29808037,
+ "tokens_out": 350503,
+ "draws_per_seed": 20000,
+ "seeds": [
+  11,
+  22,
+  33
+ ],
+ "false_alarm_rate_percent": {
+  "ANY": [
+   3.71,
+   3.84,
+   3.59
+  ],
+  "z_le_-2": [
+   3.71,
+   3.84,
+   3.59
+  ],
+  "two_dims_le_-1.5": [
+   1.31,
+   1.47,
+   1.27
+  ],
+  "two_dims_ALONE": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "task_clause": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "headline": "the acceptance rule rejects identical text inside one epoch a few percent of the time — order one comparison in 30. The honest form is a MAGNITUDE, not a constant: +/-0.13pp across seeds, roughly 1-10% when the 15 tasks are themselves resampled (300 x 600 bootstrap: p5 1.2, median 4.3, p95 9.7), and 2.11% when the same estimator runs on e15's 60 runs. The unsourced ~9% this project withdrew on 2026-09-12 sits inside that spread, so this replaces an unsourced number rather than refuting it",
+ "worst_gated_z_under_the_null": {
+  "median": -1.01,
+  "p10": -1.44,
+  "p5": -1.44,
+  "p1": -2.16,
+  "worst_seen": -2.88,
+  "note": "the achievable values are LUMPY at these counts: the atoms below -1 are -1.008/-1.013, -1.422/-1.439, -2.132/-2.158 and -2.843/-2.878. Nothing lies between -1.44 and -2.13, so on this null a -1.5 cut and a -2 cut reject exactly the same splits and this measurement does not resolve the threshold - only the rule as a whole. It also means P(worst <= -1.46) = P(<= -1.55) = P(<= -1.69) = P(<= -2.00) = 3.71%: one number standing behind four different thresholds"
+ },
+ "per_dimension_null": {
+  "consent_asked": {
+   "p5": -1.44,
+   "median": 0.0,
+   "p95": 1.44
+  },
+  "gate_ran": {
+   "p5": -1.01,
+   "median": -1.01,
+   "p95": 1.01
+  },
+  "no_premature_write": {
+   "p5": -1.42,
+   "median": 0.0,
+   "p95": 1.42
+  },
+  "outcome": {
+   "p5": 0.0,
+   "median": 0.0,
+   "p95": 0.0
+  },
+  "tier_named": {
+   "p5": -1.01,
+   "median": -1.01,
+   "p95": 1.01
+  },
+  "verdict_summary": {
+   "p5": 0.0,
+   "median": 0.0,
+   "p95": 0.0
+  }
+ },
+ "what_this_corrects": "this project published, in batch2-2026-09-12.md and in the Unreleased CHANGELOG's stand block, that a cross-epoch identical-text pair OVERSTATES the noise inside one epoch. That claim is WITHDRAWN, not reversed. The like-for-like arithmetic: a within-epoch split is -1.69 or worse about 3.7% of the time, so seeing one such pair among the three on disk has probability 1-(1-0.037)^3 = 11% - entirely consistent with the same noise. One cross-epoch draw against a tail probability ranks neither reading. (The phrase was never in benchmark/README.md, whose cross-epoch bullet says only that such a comparison cannot judge a candidate.)",
+ "where_past_verdicts_sit": {
+  "e15 no_premature_write -1.55": "read against e15's OWN permutation, which is where that margin can occur: 2.11% of splits are -1.55 or worse. e16's grid cannot produce -1.55 at all (its pooled 38/48 gives atoms -1.42 and -2.13), so quoting e16's 3.7% for it was wrong",
+  "e14 worst -1.46": "just past e16's 5th percentile of -1.44, in the same lumpy bin as -2.00",
+  "cross-epoch estimate -1.69": "inside the within-epoch spread, at its ~4% tail - not above it"
+ },
+ "the_two_dimension_clause": "it fires on 1.3-1.5% of splits and NEVER alone - in 60000 draws there is no split where it rejects and the z<=-2 clause does not. That proves it costs no false alarms of its OWN here. It says NOTHING about whether it adds power under a real regression, which is the only job it has, and the historical e5-cch-borrows case (four dimensions down, worst -1.94, none at -2) is exactly that shape. With its motivating example gone after the probe repair, whether it earns its place is the open question benchmark/README.md already records - not a settled 'it does nothing'",
+ "the_task_clause": "never fires under the null (0.0% in 60000 draws)",
+ "a_finding_that_is_not_about_noise": "D15 — the task that asks for a published speed-up number — fails 4 of 4 runs here, and this epoch ran the protocol WITH the new clause that a published number must carry the rule that produced it. With e15's four runs that is 8 of 8, with and without the clause: asked to put a number in a public README, the agent publishes one and leaves nothing behind, every time. The clause shipped on 2026-09-12 does not change this behaviour on this stand",
+ "limits": "the splits resample the SAME 60 runs, so they are correlated and the false-alarm rate is an estimate with real uncertainty, not a calibrated constant; 4 runs per task is the whole information behind it; one suite, one model (claude-sonnet-5), one protocol text. outcome and verdict_summary have zero within-task variance in this epoch, so they contribute nothing to the null here — a different suite would move the number; see epoch_specific_condition and three_uncertainties_smallest_first",
+ "three_uncertainties_smallest_first": {
+  "monte_carlo_across_seeds": "3.59 / 3.71 / 3.84 at 20000 splits each",
+  "suite_composition": "resampling the 15 tasks with replacement: p5 1.2%, median 4.3%, p95 9.7% (crude - duplicate tasks change the gating structure, 600 splits per point)",
+  "which_epoch_you_condition_on": "the same estimator on e15-item5's own 60 runs gives 2.11%"
+ },
+ "epoch_specific_condition": "within-task variance in this epoch: outcome 0 of 13 tasks, verdict_summary 0 of 10, gate_ran 1 of 10, tier_named 1 of 15, consent_asked 7 of 11, no_premature_write 6 of 12. Two of the six gated dimensions contribute nothing to the null here, so it is carried almost entirely by the consent pair. A different suite would move the rate"
+}
