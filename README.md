@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "That's because you don't have any. Yet."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.8.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.9.0-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -209,7 +209,7 @@ included:
 
 **Actively used on real projects, and dogfooded** — PayneSDD develops itself
 under its own protocol: every change runs the full cycle and an independent
-review before it ships. Latest release: **v0.8.0**.
+review before it ships. Latest release: **v0.9.0**.
 
 - **0.8.0** — the talk level (`standard` / `plain`), the dev-mode gap inbox and its triage, ten protocol rules taken from real sessions, and a measured noise band that puts our own acceptance bar in question;
 - **0.7.0** — loud disarm + behavior-tested Stop-hook (six red-proof mutants as a gate check), the no-subagent-host fallback (never PASS), digest-checking dev-mode review;

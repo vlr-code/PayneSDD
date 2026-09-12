@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.9.0 — 2026-09-13
 
 ### Added
 - **The task suite goes from 15 to 27, and the stand can finally see.** EIGHT of
