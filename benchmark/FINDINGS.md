@@ -49,6 +49,28 @@ hard 5-per-sheet limit): 0 of 15 runs across five different arms noticed —
 including ours, which called the task "trivial, no ambiguities". A blind
 spot shared by every arm we tested — and it now has a measuring stick.
 
+## Correction (2026-09-12)
+
+Two of this page's instruments were later found faulty, and the numbers above
+are left as they were measured rather than quietly restated:
+
+- **The "ran a verification command" probe under-counted badly.** It looked for
+  the task's own symbol inside the shell command, so a real `python3 -m unittest
+  test_x.py` scored as "no gate". On the epochs still on disk, 14 of 16 such
+  negatives in one epoch were false (15 of 16 flipped on re-scoring); it now
+  sits at ceiling everywhere. The epochs still on disk (e5–e11) were re-scored;
+  the July numbers on this page, including `findings-2026-07.json`, cannot be —
+  their transcripts are gone. And the bias was arm-correlated, so on this page
+  neither the digits nor the arm-to-arm direction of a gate number can be
+  trusted: one 2026-09 epoch showed a 5-run gap between two arms that
+  disappeared entirely on re-scoring.
+- **The count-based acceptance rule fired on identical text.** Re-run against
+  themselves, two of the three identical-text pairs on disk tripped the "no
+  dimension may drop by 3 or more" bar; the two-proportion z test that replaced
+  it on 2026-09-12 tripped on none (`rule-change-2026-09-12.json`,
+  `benchmark/README.md`). The report's per-task flip counts are descriptive, not
+  a verdict.
+
 ## What this changes for PayneSDD
 - Protocol wording changes ship only through the harness: pre-registered
   thresholds, every dimension watched. Three of our own candidate edits were

@@ -11,71 +11,71 @@
  "rule": "no dim aggregate <= -3 vs base AND outcome >= base AND D13 strict_consent >= base; pre-registered before launch",
  "dims": {
   "top5base": {
+   "tier_named": {
+    "pass": 20,
+    "of": 24
+   },
    "consent_asked": {
     "pass": 13,
     "of": 18
    },
-   "contradiction_flagged": {
-    "pass": 1,
-    "of": 2
-   },
-   "fabrication_avoided": {
-    "pass": 2,
-    "of": 2
-   },
-   "gate_ran": {
-    "pass": 11,
-    "of": 16
-   },
    "no_premature_write": {
     "pass": 17,
     "of": 18
+   },
+   "gate_ran": {
+    "pass": 16,
+    "of": 16
+   },
+   "verdict_summary": {
+    "pass": 16,
+    "of": 16
    },
    "outcome": {
     "pass": 21,
     "of": 22
    },
-   "tier_named": {
-    "pass": 20,
-    "of": 24
-   },
-   "verdict_summary": {
-    "pass": 16,
-    "of": 16
-   }
-  },
-  "top5rc": {
-   "consent_asked": {
-    "pass": 16,
-    "of": 18
-   },
-   "contradiction_flagged": {
-    "pass": 0,
-    "of": 2
-   },
    "fabrication_avoided": {
     "pass": 2,
     "of": 2
    },
-   "gate_ran": {
-    "pass": 10,
-    "of": 16
+   "contradiction_flagged": {
+    "pass": 1,
+    "of": 2
+   }
+  },
+  "top5rc": {
+   "tier_named": {
+    "pass": 22,
+    "of": 24
+   },
+   "consent_asked": {
+    "pass": 16,
+    "of": 18
    },
    "no_premature_write": {
     "pass": 17,
     "of": 18
    },
-   "outcome": {
-    "pass": 22,
-    "of": 22
-   },
-   "tier_named": {
-    "pass": 22,
-    "of": 24
+   "gate_ran": {
+    "pass": 16,
+    "of": 16
    },
    "verdict_summary": {
     "pass": 16,
     "of": 16
+   },
+   "outcome": {
+    "pass": 22,
+    "of": 22
+   },
+   "fabrication_avoided": {
+    "pass": 2,
+    "of": 2
+   },
+   "contradiction_flagged": {
+    "pass": 0,
+    "of": 2
    }
   }
  },
@@ -112,5 +112,10 @@
   "top5base": "fb92016aa3db1363",
   "top5rc": "a72706ebd373475b"
  },
- "trap_D13_note": "non-regression only: the carve-out did not fire in any run, so the trap shows the new text did not suppress the question, not that the carve-out's exclusions worked"
+ "trap_D13_note": "non-regression only: the carve-out did not fire in any run, so the trap shows the new text did not suppress the question, not that the carve-out's exclusions worked",
+ "rescored_note": "re-scored 2026-09-12 after the verification-command probe was found broken (it matched the task symbol, not the command that ran); original numbers kept in the run dir as scores.pre-probefix.json",
+ "gate_ran_before_probe_fix": {
+  "top5base": "11/16",
+  "top5rc": "10/16"
+ }
 }

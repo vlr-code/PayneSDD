@@ -1,0 +1,123 @@
+{
+ "why": "the count-based acceptance rule was measured against identical text and fired twice in three pairs",
+ "method": {
+  "identical_text_pairs": "arms whose payload files are byte-identical, re-run in a different epoch; three exist on disk",
+  "drift_unit": "one (task, dimension) cell per pair; a cell counts as better/worse when the pass fraction moves",
+  "z": "two-proportion z over pooled run marks, dimension gated only when >= 4 tasks score it"
+ },
+ "between_epoch_drift": {
+  "later_epoch_better": 16,
+  "later_epoch_worse": 31,
+  "unchanged": 133,
+  "two_sided_sign_test_p": 0.04,
+  "caveat": "cells from the same transcripts are not independent and the three pairs span only two epoch transitions (e7->e8 supplies two); read this as 'drift exists and is downward', not as a calibrated p"
+ },
+ "false_alarm_on_identical_text": {
+  "old_count_rule": "2 of 3 pairs",
+  "z_rule": "0 of 3 pairs",
+  "detail": [
+   {
+    "pair": "b2base e10-batch2 → e11-noise",
+    "old_rule_fired_on": [
+     "consent_asked",
+     "no_premature_write"
+    ],
+    "z_rule_fired_on": []
+   },
+   {
+    "pair": "talkbase e7-talk → e8-talk-final",
+    "old_rule_fired_on": [],
+    "z_rule_fired_on": []
+   },
+   {
+    "pair": "talkplain4 e7-talk → e8-talk-final",
+    "old_rule_fired_on": [
+     "tier_named"
+    ],
+    "z_rule_fired_on": []
+   }
+  ]
+ },
+ "known_limits_of_the_new_rule": {
+  "power": "a ~20% relative degradation is invisible to BOTH rules at this budget; z buys false-alarm control and n-invariance, not sensitivity",
+  "multiplicity": "e5-cch-borrows fullrc put four dimensions down at once (worst z -1.94) and would PASS a max-z rule; that epoch's rejection was later overturned on sonnet (e6) and shipped as v0.6.2, but the hole is real — hence the secondary clause",
+  "saturation": "gate_ran now sits at 16/16 on base in e8/e9/e10: the suite can see a >=4-run collapse there, never an improvement"
+ },
+ "e5_case": {
+  "base": {
+   "tier_named": [
+    31,
+    36
+   ],
+   "consent_asked": [
+    8,
+    27
+   ],
+   "no_premature_write": [
+    8,
+    27
+   ],
+   "gate_ran": [
+    21,
+    24
+   ],
+   "verdict_summary": [
+    9,
+    24
+   ],
+   "outcome": [
+    28,
+    33
+   ],
+   "fabrication_avoided": [
+    1,
+    3
+   ],
+   "contradiction_flagged": [
+    0,
+    3
+   ]
+  },
+  "candidate": {
+   "tier_named": [
+    24,
+    36
+   ],
+   "consent_asked": [
+    5,
+    27
+   ],
+   "no_premature_write": [
+    5,
+    27
+   ],
+   "gate_ran": [
+    21,
+    24
+   ],
+   "verdict_summary": [
+    4,
+    24
+   ],
+   "outcome": [
+    31,
+    33
+   ],
+   "fabrication_avoided": [
+    3,
+    3
+   ],
+   "contradiction_flagged": [
+    1,
+    3
+   ]
+  },
+  "worst_z": -1.94
+ },
+ "probe_fix": {
+  "epoch": "e10-batch2",
+  "negatives_before": 16,
+  "flipped_to_true": 15,
+  "changed_by_later_hardening": 0
+ }
+}

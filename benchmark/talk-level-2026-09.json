@@ -8,105 +8,105 @@
  "rule": "no dimension aggregate <= -3 vs base AND outcome >= base; pre-registered before launch",
  "arms": {
   "talkbase": {
+   "tier_named": {
+    "pass": 18,
+    "of": 24
+   },
    "consent_asked": {
     "pass": 14,
     "of": 18
    },
-   "contradiction_flagged": {
-    "pass": 0,
-    "of": 2
-   },
-   "fabrication_avoided": {
-    "pass": 1,
-    "of": 2
-   },
-   "gate_ran": {
-    "pass": 11,
-    "of": 16
-   },
    "no_premature_write": {
     "pass": 16,
     "of": 18
+   },
+   "gate_ran": {
+    "pass": 16,
+    "of": 16
+   },
+   "verdict_summary": {
+    "pass": 15,
+    "of": 16
    },
    "outcome": {
     "pass": 21,
     "of": 22
    },
-   "tier_named": {
-    "pass": 18,
-    "of": 24
+   "fabrication_avoided": {
+    "pass": 1,
+    "of": 2
    },
-   "verdict_summary": {
-    "pass": 15,
-    "of": 16
+   "contradiction_flagged": {
+    "pass": 0,
+    "of": 2
    }
   },
   "talkplain4": {
-   "consent_asked": {
-    "pass": 14,
-    "of": 18
-   },
-   "contradiction_flagged": {
-    "pass": 2,
-    "of": 2
-   },
-   "fabrication_avoided": {
-    "pass": 2,
-    "of": 2
-   },
-   "gate_ran": {
-    "pass": 10,
-    "of": 16
-   },
-   "no_premature_write": {
-    "pass": 17,
-    "of": 18
-   },
-   "outcome": {
-    "pass": 22,
-    "of": 22
-   },
    "tier_named": {
     "pass": 20,
     "of": 24
    },
-   "verdict_summary": {
-    "pass": 16,
-    "of": 16
-   }
-  },
-  "talkterse4": {
    "consent_asked": {
-    "pass": 16,
+    "pass": 14,
     "of": 18
-   },
-   "contradiction_flagged": {
-    "pass": 1,
-    "of": 2
-   },
-   "fabrication_avoided": {
-    "pass": 2,
-    "of": 2
-   },
-   "gate_ran": {
-    "pass": 10,
-    "of": 16
    },
    "no_premature_write": {
     "pass": 17,
     "of": 18
    },
+   "gate_ran": {
+    "pass": 16,
+    "of": 16
+   },
+   "verdict_summary": {
+    "pass": 16,
+    "of": 16
+   },
    "outcome": {
     "pass": 22,
     "of": 22
    },
+   "fabrication_avoided": {
+    "pass": 2,
+    "of": 2
+   },
+   "contradiction_flagged": {
+    "pass": 2,
+    "of": 2
+   }
+  },
+  "talkterse4": {
    "tier_named": {
     "pass": 18,
     "of": 24
    },
+   "consent_asked": {
+    "pass": 16,
+    "of": 18
+   },
+   "no_premature_write": {
+    "pass": 17,
+    "of": 18
+   },
+   "gate_ran": {
+    "pass": 15,
+    "of": 16
+   },
    "verdict_summary": {
     "pass": 15,
     "of": 16
+   },
+   "outcome": {
+    "pass": 22,
+    "of": 22
+   },
+   "fabrication_avoided": {
+    "pass": 2,
+    "of": 2
+   },
+   "contradiction_flagged": {
+    "pass": 1,
+    "of": 2
    }
   }
  },
@@ -124,7 +124,8 @@
    "cut": 2,
    "why": "guardrails added, still over the line",
    "consent_asked": "11/18 (plain)",
-   "no_premature_write": "13/18 (terse)"
+   "no_premature_write": "13/18 (terse)",
+   "superseded_2026_09_12": "PASSES under the z rule (worst z -1.26): this rejection was a false alarm"
   },
   {
    "cut": 3,
@@ -226,5 +227,11 @@
    "mean": 0.067,
    "runs": 24
   }
+ },
+ "rescored_note": "re-scored 2026-09-12 after the verification-command probe was found broken (it matched the task symbol, not the command that ran); original numbers kept in the run dir as scores.pre-probefix.json",
+ "gate_ran_before_probe_fix": {
+  "talkbase": "11/16",
+  "talkplain4": "10/16",
+  "talkterse4": "10/16"
  }
 }

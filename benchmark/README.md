@@ -74,5 +74,47 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   — e.g. `findings-2026-07.json`; full transcripts and generated test artifacts
   stay git-ignored in `benchmark/local/`, per the standing artifacts-never-in-
   history rule.)
+- **The acceptance rule is a test, not a count** (changed 2026-09-12 after the
+  old rule was measured against identical text; numbers and method:
+  [`rule-change-2026-09-12.json`](rule-change-2026-09-12.json)). A candidate is
+  REJECTED when ANY of these holds: a gated dimension shows a two-proportion z
+  of −2 or worse against the base; two or more gated dimensions sit at −1.5 or
+  worse; the task named in the pre-registration as that candidate's trap goes
+  from passing in every base run to failing in every candidate run; or any task
+  that PASSED EVERY base run FAILS EVERY candidate run. A
+  dimension is **gated** only when at least four tasks score it — the others are
+  printed, never decisive. Task outcome is gated by the same z as anything else:
+  the "outcome may not fall" clause it replaces was a zero-tolerance count on a
+  dimension whose own flip rate is about 5%, and on 2026-09-12 it rejected an
+  end-to-end run where every discipline dimension had improved, over one flip of
+  a task that fails 23% of the time in every arm.
+  What the change is worth, measured on the three identical-text pairs on disk:
+  the old count rule ("no dimension may drop by 3 or more") fired on **two of
+  three**, the z rule on **none**. What it is NOT worth: sensitivity. A ~20%
+  relative degradation is invisible to both rules at this budget — z buys
+  false-alarm control and invariance to n (a count threshold against an
+  aggregate that grows with n gets looser the more runs you pay for), not power.
+  Honest exception on record: the 2026-08 haiku rejection (`e5-cch-borrows`,
+  four dimensions down at once, worst z −1.94) would PASS the max-z clause —
+  which is why the two-dimension clause exists; that rejection was itself
+  overturned on sonnet and shipped, so the direction of the disagreement is not
+  settled.
+- **Base and candidate run inside the SAME epoch.** Across the three
+  identical-text pairs the later epoch scored worse on 31 of 47 moved
+  (task, dimension) cells against 16 better — a two-sided sign test gives
+  p = 0.04, and those cells are correlated and span only two epoch transitions,
+  so read it as "a downward drift exists between epochs", not as a calibrated
+  number. Either way a cross-epoch comparison cannot judge a candidate; it can
+  only estimate a band.
+- **Single-task dimensions are reported, never gated.** With one task and two
+  runs a dimension has two cells: one flip is 50 points. Three of this suite's
+  nine dimensions are in that position.
+- **Saturation is a limit too.** After the 2026-09-12 probe fix, "ran a
+  verification command" sits at ceiling on the base arm: the suite can still
+  catch a collapse there, but it can never show that a change IMPROVED gate
+  adherence. Say which of the two a run could have shown.
+- **Two vocabularies, two purposes.** "Three arms" above describes competitor
+  comparisons; protocol-wording epochs run one base arm and one candidate arm,
+  and the rules in this section are about those.
 - **A "what this does NOT measure" section is mandatory** — fidelity limits,
   single-run noise, model/version scope. An honest caveat beats a big number.

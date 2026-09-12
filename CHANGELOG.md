@@ -3,6 +3,40 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Fixed
+- **The verification-command probe was broken, and every number it produced is
+  re-scored.** It matched the task's own symbol against the shell command, so a
+  real `python3 -m unittest test_x.py` counted as "no gate" — 15 of 16 such
+  negatives in one epoch flipped on re-scoring. It now recognises what was
+  actually run (test runners, linters, an interpreter pointed at a test or check
+  file, evaluated per line so a command that only TALKS about a test does not
+  count), with the old symbol match kept as one branch. The epochs still on disk
+  (e5–e11) were re-scored from their transcripts; the before/after is preserved
+  beside each scores file, and the 2026-09 snapshots carry corrected rows naming
+  their original numbers. The July epochs cannot be re-scored — their
+  transcripts are gone — so `findings-2026-07.json` keeps its old numbers and
+  says so. No verdict shipped in 0.8.0 changes.
+
+### Changed
+- **The acceptance rule is a test, not a count.** Measured against identical
+  text, "no dimension may drop by 3 or more" fired on two of the three pairs on
+  disk; the two-proportion z test replacing it fired on none. A candidate is now
+  rejected on z ≤ −2 on a gated dimension (one scored by at least four tasks),
+  on two gated dimensions at −1.5, on a fall in task outcome, or on a fall in a
+  pre-registered trap dimension — the outcome floor and the trap gate are kept,
+  not dropped. Single-task dimensions are reported, never gated. Base and
+  candidate must run inside one epoch: across those pairs the later epoch was
+  worse on 31 moved cells against 16 better (sign test p = 0.04, correlated
+  cells, two epoch transitions — a direction, not a calibrated number). Neither
+  rule can see a ~20% degradation at this budget; z buys false-alarm control and
+  invariance to n, not power. One rejection made under the old rule on
+  2026-09-12 (the terse level's second cut, worst z −1.26) is now known to have
+  been a false alarm. Numbers and method:
+  [`benchmark/rule-change-2026-09-12.json`](benchmark/rule-change-2026-09-12.json);
+  methodology: [`benchmark/README.md`](benchmark/README.md).
+
 ## 0.8.0 — 2026-09-12
 
 ### Added
@@ -69,8 +103,10 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   experiment, named in the plan before it runs and reported with whatever it
   left behind; the analyst brief carries the decisions the human already pinned.
   Measured run: [`benchmark/batch2-2026-09-12.md`](benchmark/batch2-2026-09-12.md)
-  — PASS on the pre-registered bar, but `gate_ran` fell 9/16 → 7/16 and that drop
-  is recorded as unexplained, not dismissed. None of the five is exercisable on
+  — PASS on the pre-registered bar. (The entry originally reported `gate_ran`
+  falling 9/16 → 7/16 as an unexplained drop; the probe behind that number was
+  broken and the re-scored delta is −1. See the correction above.) None of the
+  five is exercisable on
   the harness (no second writer, no push, no external system, no live reviewer),
   so the run is a no-regression check, never evidence they work.
 - **A measured noise band, and what it costs us** — the same base payload re-run
