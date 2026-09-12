@@ -55,7 +55,8 @@ don't re-read line by line — plus a committed one-line log of every decision.
 > as your first task under that protocol: ask me the remaining setup questions
 > (which projects — all or specific ones; the ≈2.4k-token digest or the full
 > file always-on; persona on or off; enforced Stop-hook or honor-system gate;
-> dev mode — only if I maintain a PayneSDD clone, default off),
+> dev mode — only if I maintain a PayneSDD clone, default off, and it lets the
+> agent append its protocol-gap notes to a file in my home),
 > show one plan, and touch only my config after my explicit "go" — apply my
 > choices there, never by editing the cloned files, and remove nothing that's
 > already in my config.
@@ -162,7 +163,7 @@ The protocol in `AGENT.md` is self-contained. Everything else is opt-in:
 | [`hooks/payne-gate.sh`](hooks/payne-gate.sh) + [`hooks/payne-gate-core.sh`](hooks/payne-gate-core.sh) | The **enforced** gate: a Stop-hook that blocks "done" on red tests |
 | [`templates/SPEC.template.md`](templates/SPEC.template.md) | A fixed contract skeleton for Step 1 |
 | [`commands/payne-spec.md`](commands/payne-spec.md) · [`commands/payne-review.md`](commands/payne-review.md) | Slash commands: start a contract / run the adversarial review |
-| [`commands/payne-edit.md`](commands/payne-edit.md) · [`agents/payne-quality.md`](agents/payne-quality.md) | Dev mode for maintainers (default OFF) + its independent reviewer |
+| [`commands/payne-edit.md`](commands/payne-edit.md) · [`agents/payne-quality.md`](agents/payne-quality.md) | Dev mode for maintainers (default OFF) + its independent reviewer + the local gap inbox it triages |
 | [`ROLES.md`](ROLES.md) | Multi-agent role overlay for LARGE tasks only |
 | [`DEPLOYMENT.md`](DEPLOYMENT.md) | Variant installs: digest / minimal slim-core / zero-footprint — plus the full hook setup and where each add-on installs |
 
@@ -185,6 +186,22 @@ identically. The one rule baked in: **attitude never replaces the work**.
 
 > *Yes, "Payne" is a pun. But this is the opposite of fix-it-when-it-hurts:
 > the whole point is to feel the pain at spec time, not in production.*
+
+## Answers too long?
+
+`AGENT.md` carries an optional **talk level** — `standard` / `plain` / `terse`.
+A short block in your always-loaded config names it and carries its recipe; you
+switch in plain words ("shorter", "back to standard"). It shapes how much is
+said, never what is done: gates, checks, the verdict — and the persona's own
+lines — hold.
+
+Measured, not assumed: across 72 runs replies came out ~39% shorter (the turn
+that carries the plan and the questions: −42%), no protocol dimension fell more
+than 1 against the base, and a blind position-swapped judge found no quality
+drift. Three earlier cuts of this wording were rejected by the harness first,
+two of them for making agents skip the consent gate. Numbers, failures
+included:
+[`benchmark/talk-level-2026-09.md`](benchmark/talk-level-2026-09.md).
 
 ## Status
 

@@ -113,6 +113,26 @@ for c in "$ROOT"/.claude/commands/*.md; do
 done
 [ "$copy_fail" -eq 0 ] && echo "ok   (copy-sync)   no drifting local command copies"
 
+# AC8: the dev-mode inbox path must be identical everywhere it is documented,
+# and it must be the ONLY one — the same drift class AC3 guards for the version.
+# shellcheck disable=SC2016  # a literal grep pattern, not a shell expansion
+inbox_paths="$(grep -Eoh '`~/\.payne/[^`]+`' "$ROOT/AGENT.md" \
+  "$ROOT/commands/payne-edit.md" "$ROOT/DEPLOYMENT.md" | sort -u)"
+inbox_n="$(printf '%s\n' "$inbox_paths" | grep -c . || true)"
+inbox_ok=0
+if [ "$inbox_n" = "1" ]; then
+  inbox_ok=1
+  for f in AGENT.md commands/payne-edit.md DEPLOYMENT.md; do
+    grep -qF "$inbox_paths" "$ROOT/$f" || inbox_ok=0
+  done
+fi
+if [ "$inbox_ok" = "1" ]; then
+  echo "ok   (inbox path)  $inbox_paths — one path, named in AGENT.md, payne-edit.md, DEPLOYMENT.md"
+else
+  echo "FAIL (inbox path)  found $inbox_n distinct path(s): ${inbox_paths:-none} — the three docs must name ONE inbox file" >&2
+  fail=1
+fi
+
 # AC7: the Stop-hook must BEHAVE, not just parse — dormant / block / consecutive
 # count / release / green + fresh-chain resets / unset cmd / disarm-while-red —
 # and the suite must be able to go red: each deliberately broken hook copy in

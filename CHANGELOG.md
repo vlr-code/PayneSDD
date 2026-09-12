@@ -3,6 +3,42 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Added
+- **Talk level — an optional setting** (`standard` / `plain` / `terse`): how much
+  the agent says, never what it does. One line in the host's always-loaded config
+  names the level and carries its recipe (a short block, ≈400 tokens); the human
+  switches in plain words, and "remember it" rewrites that block. Gates, contract, checks, the verdict, the
+  anchors (tier line, verdict word, summary headers, consent question) and the
+  persona's own lines are exempt — the level shapes the substance, not the voice.
+  Harness-validated before shipping (72 runs, three arms, pre-registered
+  thresholds): worst dimension −1 against base, outcomes 22/22 on both levels.
+  Three earlier cuts of the wording were REJECTED — two for making agents skip
+  the consent gate, the third for dropping the tier line. On those same runs
+  replies came out ~39% shorter (the plan-and-questions turn −42%) while a
+  blind, position-swapped judge over all 12 tasks found no quality drift
+  (2-2-8 and 1-2-9) — the pre-registered ≤60%-of-base length target was missed
+  narrowly, at 61%. Committed run summary:
+  [`benchmark/talk-level-2026-09.md`](benchmark/talk-level-2026-09.md).
+- **Dev-mode inbox** — with dev mode ON, every gap the agent reports is also
+  appended, once per task, as one self-contained line to a local inbox in the
+  human's home (outside every repo, never committed, appended never rewritten,
+  no secrets or project code; a failed write is said out loud, a "none" report
+  writes nothing). `/payne-edit inbox` triages it: snapshot first so concurrent
+  sessions lose nothing, re-check every line against the CURRENT protocol, one
+  plain list for the human, taken items in a single batched cycle, deferred ones
+  back to the inbox, snapshot dropped only on an explicit yes.
+
+### Changed
+- **Questions are phrased by consequence** — every option says what it changes
+  for the human in practice; "I don't understand the question" is not an answer:
+  re-ask it plainer, never take your own default silently on the back of it
+  (Step 1.5c; Light's inline forks follow the same shape).
+- **Closing-summary headers in the human's language** — the three headers are
+  translated (in Russian: «Сделано» / «Осталось» / «Открытые вопросы»); the
+  verdict word and the tier line stay as they are.
+
 ## 0.7.0 — 2026-09-02
 
 ### Added

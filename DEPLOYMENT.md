@@ -63,6 +63,7 @@ slim core below only when every token counts and you accept the weaker floor.
 | **Persona** (optional) | your host's persona file(s) | always (it's cheap, and it's the voice) |
 | **Slim core** — Step 0 tiers + the two persona-honesty safeguards + a pointer | the host's always-loaded instructions | always (~0.4k tokens) |
 | **Full protocol** — Steps 1–6, the decision log | a separate file (e.g. `payne-protocol.md`) | on demand — read only when Step 0 says Light/Full |
+| **Talk level** (optional) | a short block in the host's always-loaded config — the level's bullet + the AT-EVERY-LEVEL paragraph, copied from `AGENT.md` | always (≈400 tokens — on a weak model every always-on block competes, see the model floor above) |
 | **Dev mode** | omit | only if this agent maintains PayneSDD itself |
 
 ### The slim core (always loaded)
@@ -91,7 +92,8 @@ hand-off to `payne-protocol.md`.
 
 ### The on-demand file (`payne-protocol.md`)
 
-This is `AGENT.md` with the persona block and the dev-mode section stripped out —
+This is `AGENT.md` with the persona block, the talk-level section (its recipe
+already sits in the always-loaded config) and the dev-mode section stripped out —
 just Steps 0–6, the decision log, and "what you never do". The slim core's only
 job is to make the agent actually read it at the right moment.
 
@@ -215,4 +217,6 @@ Slash commands go into your project's `.claude/commands/` or globally into
 `ROLES.md` is read on demand — import it always-on only if you run roles
 routinely; otherwise the digest's pointer ("read it from the repo when
 summoned") is enough, and its ~1k tokens stay out of every session. Dev
-mode, once its command is installed, toggles with `/payne-edit on|off|status`.
+mode, once its command is installed, toggles with `/payne-edit on|off|status`;
+`/payne-edit inbox` triages the gap notes it saves to `~/.payne/inbox.md`
+(outside every repo, never committed).
