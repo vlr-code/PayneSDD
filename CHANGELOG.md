@@ -45,7 +45,8 @@ its trap shows the candidate passing where the base fails in at least one run.
   identical text inside one epoch is −1.69 or worse about 4% of the time, so
   −1.69 was never an upper bound, and the "cross-epoch overstates it" claim this
   project had published is withdrawn. Read this −1.55 against e15's own
-  permutation, not e16's: 2.1%.
+  permutation, not e16's: 9.4% of splits are that bad or worse — an ordinary
+  draw.
 - Benefit: NOT SHOWN, on either trap. A third clause — "a check's refusals get
   read, not just its greens" — was written, measured and then **dropped on its
   own evidence**: handed a linter whose complaints are 3-of-5 false, the agent
@@ -63,6 +64,30 @@ its trap shows the candidate passing where the base fails in at least one run.
   to widen a matcher's acceptance.
 
 ### Fixed
+- **The whole day, checked end to end against the protocol it started from.**
+  Everything released on 2026-09-12 had been judged in two separate legs
+  (v0.7.0 → 0.8.0 + the plain talk level, then 0.8.0 → 0.8.0 + two clauses), and
+  a composite of two small drops would have passed both and been caught by
+  neither. So one epoch, 60 runs, v0.7.0 against HEAD, both arms inside it,
+  rule registered before launch: **PASS**. The worst deciding measure moved by
+  one run out of twenty (z −1.01) — and read against this epoch's OWN
+  permutation null, identical text produces that or worse in 68% of splits, the
+  median outcome of pure noise. The two dimensions that actually vary both moved
+  the new protocol's way (did-not-write-before-consent 19/24 → 21/24, asked-for-
+  consent 18/22 → 19/22). That does NOT dispose of the earlier leg's −1.55 —
+  different contrast, different epoch, different base margins — and it is not
+  used to: under e15's own null that −1.55 is an ordinary draw, 9.4% of splits
+  are that bad or worse. A drop masked by a gain would pass this epoch exactly
+  as a composite would have passed the two legs.
+  What it cannot show, stated before the run and repeated here: four of six
+  gated dimensions sit at ceiling — verdict+summary, gate-ran, task-outcome and
+  tier-named; only consent and premature-write actually vary — so this design
+  can catch a collapse and never an improvement, and a ~20% degradation is
+  invisible at this budget. Both payloads also exclude AGENT.md's DEV MODE
+  section, as every stand payload does, so the day's dev-mode and gap-inbox
+  changes are outside this check entirely. PASS means nothing moved beyond
+  noise, not that the two protocols are equal.
+  [`benchmark/daycheck-2026-09-12.json`](benchmark/daycheck-2026-09-12.json).
 - **The acceptance rule's false-alarm rate is measured, and one published claim
   about noise is withdrawn.** Every noise estimate this project had ever used
   came from identical text re-run in a DIFFERENT epoch, while every verdict is

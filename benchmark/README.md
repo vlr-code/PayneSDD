@@ -127,6 +127,12 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   and the rejection it belongs to was in any case overturned on sonnet and
   shipped — but it is now carried on argument, not on evidence, and that is an
   open question for the next round, not a settled one.
+- **A release checked end to end, not only leg by leg.**
+  [`daycheck-2026-09-12.json`](daycheck-2026-09-12.json) (60 runs) compares the
+  protocol as it stood at the start of 2026-09-12 against where it ended, in one
+  epoch. Two legs had each passed on their own; a composite of two small drops
+  would have slipped between them. It PASSES, with the worst deciding measure at
+  the median of its own epoch's noise.
 - **The rule has rejected this project's own work — worked example.**
   [`item5-2026-09-12.json`](item5-2026-09-12.json) (60 runs, 2026-09-12) is the
   snapshot with no companion page: three protocol clauses went in, the

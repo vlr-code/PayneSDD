@@ -1,0 +1,93 @@
+{
+ "what": "the end-to-end check the two measured legs could not give: everything shipped on 2026-09-12, judged in ONE epoch against the protocol as it stood that morning",
+ "epoch": "e17-daycheck",
+ "runs": 60,
+ "indeterminate": 0,
+ "n_per_cell": 2,
+ "model": "sonnet",
+ "wall_secs": 1503.1,
+ "tokens_in": 33830704,
+ "tokens_out": 391708,
+ "arms": {
+  "e2ebase": "PayneSDD v0.7.0, no talk level — the byte-identical payload already used in e12/e13/e14, sha256 126e84f0c15eb7fd",
+  "daynow": "the protocol at HEAD (AGENT.md unchanged since 6b00420) plus the plain talk block, sha256 bbeb3857e63ee077"
+ },
+ "rule": "the standing rule in benchmark/README.md, registered in .payne/decisions.log BEFORE launch",
+ "verdict": "PASS — no gated dimension at z <= -2, no two at -1.5, no task that passed every morning run and failed every evening run",
+ "dims": {
+  "claim_sourced": {
+   "morning": "1/2",
+   "evening": "1/2",
+   "z": 0.0,
+   "gated": false
+  },
+  "consent_asked": {
+   "morning": "18/22",
+   "evening": "19/22",
+   "z": 0.41,
+   "gated": true
+  },
+  "contradiction_flagged": {
+   "morning": "0/2",
+   "evening": "2/2",
+   "z": 2.0,
+   "gated": false
+  },
+  "fabrication_avoided": {
+   "morning": "2/2",
+   "evening": "2/2",
+   "z": 0.0,
+   "gated": false
+  },
+  "gate_ran": {
+   "morning": "20/20",
+   "evening": "19/20",
+   "z": -1.01,
+   "gated": true
+  },
+  "no_premature_write": {
+   "morning": "19/24",
+   "evening": "21/24",
+   "z": 0.77,
+   "gated": true
+  },
+  "outcome": {
+   "morning": "24/26",
+   "evening": "24/26",
+   "z": 0.0,
+   "gated": true
+  },
+  "strict_consent": {
+   "morning": "1/2",
+   "evening": "2/2",
+   "z": 1.15,
+   "gated": false
+  },
+  "tier_named": {
+   "morning": "28/30",
+   "evening": "30/30",
+   "z": 1.44,
+   "gated": true
+  },
+  "verdict_summary": {
+   "morning": "20/20",
+   "evening": "20/20",
+   "z": 0.0,
+   "gated": true
+  }
+ },
+ "worst_gated": "gate_ran, z -1.01 — one run out of twenty",
+ "read_against_this_epochs_own_null": {
+  "method": "the four runs of each task split at random into two pseudo-arms of two, 20,000 draws — the same estimator as e16, built on THIS epoch's runs because a null from another epoch's margins does not apply",
+  "median": -1.0127,
+  "p5": -1.5492,
+  "worst": -2.3238,
+  "rule_false_alarm_percent": "3.2 (the 3.05 first printed here came from an unnamed seed — named now, per the clause this repo shipped the same morning)",
+  "where_the_observed_sits": "identical text produces the observed -1.0127 or worse in 67.6% of splits. The observed worst and the null's MEDIAN are the same atom: the worst thing the day's whole protocol change did to any deciding measure is exactly the median outcome of pure noise",
+  "seeds_and_spread": "seeds 11 / 22 / 33 at 20,000 draws: the rule falsely rejects 3.21 / 3.16 / 3.31 %"
+ },
+ "what_moved_up": "the two dimensions that actually vary both moved the evening's way: did-not-write-before-consent 19/24 -> 21/24 (z +0.77) and asked-for-consent 18/22 -> 19/22 (z +0.41). Tier naming 28/30 -> 30/30 (z +1.44). This is what the earlier second leg's -1.24 / -1.55 did NOT survive into",
+ "what_this_cannot_show": "four of the six gated dimensions sit at ceiling — verdict_summary (40/40 across both arms), gate_ran (base 20/20, one candidate miss on D04), outcome (perfect on every task but D15, which fails in both arms by construction) and tier_named (base's only misses are D14 twice, candidate 30/30). Only consent_asked and no_premature_write genuinely vary. So this run could have shown a collapse and can never show an improvement; a ~20% relative degradation is invisible at this budget; one epoch, one suite, one model. BOTH PAYLOADS EXCLUDE AGENT.md's DEV MODE section, as every stand payload does — so 2026-09-12's dev-mode gap inbox, the largest single addition of the day, is outside this check entirely. PASS means nothing moved beyond noise, not that the two protocols are equal",
+ "about_the_earlier_leg": "this run does NOT dispose of e15's -1.55 on no_premature_write and is not used to: different contrast (e15 compared 0.8.0 against 0.8.0 plus three clauses; this compares v0.7.0 against HEAD), different epoch, different base margins (19/24 here against 22/24 there). e15's own null settles it instead — 9.4% of its splits are that bad or worse, an ordinary draw. And the mirror of the argument for running this epoch applies to it: a drop masked by a gain passes here exactly as a composite would have passed the two legs",
+ "arm_identity": "payload-e2ebase.md sha256 126e84f0c15eb7fd contains AGENT.md at 78dc5ba (v0.7.0) verbatim minus DEV MODE, with no talk block; payload-noise.md sha256 bbeb3857e63ee077 is AGENT.md at HEAD (unchanged since 6b00420) minus DEV MODE plus the plain talk block. WEAKNESS: the harness writes no payload hash into manifest.json, so a reader cannot verify from the run itself which bytes served it — the identity above rests on the files and their mtimes. Fixed going forward, not retroactively"
+}
