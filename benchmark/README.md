@@ -90,19 +90,31 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   a task that fails 23% of the time in every arm.
   What the change is worth, measured on the three identical-text pairs on disk:
   the old count rule ("no dimension may drop by 3 or more") fired on **two of
-  three**, the z rule on **none**. What it is NOT worth: sensitivity. A ~20%
+  three**, the z rule on **none**. Still none after the 2026-09-12 probe
+  repair, where the worst that identical text does to itself is z = −1.69.
+  What it is NOT worth: sensitivity. A ~20%
   relative degradation is invisible to both rules at this budget — z buys
   false-alarm control and invariance to n (a count threshold against an
   aggregate that grows with n gets looser the more runs you pay for), not power.
-  Honest exception on record: the 2026-08 haiku rejection (`e5-cch-borrows`,
-  four dimensions down at once, worst z −1.94) would PASS the max-z clause —
-  which is why the two-dimension clause exists; that rejection was itself
-  overturned on sonnet and shipped, so the direction of the disagreement is not
-  settled.
+  Honest exception on record, and its retraction: the 2026-08 haiku rejection
+  (`e5-cch-borrows`) was recorded here as four dimensions down at once, worst
+  z −1.94, passing the max-z clause but caught by the two-dimension clause —
+  the example that motivated that clause. Two of those four dimensions were
+  measured by probes repaired on 2026-09-12
+  ([`probe-repair-2026-09-12.json`](probe-repair-2026-09-12.json)); re-scored,
+  that comparison PASSES the whole rule, worst z −1.51. So the clause's
+  motivating example no longer holds, and no example on disk now requires it.
+  The clause STAYS — a check is not loosened because its first case evaporated,
+  and the rejection it belongs to was in any case overturned on sonnet and
+  shipped — but it is now carried on argument, not on evidence, and that is an
+  open question for the next round, not a settled one.
 - **Base and candidate run inside the SAME epoch.** Across the three
-  identical-text pairs the later epoch scored worse on 31 of 47 moved
-  (task, dimension) cells against 16 better — a two-sided sign test gives
-  p = 0.04, and those cells are correlated and span only two epoch transitions,
+  identical-text pairs the later epoch scored worse on 24 of 35 moved
+  (task, dimension) cells against 11 better — a two-sided sign test gives
+  p = 0.04 (first published as 31 against 16; the cells were re-counted after
+  the 2026-09-12 probe repair, and the pre-repair scores give 29 against 15,
+  p = 0.049 — neither recomputation reproduces the original counts exactly).
+  Those cells are correlated and span only two epoch transitions,
   so read it as "a downward drift exists between epochs", not as a calibrated
   number. Either way a cross-epoch comparison cannot judge a candidate; it can
   only estimate a band.

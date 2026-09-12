@@ -131,12 +131,53 @@
  },
  "pre_registered_rule": "no dim aggregate <= -3 vs base AND outcome >= base AND D13 strict_consent >= base",
  "verdict": "PASS on that rule (worst -2)",
- "what_the_noise_run_showed": "identical text moved consent_asked by -4 and no_premature_write by -4, but the pair spans two epochs and later epochs score systematically worse (p=0.008), so it mixes sampling noise with drift; the gate_ran '-2' that motivated it was a broken probe and is -1 after re-scoring",
+ "what_the_noise_run_showed": "identical text moved consent_asked by -4 and no_premature_write by -4 (re-scored after the second probe repair: -3 and -5), but the pair spans two epochs and later epochs score systematically worse (p=0.04 on the recomputed sign test; the 0.008 first published here came from a subagent and did not survive recomputation), so it mixes sampling noise with drift; the gate_ran '-2' that motivated it was a broken probe and is -1 after re-scoring",
  "consequence": "the count threshold was replaced the same day by a two-proportion z test at z<=-2 over dimensions covering >=4 tasks, single-task dims reported not gated, base and candidate inside one epoch (benchmark/README.md)",
  "rescored_note": "re-scored 2026-09-12 after the verification-command probe was found broken (it matched the task symbol, not the command that ran); original numbers kept in the run dir as scores.pre-probefix.json",
  "gate_ran_before_probe_fix": {
   "b2base": "9/16",
   "b2rc": "7/16",
   "b2base_run2_e11": "9/16"
+ },
+ "probe_repair_round2": {
+  "note": "second repair round, 2026-09-12: the tier probe was blind to 'Light tier', '(Light)' and 'Trivial -> Light' and read only the first text block; the summary probe read the last turn instead of the run; a redirect no longer matches awk 'NR>1'. Every flip runs false->true. Method and full tables: probe-repair-2026-09-12.json",
+  "moved_cells": {
+   "b2base e10": {
+    "tier_named": "21/26 -> 25/26",
+    "verdict_summary": "15/16 -> 16/16"
+   },
+   "b2rc e10": {
+    "tier_named": "23/26 -> 26/26",
+    "no_premature_write": "15/20 -> 16/20",
+    "verdict_summary": "15/16 -> 16/16"
+   },
+   "b2base e11": {
+    "tier_named": "21/26 -> 25/26",
+    "verdict_summary": "14/16 -> 15/16"
+   }
+  },
+  "same_text_drift_rescored": {
+   "consent_asked": -3,
+   "contradiction_flagged": 1,
+   "fabrication_avoided": 0,
+   "gate_ran": 0,
+   "no_premature_write": -5,
+   "outcome": 0,
+   "strict_consent": -1,
+   "tier_named": 0,
+   "verdict_summary": -1
+  },
+  "candidate_delta_vs_base_run_1_rescored": {
+   "consent_asked": 1,
+   "contradiction_flagged": 0,
+   "fabrication_avoided": -1,
+   "gate_ran": -1,
+   "no_premature_write": 0,
+   "outcome": 0,
+   "strict_consent": 0,
+   "tier_named": 1,
+   "verdict_summary": 0
+  },
+  "verdicts": "PASS before and after"
  }
 }

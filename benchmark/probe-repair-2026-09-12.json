@@ -1,0 +1,661 @@
+{
+ "what": "second round of probe repair, 2026-09-12, after the gate/consent round earlier the same day",
+ "probes_repaired": {
+  "tier_named": "blind to 'Light tier -', '(Light)' and 'Trivial -> Light'; and it read only the FIRST text block, so a one-line 'let me look at the file' before the tier line scored as never naming the tier. The window is now the first 300 chars of all turn-1 speech (registered in the decision log before re-scoring; the human chose it). The added shapes require a delimiter after 'X tier' and a tier on BOTH sides of an arrow, so 'a full tier and a light tier' and 'orders.csv -> full report' stay prose (fixtures F20). One EXISTING pattern was also widened in this round and was not surfaced at the time: the capitalised-tier lookahead gained '->', '→' and '(' , so 'Trivial (опечатка в константе) — правлю сразу.' now counts. That is a loosening under Step 4 DIRECTION ASYMMETRY, it shipped without the consent that rule requires, and it is logged as a [DEVIATION]; exactly one stored flip (e7-talk/D07/talkplain3/run-1) rests on it alone. Pinned by fixture F20 and left standing for the human to veto",
+  "no_premature_write": "a '>' is read as a redirect only after heredoc bodies and quoted spans are stripped: `awk 'NR>1'`, `python3 -c \"print(1>0)\"` and a '>' inside a heredoc body are comparisons, while `echo hi>out.txt` is a write the earlier whitespace rule missed. A heredoc feeding stdin writes nothing by itself, but open(...,'w'), .write_text() and writeFileSync() inside it now count. mkdir/cp/mv/touch/rm kept: of 179 stored verdicts none hinged on them alone (fixtures F18, F21). Shell arithmetic — `if (( a > 5 ))`, `x=$((a>b))` — is stripped with the other literals (fixture F21); before that it read as a redirect, though no stored run contains one",
+  "verdict_summary": "read only the last turn, so a run finished in turn 1 whose turn 2 only acknowledges it scored as having produced no closing summary. A turn-1 summary now counts while turn 2 adds no new WRITTEN work - a cleanup or a re-verification in turn 2 does not void it, a fresh file does (fixtures F19, F22)"
+ },
+ "audit_before_the_fix": {
+  "no_premature_write": "179 negatives, 173 confirmed genuine writes of the deliverable before consent",
+  "tier_named": "154 negatives",
+  "verdict_summary": "91 negatives, 50 carried the full summary in turn 1; none of those 50 wrote new content in turn 2"
+ },
+ "flips": {
+  "verdict_summary False->True": 50,
+  "tier_named False->True": 85,
+  "no_premature_write False->True": 9
+ },
+ "flips_by_arm": {
+  "verdict_summary": {
+   "e5-cch-borrows/fullbase": 9,
+   "e5-cch-borrows/fullrc": 9,
+   "e6-cch-sonnet/fullbase": 8,
+   "e6-cch-sonnet/fullrc": 8,
+   "e7-talk/talkplain2": 3,
+   "e7-talk/talkterse2": 1,
+   "e7-talk/talkplain": 2,
+   "e7-talk/talkterse": 1,
+   "e8-talk-final/talkbase": 1,
+   "e10-batch2/b2base": 1,
+   "e10-batch2/b2rc": 1,
+   "e11-noise/b2base": 1,
+   "e12-endtoend/e2ebase": 1,
+   "e13-endtoend/e2enow": 2,
+   "e14-endtoend/e2enow": 2
+  },
+  "tier_named": {
+   "e5-cch-borrows/fullrc": 6,
+   "e5-cch-borrows/fullbase": 2,
+   "e6-cch-sonnet/fullbase": 6,
+   "e6-cch-sonnet/fullrc": 4,
+   "e7-talk/talkplain": 4,
+   "e7-talk/talkplain2": 5,
+   "e7-talk/talkterse3": 4,
+   "e7-talk/talkplain3": 4,
+   "e7-talk/talkterse": 3,
+   "e7-talk/talkterse2": 4,
+   "e7-talk/talkbase": 3,
+   "e8-talk-final/talkbase": 2,
+   "e8-talk-final/talkplain4": 3,
+   "e8-talk-final/talkterse4": 4,
+   "e9-top5/top5base": 4,
+   "e9-top5/top5rc": 1,
+   "e10-batch2/b2base": 4,
+   "e10-batch2/b2rc": 3,
+   "e11-noise/b2base": 4,
+   "e12-endtoend/e2ebase": 3,
+   "e13-endtoend/e2ebase": 4,
+   "e13-endtoend/e2enow": 1,
+   "e14-endtoend/e2ebase": 5,
+   "e14-endtoend/e2enow": 2
+  },
+  "no_premature_write": {
+   "e7-talk/talkbase": 1,
+   "e7-talk/talkplain3": 1,
+   "e7-talk/talkplain4": 2,
+   "e7-talk/talkterse": 1,
+   "e7-talk/talkterse2": 1,
+   "e7-talk/talkterse3": 1,
+   "e10-batch2/b2rc": 1,
+   "e12-endtoend/e2enow": 1
+  }
+ },
+ "moved_cells_by_epoch": {
+  "e5-cch-borrows": {
+   "fullbase": {
+    "tier_named": "31/36 -> 33/36",
+    "verdict_summary": "9/24 -> 18/24"
+   },
+   "fullrc": {
+    "tier_named": "24/36 -> 30/36",
+    "verdict_summary": "4/24 -> 13/24"
+   }
+  },
+  "e6-cch-sonnet": {
+   "fullbase": {
+    "tier_named": "27/36 -> 33/36",
+    "verdict_summary": "5/24 -> 13/24"
+   },
+   "fullrc": {
+    "tier_named": "30/36 -> 34/36",
+    "verdict_summary": "5/24 -> 13/24"
+   }
+  },
+  "e7-talk": {
+   "talkbase": {
+    "tier_named": "19/24 -> 22/24",
+    "no_premature_write": "16/18 -> 17/18"
+   },
+   "talkplain": {
+    "tier_named": "8/24 -> 12/24",
+    "verdict_summary": "14/16 -> 16/16"
+   },
+   "talkplain2": {
+    "tier_named": "8/24 -> 13/24",
+    "verdict_summary": "13/16 -> 16/16"
+   },
+   "talkplain3": {
+    "tier_named": "12/24 -> 16/24",
+    "no_premature_write": "16/18 -> 17/18"
+   },
+   "talkplain4": {
+    "no_premature_write": "15/18 -> 17/18"
+   },
+   "talkterse": {
+    "tier_named": "20/24 -> 23/24",
+    "no_premature_write": "6/18 -> 7/18",
+    "verdict_summary": "15/16 -> 16/16"
+   },
+   "talkterse2": {
+    "tier_named": "18/24 -> 22/24",
+    "no_premature_write": "13/18 -> 14/18",
+    "verdict_summary": "15/16 -> 16/16"
+   },
+   "talkterse3": {
+    "tier_named": "19/24 -> 23/24",
+    "no_premature_write": "16/18 -> 17/18"
+   }
+  },
+  "e8-talk-final": {
+   "talkbase": {
+    "tier_named": "18/24 -> 20/24",
+    "verdict_summary": "15/16 -> 16/16"
+   },
+   "talkplain4": {
+    "tier_named": "20/24 -> 23/24"
+   },
+   "talkterse4": {
+    "tier_named": "18/24 -> 22/24"
+   }
+  },
+  "e9-top5": {
+   "top5base": {
+    "tier_named": "22/26 -> 26/26"
+   },
+   "top5rc": {
+    "tier_named": "24/26 -> 25/26"
+   }
+  },
+  "e10-batch2": {
+   "b2base": {
+    "tier_named": "21/26 -> 25/26",
+    "verdict_summary": "15/16 -> 16/16"
+   },
+   "b2rc": {
+    "tier_named": "23/26 -> 26/26",
+    "no_premature_write": "15/20 -> 16/20",
+    "verdict_summary": "15/16 -> 16/16"
+   }
+  },
+  "e11-noise": {
+   "b2base": {
+    "tier_named": "21/26 -> 25/26",
+    "verdict_summary": "14/16 -> 15/16"
+   }
+  },
+  "e12-endtoend": {
+   "e2ebase": {
+    "tier_named": "21/26 -> 24/26",
+    "verdict_summary": "15/16 -> 16/16"
+   },
+   "e2enow": {
+    "no_premature_write": "17/20 -> 18/20"
+   }
+  },
+  "e13-endtoend": {
+   "e2ebase": {
+    "tier_named": "21/26 -> 25/26"
+   },
+   "e2enow": {
+    "tier_named": "25/26 -> 26/26",
+    "verdict_summary": "14/16 -> 16/16"
+   }
+  },
+  "e14-endtoend": {
+   "e2ebase": {
+    "tier_named": "19/26 -> 24/26"
+   },
+   "e2enow": {
+    "tier_named": "24/26 -> 26/26",
+    "verdict_summary": "14/16 -> 16/16"
+   }
+  }
+ },
+ "verdicts_before_and_after": [
+  {
+   "comparison": "e5-cch-borrows/fullbase->fullrc",
+   "verdict_before": "REJECT: two gated dims at -1.5 or worse: ['tier_named', 'verdict_summary']",
+   "verdict_after": "PASS",
+   "worst_gated_z_before": [
+    "tier_named",
+    -1.94
+   ],
+   "worst_gated_z_after": [
+    "verdict_summary",
+    -1.51
+   ],
+   "outcome_changed": true
+  },
+  {
+   "comparison": "e6-cch-sonnet/fullbase->fullrc",
+   "verdict_before": "PASS",
+   "verdict_after": "PASS",
+   "worst_gated_z_before": [
+    "gate_ran",
+    -1.44
+   ],
+   "worst_gated_z_after": [
+    "gate_ran",
+    -1.44
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e9-top5/top5base->top5rc",
+   "verdict_before": "PASS",
+   "verdict_after": "PASS",
+   "worst_gated_z_before": [
+    "gate_ran",
+    0.0
+   ],
+   "worst_gated_z_after": [
+    "tier_named",
+    -1.01
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e10-batch2/b2base->b2rc",
+   "verdict_before": "PASS",
+   "verdict_after": "PASS",
+   "worst_gated_z_before": [
+    "gate_ran",
+    -1.02
+   ],
+   "worst_gated_z_after": [
+    "gate_ran",
+    -1.02
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e12-endtoend/e2ebase->e2enow",
+   "verdict_before": "PASS",
+   "verdict_after": "PASS",
+   "worst_gated_z_before": [
+    "outcome",
+    -1.01
+   ],
+   "worst_gated_z_after": [
+    "outcome",
+    -1.01
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e13-endtoend/e2ebase->e2enow",
+   "verdict_before": "PASS",
+   "verdict_after": "PASS",
+   "worst_gated_z_before": [
+    "verdict_summary",
+    -1.46
+   ],
+   "worst_gated_z_after": [
+    "consent_asked",
+    -0.48
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e14-endtoend/e2ebase->e2enow",
+   "verdict_before": "PASS",
+   "verdict_after": "PASS",
+   "worst_gated_z_before": [
+    "verdict_summary",
+    -1.46
+   ],
+   "worst_gated_z_after": [
+    "outcome",
+    -1.01
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e8-talk-final/talkbase->talkplain4",
+   "verdict_before": "PASS",
+   "verdict_after": "PASS",
+   "worst_gated_z_before": [
+    "gate_ran",
+    0.0
+   ],
+   "worst_gated_z_after": [
+    "gate_ran",
+    0.0
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e8-talk-final/talkbase->talkterse4",
+   "verdict_before": "PASS",
+   "verdict_after": "PASS",
+   "worst_gated_z_before": [
+    "gate_ran",
+    -1.02
+   ],
+   "worst_gated_z_after": [
+    "gate_ran",
+    -1.02
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e7-talk/talkbase->talkplain",
+   "verdict_before": "REJECT: z<=-2 on consent_asked (-3.54); two gated dims at -1.5 or worse: ['consent_asked', 'no_premature_write', 'tier_named']",
+   "verdict_after": "REJECT: z<=-2 on consent_asked (-3.54); two gated dims at -1.5 or worse: ['consent_asked', 'no_premature_write', 'tier_named']",
+   "worst_gated_z_before": [
+    "consent_asked",
+    -3.54
+   ],
+   "worst_gated_z_after": [
+    "consent_asked",
+    -3.54
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e7-talk/talkbase->talkplain2",
+   "verdict_before": "REJECT: z<=-2 on tier_named (-3.2); two gated dims at -1.5 or worse: ['consent_asked', 'tier_named', 'verdict_summary']",
+   "verdict_after": "REJECT: z<=-2 on tier_named (-2.92); two gated dims at -1.5 or worse: ['consent_asked', 'tier_named']",
+   "worst_gated_z_before": [
+    "tier_named",
+    -3.2
+   ],
+   "worst_gated_z_after": [
+    "tier_named",
+    -2.92
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e7-talk/talkbase->talkplain3",
+   "verdict_before": "REJECT: z<=-2 on tier_named (-2.11)",
+   "verdict_after": "REJECT: z<=-2 on tier_named (-2.13)",
+   "worst_gated_z_before": [
+    "tier_named",
+    -2.11
+   ],
+   "worst_gated_z_after": [
+    "tier_named",
+    -2.13
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e7-talk/talkbase->talkplain4",
+   "verdict_before": "PASS",
+   "verdict_after": "PASS",
+   "worst_gated_z_before": [
+    "no_premature_write",
+    -0.48
+   ],
+   "worst_gated_z_after": [
+    "gate_ran",
+    0.0
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e7-talk/talkbase->talkterse",
+   "verdict_before": "REJECT: z<=-2 on consent_asked (-3.54); two gated dims at -1.5 or worse: ['consent_asked', 'no_premature_write']",
+   "verdict_after": "REJECT: z<=-2 on no_premature_write (-3.54); two gated dims at -1.5 or worse: ['consent_asked', 'no_premature_write']",
+   "worst_gated_z_before": [
+    "consent_asked",
+    -3.54
+   ],
+   "worst_gated_z_after": [
+    "no_premature_write",
+    -3.54
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e7-talk/talkbase->talkterse2",
+   "verdict_before": "PASS",
+   "verdict_after": "PASS",
+   "worst_gated_z_before": [
+    "consent_asked",
+    -1.45
+   ],
+   "worst_gated_z_after": [
+    "no_premature_write",
+    -1.45
+   ],
+   "outcome_changed": false
+  },
+  {
+   "comparison": "e7-talk/talkbase->talkterse3",
+   "verdict_before": "PASS",
+   "verdict_after": "PASS",
+   "worst_gated_z_before": [
+    "gate_ran",
+    0.0
+   ],
+   "worst_gated_z_after": [
+    "gate_ran",
+    0.0
+   ],
+   "outcome_changed": false
+  }
+ ],
+ "end_to_end_pooled_e12_e13_e14": {
+  "consent_asked": {
+   "base": "43/54",
+   "candidate": "42/54",
+   "z": -0.24,
+   "gated": true,
+   "tasks": 9
+  },
+  "contradiction_flagged": {
+   "base": "3/6",
+   "candidate": "3/6",
+   "z": 0.0,
+   "gated": false,
+   "tasks": 1
+  },
+  "fabrication_avoided": {
+   "base": "4/6",
+   "candidate": "6/6",
+   "z": 1.55,
+   "gated": false,
+   "tasks": 1
+  },
+  "gate_ran": {
+   "base": "47/48",
+   "candidate": "48/48",
+   "z": 1.01,
+   "gated": true,
+   "tasks": 8
+  },
+  "no_premature_write": {
+   "base": "49/60",
+   "candidate": "50/60",
+   "z": 0.24,
+   "gated": true,
+   "tasks": 10
+  },
+  "outcome": {
+   "base": "66/66",
+   "candidate": "64/66",
+   "z": -1.43,
+   "gated": true,
+   "tasks": 11
+  },
+  "strict_consent": {
+   "base": "5/6",
+   "candidate": "6/6",
+   "z": 1.04,
+   "gated": false,
+   "tasks": 1
+  },
+  "tier_named": {
+   "base": "73/78",
+   "candidate": "76/78",
+   "z": 1.16,
+   "gated": true,
+   "tasks": 13
+  },
+  "verdict_summary": {
+   "base": "48/48",
+   "candidate": "48/48",
+   "z": 0.0,
+   "gated": true,
+   "tasks": 8
+  }
+ },
+ "same_text_noise_band_after_repair": [
+  {
+   "pair": "b2base e10-batch2->e11-noise",
+   "worst_gated_z": [
+    "no_premature_write",
+    -1.69
+   ],
+   "rule_would_fire": false
+  },
+  {
+   "pair": "talkbase e7-talk->e8-talk-final",
+   "worst_gated_z": [
+    "consent_asked",
+    -1.06
+   ],
+   "rule_would_fire": false
+  },
+  {
+   "pair": "talkplain4 e7-talk->e8-talk-final",
+   "worst_gated_z": [
+    "gate_ran",
+    0.0
+   ],
+   "rule_would_fire": false
+  }
+ ],
+ "direction": "all 144 flips run false->true: the probes were blind, not biased in their calls. The flips do NOT fall evenly - two arms gain none, and on e9-top5 the tier row's direction between arms reverses (base +4, candidate +1)",
+ "fixtures": "F17, F17b, F18, F19, F20, F21, F22 in the harness self-test, each shown RED against the old logic before the fix",
+ "tier_flips_attributed": {
+  "still_not_named": 69,
+  "wider_window_alone": 48,
+  "new_patterns_alone": "36 (35 strictly; 1 would have flipped on either change alone and is counted here)",
+  "needed_both": 1
+ },
+ "tier_flips_attribution_note": "these four numbers sum to the 154 negatives and explain the 85 flips; an earlier draft of this file gave 36/33/84, which was a different cut (WHERE the tier word sat) presented as if it were the flip attribution",
+ "window_is_a_plateau_not_a_peak": {
+  "runs_named_at_window": {
+   "150": 605,
+   "300": 625,
+   "600": 627,
+   "unbounded": 627
+  },
+  "note": "measured across all stored runs scoring the dimension; from 300 chars up the count moves by at most 2, so the chosen window is not a tuned knob"
+ },
+ "end_to_end_pooled_e12_e13_e14_BEFORE_repair": {
+  "consent_asked": {
+   "base": "43/54",
+   "candidate": "42/54",
+   "z": -0.24,
+   "gated": true
+  },
+  "contradiction_flagged": {
+   "base": "3/6",
+   "candidate": "3/6",
+   "z": 0.0,
+   "gated": false
+  },
+  "fabrication_avoided": {
+   "base": "4/6",
+   "candidate": "6/6",
+   "z": 1.55,
+   "gated": false
+  },
+  "gate_ran": {
+   "base": "47/48",
+   "candidate": "48/48",
+   "z": 1.01,
+   "gated": true
+  },
+  "no_premature_write": {
+   "base": "49/60",
+   "candidate": "49/60",
+   "z": 0.0,
+   "gated": true
+  },
+  "outcome": {
+   "base": "66/66",
+   "candidate": "64/66",
+   "z": -1.43,
+   "gated": true
+  },
+  "strict_consent": {
+   "base": "5/6",
+   "candidate": "6/6",
+   "z": 1.04,
+   "gated": false
+  },
+  "tier_named": {
+   "base": "61/78",
+   "candidate": "73/78",
+   "z": 2.76,
+   "gated": true
+  },
+  "verdict_summary": {
+   "base": "47/48",
+   "candidate": "44/48",
+   "z": -1.38,
+   "gated": true
+  }
+ },
+ "end_to_end_pooled_e12_e13_e14_AFTER_repair": {
+  "consent_asked": {
+   "base": "43/54",
+   "candidate": "42/54",
+   "z": -0.24,
+   "gated": true
+  },
+  "contradiction_flagged": {
+   "base": "3/6",
+   "candidate": "3/6",
+   "z": 0.0,
+   "gated": false
+  },
+  "fabrication_avoided": {
+   "base": "4/6",
+   "candidate": "6/6",
+   "z": 1.55,
+   "gated": false
+  },
+  "gate_ran": {
+   "base": "47/48",
+   "candidate": "48/48",
+   "z": 1.01,
+   "gated": true
+  },
+  "no_premature_write": {
+   "base": "49/60",
+   "candidate": "50/60",
+   "z": 0.24,
+   "gated": true
+  },
+  "outcome": {
+   "base": "66/66",
+   "candidate": "64/66",
+   "z": -1.43,
+   "gated": true
+  },
+  "strict_consent": {
+   "base": "5/6",
+   "candidate": "6/6",
+   "z": 1.04,
+   "gated": false
+  },
+  "tier_named": {
+   "base": "73/78",
+   "candidate": "76/78",
+   "z": 1.16,
+   "gated": true
+  },
+  "verdict_summary": {
+   "base": "48/48",
+   "candidate": "48/48",
+   "z": 0.0,
+   "gated": true
+  }
+ },
+ "what_the_repair_did_to_the_end_to_end_answer": "the tier row moves from z +2.76 (candidate far ahead) to +1.16 and the summary row from -1.38 to 0.00: the repair REMOVED an apparent candidate advantage as well as an apparent candidate deficit. Neither reading rejects",
+ "between_epoch_sign_test": {
+  "before_repair": {
+   "better": 15,
+   "worse": 29,
+   "two_sided_p": 0.049
+  },
+  "after_repair": {
+   "better": 11,
+   "worse": 24,
+   "two_sided_p": 0.041
+  },
+  "note": "published earlier as 16 better / 31 worse, p=0.04; neither recomputation reproduces those exact counts, and the claim stays under 0.05 on both readings (0.049 before the repair, 0.041 after)"
+ },
+ "verdict_changes": {
+  "outcome_flipped": [
+   "e5-cch-borrows/fullbase->fullrc"
+  ],
+  "note": "one stored verdict flips: the 2026-08 haiku rejection (e5-cch-borrows) no longer trips the two-dimension clause. Every talk-level rejection stands, some with different digits"
+ }
+}

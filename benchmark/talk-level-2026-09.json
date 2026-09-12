@@ -233,5 +233,61 @@
   "talkbase": "11/16",
   "talkplain4": "10/16",
   "talkterse4": "10/16"
+ },
+ "probe_repair_round2": {
+  "note": "second repair round, 2026-09-12: the tier probe was blind to 'Light tier', '(Light)' and 'Trivial -> Light' and read only the first text block; the summary probe read the last turn instead of the run; a redirect no longer matches awk 'NR>1'. Every flip runs false->true. Method and full tables: probe-repair-2026-09-12.json",
+  "moved_cells": {
+   "talkbase": {
+    "tier_named": "19/24 -> 22/24",
+    "no_premature_write": "16/18 -> 17/18"
+   },
+   "talkplain": {
+    "tier_named": "8/24 -> 12/24",
+    "verdict_summary": "14/16 -> 16/16"
+   },
+   "talkplain2": {
+    "tier_named": "8/24 -> 13/24",
+    "verdict_summary": "13/16 -> 16/16"
+   },
+   "talkplain3": {
+    "tier_named": "12/24 -> 16/24",
+    "no_premature_write": "16/18 -> 17/18"
+   },
+   "talkplain4": {
+    "no_premature_write": "15/18 -> 17/18"
+   },
+   "talkterse": {
+    "tier_named": "20/24 -> 23/24",
+    "no_premature_write": "6/18 -> 7/18",
+    "verdict_summary": "15/16 -> 16/16"
+   },
+   "talkterse2": {
+    "tier_named": "18/24 -> 22/24",
+    "no_premature_write": "13/18 -> 14/18",
+    "verdict_summary": "15/16 -> 16/16"
+   },
+   "talkterse3": {
+    "tier_named": "19/24 -> 23/24",
+    "no_premature_write": "16/18 -> 17/18"
+   },
+   "e8/talkbase": {
+    "tier_named": "18/24 -> 20/24",
+    "verdict_summary": "15/16 -> 16/16"
+   },
+   "e8/talkplain4": {
+    "tier_named": "20/24 -> 23/24"
+   },
+   "e8/talkterse4": {
+    "tier_named": "18/24 -> 22/24"
+   }
+  },
+  "cited_numbers_restated": {
+   "third cut, tier_named": "published as 12/24 (plain) vs 19/24 base; re-scored 16/24 vs 22/24, z -2.13 — still REJECTED",
+   "second cut, tier_named": "z -3.20 published; z -2.92 re-scored — still REJECTED",
+   "first cut, consent_asked": "unchanged, z -3.54 — still REJECTED",
+   "terse arm, no_premature_write": "published 13/18; re-scored 14/18",
+   "second cut, deltas vs base": "published as -4 / -3 on consent and writing; re-scored -3 / -3 (base 17/18, terse2 14/18 on both)"
+  },
+  "verdicts": "no verdict on this page changes; both shipped levels still PASS"
  }
 }

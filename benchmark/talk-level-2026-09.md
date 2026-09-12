@@ -52,7 +52,8 @@ The wording did NOT hold on the first try, and the stand is why it shipped at al
    −4 / −1) but still over the line; the terse level still wrote files early.
    Rejected.
    **Superseded 2026-09-12:** under the rule that replaced the count threshold
-   this cut PASSES (worst z −1.26) — its rejection was a false alarm.
+   this cut PASSES (worst z −1.45; −1.26 was this page's original figure, from
+   a scoring pass superseded twice since) — its rejection was a false alarm.
 3. **Third cut** — the tier word pinned to English, the consent question pinned
    to an actual question, and "a level buys no shortcut" spelled out. Terse
    passed. Plain failed on one dimension: it stopped naming the tier (12/24),
@@ -132,9 +133,9 @@ named beside it.
 ## Read these numbers with the noise band
 
 Measured after this page was written: the same payload re-run against itself
-moves `consent_asked` and `no_premature_write` by up to 4 at two runs per cell
+moves `consent_asked` by 3 and `no_premature_write` by 5 at two runs per cell
 (`batch2-2026-09-12.md`). So the rejections recorded above at −9 and −10 stand
-well outside drift, while the second cut's −4 / −3 verdict is inside it — that
+well outside drift, while the second cut's −4 / −3 verdict (−3 / −3 re-scored) is inside it — that
 cut may have been rejected for noise. The shipped level's numbers (worst −1)
 say "nothing large broke", not "nothing moved".
 
@@ -147,3 +148,35 @@ prescribes — content-equivalent, form different, so this run is not proof of t
 English wording.
 The scenarios are synthetic single-turn prompts, not real sessions. "Clearer to
 read" was not measured at all — only length, jargon share and marker survival.
+
+
+## Correction — second probe repair (2026-09-12, same day)
+
+Three more instruments on this page were found broken after it was written, and
+the numbers above are left as they were measured rather than quietly restated
+(method and full tables: [`probe-repair-2026-09-12.json`](probe-repair-2026-09-12.json)):
+
+- **"Named the tier"** was blind to `Light tier —`, `(Light)` and
+  `Trivial → Light`, and it read only the agent's first text block — so a
+  one-line "let me look at the file" before the tier line scored as never naming
+  the tier. The tier row moves on every arm but one (e7's fourth plain cut):
+  base 19/24 → 22/24, the third cut
+  12/24 → 16/24, the shipped plain level 20/24 → 23/24 in the final round.
+- **"Verdict + closing summary"** read the last turn instead of the run, so a
+  run finished inside turn 1 scored as having produced none. Five arms here move
+  to 16/16.
+- **"Did not write before consent"** could not tell a redirect from a comparison
+  inside quotes or a heredoc, and once patched by demanding whitespace it stopped
+  seeing `echo hi>out.txt`. It now strips shell literals first. Six arms move:
+  base 16/18 → 17/18, the third plain cut 16/18 → 17/18, the fourth 15/18 →
+  17/18, the first terse cut 6/18 → 7/18, the second 13/18 → 14/18, the third
+  16/18 → 17/18.
+  So the first cut's numbers in the list above read 17/18 → 9/18 (plain) and
+  7/18 (terse) after re-scoring.
+
+**No verdict on this page changes.** The three rejected cuts stay rejected — the
+first on consent at z −3.54, the second at z −2.92 (published −3.20), the third
+at z −2.13 (published −2.11) — and both shipped levels still PASS. What the
+repair does change is the honest reading of the tier numbers above: they were
+low for every arm, base included, so the gaps between arms survive but the
+digits do not.

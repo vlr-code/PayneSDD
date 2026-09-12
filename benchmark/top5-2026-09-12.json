@@ -117,5 +117,17 @@
  "gate_ran_before_probe_fix": {
   "top5base": "11/16",
   "top5rc": "10/16"
+ },
+ "probe_repair_round2": {
+  "note": "second repair round, 2026-09-12: the tier probe was blind to 'Light tier', '(Light)' and 'Trivial -> Light' and read only the first text block; the summary probe read the last turn instead of the run; a redirect no longer matches awk 'NR>1'. Every flip runs false->true. Method and full tables: probe-repair-2026-09-12.json",
+  "moved_cells": {
+   "top5base": {
+    "tier_named": "22/26 -> 26/26"
+   },
+   "top5rc": {
+    "tier_named": "24/26 -> 25/26"
+   }
+  },
+  "verdicts": "PASS before and after; worst gated z moves from gate_ran 0.00 to tier_named -1.01"
  }
 }

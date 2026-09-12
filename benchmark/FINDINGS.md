@@ -51,8 +51,9 @@ spot shared by every arm we tested — and it now has a measuring stick.
 
 ## Correction (2026-09-12)
 
-Two of this page's instruments were later found faulty, and the numbers above
-are left as they were measured rather than quietly restated:
+Five of this page's instruments were later found faulty, and the numbers above
+are left as they were measured rather than quietly restated. The full second
+round is in [`probe-repair-2026-09-12.json`](probe-repair-2026-09-12.json):
 
 - **The "ran a verification command" probe under-counted badly.** It looked for
   the task's own symbol inside the shell command, so a real `python3 -m unittest
@@ -70,6 +71,35 @@ are left as they were measured rather than quietly restated:
   it on 2026-09-12 tripped on none (`rule-change-2026-09-12.json`,
   `benchmark/README.md`). The report's per-task flip counts are descriptive, not
   a verdict.
+- **The "named the tier" probe missed half its own subject.** It was blind to
+  `Light tier —`, `(Light)` and `Trivial → Light`, and it read only the agent's
+  FIRST text block, so a one-line "let me look at the file" before the tier line
+  scored as never naming the tier. Of 154 negatives on disk, 36 flip on the new
+  shapes, 48 on the wider window, 1 on both, and 69 were genuinely never named:
+  85 verdicts flipped on re-scoring. Neither the digits NOR the arm-to-arm
+  direction of a tier number on this page can be trusted — the same standard the
+  gate bullet above sets. The flips do not fall evenly: two arms gain none, and
+  on `e9-top5` the tier row goes from candidate +2 to candidate −1, a reversal of
+  sign. §5's tier figure here is from July, whose transcripts are gone, so no
+  re-scoring evidence for it exists at all.
+- **The "verdict + closing summary" probe read the last turn, not the run.** A
+  run finished inside turn 1, whose turn 2 only says "already done", scored as
+  having produced no summary. 50 of 91 negatives were of that kind, and none of
+  those 50 wrote new CONTENT in turn 2 — five ran `rm` cleanups, which is exactly
+  the distinction the repaired probe draws. A turn-1 summary now counts while
+  turn 2 adds no new written work.
+- **The "did not write before consent" probe could not tell a redirect from a
+  comparison.** It read the `>` in `awk 'NR>1'`, in a `python3 -c "print(1>0)"`
+  string and inside a heredoc body as a file write, and — once that was patched
+  by demanding whitespace — it stopped seeing `echo hi>out.txt`. It now strips
+  heredoc bodies and quoted spans before looking, and counts a file opened for
+  writing by a script fed through a heredoc. Nine verdicts. The rest held: of
+  179 negatives, 173 were genuine writes of the deliverable before consent.
+
+All 144 flips run in ONE direction, false → true: these probes were blind, not
+biased in their calls. One stored verdict changes as a result — the 2026-08
+haiku rejection (`e5-cch-borrows`) no longer trips the two-dimension clause.
+Every talk-level rejection stands, some with different digits.
 
 ## What this changes for PayneSDD
 - Protocol wording changes ship only through the harness: pre-registered

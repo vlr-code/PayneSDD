@@ -6,6 +6,36 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## Unreleased
 
 ### Fixed
+- **Three more measurement probes were broken, and every epoch on disk is
+  re-scored again.** "Named the tier" was blind to `Light tier —`, `(Light)`
+  and `Trivial → Light`, and it read only the agent's first text block, so a
+  one-line "let me look at the file" before the tier line scored as never naming
+  the tier. Of its 154 negatives, 36 flip on the new shapes, 48 on the wider
+  window, 1 needs both, and 69 were genuinely never named. "Verdict + closing
+  summary" read the LAST TURN instead of the run, so a run finished inside turn
+  1, whose second turn only acknowledges it, scored as having produced no
+  summary — 50 of 91 negatives, none of which wrote new content in turn 2. "Did
+  not write before consent" read a `>` inside `awk 'NR>1'`, a `python3 -c` string
+  or a heredoc body as a redirect, and missed `echo hi>out.txt` entirely — it now
+  strips shell literals before looking, and counts a file opened for writing by a
+  heredoc script: 9 verdicts. All 144 flips run in one direction, false → true:
+  the probes were blind, not biased in their calls. They do NOT fall evenly —
+  two arms gain nothing, and on one epoch the tier row's direction between the
+  arms reverses — so a PRE-repair tier number carries over neither its digits
+  nor its arm-to-arm sign. Each fix is pinned by a fixture shown RED against the
+  old logic first (F17–F22), and the window
+  decision was registered in the decision log BEFORE re-scoring, with the
+  arm-level effect deliberately unseen at that point. One stored verdict
+  changes: the 2026-08 haiku rejection (`e5-cch-borrows`) no longer trips the
+  two-dimension clause, so that clause loses its only supporting example — it is
+  KEPT (loosening a check needs its own consent) and now carried on argument,
+  flagged as an open question. Every talk-level rejection stands, with different
+  digits. Full tables: `benchmark/probe-repair-2026-09-12.json`.
+- **Two published numbers are withdrawn.** `batch2-2026-09-12.md` gave the
+  between-epoch sign test as p = 0.008 (it is p = 0.04 on recomputation) and
+  quoted false-alarm/power figures of 22–29%, ~63% and ~9% with no source; the
+  simulation behind them is not on record and they are retracted in favour of
+  what was actually measured.
 - **The verification-command probe was broken, and every number it produced is
   re-scored.** It matched the task's own symbol against the shell command, so a
   real `python3 -m unittest test_x.py` counted as "no gate" — 15 of 16 such
@@ -32,8 +62,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   cells, two epoch transitions — a direction, not a calibrated number). Neither
   rule can see a ~20% degradation at this budget; z buys false-alarm control and
   invariance to n, not power. One rejection made under the old rule on
-  2026-09-12 (the terse level's second cut, worst z −1.26) is now known to have
-  been a false alarm. Numbers and method:
+  2026-09-12 (the terse level's second cut, worst z −1.26 — −1.45 after the
+  probe repair below) is now known to have been a false alarm. Numbers and method:
   [`benchmark/rule-change-2026-09-12.json`](benchmark/rule-change-2026-09-12.json);
   methodology: [`benchmark/README.md`](benchmark/README.md).
 

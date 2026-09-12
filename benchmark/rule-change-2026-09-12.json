@@ -36,12 +36,14 @@
     ],
     "z_rule_fired_on": []
    }
-  ]
+  ],
+  "z_rule_after_probe_repair": "still 0 of 3; worst identical-text z is -1.69"
  },
  "known_limits_of_the_new_rule": {
   "power": "a ~20% relative degradation is invisible to BOTH rules at this budget; z buys false-alarm control and n-invariance, not sensitivity",
   "multiplicity": "e5-cch-borrows fullrc put four dimensions down at once (worst z -1.94) and would PASS a max-z rule; that epoch's rejection was later overturned on sonnet (e6) and shipped as v0.6.2, but the hole is real — hence the secondary clause",
-  "saturation": "gate_ran now sits at 16/16 on base in e8/e9/e10: the suite can see a >=4-run collapse there, never an improvement"
+  "saturation": "gate_ran now sits at 16/16 on base in e8/e9/e10: the suite can see a >=4-run collapse there, never an improvement",
+  "multiplicity_retracted": "the e5-cch-borrows example above is withdrawn: two of those four dimensions were measured by probes repaired later the same day. Re-scored, that comparison PASSES the whole rule (worst z -1.51), so the two-dimension clause has no supporting example on disk. The clause is KEPT — loosening a check needs its own consent — but it now rests on argument alone. See probe-repair-2026-09-12.json"
  },
  "e5_case": {
   "base": {
