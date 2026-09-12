@@ -35,6 +35,32 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   back to the inbox, snapshot dropped only on an explicit yes.
 
 ### Changed
+- **Five recurring gaps closed**, collected from real sessions by the dev-mode
+  inbox, most of them reported more than once before they were taken. Measured
+  run: [`benchmark/top5-2026-09-12.md`](benchmark/top5-2026-09-12.md) — consent
+  13/18 → 16/18, outcomes 21/22 → 22/22, worst drop −1 over 52 runs, and the new
+  trap task held. The Light carve-out below never fired in that run, so only its
+  harmlessness is measured:
+  - **Step 4 — a green must be earned twice.** The AC→check map now carries, per
+    check, what shows it actually RAN and the value that would make it RED; a
+    check you wrote for this task is shown red once (break, watch, revert — a
+    reverted proof, not a weakening). The "never FIRED" species moves here from
+    Step 5, whose audit item is now a pointer, not a second copy.
+  - **Step 4 — a blind check is a broken check**, fixed BEFORE the run and
+    symmetrically for everything compared; repairing a measurer after its
+    numbers arrive is tuning the result.
+  - **Step 5 — a check born of a finding is ratcheted like any other**: seen red
+    against the state the finding described, then green.
+  - **Step 1.6 — the directive that is already the plan (Light only).** When the
+    human's own message IS the whole plan and the block you would show would be
+    a verbatim echo of it, echo it in one line and go. Never consent for an
+    irreversible act their words did not name; an answer to a question YOU asked
+    is never such a directive; anything you had to interpret re-enters the gate.
+  - **Step 1.6 — the ground moves**: re-read the destination's current state
+    immediately before an irreversible step when anything else can write there.
+  - **Step 1.5b — a bare "go" at the depth menu answers the DEPTH question**:
+    fast mode, its defaults listed for veto, the plan gate still happens, and
+    fast is not silent.
 - **Questions are phrased by consequence** — every option says what it changes
   for the human in practice; "I don't understand the question" is not an answer:
   re-ask it plainer, never take your own default silently on the back of it

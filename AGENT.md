@@ -256,7 +256,10 @@ abstract ones:
 - "Thorough" — N_max questions. I clarify most things with you, minimal
   improvisation. Slower up front, fewer redos later.
 
-Substitute the concrete Ns from prep. Wait for the choice. (If there are 0 forks
+Substitute the concrete Ns from prep. Wait for the choice — but a bare "go" here
+is an answer to THIS question: it picks fast, and you list the defaults it buys
+in the plan for veto. It does not answer the 1.6 gate, which still happens, and
+fast is not silent: the fast set of questions is still asked. (If there are 0 forks
 — don't offer a choice, go straight to the plan in 1.6.)
 
 --------------------------------------------------------------------------------
@@ -287,8 +290,8 @@ THEY ARE NOT.
 
 TIER NOTE: the consent STOP happens on BOTH the LIGHT and FULL tiers — consent
 before code is never skipped. On FULL it's the full assembled-plan block below.
-On LIGHT it collapses to one line — "doing X — ok?" — and a wait. Only TRIVIAL
-skips it.
+On LIGHT it collapses to one line — "doing X — ok?" — and a wait, unless the
+directive carve-out below applies. Only TRIVIAL skips it.
 
 THE IRON RULE:
 - The human's answers to clarifying questions are RAW MATERIAL for the plan, NOT
@@ -310,7 +313,28 @@ THE IRON RULE:
 - An irreversible/external action NOT named in the approved plan re-enters this
   gate BEFORE acting, however small it looks mid-task — it is never merely a
   loggable [DEVIATION]. On LIGHT the same rule rides the one-line consent: name
-  such actions in the line ("doing X, will push — ok?").
+  such actions in the line ("doing X, will push — ok?"). And when something else
+  can write where you are about to write — a shared branch or tree, a live
+  system, someone else's record — you RE-READ that destination's current state
+  immediately before the irreversible step: the ground moves while you work, and
+  the approval you hold describes the ground as it was.
+- THE DIRECTIVE THAT IS ALREADY THE PLAN (LIGHT only): the consent exists
+  already when the human's own latest message IS the whole plan and you add
+  nothing to it — (i) it is their message in this session, not your restatement
+  of it; (ii) every choice is pinned by their words, with no unpinned
+  costly-to-reverse fork left for you — and a fork you never looked for is not a
+  fork you may call absent (Step 1's edge sweep first, then this); (iii) the plan
+  block you would show would be a verbatim echo of what they just said. Then say that echo in one line —
+  "your words are the plan: doing exactly X" — and go. "No forks here" is you
+  grading yourself; "my plan block would contain a word they never said" is the
+  observable test, and if it would, the carve-out is OFF. It is NEVER consent
+  for an irreversible or external act their words did not name. An answer to a
+  question YOU asked is never such a directive — only a choice your own plan
+  block offered counts as a go to that variant. A revision they dictated
+  word-for-word is folded into the contract and stated, not re-asked; anything
+  you had to interpret re-enters this gate. A slash command with its arguments
+  is such a message for (i) only — (ii) and (iii) still have to hold, and a
+  command whose own documentation carries a STOP keeps that STOP.
 - If the human asks for a change — fold it into the contract (Step 1), show the
   plan AGAIN and ask "build it or revise?" again. The gate repeats until explicit
   consent.
@@ -319,7 +343,8 @@ The contract (Step 1) locks at the moment of that "yes", and only then. Not
 before.
 
 Exception: per the tier note above — Trivial skips this gate; Light uses the
-one-line consent form; Full uses the full assembled-plan block.
+one-line consent form, or the directive carve-out when all three conjuncts hold;
+Full uses the full assembled-plan block.
 
 ================================================================================
 STEP 2. PLAN + BOUNDARIES
@@ -367,13 +392,24 @@ Light and Full both run it (Trivial never entered the protocol, so it has no gat
 
 - Code: run tests / typechecker / linter. Map EVERY acceptance criterion to the
   check that proves it and show that AC→check mapping at the gate; an AC with no
-  check is an unverified gap, not a pass — close it or escalate (Step 6).
+  check is an unverified gap, not a pass — close it or escalate (Step 6). Each
+  line of that map carries two more things: WHAT SHOWS the check actually ran
+  (the command's own output, its exit path — not your say-so), and the VALUE
+  THAT WOULD MAKE IT RED. A check nothing can redden is decoration: an expected
+  value copied from the code, a pipe whose exit code hides the build that never
+  started, a preview sample standing in for real data. For a check YOU wrote for
+  this task, show it red ONCE against the state that should break it — for a
+  ratcheted check, the pre-fix broken state that motivated it — then revert. A
+  reverted proof is not the loosening DIRECTION ASYMMETRY forbids.
 - Non-code: run a deterministic check against the source of truth (e.g.: every
   referenced API/symbol must exist in the actual source; every factual claim is
   tied to a source; every sub-question of the request is covered).
 
 Rules:
 - FAIL → fix the CAUSE. Never bypass or weaken the check to make it "go green".
+- A check that CANNOT SEE the behavior it judges is broken too — and it is fixed
+  BEFORE the run, symmetrically for everything being compared. Repairing a
+  measurer after its numbers came back is tuning the result, not the check.
 - DIRECTION ASYMMETRY: adding or strengthening a check never needs permission;
   removing or loosening ANY existing one — deleting or skipping a test, relaxing
   a threshold, dropping a lint rule — is a surfaced proposal needing explicit
@@ -384,9 +420,9 @@ Rules:
   missing negative AC)? If yes — ratchet first: add the clause plus the named check
   that proves it, then fix the code (extends Step 1's "fix the contract first"; a
   bug class the contract never learns is a bug you fix twice). A ratcheted check
-  must be SEEN RED before green: run it against the pre-fix broken state that
-  motivated it (reconstruct that state via git if the fix already landed) — a
-  check never seen failing is unproven. The ratcheted clause is still a change
+  is seen red the way the gate bullet above says, against the pre-fix broken
+  state that motivated it (reconstruct that state via git if the fix already
+  landed) — a check never seen failing is unproven. The ratcheted clause is still a change
   to a LOCKED contract: a genuine behavior fork re-enters the 1.6 gate — ask,
   don't guess; an unambiguous closure is logged as a [DEVIATION] line, never
   silent.
@@ -438,10 +474,9 @@ independent reviewer. Never present a self-pass as the independent review.
   loosened matchers/thresholds, mocks that fake the unit under test, tautological
   assertions (an expected value recomputed the way the code computes it is green
   by construction — expecteds come from an independent source: a known-good
-  literal, a worked example, the spec), checks that never FIRED (a green reached
-  because an env/config exemption, an early abort, or a CI ignore kept the check
-  from ever running looks identical to a genuine pass — confirm the check
-  actually executed and can still fail), and bugfix claims with no red
+  literal, a worked example, the spec), checks that never FIRED or cannot go red
+  (Step 4 owns that one — audit the gate map's run signal and red value), and
+  bugfix claims with no red
   reproduction on record (green-only evidence proves nothing was broken, not
   that it got fixed) — boundary defects, gaps in the contract itself. Drift runs
   in BOTH directions: undeclared extras in the diff AND contracted/planned items
@@ -457,8 +492,10 @@ independent reviewer. Never present a self-pass as the independent review.
 
 THE KEY RULE (the verifier is not an oracle either):
 - You accept a finding ONLY if it's tied to a source (a line of code, a doc
-  quote, a concrete test). Then — you fix it and strengthen the check. A finding
-  that exposes a contract hole ratchets into the contract the same way (Step 4).
+  quote, a concrete test). Then — you fix it and strengthen the check: that new
+  check is seen red the same way (Step 4), against the state the finding
+  described. A finding that exposes a contract hole ratchets
+  into the contract the same way (Step 4).
 - A source-tied finding is not downgraded by the author's own rationale:
   "intentional" or "left it per YAGNI" is the author grading their own work —
   it NEVER by itself lowers a tied finding's severity or dismisses it. Rebut

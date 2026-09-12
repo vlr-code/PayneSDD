@@ -99,7 +99,7 @@ That's it. The agent follows the cycle automatically.
 | **0 — Classify** | **Trivial / Light / Full** per task. Risky work — auth, billing, migrations, public output — is *forced* to Full. A typo never pays full ceremony. |
 | **1 — Contract** | Goal, non-goals, decided edge cases, testable criteria (`WHEN … the system SHALL …`) tied to a named source of truth. "Works correctly" is banned. |
 | **1.5 — Interrogate** | An analyst maps the real decision forks; **you** pick how much to be asked. Costly-to-reverse choices are never guessed silently. |
-| **1.6 — Approve** | A hard **STOP**. One plan block, an explicit "go" — before that, zero code. |
+| **1.6 — Approve** | A hard **STOP**. One plan block, an explicit "go" — before that, zero code. (On a small task, when your own message already IS the whole plan, the agent echoes it back in one line and proceeds.) |
 | **2 — Plan** | Sub-tasks, an iteration budget, escalation rules. Stuck ≠ loop forever. |
 | **3 — Execute** | Exactly the contract — no gold-plating, no silent refactors, no second copy of anything. |
 | **4 — Machine gate** | Every criterion mapped to the check that proves it. Red blocks "done". The check is never weakened to go green. |

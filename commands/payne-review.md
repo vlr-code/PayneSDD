@@ -17,8 +17,10 @@ Do this:
    the code computes it is green by construction — expecteds come from an
    independent source), checks that never FIRED (an env/config exemption, an
    early abort, or a CI ignore kept the check from ever running — confirm it
-   executed and can still fail), and bugfix claims with no red reproduction on
-   record — boundary defects, and gaps in the contract itself. Drift runs in
+   executed and can still fail; the gate map itself must name the run signal and
+   the value that would redden each check), checks the author wrote for this
+   task and never showed red, checks born from an earlier finding that were
+   never seen red, and bugfix claims with no red reproduction on record — boundary defects, and gaps in the contract itself. Drift runs in
    BOTH directions: hunt undeclared extras in the diff AND contracted/planned
    items the diff never touched — silently dropped work is a finding (cite the
    plan/contract line it dropped), never something left to the author's own
