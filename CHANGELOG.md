@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.8.0 — 2026-09-12
 
 ### Added
 - **Talk level — an optional setting** (`standard` / `plain`): how much the
