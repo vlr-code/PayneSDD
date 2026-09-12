@@ -6,6 +6,19 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## Unreleased
 
 ### Added
+- **The task suite goes from 15 to 27, and the stand can finally see.** EIGHT of
+  ten gated dimensions now vary WITHIN a task, against four before; "task
+  outcome" and "verdict + summary", which had never once differed between
+  identical runs, now vary on 5 and 7 tasks. Twelve tasks authored from
+  failure-mode briefs, each accepted only after its own check was shown passing
+  on a reference solution and FAILING on a broken one and on the untouched seed.
+  The old suite is frozen and still re-scorable. Three dimensions are dead or
+  near-dead and every one is reported as such: "did not fabricate" and "found the
+  contradiction" both sit at 16/16 with ZERO within-task variance — the agent
+  never fabricated and always flagged, good results about the protocol and
+  useless ones for a measure — and "ran a verification command" is alive only by
+  the letter, 82/84 with one varying task out of twenty-one.
+  [`benchmark/base5-2026-09-13.json`](benchmark/base5-2026-09-13.json).
 - **Widening what a check LETS THROUGH is named as a loosening (Step 4,
   DIRECTION ASYMMETRY).** The rule's three examples were all subtractive —
   deleting a test, relaxing a threshold, dropping a lint rule — so an author who
@@ -63,7 +76,50 @@ its trap shows the candidate passing where the base fails in at least one run.
   the run, not after. A two-turn coding task cannot honestly stage a temptation
   to widen a matcher's acceptance.
 
+### Changed
+- **The acceptance threshold is stated by MEANING, not by a number.** The rule
+  takes the WORST of the gated dimensions, so a fixed cut silently changes what
+  it means as the suite changes: the same "z ≤ −2" is a **3.7%** false-alarm rule
+  on the 15-task suite and **10.7%** on the 27-task one. It now reads "the
+  softest value whose false-alarm rate on this suite's own measured null is still
+  at most 5%", recomputed per suite — and per SCORING, since repairing two probes
+  moved the new suite's cut on its own. On the old suite the new wording selects
+  exactly the comparisons the old number did — **−2.13**, 3.71% either way; on
+  the new one it is **−2.32** at 4.48%. The cut belongs to the COMPARISON
+  EPOCH'S own null, not to a stored per-suite number: a two-arm run at two per
+  cell already gives the four runs per task the permutation needs, and reading a
+  margin against the wrong epoch's null flips verdicts. Dropped in the same
+  change, with explicit consent because a removal is a loosening: the "two gated
+  dimensions at −1.5" clause — it never fired alone in 60,000 splits, its only
+  real example evaporated when the probes were repaired, and on the new suite it
+  fires on **10.3%** of identical-text splits by itself (two or more gated
+  dimensions at −1.5 or worse). All three are false-alarm findings; whether the
+  clause adds POWER was never measured, so the removal is a judgement call paid
+  for in an unknown. Measured first, before spending anything: **more runs do NOT
+  buy this.** Under the null a two-proportion z is about N(0,1) at any n —
+  doubling runs per arm moved the rate from 11.3% to 10.9% on the new suite and
+  2.1% to 3.7% on the old. Runs buy power, never false-alarm control.
+
 ### Fixed
+- **Two more probes were blind, and the real transcripts are what found them.**
+  The contradiction probe's fallback held the LATIN "conflict" and not the
+  Cyrillic «конфликт», so the one task that dimension had ever measured was wrong
+  for its whole life; reading the same 16 real runs then turned up «правила
+  СПОРЯТ друг с другом» — an ordinary word in no list — and a run spelling C‑103
+  with a non-breaking hyphen, one invisible codepoint. The consent probe required
+  a QUESTION MARK in the last line, so «Жду подтверждения плана — сборка функции
+  ещё не начата» scored as never having asked: 18 of 218 negatives across every
+  stored epoch. Both now read the act rather than the punctuation, fixtures shown
+  red first. The contradiction repair flipped 20 verdicts forward and exactly
+  ONE backward — a run that merely restated the spec and was being credited for
+  the word «уточн»; the consent repair flipped 18, all forward. That single
+  backward flip is the only one of the whole repair effort, and it removes a
+  false credit. The lesson is cheaper
+  than the bugs: 4 of 16 real transcripts broke the measure on first contact,
+  25%, while the invented battery stood at ~47 cases per task and was entirely
+  green. Invented cases measure the author's imagination; real ones measure the
+  measure. Standing practice now: after every epoch, hand-read turn 1 against the
+  dimensions. It costs no runs and it produced both repairs.
 - **The whole day, checked end to end against the protocol it started from.**
   Everything released on 2026-09-12 had been judged in two separate legs
   (v0.7.0 → 0.8.0 + the plain talk level, then 0.8.0 → 0.8.0 + two clauses), and

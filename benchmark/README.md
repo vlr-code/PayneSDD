@@ -76,14 +76,62 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   history rule.)
 - **The acceptance rule is a test, not a count** (changed 2026-09-12 after the
   old rule was measured against identical text; numbers and method:
-  [`rule-change-2026-09-12.json`](rule-change-2026-09-12.json)). A candidate is
-  REJECTED when ANY of these holds: a gated dimension shows a two-proportion z
-  of −2 or worse against the base; two or more gated dimensions sit at −1.5 or
-  worse; the task named in the pre-registration as that candidate's trap goes
-  from passing in every base run to failing in every candidate run; or any task
-  that PASSED EVERY base run FAILS EVERY candidate run. A
-  dimension is **gated** only when at least four tasks score it — the others are
-  printed, never decisive. Task outcome is gated by the same z as anything else:
+  [`rule-change-2026-09-12.json`](rule-change-2026-09-12.json)), **and its
+  threshold is stated by MEANING, not by a number** (changed 2026-09-13). A
+  candidate is REJECTED when EITHER holds: the WORST gated two-proportion z
+  against the base falls at or below **the softest value whose false-alarm rate
+  on this suite's own measured null is still at most 5%**; or any task that
+  PASSED EVERY base run FAILS EVERY candidate run (the trap named in a
+  pre-registration is one instance of that). A dimension is **gated** only when
+  at least four tasks score it — the others are printed, never decisive.
+
+  Why meaning and not a number: the rule takes the WORST of the gated
+  dimensions, so adding dimensions that genuinely vary pushes that minimum
+  deeper and a fixed cut silently changes what it means. Measured: the same
+  "z ≤ −2" is a **3.7%** false-alarm rule on the 15-task suite and **10.7%** on
+  the 27-task suite. Stated by meaning instead, the threshold is **−2.13** on the
+  old suite — where it selects exactly the same comparisons the fixed −2 did,
+  3.71% either way — and **−2.32** on the new one, at 4.48%.
+
+  WHICH NULL. The cut is calibrated on the COMPARISON EPOCH'S OWN null, not on a
+  stored per-suite number: a two-arm run at two per cell already gives four runs
+  per task, which is exactly what the permutation needs. The per-suite figures
+  above are a reference for planning, never the gate — read against the wrong
+  epoch's null they flip verdicts, which is how a −1.55 was once called a 2%
+  event when its own epoch says 9.4%. Recompute whenever the suite OR THE
+  SCORING changes: repairing two probes on 2026-09-13 moved the new suite's cut
+  on its own, so a stored threshold is valid only for the `scores.json` it was
+  measured on.
+
+  THE RECIPE, in full, because a number ships with the rule that produced it:
+  the statistic is the MINIMUM over gated dimensions of the two-proportion z;
+  the null is built by splitting each task's four runs at random into two
+  pseudo-arms of two, 20,000 times; the cut is found by walking from the deepest
+  achievable value upward and keeping the last one whose share of draws at or
+  below it is still ≤ 5% — **the comparison must INCLUDE the value itself**, and
+  getting that wrong by one atom published a 5.67% cut under a 5% rule before
+  this sentence existed. Tool: `benchmark/local/harness/calibrate_rule.py
+  <single-arm-epoch>` (it lives in the git-ignored harness, so the recipe above
+  is the shippable form). Two cautions travel with the recipe: on a discrete null
+  you may NOT take the 5%-index as the cut — the atoms are lumpy, the index
+  lands inside one, and rejecting at "≤ that atom" takes the whole atom, which
+  measured on the old suite turns a 3.7% rule into a 13.4% one; and the achieved
+  rate lands under the target rather than on it for the same reason.
+
+  **Dropped in the same change: the "two or more gated dimensions at −1.5"
+  clause.** Three independent findings against it and none for it. It never
+  fired ALONE in 60,000 splits of the old null. Its only supporting real example,
+  the 2026-08 haiku rejection, evaporated when the probes were repaired. And on
+  the new suite it fires on **10.3%** of identical-text splits by itself (defined
+  as: two or more gated dimensions at −1.5 or worse), which no calibration of the
+  primary cut can offset. All three are statements about FALSE ALARMS. None of
+  them says anything about POWER — whether the clause catches a real
+  multi-dimension drop that the single worst-z misses has never been measured, so
+  this is a judgement call paid for in an unknown, not a measurement. Removing a
+  clause is a loosening and was done with explicit consent, not on my own
+  judgement.
+
+  Task outcome is gated by the same z as anything else:
   the "outcome may not fall" clause it replaces was a zero-tolerance count on a
   dimension whose own flip rate is about 5%, and on 2026-09-12 it rejected an
   end-to-end run where every discipline dimension had improved, over one flip of
@@ -122,11 +170,11 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   measured by probes repaired on 2026-09-12
   ([`probe-repair-2026-09-12.json`](probe-repair-2026-09-12.json)); re-scored,
   that comparison PASSES the whole rule, worst z −1.51. So the clause's
-  motivating example no longer holds, and no example on disk now requires it.
-  The clause STAYS — a check is not loosened because its first case evaporated,
-  and the rejection it belongs to was in any case overturned on sonnet and
-  shipped — but it is now carried on argument, not on evidence, and that is an
-  open question for the next round, not a settled one.
+  motivating example no longer held, and no example on disk required it. It was
+  KEPT on 2026-09-12 on the ground that a check is not loosened because its first
+  case evaporated — and REMOVED on 2026-09-13 with explicit consent, once the
+  27-task suite showed it firing on 10.3% of identical-text splits by itself.
+  This paragraph is history; the rule in force is the one at the top of the file.
 - **A release checked end to end, not only leg by leg.**
   [`daycheck-2026-09-12.json`](daycheck-2026-09-12.json) (60 runs) compares the
   protocol as it stood at the start of 2026-09-12 against where it ended, in one
@@ -149,8 +197,10 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   number. Either way a cross-epoch comparison cannot judge a candidate; it can
   only estimate a band.
 - **Single-task dimensions are reported, never gated.** With one task and two
-  runs a dimension has two cells: one flip is 50 points. Three of this suite's
-  nine dimensions are in that position.
+  runs a dimension has two cells: one flip is 50 points. On the 15-task suite
+  four of the ten dimensions were in that position; the 27-task suite gives each
+  of them four tasks, so on it all ten are gated. The rule stands for whatever
+  suite comes next.
 - **Saturation is a limit too.** After the 2026-09-12 probe fix, "ran a
   verification command" sits at ceiling on the base arm: the suite can still
   catch a collapse there, but it can never show that a change IMPROVED gate

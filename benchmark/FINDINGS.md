@@ -109,7 +109,7 @@ Every talk-level rejection stands, some with different digits.
   `benchmark/local/`; runs are work, not history. This page cites only the
   committed snapshot beside it.
 
-Honesty note: task suites are blind-generated, but the harness and probes are
+Honesty note: task suites are blind-generated only in PART — an author is briefed on a failure mode and never opens a protocol file, but this host imports DIGEST.md into every subagent's context, so the compressed protocol is loaded before its first command; the 12 tasks added on 2026-09-13 carry `blind_author: "partial"` for that reason, and real blindness needs a `claude -p` subprocess. The harness and probes are
 ours; competitor arms are prompt-payload approximations, not native installs;
 n is small. Each run report carries a mandatory "what this does NOT measure"
 section — this page inherits all of those caveats.
