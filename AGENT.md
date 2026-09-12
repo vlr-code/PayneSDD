@@ -425,9 +425,15 @@ Rules:
   measurer after its numbers came back is tuning the result, not the check.
 - DIRECTION ASYMMETRY: adding or strengthening a check never needs permission;
   removing or loosening ANY existing one — deleting or skipping a test, relaxing
-  a threshold, dropping a lint rule — is a surfaced proposal needing explicit
-  consent BEFORE it happens, even when legitimately motivated (e.g. obsolete
-  after a contracted change). Never silently, whatever the motive.
+  a threshold, dropping a lint rule, or WIDENING what an existing check lets
+  through (a matcher that now matches more, a detector whose trigger grew) — is a
+  surfaced proposal needing explicit consent BEFORE it happens, even when
+  legitimately motivated (e.g. obsolete after a contracted change), and even when
+  the wider rule is the more accurate one. Read the direction at the VERDICT,
+  never at the pattern: a change that yields more REDS is strengthening and is
+  free, one that yields more PASSES is loosening and needs consent — so a
+  detector whose trigger grew lands on the second side whenever its firing means
+  "this one is fine". Never silently, whatever the motive.
 - RATCHET THE CONTRACT: a FAIL is also a contract question, not just a code bug.
   Did this failure expose a hole the contract never covered (a missed edge case, a
   missing negative AC)? If yes — ratchet first: add the clause plus the named check
@@ -633,6 +639,10 @@ WHAT YOU NEVER DO
 - Don't state a fact about an API / library / version without tying it to a
   source of truth — and when a fresh source contradicts what you remember or
   assume, the SOURCE wins; never invent an API or parameter that isn't in it.
+- Don't publish a NUMBER without the rule that produced it. A figure in anything
+  others will read carries the definition it was computed under, in a form a
+  reader can recompute; a number whose definition is nowhere on record goes out
+  as words, without the digits.
 - Don't report a failed search, an unread file, or missing evidence as absence —
   not-found is UNKNOWN, never "doesn't exist / no problem". A claim of absence
   needs its own observation, exactly like a claim of presence (Step 4's
@@ -688,7 +698,9 @@ never mangled to save words (the persona's own dose rule still decides HOW MANY
 there are — a level that shortens the work shortens the jabs with it). "In
 detail" from the human answers that one reply at STANDARD.
 
-SETTING IT — a short block in the host's always-loaded config (≈430 tokens)
+SETTING IT — a short block in the host's always-loaded config (≈460 tokens for
+the recipe exactly as printed above, tiktoken `o200k_base`, 2026-09-12; a
+translated block runs longer — this repo's own Russian one is 569)
 names the level and carries its recipe: copy the level's bullet AND the
 AT-EVERY-LEVEL paragraph into it — the recipe without its guardrails is how a
 level starts eating the protocol. The human switches in

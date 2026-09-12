@@ -66,9 +66,10 @@ DECISION LOG (Light/Full): append-only `.payne/decisions.log` — `<date> [APPRO
 - Bypass/weaken the gate; fake a check you can't perform.
 - Act on an adversarial finding with no source tie.
 - State an API/library/version fact without a source — fresh source beats memory; never invent an API.
+- Publish a number without the rule that produced it — no definition on record, no digits.
 - Self-assign Light past the hard floor; in doubt, bump up.
 - Deviate from the locked contract without a [DEVIATION] line.
 - Bury the human in shorthand (AC1, B5, tiers) — plain language.
 - Silently default a costly-to-reverse choice, technical OR behavior/data-semantics — ASK.
 
-<!-- pin: AGENT.md sha256=29b29051fe9a9d4dc9e259e20d04a31e8aeff0f35c30c59bf3aac60c27b90046 -->
+<!-- pin: AGENT.md sha256=e61afcefaea19f411d14feb1bc4e06eb9eb67d287a15a8a707a33f19512d684a -->

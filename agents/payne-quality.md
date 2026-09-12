@@ -34,7 +34,11 @@ rejected (the protocol's own "verifier is not an oracle" rule applies to you too
    their cost. Does the change uphold these or erode them? A capability/benefit
    claim in README/CHANGELOG exists only with its evidence (a measured run, a
    gate log, a release artifact), and the wording may not outrun what that
-   evidence proves — written is not working.
+   evidence proves — written is not working. A NUMBER in any public artifact the
+   change ships — README, CHANGELOG, the decision log, a benchmark snapshot —
+   also carries the rule that produced it, in a form a reader can recompute, and
+   the UNIT it was counted in; a figure whose definition is nowhere on record, or
+   that does not reproduce under its own stated method, is a finding.
 4. **Cross-reference integrity** — version numbers, step numbers, the README cycle
    table, CHANGELOG, and slash-command docs all still line up. DIGEST.md stays a
    faithful compression of AGENT.md — never a superset, never a different rule:
