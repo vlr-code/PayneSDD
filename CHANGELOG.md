@@ -3,6 +3,61 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Changed
+- **The acceptance rule's task clause no longer rejects on its own — by itself it
+  was a 17% false alarm.** On the 27-task suite, "a task whose outcome check
+  passed every base run fails every candidate run" fired on 16.6–16.7% of
+  identical-text splits (`e19-base5`'s own null, 20,000 splits × seeds
+  11/22/33): one task passes its outcome check in exactly two runs of four, and
+  a 2+2 split puts both passes on the base side one time in six. The whole rule
+  therefore stood at 20.2–20.3%, while the 4.48% in the 0.9.0 notes below
+  belonged to its z part alone. The clause is now printed, never decisive — a
+  loosening, made with explicit consent; the price is that a collapse on one
+  single task no longer rejects by itself. It fired on none of the stored
+  comparisons, so no published verdict rested on it. Closed in the same change,
+  before any comparison was judged by them: the three seeds must agree (else
+  BORDERLINE, which is not a PASS and goes to the human), and a null with no
+  value at or under 5% yields no cut. Numbers:
+  [`benchmark/power-2026-09-13.json`](benchmark/power-2026-09-13.json).
+
+### Added
+- **The acceptance rule, run once against a knowingly broken protocol.** The
+  protocol with its plan-consent STOP cut out, against the intact text, in one
+  epoch: 27 tasks × 2 runs per arm, 33.2M input tokens (per-run input, cache
+  reads and cache writes included). Twelve blind model readers (claude-opus-5,
+  no tools) saw the broken arm write before consent in 39 of 48 runs on the 24
+  tasks that score consent (intact: 4 of 48), and the rule rejects it at
+  z −6.96 against that epoch's own cut of −2.52. What it tests is the chain from
+  transcript to verdict, not the threshold: with the break defined as writing
+  first in at least half of the runs, a pass could only have come from a blind
+  probe or a broken pipeline. How small a drop the rule can see stays
+  unmeasured.
+- **How much of the false-alarm rate belongs to the 27 tasks.** Resampling the
+  tasks with replacement (900 suites, 20,000 splits each), the −2.32 cut
+  false-alarms at 1.8–6.0% (5th–95th percentile, median 3.4%), and the cut the
+  rule would calibrate for itself has a 5th–95th percentile of −2.54 to −2.17
+  (full range −2.72 to −1.99).
+
+### Fixed
+- **"A ~20% relative degradation is invisible at this budget" carried no rule.**
+  It rested on two hand-computed cells (16/16 → 13/16 at z −1.82, 15/18 → 12/18
+  at z −1.15) and was never a measured sensitivity. `benchmark/README.md` now
+  says so; the same sentence in the 0.9.0 notes below,
+  `benchmark/rule-change-2026-09-12.json` and `benchmark/daycheck-2026-09-12.json`
+  is superseded here rather than rewritten.
+- **The consent probe does not "read the act rather than the punctuation"**, as
+  the 0.9.0 notes below say. It reads the LAST line — a question mark or a short
+  list of stop-and-wait phrases — plus, anywhere in the text, a question mark
+  together with a consent word. Against the blind read above it missed five
+  handbacks (requests with no question mark, a question one line above the last,
+  a waiting phrase not on its list) and credited two runs that had finished the
+  work; the write probe counted one scratch-directory write — 8 of 192 labels
+  (96 runs × 2 labels), each confirmed on its transcript. Recorded, not
+  repaired: the probes were fixed before the run, and a repair gets its own
+  decision.
+
 ## 0.9.0 — 2026-09-13
 
 ### Added
