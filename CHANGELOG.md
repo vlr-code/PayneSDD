@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.9.2 — 2026-09-14
 
 ### Added
 - **Release 0.7.0 against release 0.9.1, in one epoch.** 108 runs on the 27-task
