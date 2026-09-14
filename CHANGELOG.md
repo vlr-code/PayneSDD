@@ -6,6 +6,16 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## Unreleased
 
 ### Changed
+- **Step 4: a red proof runs only where a revert undoes what it writes.** The
+  show-it-red-once rule now says where that run may go: the working tree or a
+  scratch copy of the data, not real data, a live or external system, or
+  anything that spends money or model tokens, because a missing guard's red run
+  does the very damage the guard exists to stop. When only such a run can show
+  the red, it is an irreversible act named at the Step 1.6 gate; without that
+  yes the check stays unproven, and the gate map says so. Prompted by a red
+  proof that ran an unguarded copy of the benchmark detector on stored results
+  and overwrote a key that published figures depended on; those figures stand on
+  joins stored before the loss (`.payne/decisions.log`, 2026-09-14).
 - **The acceptance rule's task clause no longer rejects on its own — by itself it
   was a 17% false alarm.** On the 27-task suite, "a task whose outcome check
   passed every base run fails every candidate run" fired on 16.6–16.7% of

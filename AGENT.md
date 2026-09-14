@@ -407,8 +407,14 @@ Light and Full both run it (Trivial never entered the protocol, so it has no gat
   value copied from the code, a pipe whose exit code hides the build that never
   started, a preview sample standing in for real data. For a check YOU wrote for
   this task, show it red ONCE against the state that should break it — for a
-  ratcheted check, the pre-fix broken state that motivated it — then revert. A
-  reverted proof is not the loosening DIRECTION ASYMMETRY forbids.
+  ratcheted check, the pre-fix broken state that motivated it — then revert. Run
+  that red proof only where a revert undoes everything it writes — the working
+  tree, a scratch copy of the data — not on real data, a live or external
+  system, or anything that spends money or model tokens: a missing guard's red
+  run does the very damage the guard exists to stop. If only such a run can show
+  the red, it is an irreversible act: name it at the Step 1.6 gate and run it
+  only on that yes — without the yes the check stays unproven, and the gate map
+  says so. A reverted proof is not the loosening DIRECTION ASYMMETRY forbids.
 - A green describes the STATE IT RAN AGAINST, and that state moves: name it with
   the result (a commit, a stash, a content hash) and confirm at the verdict that
   it has not moved — a shared tree someone else writes to, a source of truth that
