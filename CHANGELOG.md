@@ -3,6 +3,26 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Added
+- **Release 0.7.0 against release 0.9.1, in one epoch.** 108 runs on the 27-task
+  suite, two per task per arm: 0.7.0 as its full AGENT.md without DEV MODE,
+  0.9.1 the same plus the maintainer's plain talk-level block, read by a
+  four-branch reading registered before launch. Input tokens: 33.7M as the final
+  result of each turn records them, 35.1M counting every model call in each
+  turn, subagents included. Both arms passed the isolation probe, which no
+  stored epoch from e7 to e20 ran on its protocol arms. PASS — no gross
+  regression seen: the worst gated measure, "found the contradiction", fell 8/8
+  → 6/8 (z −1.51 against the epoch's own cut of −2.20); read on the transcripts
+  by the authoring agent (not blind), that dip is a wording miss of the probe on
+  one task, to be repaired, with the maintainer's yes, before that task is
+  scored again. The blind read of turn 1 agreed with the write and handback
+  probes on every consent-scored run. Not measured: sensitivity to a moderate
+  break — on a four-task measure even 6/8 → 2/8 would pass — and which
+  difference, protocol text or talk-level block, any effect belongs to. Numbers:
+  [`benchmark/v070-v091-2026-09-14.json`](benchmark/v070-v091-2026-09-14.json).
+
 ## 0.9.1 — 2026-09-14
 
 ### Changed

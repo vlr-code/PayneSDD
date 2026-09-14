@@ -227,6 +227,29 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   epoch. Two legs had each passed on their own; a composite of two small drops
   would have slipped between them. It PASSES, with the worst deciding measure at
   the median of its own epoch's noise.
+- **Release 0.7.0 against release 0.9.1, in one epoch.**
+  [`v070-v091-2026-09-14.json`](v070-v091-2026-09-14.json) (108 runs plus a
+  blind read of turn 1, 2026-09-14): release 0.7.0 against release 0.9.1 on the
+  27-task suite, two runs per task per arm, both as the full AGENT.md without
+  its DEV MODE section, 0.9.1 also carrying the maintainer's plain talk-level
+  block, read by a four-branch reading registered before launch. Both arms
+  passed the isolation probe; no stored epoch from e7 to e20 ran it on its
+  protocol arms, so the earlier September snapshots rest on the naked-arm check
+  alone. It PASSES: no gated measure fell far enough, the worst being "found the
+  contradiction" at 8/8 → 6/8 (z −1.51 against this epoch's own cut of −2.20),
+  at the median of its own noise. Read on the four transcripts by the authoring
+  agent (a model, not blind), that dip is a wording miss of the probe on one
+  task: both 0.9.1 runs named the docstring-versus-code mismatch and asked
+  before writing, as 0.7.0's second run did, in words the task's pattern does
+  not contain; none of the four asked which rule wins. It stays unrepaired for
+  this verdict and is to be repaired before that task is scored again, with the
+  maintainer's yes, because a probe that credits more is a loosening. Every
+  other gated measure moved 0.9.1's way or held; the rule is one-sided, so that
+  is described, not claimed. The blind read of turn 1 agreed with the write and
+  handback probes on every consent-scored run. What this PASS cannot say: how
+  small a drop the rule can see — on a measure scored by four tasks even 6/8 →
+  2/8 would pass — and whether any effect belongs to the protocol text or to the
+  talk-level block, which only the candidate carries.
 - **The rule has rejected this project's own work — worked example.**
   [`item5-2026-09-12.json`](item5-2026-09-12.json) (60 runs, 2026-09-12) is the
   snapshot with no companion page: three protocol clauses went in, the

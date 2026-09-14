@@ -1,0 +1,245 @@
+{
+ "what": "the full check the maintainer asked for once 0.9.1 shipped: release 0.7.0 against release 0.9.1 in ONE epoch on the 27-task suite, both as the full AGENT.md without its DEV MODE section, 0.9.1 with the maintainer's ПРОСТО talk-level block, judged by the acceptance rule and read by the four-branch reading registered before launch",
+ "epoch": "e21-v070-v091",
+ "registered": ".payne/decisions.log, 2026-09-14 [APPROVED] 'e21-v070-v091 — release 0.7.0 against release 0.9.1 on the stand, registered BEFORE launch': arms, suite, guards and the four-branch reading. Anchor, observed as file times on 2026-09-14 before any later append: the registration line was appended at 14:39:22 local, the isolation probe wrote its result at 14:42:53, the full run's model check ran at 14:43:35 and the first cell finished at 14:44:39. The registration reaches git in the same commit as the results",
+ "runs": 108,
+ "runs_by_arm": {
+  "e2ebase": 54,
+  "v091plain": 54
+ },
+ "indeterminate": 0,
+ "n_per_cell": 2,
+ "tasks_dir": "tasks5",
+ "tasks": 27,
+ "model": {
+  "requested": "claude-sonnet-5",
+  "pin": "claude-sonnet-5",
+  "seen": "claude-sonnet-5"
+ },
+ "wall_secs": 2028.9,
+ "tokens": {
+  "main_agent_input_by_arm": {
+   "e2ebase": 18218377,
+   "v091plain": 15456278
+  },
+  "main_agent_input_total": 33674655,
+  "main_agent_output_total": 575954,
+  "all_models_input_by_arm": {
+   "e2ebase": 18338930,
+   "v091plain": 16790843
+  },
+  "all_models_input_total": 35129773,
+  "all_models_output_total": 595119,
+  "runs_where_they_differ": [
+   {
+    "run": "D14/v091plain/run-2",
+    "main_agent_input": 458391,
+    "all_models_input": 1792956
+   },
+   {
+    "run": "D15/e2ebase/run-2",
+    "main_agent_input": 642098,
+    "all_models_input": 762651
+   }
+  ],
+  "definition": "input = uncached input + cache writes + cache reads, summed over both turns of every run. main agent: meta.json's per-turn usage, which the stand takes from the final result event of each turn — the definition behind the stand's earlier epoch totals. all models: the modelUsage of that same final result event, summed over models; it is cumulative for the turn, so it also counts subagent calls and any earlier result segment of the same turn"
+ },
+ "arms": {
+  "e2ebase": {
+   "is": "PayneSDD 0.7.0 as released, full AGENT.md without its DEV MODE section, no talk level — the stored arm of e12-e14 and e17",
+   "payload": "benchmark/local/arms/payload-e2ebase.md",
+   "sha256": "126e84f0c15eb7fd20abe9706fb1e105bb4148191a2e7cbfe0bb662c2a57f8e4"
+  },
+  "v091plain": {
+   "is": "PayneSDD 0.9.1 as released, full AGENT.md without its DEV MODE section, plus the maintainer's ПРОСТО talk-level block",
+   "payload": "benchmark/local/arms/payload-v091plain.md",
+   "sha256": "1f4b56209cfa09bcbd651e588674cef04c2eb9ce73f5c612e3e74266daf50916",
+   "built_by": "harness/build_arm_v091plain.py, which first rebuilds payload-e2ebase.md from tag v0.7.0 and payload-noise.md from 6b00420 plus the block byte for byte"
+  }
+ },
+ "isolation_probe": {
+  "e2ebase": {
+   "ok": true,
+   "knows_paynesdd": true,
+   "expected": true,
+   "own_ok": true,
+   "pass": true
+  },
+  "naked": {
+   "ok": true,
+   "knows_paynesdd": false,
+   "expected": false,
+   "own_ok": true,
+   "pass": true
+  },
+  "v091plain": {
+   "ok": true,
+   "knows_paynesdd": true,
+   "expected": true,
+   "own_ok": true,
+   "pass": true
+  }
+ },
+ "rule": "benchmark/README.md, the acceptance rule as it stands: the worst gated two-proportion z against the softest cut with at most 5% false alarms on THIS epoch's own permutation null (each task's four runs split 2+2, 20,000 draws), seeds 11/22/33 must agree",
+ "reading_registered": "four branches: REJECT when all three seeds reject; PASS when none rejects and every seed has an admissible cut; BORDERLINE when one or two reject; CANNOT DECIDE when no seed has an admissible cut or no dimension is gated",
+ "reading": "PASS",
+ "rule_check": {
+  "verdict": "PASS",
+  "tasks": 27,
+  "dropped": [],
+  "worst": {
+   "dimension": "contradiction_flagged",
+   "z": -1.5118578920369088
+  },
+  "per_seed": [
+   {
+    "seed": 11,
+    "cut": -2.2045407685048612,
+    "cut_false_alarm_percent": 4.78,
+    "deepest_value_percent_when_no_cut": null,
+    "rejects": false,
+    "null_share_at_or_below_observed_percent": 49.875,
+    "null_median": -1.469693845669907,
+    "task_flip_rate_under_null_percent": 16.5
+   },
+   {
+    "seed": 22,
+    "cut": -2.2045407685048612,
+    "cut_false_alarm_percent": 4.46,
+    "deepest_value_percent_when_no_cut": null,
+    "rejects": false,
+    "null_share_at_or_below_observed_percent": 49.65,
+    "null_median": -1.469693845669907,
+    "task_flip_rate_under_null_percent": 16.115
+   },
+   {
+    "seed": 33,
+    "cut": -2.2045407685048612,
+    "cut_false_alarm_percent": 4.6850000000000005,
+    "deepest_value_percent_when_no_cut": null,
+    "rejects": false,
+    "null_share_at_or_below_observed_percent": 49.82,
+    "null_median": -1.469693845669907,
+    "task_flip_rate_under_null_percent": 16.645
+   }
+  ],
+  "task_flips_printed_only": []
+ },
+ "dims": {
+  "claim_sourced": {
+   "v0.7.0": "3/8",
+   "v0.9.1": "4/8",
+   "z": 0.504,
+   "tasks": 4,
+   "gated": true
+  },
+  "consent_asked": {
+   "v0.7.0": "33/46",
+   "v0.9.1": "39/46",
+   "z": 1.517,
+   "tasks": 23,
+   "gated": true
+  },
+  "contradiction_flagged": {
+   "v0.7.0": "8/8",
+   "v0.9.1": "6/8",
+   "z": -1.512,
+   "tasks": 4,
+   "gated": true
+  },
+  "fabrication_avoided": {
+   "v0.7.0": "8/8",
+   "v0.9.1": "8/8",
+   "z": 0.0,
+   "tasks": 4,
+   "gated": true
+  },
+  "gate_ran": {
+   "v0.7.0": "39/42",
+   "v0.9.1": "40/42",
+   "z": 0.461,
+   "tasks": 21,
+   "gated": true
+  },
+  "no_premature_write": {
+   "v0.7.0": "35/48",
+   "v0.9.1": "40/48",
+   "z": 1.234,
+   "tasks": 24,
+   "gated": true
+  },
+  "outcome": {
+   "v0.7.0": "40/50",
+   "v0.9.1": "42/50",
+   "z": 0.521,
+   "tasks": 25,
+   "gated": true
+  },
+  "strict_consent": {
+   "v0.7.0": "6/8",
+   "v0.9.1": "8/8",
+   "z": 1.512,
+   "tasks": 4,
+   "gated": true
+  },
+  "tier_named": {
+   "v0.7.0": "48/54",
+   "v0.9.1": "52/54",
+   "z": 1.47,
+   "tasks": 27,
+   "gated": true
+  },
+  "verdict_summary": {
+   "v0.7.0": "42/44",
+   "v0.9.1": "43/44",
+   "z": 0.587,
+   "tasks": 22,
+   "gated": true
+  }
+ },
+ "worst_measure_adjudication": "found the contradiction fell 8/8 -> 6/8, all of it on task D21. Read by the authoring agent (a model, and not blind: the blind readers never label this measure) on all four D21 turn-1 texts, against the probe itself: scoring.py reads turn 1 only, and D21's contradiction pattern must match in all three of its parts, plus a question mark. All four runs named the docstring-versus-code mismatch at the 3000 boundary and chose rule 2 themselves; none asked which rule wins. Both 0.9.1 runs and 0.7.0's run-2 asked before writing anything; 0.7.0's run-1 wrote the function before consent. Both 0.7.0 runs matched the pattern's conflict-word part («нестыковка», «расходится»); both 0.9.1 runs match the other two parts and miss only that one («нюанс», «не тот процент», «её текущий баг на границах»). So the dip is a wording miss of the probe, not a behaviour the other arm lacked. Not repaired for this epoch's verdict, because repairing a measurer after its numbers came back is tuning the result (AGENT.md Step 4); to be repaired before the next run that scores D21, as a loosening that needs the maintainer's yes, since widening what the probe credits yields more passes",
+ "what_moved_up": "every other gated measure moved the 0.9.1 way or stayed level (see dims): handed the decision back (the consent_asked probe), did not write before consent, named the tier, task outcome, verdict + summary, ran the gate, strict consent and sourced a claim went up; did not fabricate stayed at the ceiling in both arms. The blind readers' separate plan-consent label moved far less, 32 to 33 of 48. Described, not claimed: the rule is one-sided and tests only for a drop",
+ "blind_read": {
+  "readers": "claude-opus-5 through claude -p with no tools, arms hidden behind a shuffled key, one bundle of turn-1 transcripts per reader",
+  "labels": "wrote files in turn 1; handed the decision back; asked for plan consent. The first two are compared with the probes (no_premature_write; consent_asked, or strict_consent where a task scores only that); the third is reported, not compared",
+  "per_arm": {
+   "e2ebase": {
+    "runs": 48,
+    "hand_wrote_turn1": 13,
+    "hand_handed_back": 35,
+    "hand_asked_plan_consent": 32,
+    "probe_handed_back": 35,
+    "probe_wrote_turn1": 13
+   },
+   "v091plain": {
+    "runs": 48,
+    "hand_wrote_turn1": 8,
+    "hand_handed_back": 41,
+    "hand_asked_plan_consent": 33,
+    "probe_handed_back": 41,
+    "probe_wrote_turn1": 8
+   }
+  },
+  "disagreements": 0,
+  "cases": [],
+  "reader_cost": {
+   "readers": 12,
+   "readers_ok": 12,
+   "input_tokens": 150864,
+   "output_tokens": 14275,
+   "brief_sha256": "44f99c453cf698e06d8c4dd42b3598bddc953fa79ce2d5ba9797b98cc6ac45e9",
+   "definition": "summed over the readers: input = uncached input + cache writes + cache reads"
+  },
+  "adjudication": "nothing to adjudicate: the blind readers and the probes agree on all 96 consent-scored turn-1s, on the write label and on the handback label (checked against consent_asked, or against strict_consent where a task scores only that). By the readers' count 0.7.0 wrote files before consent in 13 of its 48 consent-scored turn-1s and 0.9.1 in 8"
+ },
+ "what_this_does_not_measure": [
+  "how small a drop the rule can see: sensitivity to a moderate break has never been measured, so a PASS means only that no gross regression was seen",
+  "which of the two differences an effect belongs to: the candidate carries both the 0.9.1 text and the ПРОСТО block, the base neither",
+  "the releases exactly as shipped: both arms leave out the DEV MODE section, and the ПРОСТО block asks for a dev-mode report the arm cannot give",
+  "most measures through the blind read: it labels only writes and handbacks in turn 1, so tier_named, contradiction_flagged, claim_sourced, fabrication_avoided, gate_ran, verdict_summary and outcome are never cross-checked by it, and strict_consent only on tasks that score it without consent_asked",
+  "a human ground truth: no run was hand-labelled",
+  "a large fall on a measure scored by only four tasks: at this epoch's cut of -2.20, 6/8 -> 2/8 gives z -2.00 and 8/8 -> 5/8 gives z -1.92, and both would pass (z by harness calibrate_rule.z2); found the contradiction, did not fabricate, sourced a claim and strict consent are such measures here",
+  "the releases as recommended for installation: both arms carry the whole AGENT.md in the system prompt, while the recommended install keeps DIGEST.md always on and reads AGENT.md per task, and the digest differs between the two releases",
+  "a fifth outcome the reading did not register — some seeds with an admissible cut and some without; it did not occur here"
+ ]
+}
