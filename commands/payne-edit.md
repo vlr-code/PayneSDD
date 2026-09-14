@@ -95,9 +95,19 @@ Dev-mode edits are Full-tier, so the normal decision-log rule applies: append
 ## 7. Commit / push (one approval) — release only if asked
 - Show `git -C "<repo>" diff`. On ONE explicit "yes": commit and push to `main`.
 - NEVER commit or push without that explicit yes.
-- **Release** only if the user asks: bump the version badge + Status + the
-  `AGENT.md` header stamp, promote the CHANGELOG `## Unreleased` entry to the
-  version, tag `vX.Y.Z`, `gh release create` — each with approval.
+- **Release** only if the user asks: bump the version badge, the README Status
+  section's "Latest release" line and the `AGENT.md` header stamp; add a new top
+  entry to the Status list; promote the CHANGELOG `## Unreleased` entry to the
+  version; tag `vX.Y.Z`; `gh release create` — each with approval, with an
+  `[APPROVED] release X.Y.Z` line in the decision log that says why this number.
+- **The number:** only what ships counts — changes to the git-ignored benchmark
+  stand never move it. Protocol rules, docs, fixes and a new check inside an
+  existing hook or tool are a PATCH; a new user-facing feature, or a new hook,
+  script, CI workflow or tool capability, is a MINOR; a single change that fits
+  both (a new check that changes how a tool behaves) is a PATCH. Numbers chosen
+  before this rule was written do not all fit it (0.9.0 would be a patch).
+  Propose the number with that reason and let the human pick — a published tag
+  is costly to reverse.
 
 ## 8. Close with the Step 6 summary
 End with the verdict word + the **Done / Remaining / Open questions** checklist.

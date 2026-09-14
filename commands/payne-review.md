@@ -22,17 +22,17 @@ Do this:
    the value that would redden each check), checks the author wrote for this
    task and never showed red, checks born from an earlier finding that were
    never seen red, a reading rule registered before a run with a branch only a
-   broken measure can reach, and bugfix claims with no red reproduction on
-   record — boundary defects, and gaps in the contract itself. Drift runs in
-   BOTH directions: hunt undeclared extras in the diff AND contracted/planned
-   items the diff never touched — silently dropped work is a finding (cite the
-   plan/contract line it dropped), never something left to the author's own
-   Remaining list. Every finding MUST cite a source (file:line, a doc quote, a
-   concrete test). Findings
-   with no source tie are marked "unconfirmed", not asserted as bugs. The report
-   comes back COMPACT: one line per finding — source tie + claim + proposed fix;
-   an explicit "none" when clean, and a required NOT CHECKED line naming what
-   the pass could not cover — silence about an uncovered area reads as coverage.
+   broken measure can reach or a run result no branch names, and bugfix claims
+   with no red reproduction on record — boundary defects, and gaps in the
+   contract itself. Drift runs in BOTH directions: hunt undeclared extras in the
+   diff AND contracted/planned items the diff never touched — silently dropped
+   work is a finding (cite the plan/contract line it dropped), never something
+   left to the author's own Remaining list. Every finding MUST cite a source
+   (file:line, a doc quote, a concrete test). Findings with no source tie are
+   marked "unconfirmed", not asserted as bugs. The report comes back COMPACT:
+   one line per finding — source tie + claim + proposed fix; an explicit "none"
+   when clean, and a required NOT CHECKED line naming what the pass could not
+   cover — silence about an uncovered area reads as coverage.
 3. Adjudicate the findings yourself (the verifier is not an oracle): accept and
    fix only source-tied findings; reject the rest and say why. When an accepted
    finding exposes a hole in the contract itself, ratchet: the clause plus the

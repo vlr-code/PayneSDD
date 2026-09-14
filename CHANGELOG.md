@@ -16,12 +16,51 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   regression seen: the worst gated measure, "found the contradiction", fell 8/8
   → 6/8 (z −1.51 against the epoch's own cut of −2.20); read on the transcripts
   by the authoring agent (not blind), that dip is a wording miss of the probe on
-  one task, to be repaired, with the maintainer's yes, before that task is
-  scored again. The blind read of turn 1 agreed with the write and handback
-  probes on every consent-scored run. Not measured: sensitivity to a moderate
-  break — on a four-task measure even 6/8 → 2/8 would pass — and which
-  difference, protocol text or talk-level block, any effect belongs to. Numbers:
+  one task, since repaired with the maintainer's yes (see Fixed). The blind read
+  of turn 1 agreed with the write and handback probes on every consent-scored
+  run. Not measured: sensitivity to a moderate break — on a four-task measure
+  even 6/8 → 2/8 would pass — and which difference, protocol text or talk-level
+  block, any effect belongs to. Numbers:
   [`benchmark/v070-v091-2026-09-14.json`](benchmark/v070-v091-2026-09-14.json).
+
+### Changed
+- **A release's version number has a written rule.** `/payne-edit` §7 now says
+  only what ships counts; protocol rules, docs, fixes and a new check inside an
+  existing hook or tool are a patch; a new user-facing feature, or a new hook,
+  script, CI workflow or tool capability, is a minor; and a single change that
+  fits both is a patch. A release also names its number's reason in an
+  [APPROVED] decision-log line and adds a new top entry to the README Status
+  list. The rule had lived only in past decision-log lines, a release proposal
+  misread it, and not every earlier number fits it.
+- **payne-check reads the README Status list too.** Its version check now fails
+  when the newest entry of the README's Status section disagrees with the badge;
+  one release had left out its entry with nothing turning red.
+- **A reading rule registered before a run must cover every result (Step 4).**
+  Besides a worked value for each branch, the branches must cover every result
+  the run can produce, and a result no branch names goes to the human;
+  `/payne-review`'s check list asks the same. A registered four-branch reading
+  had left one possible result unnamed.
+
+### Fixed
+- **The stand's D21 contradiction probe missed a correct answer in plain
+  words.** Its conflict-word part now also credits «не тот процент» anywhere,
+  and «нюанс» or «баг» within 60 characters of a boundary, docstring or
+  threshold word, unless one of the listed negations comes right before the word
+  or later in the same clause («не вижу бага», «бага нет»); a negation the lists
+  miss, or one past a comma, still counts, as the task file says. The other two
+  parts and the question mark still apply. A loosening, made on the maintainer's
+  explicit yes and checked by the authoring agent's non-blind reading and an
+  independent review on made-up texts, for future scoring only: the stored
+  epochs that contain D21 are not re-scored, and a frozen copy of their scores
+  is kept.
+- **The stand no longer starts an unprobed arm or an unconfirmed model.**
+  `bench.py` stops before any model call when a run arm has no isolation-probe
+  expectation (an explicit `--skip-probe` still runs, says so, and the manifest
+  records it; together with `--probe-only` it is refused), and, when a model is
+  pinned, stops if the model check reports no model twice; an empty answer used
+  to pass as a confirmed pin. The control arm stays uncovered: the probe only
+  checks that its answer shows no PayneSDD marker, not that its own payload is
+  attached.
 
 ## 0.9.1 — 2026-09-14
 

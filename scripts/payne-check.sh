@@ -40,16 +40,18 @@ else
 fi
 
 # AC3: one version everywhere — README badge == README "Latest release" ==
-# top CHANGELOG entry == AGENT.md header stamp. (This class of drift shipped
-# before; now it's caught.)
+# the newest entry of the README's ## Status list == top CHANGELOG entry ==
+# AGENT.md header stamp. (This class of drift shipped before; now it's caught —
+# the Status list entry was once skipped with nothing turning red.)
 badge_ver="$(grep -Eo 'version-[0-9]+\.[0-9]+\.[0-9]+' "$ROOT/README.md" | head -n 1 | sed 's/^version-//')"
 latest_ver="$(grep -Eo 'Latest release: \*\*v[0-9]+\.[0-9]+\.[0-9]+\*\*' "$ROOT/README.md" | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+' | head -n 1 || true)"
+list_ver="$(sed -n '/^## Status/,/^## /p' "$ROOT/README.md" | grep -Eo '^- \*\*[0-9]+\.[0-9]+\.[0-9]+\*\*' | head -n 1 | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+' || true)"
 changelog_ver="$(grep -Eo '^## [0-9]+\.[0-9]+\.[0-9]+' "$ROOT/CHANGELOG.md" | head -n 1 | sed 's/^## //')"
 agent_ver="$(grep -Eo '^PayneSDD v[0-9]+\.[0-9]+\.[0-9]+' "$ROOT/AGENT.md" | head -n 1 | sed 's/^PayneSDD v//')"
-if [ -n "$badge_ver" ] && [ "$badge_ver" = "$changelog_ver" ] && [ "$badge_ver" = "$latest_ver" ] && [ "$badge_ver" = "$agent_ver" ]; then
-  echo "ok   (version)     badge / Latest release / CHANGELOG / AGENT.md stamp all $badge_ver"
+if [ -n "$badge_ver" ] && [ "$badge_ver" = "$changelog_ver" ] && [ "$badge_ver" = "$latest_ver" ] && [ "$badge_ver" = "$list_ver" ] && [ "$badge_ver" = "$agent_ver" ]; then
+  echo "ok   (version)     badge / Latest release / Status list / CHANGELOG / AGENT.md stamp all $badge_ver"
 else
-  echo "FAIL (version)     badge='$badge_ver' Latest='$latest_ver' CHANGELOG='$changelog_ver' AGENT.md='$agent_ver' — must all match" >&2
+  echo "FAIL (version)     badge='$badge_ver' Latest='$latest_ver' Status list='$list_ver' CHANGELOG='$changelog_ver' AGENT.md='$agent_ver' — must all match" >&2
   fail=1
 fi
 

@@ -243,9 +243,10 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   before writing, as 0.7.0's second run did, in words the task's pattern does
   not contain; none of the four asked which rule wins. It stays unrepaired for
   this verdict and is to be repaired before that task is scored again, with the
-  maintainer's yes, because a probe that credits more is a loosening. Every
-  other gated measure moved 0.9.1's way or held; the rule is one-sided, so that
-  is described, not claimed. The blind read of turn 1 agreed with the write and
+  maintainer's yes, because a probe that credits more is a loosening; that
+  repair has since been made on that yes, for future scoring only. Every other
+  gated measure moved 0.9.1's way or held; the rule is one-sided, so that is
+  described, not claimed. The blind read of turn 1 agreed with the write and
   handback probes on every consent-scored run. What this PASS cannot say: how
   small a drop the rule can see — on a measure scored by four tasks even 6/8 →
   2/8 would pass — and whether any effect belongs to the protocol text or to the
