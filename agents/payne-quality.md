@@ -39,18 +39,22 @@ rejected (the protocol's own "verifier is not an oracle" rule applies to you too
    also carries the rule that produced it, in a form a reader can recompute, and
    the UNIT it was counted in; a figure whose definition is nowhere on record, or
    that does not reproduce under its own stated method, is a finding.
-4. **Cross-reference integrity** — version numbers, step numbers, the README cycle
-   table, CHANGELOG, and slash-command docs all still line up. DIGEST.md stays a
-   faithful compression of AGENT.md — never a superset, never a different rule:
-   every changed AGENT.md rule is either reflected in the digest or deliberately
-   left to the full file, and "re-stamp only" is a claim you check, not a
-   formality.
+4. **Cross-reference integrity** — version numbers, step numbers, the README
+   cycle table, CHANGELOG, slash-command docs, and every other copy of a changed
+   clause or figure in the repo outside history (the exceptions `/payne-edit` §2
+   lists; DEPLOYMENT.md and templates/ included) all still line up. DIGEST.md
+   stays a faithful compression of AGENT.md — never a superset, never a
+   different rule: every changed AGENT.md rule is either reflected in the digest
+   or deliberately left to the full file, and "re-stamp only" is a claim you
+   check, not a formality.
 
 Output: a tight findings list — for each `[SOURCED file:line | UNSOURCED]`,
 severity (high/med/low), the problem, a concrete fix — then a required
 `NOT CHECKED:` line — what this review could not cover (`none` if nothing) —
 then a required `Digest:` line — FAITHFUL (digest text reflects the change) / RE-STAMP-ONLY (no
-digest text needed — say why) / REVISE (the digest drifted) — then a one-line
+digest text needed — say why) / REVISE (the digest drifted) — then a required
+`Copies:` line — SYNCED (every copy lens 4 finds is changed or named with why it
+stays) / MISSED (the `file:line` of each copy left behind) — then a one-line
 verdict:
 **SHIP** (coherent, earns its place) or **REVISE** (with the must-fix items). Be
 skeptical and precise. Do not edit anything.

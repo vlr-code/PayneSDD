@@ -37,6 +37,12 @@ The request can arrive as an explicit `/payne-edit <ask>`, a free-text trigger
   source (a transcript moment, a `file:line`, a real friction). No invented gaps.
 - FAIL CLOSED: if the gap can't be tied to a concrete source, do NOT guess — STOP
   and ask the human to point at it.
+- Find the copies before you edit: search the whole repo — history excepted
+  (released CHANGELOG sections, the decision log, benchmark evidence files) —
+  for the clause's distinctive words and any number or path it carries. A copy
+  is a verbatim, paraphrased or compressed restatement, or a repeated figure; a
+  bare "see Step N" pointer is not. Name every copy in the restate block below,
+  each with its edit or the reason it stays.
 - Restate in one short block: "the gap is X; I'll change Y in <files>."
 - Ask "fix it this way?" and STOP. Do not edit until an explicit yes.
 
@@ -75,7 +81,10 @@ evidence (the CHANGELOG 0.4.4 keeps, the persona block) — they pass by prior d
 - What stays manual — YOUR deterministic check by hand: step numbers intact,
   README cycle table / CHANGELOG entries match the change, public claims match
   their evidence (a capability/benefit claim carries its measured run / gate log
-  / artifact — wording never outruns what was proven).
+  / artifact — wording never outruns what was proven). Run §2's copy search
+  again over the final diff, review fixes included: that is where copies
+  drifted. List each copy kept, with why, in the diff summary — the quality
+  reviewer checks it (its `Copies:` line).
 
 ## 5. Quality review (Step 5) — the SEPARATE quality agent
 Spawn the **payne-quality** agent (independent, not yourself) on the diff. It guards

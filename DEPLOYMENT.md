@@ -4,7 +4,7 @@
 assistant) when you accept the always-on cost. On an **always-on, token-metered
 agent** — a chat bot, a Telegram assistant, anything billed per message — that
 math breaks: the whole of `AGENT.md`
-(~5.5k words ≈ 8.1k tokens, measured — see the README token table; plus `ROLES.md` if you pasted it)
+(its measured size is in the README token table; plus `ROLES.md` if you pasted it)
 rides in **every** message, including the 90% that are plain chat (Trivial), where
 no protocol runs at all. You pay for discipline you aren't using.
 
@@ -63,7 +63,7 @@ slim core below only when every token counts and you accept the weaker floor.
 | **Persona** (optional) | your host's persona file(s) | always (it's cheap, and it's the voice) |
 | **Slim core** — Step 0 tiers + the two persona-honesty safeguards + a pointer | the host's always-loaded instructions | always (~0.4k tokens) |
 | **Full protocol** — Steps 1–6, the decision log | a separate file (e.g. `payne-protocol.md`) | on demand — read only when Step 0 says Light/Full |
-| **Talk level** (optional) | a short block in the host's always-loaded config — the level's bullet + the AT-EVERY-LEVEL paragraph, copied from `AGENT.md` | always (≈430 tokens — on a weak model every always-on block competes, see the model floor above) |
+| **Talk level** (optional) | a short block in the host's always-loaded config — the level's bullet + the AT-EVERY-LEVEL paragraph, copied from `AGENT.md` | always (its measured size is in `AGENT.md`, TALK LEVEL → SETTING IT — on a weak model every always-on block competes, see the model floor above) |
 | **Dev mode** | omit | only if this agent maintains PayneSDD itself |
 
 ### The slim core (always loaded)

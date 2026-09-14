@@ -40,6 +40,15 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   the run can produce, and a result no branch names goes to the human;
   `/payne-review`'s check list asks the same. A registered four-branch reading
   had left one possible result unnamed.
+- **A protocol edit must first search for the copies of what it changes.**
+  `/payne-edit` §2 now has the editor search the whole repo, history excepted,
+  for every restatement of the clause or figure being changed and name each
+  copy's edit or the reason it stays; §4 runs the search again over the final
+  diff and lists the copies kept, and the payne-quality review reports a
+  `Copies:` line. An edit to Step 4's reading rule had left its copy in
+  `/payne-review` behind, caught only by review — the second time that copy
+  drifted. Run for this change, the search turned up two stale size figures in
+  `DEPLOYMENT.md`, now pointers to where those sizes are measured.
 
 ### Fixed
 - **The stand's D21 contradiction probe missed a correct answer in plain
