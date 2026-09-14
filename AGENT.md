@@ -193,9 +193,10 @@ it only prepares the ground. The subagent returns:
   forbids what B7 requires; an AC no edge-case resolution can satisfy). Flag them to
   fix at contract time, not to discover in Step 5 after the code is written.
 
-No subagent mechanism on this host at all (checked, not assumed)? Run the same
-fork sweep yourself, say so, and still offer the 1.5b depth menu — the menu is
-the human's choice, not a subagent product.
+No subagent mechanism on this host at all (checked, not assumed — a transient
+spawn error is retried once, as in Step 5)? Run the same fork sweep yourself,
+say so, and still offer the 1.5b depth menu — the menu is the human's choice,
+not a subagent product.
 
 MANDATORY FORK CATEGORIES — walk through EACH, not just the obvious one. A common
 mistake is to analyze only "behavior/logic" and forget the rest:
@@ -266,16 +267,20 @@ abstract ones:
 Substitute the concrete Ns from prep. Wait for the choice — but a bare "go" here
 is an answer to THIS question: it picks fast, and you list the defaults it buys
 in the plan for veto. It does not answer the 1.6 gate, which still happens, and
-fast is not silent: the fast set of questions is still asked. (If there are 0 forks
-— don't offer a choice, go straight to the plan in 1.6.)
+fast is not silent: the fast set of questions is still asked. The fast set may
+ride in the same round as this choice: every mode asks it, so none of it waits
+on the depth answer. A fast question the reply leaves open — a bare "go" answers
+only the depth — is asked again. (If there are 0 forks — don't offer a choice,
+go straight to the plan in 1.6.)
 
 --------------------------------------------------------------------------------
 1.5c. QUESTIONS PER THE CHOSEN MODE
 --------------------------------------------------------------------------------
-- Ask exactly the set of questions for the chosen mode. Group by theme, phrase as
-  a choice with options, mark the recommended one. Order by dependency: a question
-  whose premise hangs on another question still open in the same round waits for
-  the next round (don't ask "which navigation API?" beside "SwiftUI or UIKit?").
+- Ask exactly the set of questions for the chosen mode, less any fast question
+  already answered with the depth choice. Group by theme, phrase as a choice
+  with options, mark the recommended one. Order by dependency: a question whose
+  premise hangs on another question still open in the same round waits for the
+  next round (don't ask "which navigation API?" beside "SwiftUI or UIKit?").
 - Phrase every option by what it CHANGES FOR THE HUMAN in practice — the
   implementation detail only when the choice is unreadable without it. "I don't
   understand the question" is not an answer: re-ask it in plainer words — never
@@ -405,16 +410,20 @@ Light and Full both run it (Trivial never entered the protocol, so it has no gat
   (the command's own output, its exit path — not your say-so), and the VALUE
   THAT WOULD MAKE IT RED. A check nothing can redden is decoration: an expected
   value copied from the code, a pipe whose exit code hides the build that never
-  started, a preview sample standing in for real data. For a check YOU wrote for
-  this task, show it red ONCE against the state that should break it — for a
-  ratcheted check, the pre-fix broken state that motivated it — then revert. Run
-  that red proof only where a revert undoes everything it writes — the working
-  tree, a scratch copy of the data — not on real data, a live or external
-  system, or anything that spends money or model tokens: a missing guard's red
-  run does the very damage the guard exists to stop. If only such a run can show
-  the red, it is an irreversible act: name it at the Step 1.6 gate and run it
-  only on that yes — without the yes the check stays unproven, and the gate map
-  says so. A reverted proof is not the loosening DIRECTION ASYMMETRY forbids.
+  started, a preview sample standing in for real data. A reading rule registered
+  before a run (which result means what) is a check too: before the run, show
+  for each branch a worked value that lands in it with every measure working as
+  designed; a branch only a failed measure can reach decides nothing. For a
+  check YOU wrote for this task, show it red ONCE against the state that should
+  break it — for a ratcheted check, the pre-fix broken state that motivated it —
+  then revert. Run that red proof only where a revert undoes everything it
+  writes — the working tree, a scratch copy of the data — not on real data, a
+  live or external system, or anything that spends money or model tokens: a
+  missing guard's red run does the very damage the guard exists to stop. If only
+  such a run can show the red, it is an irreversible act: name it at the Step
+  1.6 gate and run it only on that yes — without the yes the check stays
+  unproven, and the gate map says so. A reverted proof is not the loosening
+  DIRECTION ASYMMETRY forbids.
 - A green describes the STATE IT RAN AGAINST, and that state moves: name it with
   the result (a commit, a stash, a content hash) and confirm at the verdict that
   it has not moved — a shared tree someone else writes to, a source of truth that
@@ -618,6 +627,10 @@ this (keep the tooling light). One line per decision, append-only, never rewrite
 history:
 
   <YYYY-MM-DD> [TAG] <task> — <one-line reason>
+
+The reason is the decision and why: results behind it (counts, rates, test
+outcomes) stay out of the line — name the file that holds them, where one does —
+and a figure the decision itself needs carries its rule.
 
 Tags:
 - [APPROVED]  — a plan was approved at the Step 1.6 gate. Record the chosen tier

@@ -21,7 +21,9 @@ Do this:
    executed and can still fail; the gate map itself must name the run signal and
    the value that would redden each check), checks the author wrote for this
    task and never showed red, checks born from an earlier finding that were
-   never seen red, and bugfix claims with no red reproduction on record — boundary defects, and gaps in the contract itself. Drift runs in
+   never seen red, a reading rule registered before a run with a branch only a
+   broken measure can reach, and bugfix claims with no red reproduction on
+   record — boundary defects, and gaps in the contract itself. Drift runs in
    BOTH directions: hunt undeclared extras in the diff AND contracted/planned
    items the diff never touched — silently dropped work is a finding (cite the
    plan/contract line it dropped), never something left to the author's own

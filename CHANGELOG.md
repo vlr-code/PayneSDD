@@ -6,6 +6,23 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## Unreleased
 
 ### Changed
+- **Four inbox gaps written into the protocol in one pass.**
+  - Step 1.5a: a transient spawn error is retried once before the host counts as
+    having no subagent mechanism, as Step 5 already said.
+  - Steps 1.5b-1.5c: the fast set of questions may ride in the same round as the
+    depth choice, because every mode asks it; 1.5c then skips a fast question
+    already answered, and one the reply leaves open is asked again — a bare "go"
+    answers only the depth.
+  - Step 4: a reading rule registered before a run (which result means what) is
+    a check too: before the run, each branch gets a worked value that lands in
+    it with every measure working as designed. A registered reading once carried
+    a branch only a broken measure could reach, and only a review after the
+    verdict caught it. The /payne-review check list names it too.
+  - Decision log: the reason line holds the decision and why. Results behind it
+    stay out, with the file that holds them named where one exists, and a figure
+    the decision itself needs carries its rule. Results in reason lines and a
+    figure without its rule both slipped into the log on 2026-09-13 and -14,
+    each caught only by a later review.
 - **Step 4: a red proof runs only where a revert undoes what it writes.** The
   show-it-red-once rule now says where that run may go: the working tree or a
   scratch copy of the data, not real data, a live or external system, or
