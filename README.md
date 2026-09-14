@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "That's because you don't have any. Yet."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.9.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.9.1-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -83,7 +83,7 @@ task the agent reads the full file before writing the contract. `git pull` =
 protocol updated everywhere.
 
 **Any other agent** — paste [`AGENT.md`](AGENT.md) whole into the system
-instructions (8.1k tokens always-on; the way to go for web chats and agents
+instructions (≈11.6k tokens always-on; the way to go for web chats and agents
 without file access).
 
 That's it. The agent follows the cycle automatically.
@@ -137,15 +137,15 @@ inline, a one-line "doing X — ok?", the same machine gate, a short self-review
 
 ## Token cost — measured
 
-Numbers, not vibes (static: tiktoken `o200k_base`, re-measured 2026-09-12
+Numbers, not vibes (static: tiktoken `o200k_base`, re-measured 2026-09-14
 against the files as they stand; live: real `claude -p` calls, usage from the
 API's own JSON — that column was measured at 0.6.0 and is NOT re-measured here,
 so read it as the shape of the difference, not as today's digits):
 
 | Install | Always-on load | Measured Δ input per call |
 |---|---:|---:|
-| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,382 tok | ≈ +2,254 tok |
-| Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 11,310 tok | ≈ +9,050 tok |
+| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,384 tok | ≈ +2,254 tok |
+| Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 11,620 tok | ≈ +9,050 tok |
 | [`ROLES.md`](ROLES.md) multi-agent overlay | read on demand | — |
 
 The digest was live-tested against the full file (≈50 scored runs, scripted
@@ -209,8 +209,10 @@ included:
 
 **Actively used on real projects, and dogfooded** — PayneSDD develops itself
 under its own protocol: every change runs the full cycle and an independent
-review before it ships. Latest release: **v0.9.0**.
+review before it ships. Latest release: **v0.9.1**.
 
+- **0.9.1** — red proofs only where a revert undoes what they write, four inbox gaps closed (a transient spawn retry, fast questions with the depth choice, reading rules whose branches are shown reachable, the reason-line recipe), and the consent probe repaired against a blind read;
+- **0.9.0** — widening a check named as a loosening, a published number carries its rule, the 27-task suite, and an acceptance threshold stated by its measured false-alarm rate;
 - **0.8.0** — the talk level (`standard` / `plain`), the dev-mode gap inbox and its triage, ten protocol rules taken from real sessions, and a measured noise band that puts our own acceptance bar in question;
 - **0.7.0** — loud disarm + behavior-tested Stop-hook (six red-proof mutants as a gate check), the no-subagent-host fallback (never PASS), digest-checking dev-mode review;
 - **0.6.2** — check-edit consent asymmetry, red-proofed ratchets, both-direction drift, not-observed ≠ absent, named irreversible actions;

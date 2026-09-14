@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.9.1 — 2026-09-14
 
 ### Changed
 - **Four inbox gaps written into the protocol in one pass.**
@@ -62,20 +62,24 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   What it tests is the chain from transcript to verdict, not the threshold:
   with the break defined as writing first in at least half of the runs, a pass
   could only have come from a blind probe or a broken pipeline. How small a
-  drop the rule can see stays unmeasured.
+  drop the rule can see stays unmeasured. Numbers:
+  [`benchmark/power-2026-09-13.json`](benchmark/power-2026-09-13.json).
 - **How much of the false-alarm rate belongs to the 27 tasks.** Resampling the
   tasks with replacement (900 suites, 20,000 splits each), the −2.32 cut
   false-alarms at 1.6–5.7% (5th–95th percentile, median 3.1%), and the cut
   the rule would calibrate for itself has a 5th–95th percentile of −2.54 to
   −2.13 (full range −2.73 to −1.95) — measured on the repaired consent
-  probe; before the repair 1.8–6.0% and −2.54 to −2.17.
+  probe; before the repair 1.8–6.0% and −2.54 to −2.17. Numbers:
+  [`benchmark/probe-repair-2026-09-14.json`](benchmark/probe-repair-2026-09-14.json).
 - **A blind read of turn 1 after every epoch, as a standing step.** After
   scoring, the harness's `run_all.sh` has tool-less model readers label turn 1
   and lists where they and the probes disagree; the list is read by hand and
   never enters a verdict, and a failed read is printed without stopping the
   epoch. It refuses to overwrite an existing read, so a fresh key can never
   meet old labels. One read of 108 runs: 0.14–0.17M input tokens (cache
-  included), 11–12K output.
+  included), 11–12K output. It is wired in but has not yet run on a new epoch.
+  Numbers:
+  [`benchmark/probe-repair-2026-09-14.json`](benchmark/probe-repair-2026-09-14.json).
 
 ### Fixed
 - **"A ~20% relative degradation is invisible at this budget" carried no rule.**
@@ -93,7 +97,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   write definition (AGENT.md forbids every write before consent). e17's
   consent count in the 0.9.0 notes (18/22 → 19/22) reads 18/22 → 20/22 on the
   current probe — moved by the 2026-09-13 repair that counts a last line
-  saying the agent has stopped and waits, not by the repair below.
+  saying the agent has stopped and waits, not by the repair below. Numbers:
+  [`benchmark/power-2026-09-13.json`](benchmark/power-2026-09-13.json).
 - **The consent probe, repaired on what that blind read found.** Newly
   counted, each a loosening: a request without a question mark followed by
   what the agent will then do («Подтвердите — и я поправлю», "confirm and
