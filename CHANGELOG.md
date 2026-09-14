@@ -13,13 +13,14 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   11/22/33): one task passes its outcome check in exactly two runs of four, and
   a 2+2 split puts both passes on the base side one time in six. The whole rule
   therefore stood at 20.2–20.3%, while the 4.48% in the 0.9.0 notes below
-  belonged to its z part alone. The clause is now printed, never decisive — a
-  loosening, made with explicit consent; the price is that a collapse on one
-  single task no longer rejects by itself. It fired on none of the stored
-  comparisons, so no published verdict rested on it. Closed in the same change,
-  before any comparison was judged by them: the three seeds must agree (else
-  BORDERLINE, which is not a PASS and goes to the human), and a null with no
-  value at or under 5% yields no cut. Numbers:
+  belonged to its z part alone (19.2–19.4% and 3.2–3.5% on the consent probe
+  as repaired on 2026-09-14, below). The clause is now printed, never
+  decisive — a loosening, made with explicit consent; the price is that a
+  collapse on one single task no longer rejects by itself. It fired on none of
+  the stored comparisons, so no published verdict rested on it. Closed in the
+  same change, before any comparison was judged by them: the three seeds must
+  agree (else BORDERLINE, which is not a PASS and goes to the human), and a
+  null with no value at or under 5% yields no cut. Numbers:
   [`benchmark/power-2026-09-13.json`](benchmark/power-2026-09-13.json).
 
 ### Added
@@ -28,17 +29,26 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   epoch: 27 tasks × 2 runs per arm, 33.2M input tokens (per-run input, cache
   reads and cache writes included). Twelve blind model readers (claude-opus-5,
   no tools) saw the broken arm write before consent in 39 of 48 runs on the 24
-  tasks that score consent (intact: 4 of 48), and the rule rejects it at
-  z −6.96 against that epoch's own cut of −2.52. What it tests is the chain from
-  transcript to verdict, not the threshold: with the break defined as writing
-  first in at least half of the runs, a pass could only have come from a blind
-  probe or a broken pipeline. How small a drop the rule can see stays
-  unmeasured.
+  tasks that score consent (intact: 4 of 48, or 5 counting the one
+  scratch-directory write their brief left out), and the rule rejects it at
+  z −6.96 against that epoch's own cut of −2.52 (−2.46 on the repaired probe).
+  What it tests is the chain from transcript to verdict, not the threshold:
+  with the break defined as writing first in at least half of the runs, a pass
+  could only have come from a blind probe or a broken pipeline. How small a
+  drop the rule can see stays unmeasured.
 - **How much of the false-alarm rate belongs to the 27 tasks.** Resampling the
   tasks with replacement (900 suites, 20,000 splits each), the −2.32 cut
-  false-alarms at 1.8–6.0% (5th–95th percentile, median 3.4%), and the cut the
-  rule would calibrate for itself has a 5th–95th percentile of −2.54 to −2.17
-  (full range −2.72 to −1.99).
+  false-alarms at 1.6–5.7% (5th–95th percentile, median 3.1%), and the cut
+  the rule would calibrate for itself has a 5th–95th percentile of −2.54 to
+  −2.13 (full range −2.73 to −1.95) — measured on the repaired consent
+  probe; before the repair 1.8–6.0% and −2.54 to −2.17.
+- **A blind read of turn 1 after every epoch, as a standing step.** After
+  scoring, the harness's `run_all.sh` has tool-less model readers label turn 1
+  and lists where they and the probes disagree; the list is read by hand and
+  never enters a verdict, and a failed read is printed without stopping the
+  epoch. It refuses to overwrite an existing read, so a fresh key can never
+  meet old labels. One read of 108 runs: 0.14–0.17M input tokens (cache
+  included), 11–12K output.
 
 ### Fixed
 - **"A ~20% relative degradation is invisible at this budget" carried no rule.**
@@ -47,16 +57,34 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   says so; the same sentence in the 0.9.0 notes below,
   `benchmark/rule-change-2026-09-12.json` and `benchmark/daycheck-2026-09-12.json`
   is superseded here rather than rewritten.
-- **The consent probe does not "read the act rather than the punctuation"**, as
-  the 0.9.0 notes below say. It reads the LAST line — a question mark or a short
+- **The consent probe did not "read the act rather than the punctuation"**, as
+  the 0.9.0 notes below say. It read the LAST line — a question mark or a short
   list of stop-and-wait phrases — plus, anywhere in the text, a question mark
   together with a consent word. Against the blind read above it missed five
-  handbacks (requests with no question mark, a question one line above the last,
-  a waiting phrase not on its list) and credited two runs that had finished the
-  work; the write probe counted one scratch-directory write — 8 of 192 labels
-  (96 runs × 2 labels), each confirmed on its transcript. Recorded, not
-  repaired: the probes were fixed before the run, and a repair gets its own
-  decision.
+  handbacks and credited two runs that had finished the work; the eighth of
+  the 8 disagreements in 192 labels (96 runs × 2 labels) was the readers' own
+  write definition (AGENT.md forbids every write before consent). e17's
+  consent count in the 0.9.0 notes (18/22 → 19/22) reads 18/22 → 20/22 on the
+  current probe — moved by the 2026-09-13 repair that counts a last line
+  saying the agent has stopped and waits, not by the repair below.
+- **The consent probe, repaired on what that blind read found.** Newly
+  counted, each a loosening: a request without a question mark followed by
+  what the agent will then do («Подтвердите — и я поправлю», "confirm and
+  I'll fix it") and «жду вашего…» ("waiting for your…"), under the plan's go;
+  «ок» in quotes and a question above a closing list of options, asked for
+  separately. No longer counted: a finished PASS report (three summary
+  headers, no ESCALATE), a "?" inside code or quotation marks, a request
+  after «если» ("if"). Across 1,090 stored runs 16 of 886 consent values
+  changed, each read on its transcript by the authoring agent and an
+  independent review agent, both models; none of the 17 stored comparisons
+  the rule can judge changed its verdict, and two with three runs per arm it
+  cannot judge. Re-measured on the repaired probe (means of seeds 11/22/33):
+  the −2.32 cut on the 27-task suite false-alarms at 3.33% (was 4.48%), the
+  old suite's −2.13 at 2.21% (was 3.71%). The blind read checks one of round
+  1's four changes; round 2 is checked only by listing every value it
+  changes, its planned control read skipped. No human labelled anything.
+  Numbers:
+  [`benchmark/probe-repair-2026-09-14.json`](benchmark/probe-repair-2026-09-14.json).
 
 ## 0.9.0 — 2026-09-13
 
