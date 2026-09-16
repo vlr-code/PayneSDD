@@ -19,7 +19,7 @@ Stop-hook setup** and **where the add-ons install**.
 Step 0 already classifies every task Trivial / Light / Full. Extend that split to
 what you load:
 
-- **Trivial (most chat)** → carry only a tiny *slim core*. Pay ~0 protocol tokens.
+- **Trivial (most chat)** → carry only a tiny *slim core*: 178 tokens (counted below).
 - **Light / Full (a real task)** → the agent pulls the full protocol on demand
   and runs it.
 
@@ -34,7 +34,8 @@ binding essentials of EVERY gate (tiers + hard floor, contract shape, consent
 STOP, machine gate, adversarial pass, verdict + summary, the never-do list,
 the voice) plus the loading rule pointing at the full `AGENT.md`. Even if the
 on-demand read ever fails to fire, the gates still bind — that safety is what
-the extra ~2k tokens over the minimal core buy.
+the extra ≈2.2k tokens over the minimal core buy (the digest's count in the
+README token table, less the minimal core's 178).
 
 It cannot silently drift from the protocol: `DIGEST.md` is checksum-pinned to
 `AGENT.md`, and `scripts/payne-check.sh` goes RED on any `AGENT.md` change
@@ -61,7 +62,7 @@ slim core below only when every token counts and you accept the weaker floor.
 | Piece | Where it lives | Loaded |
 |---|---|---|
 | **Persona** (optional) | your host's persona file(s) | always (it's cheap, and it's the voice) |
-| **Slim core** — Step 0 tiers + the two persona-honesty safeguards + a pointer | the host's always-loaded instructions | always (~0.4k tokens) |
+| **Slim core** — Step 0 tiers + the two persona-honesty safeguards + a pointer | the host's always-loaded instructions | always (178 tokens by tiktoken `o200k_base`, 2026-09-15) |
 | **Full protocol** — Steps 1–6, the decision log | a separate file (e.g. `payne-protocol.md`) | on demand — read only when Step 0 says Light/Full |
 | **Talk level** (optional) | a short block in the host's always-loaded config — the level's bullet + the AT-EVERY-LEVEL paragraph, copied from `AGENT.md` | always (its measured size is in `AGENT.md`, TALK LEVEL → SETTING IT — on a weak model every always-on block competes, see the model floor above) |
 | **Dev mode** | omit | only if this agent maintains PayneSDD itself |
@@ -119,7 +120,7 @@ job is to make the agent actually read it at the right moment.
 Yes — that's the whole point. The full protocol contributes **zero** tokens to a
 Trivial turn because it isn't in context until the agent reads it. Measure your
 host's per-message input before and after on a *fresh* session (history inflates
-live numbers); the slim core should add only a few hundred tokens to the idle
+live numbers); the slim core should add under two hundred tokens to the idle
 baseline while keeping the entire protocol one read away.
 
 ## Variant: zero-footprint (full cycle, nothing written to the project)

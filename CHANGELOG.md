@@ -3,6 +3,59 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Changed
+- **A review describes the state it read (Steps 1.6, 5 and 6).** PASS needs the
+  gates and the adversarial pass to have read one and the same state, and the
+  evidence names it once for both. After fixes the gate re-runs and the pass
+  reads what no pass has read yet — a fix, a later commit, a merge's resolution
+  — each round counting against the Step 2 budget. Before code is handed over
+  for acceptance (a pull request opened for review, a merge, a release, a
+  publish) the gate re-runs on the state handed over unless its last run read
+  that very state, and a pass reads anything in the change no pass has read; a
+  passed manual or device test names no state. Mirrored in `/payne-review`,
+  `/payne-edit` and the digest's Step 5 and PASS lines. A pull request had
+  passed several review rounds and the gate, yet a code commit landed after the
+  last review, nobody reviewed it, and an outside reviewer found a hang in it.
+- **Changed lines no run reached (Step 4).** On code the gate map ends with the
+  changed lines or branches that no run executed, read from coverage or log
+  output; each is an unverified gap to close or escalate, and a line no output
+  can show as run is listed as not shown, a gap like the rest. In that pull
+  request the test environment always provided the input whose absence the
+  changed path handled, so the path never ran under a green gate.
+- **Ratchet the code (Step 4).** Fixing a defect in code that had already passed
+  a gate or a review, or that a person reported, starts a search of the module
+  for the same mechanism, with a verdict for every hit — fixed inside the
+  change, surfaced outside it, or fine for a stated reason; an empty search is
+  reported as "no hit for <query> in <scope>". A hang fixed at one call site had
+  an older sibling with the same wait in the same change, and nobody searched.
+- **A green describes the artifact and environment it ran in (Step 4).** A check
+  on a sibling build or in another shell than the human's proves that sibling:
+  run it on the exact file handed over, in the environment it will run in; the
+  digest's smoke-launch line carries the artifact half. A debug build had been launched
+  while the release file was delivered, and a PATH fix had been checked in one
+  shell while the human used another.
+- **A compare that can match on nothing is decoration (Step 4).** A verify step
+  must fail on missing or empty input first: a script hashed a release archive
+  that was already gone, so every local hash was the digest of empty input and
+  the compare reported a false mismatch; with both sides missing, the same
+  compare would have passed.
+- **Copies are searched by concept, with wrapped lines joined (/payne-edit §2,
+  payne-quality).** A word search had missed restatements in other words and a
+  phrase split across two lines, and each cost a later review round.
+
+### Fixed
+- **The gate names a broken tool.** payne-check and payne-digest-stamp report a
+  shellcheck or sha256 tool that is present but cannot run by name, keep the
+  gate red and write no pin, instead of reading as a lint failure or a changed
+  AGENT.md; the digest size is labelled in bytes.
+- **DEPLOYMENT's slim-core figure carries its count.** The block is counted with
+  tiktoken `o200k_base`, and the digest's extra over it follows from the README
+  token table.
+- **/payne-review asks for a green gate** on the state a PASS names, and its
+  verdict sentence no longer reads as tying the closing summary to PASS alone.
+
 ## 0.9.2 — 2026-09-14
 
 ### Added

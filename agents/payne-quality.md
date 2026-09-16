@@ -42,8 +42,9 @@ rejected (the protocol's own "verifier is not an oracle" rule applies to you too
 4. **Cross-reference integrity** — version numbers, step numbers, the README
    cycle table, CHANGELOG, slash-command docs, and every other copy of a changed
    clause or figure in the repo outside history (the exceptions `/payne-edit` §2
-   lists; DEPLOYMENT.md and templates/ included) all still line up. DIGEST.md
-   stays a faithful compression of AGENT.md — never a superset, never a
+   lists; DEPLOYMENT.md and templates/ included), found the way §2 searches — by
+   concept as well as by words, with wrapped lines joined — all still line up.
+   DIGEST.md stays a faithful compression of AGENT.md — never a superset, never a
    different rule: every changed AGENT.md rule is either reflected in the digest
    or deliberately left to the full file, and "re-stamp only" is a claim you
    check, not a formality.

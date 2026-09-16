@@ -36,9 +36,15 @@ Do this:
 3. Adjudicate the findings yourself (the verifier is not an oracle): accept and
    fix only source-tied findings; reject the rest and say why. When an accepted
    finding exposes a hole in the contract itself, ratchet: the clause plus the
-   named check that proves it land first, then the fix (Step 4).
-4. Re-run the machine gate (Step 4) after any fix. Then give the Step 6 verdict:
-   PASS / ITERATE / ESCALATE, with evidence — and, on Light/Full, the compact
-   Done / Remaining / Open questions closing summary.
+   named check that proves it land first, then the fix (Step 4). A finding in
+   code also starts the mechanism search (Step 4, RATCHET THE CODE).
+4. After any fix, re-run the machine gate (Step 4) and run this review again on
+   anything no review has read yet — the fix, a later commit, a merge's
+   resolution; each round counts against the Step 2 budget. Then give the Step 6
+   verdict: PASS only on one state the gate ran green on and the reviews have
+   read in full, confirmed at the verdict not to have moved since (Step 4), and
+   the evidence names it; ITERATE; or ESCALATE naming what no review has read —
+   and, on Light/Full, the compact Done / Remaining / Open questions closing
+   summary.
 
 Do not fix findings the reviewer could not prove.

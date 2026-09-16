@@ -39,7 +39,10 @@ The request can arrive as an explicit `/payne-edit <ask>`, a free-text trigger
   and ask the human to point at it.
 - Find the copies before you edit: search the whole repo — history excepted
   (released CHANGELOG sections, the decision log, benchmark evidence files) —
-  for the clause's distinctive words and any number or path it carries. A copy
+  for the clause's distinctive words, the other words for what it governs (for a
+  PASS rule: its evidence, log, checklist), and any number or path it carries,
+  with wrapped lines joined first — a line grep misses a phrase split across two
+  lines, and a word search misses a restatement in other words. A copy
   is a verbatim, paraphrased or compressed restatement, or a repeated figure; a
   bare "see Step N" pointer is not. Name every copy in the restate block below,
   each with its edit or the reason it stays.
@@ -95,7 +98,8 @@ coherence, anti-bloat, fidelity to principles, and cross-reference integrity.
   review. It loads normally next session (dev mode is usually invoked from another
   project = a fresh session, so this only bites the install session).
 Adjudicate by the tie-to-source rule: fix only source-tied findings, reject the rest
-with a reason, then re-run the gate.
+with a reason, then re-run the gate and have the quality agent read what no review
+has read yet (AGENT.md Step 5).
 
 ## 6. Decision log
 Dev-mode edits are Full-tier, so the normal decision-log rule applies: append

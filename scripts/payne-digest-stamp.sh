@@ -15,9 +15,17 @@ if [ ! -f "$ROOT/DIGEST.md" ]; then
 fi
 
 if command -v sha256sum >/dev/null 2>&1; then
-  actual="$(sha256sum "$ROOT/AGENT.md" | cut -d' ' -f1)"
+  hasher="$(command -v sha256sum)"
+  actual="$(sha256sum "$ROOT/AGENT.md" 2>/dev/null | cut -d' ' -f1)" || actual=""
 else
-  actual="$(shasum -a 256 "$ROOT/AGENT.md" | cut -d' ' -f1)"
+  hasher="shasum"
+  actual="$(shasum -a 256 "$ROOT/AGENT.md" 2>/dev/null | cut -d' ' -f1)" || actual=""
+fi
+
+# A present-but-broken hasher yields no hash: stop before writing a bad pin.
+if ! printf '%s' "$actual" | grep -Eq '^[0-9a-f]{64}$'; then
+  echo "${hasher} produced no sha256 of AGENT.md — nothing stamped; fix the tool first." >&2
+  exit 1
 fi
 
 if grep -Eq 'pin: AGENT\.md sha256=[0-9a-f]{64}' "$ROOT/DIGEST.md"; then

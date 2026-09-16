@@ -27,9 +27,14 @@ for f in "$ROOT"/hooks/*.sh "$ROOT"/scripts/*.sh; do
 done
 
 # AC2: shellcheck if present; degrade gracefully if absent (a missing tool is
-# NOT a failure — the gate just ran the lighter syntax-only check).
+# NOT a failure — the gate just ran the lighter syntax-only check). A tool that
+# is present but cannot run is broken, not missing: the gate stays red and names
+# it, so the red is never read as a lint finding.
 if command -v shellcheck >/dev/null 2>&1; then
-  if shellcheck "$ROOT"/hooks/*.sh "$ROOT"/scripts/*.sh; then
+  if ! shellcheck --version >/dev/null 2>&1; then
+    echo "FAIL (shellcheck)  $(command -v shellcheck) is present but cannot run — install a working shellcheck or move this one off PATH" >&2
+    fail=1
+  elif shellcheck "$ROOT"/hooks/*.sh "$ROOT"/scripts/*.sh; then
     echo "ok   (shellcheck)  hooks/*.sh scripts/*.sh"
   else
     echo "FAIL (shellcheck)  hooks/*.sh scripts/*.sh" >&2
@@ -85,15 +90,20 @@ fi
 if [ -f "$ROOT/DIGEST.md" ]; then
   pin="$(grep -Eo 'pin: AGENT\.md sha256=[0-9a-f]{64}' "$ROOT/DIGEST.md" | grep -Eo '[0-9a-f]{64}' || true)"
   if command -v sha256sum >/dev/null 2>&1; then
-    agent_sha="$(sha256sum "$ROOT/AGENT.md" | cut -d' ' -f1)"
+    hasher="$(command -v sha256sum)"
+    agent_sha="$(sha256sum "$ROOT/AGENT.md" 2>/dev/null | cut -d' ' -f1)"
   else
-    agent_sha="$(shasum -a 256 "$ROOT/AGENT.md" | cut -d' ' -f1)"
+    hasher="$(command -v shasum || echo shasum)"
+    agent_sha="$(shasum -a 256 "$ROOT/AGENT.md" 2>/dev/null | cut -d' ' -f1)"
   fi
   digest_size="$(wc -c < "$ROOT/DIGEST.md" | tr -d ' ')"
-  if [ -n "$pin" ] && [ "$pin" = "$agent_sha" ] && [ "$digest_size" -le 10500 ] && [ "$digest_size" -ge 8000 ]; then
-    echo "ok   (digest)      DIGEST.md pinned to current AGENT.md, ${digest_size} chars (band 8000-10500)"
+  if ! printf '%s' "$agent_sha" | grep -Eq '^[0-9a-f]{64}$'; then
+    echo "FAIL (digest)      ${hasher} produced no sha256 of AGENT.md — the tool is broken or missing; the pin was NOT checked (fix the tool, do not re-stamp)" >&2
+    fail=1
+  elif [ -n "$pin" ] && [ "$pin" = "$agent_sha" ] && [ "$digest_size" -le 10500 ] && [ "$digest_size" -ge 8000 ]; then
+    echo "ok   (digest)      DIGEST.md pinned to current AGENT.md, ${digest_size} bytes (band 8000-10500)"
   else
-    echo "FAIL (digest)      pin/size mismatch (pin='${pin:-none}', AGENT.md=${agent_sha}, size=${digest_size}, band 8000-10500) — AGENT.md changed? review DIGEST.md, then run scripts/payne-digest-stamp.sh" >&2
+    echo "FAIL (digest)      pin/size mismatch (pin='${pin:-none}', AGENT.md=${agent_sha}, size=${digest_size} bytes, band 8000-10500) — AGENT.md changed? review DIGEST.md, then run scripts/payne-digest-stamp.sh" >&2
     fail=1
   fi
 else

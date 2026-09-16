@@ -330,7 +330,14 @@ THE IRON RULE:
   can write where you are about to write — a shared branch or tree, a live
   system, someone else's record — you RE-READ that destination's current state
   immediately before the irreversible step: the ground moves while you work, and
-  the approval you hold describes the ground as it was.
+  the approval you hold describes the ground as it was. So do the gate and the
+  review you hold: before code is handed over for acceptance — a pull request
+  opened for review, a merge, a release, a publish — the gate runs again on the
+  state you hand over unless you can name that state (a commit, a content hash)
+  as the one its last run read (Step 4), and a pass reads anything in the change
+  that no pass has read (Step 5) — the whole change when you cannot name what
+  the passes read. A passed manual or device test, or "nothing changed since the
+  review", names no state.
 - THE DIRECTIVE THAT IS ALREADY THE PLAN (LIGHT only): the consent exists
   already when the human's own latest message IS the whole plan and you add
   nothing to it — (i) it is their message in this session, not your restatement
@@ -410,7 +417,9 @@ Light and Full both run it (Trivial never entered the protocol, so it has no gat
   (the command's own output, its exit path — not your say-so), and the VALUE
   THAT WOULD MAKE IT RED. A check nothing can redden is decoration: an expected
   value copied from the code, a pipe whose exit code hides the build that never
-  started, a preview sample standing in for real data. A reading rule registered
+  started, a preview sample standing in for real data, a compare that matches when
+  both sides come up empty (a missing file hashes like any other empty input) —
+  make it fail on missing or empty input first. A reading rule registered
   before a run (which result means what) is a check too: before the run, show
   for each branch a worked value that lands in it with every measure working as
   designed, and show that the branches cover every result the run can produce —
@@ -424,12 +433,21 @@ Light and Full both run it (Trivial never entered the protocol, so it has no gat
   guard exists to stop. If only such a run can show the red, it is an
   irreversible act: name it at the Step 1.6 gate and run it only on that yes —
   without the yes the check stays unproven, and the gate map says so. A reverted
-  proof is not the loosening DIRECTION ASYMMETRY forbids.
+  proof is not the loosening DIRECTION ASYMMETRY forbids. The map ends with one
+  more line, CHANGED LINES NO RUN REACHED: the changed lines or branches — not
+  whole functions — that no run executed, read from the run's own coverage or
+  log output, `none` when every one ran; each is an unverified gap, not a pass —
+  close it or escalate (Step 6). A line no coverage or log output can show as
+  run is listed as not shown — a gap like the rest, never counted into `none`.
 - A green describes the STATE IT RAN AGAINST, and that state moves: name it with
   the result (a commit, a stash, a content hash) and confirm at the verdict that
   it has not moved — a shared tree someone else writes to, a source of truth that
   was re-generated, a review read from a live checkout. Moved → the run is stale,
-  not green: re-run it, don't re-argue it.
+  not green: re-run it, don't re-argue it. A green also describes only the
+  artifact and environment it ran in: a check on a sibling build (debug for
+  release) or in another shell than the human's proves that sibling — run it on
+  the exact file you hand over, in the environment it will run in (read the
+  human's shell and tools, don't assume them).
 - Non-code: run a deterministic check against the source of truth (e.g.: every
   referenced API/symbol must exist in the actual source; every factual claim is
   tied to a source; every sub-question of the request is covered).
@@ -461,6 +479,12 @@ Rules:
   to a LOCKED contract: a genuine behavior fork re-enters the 1.6 gate — ask,
   don't guess; an unambiguous closure is logged as a [DEVIATION] line, never
   silent.
+- RATCHET THE CODE: WHEN you fix a defect in code that had already passed a gate
+  or a review, or that a person reported, search the module for the same
+  MECHANISM — not only the fixed line's text — and give every hit a verdict:
+  fixed if it lies inside this task's change, surfaced (Step 3) if it lies
+  outside it, or fine because <reason>. A search with no hits is reported as
+  "no hit for <query> in <scope>".
 - If you have no tool for an objective check (can't run tests / can't search the
   source) — do NOT fake the gate. But FIRST confirm the tool is genuinely absent:
   check what's INSTALLED, not just the active/default config (a tool you failed to
@@ -533,7 +557,8 @@ THE KEY RULE (the verifier is not an oracle either):
   quote, a concrete test). Then — you fix it and strengthen the check: that new
   check is seen red the same way (Step 4), against the state the finding
   described. A finding that exposes a contract hole ratchets
-  into the contract the same way (Step 4).
+  into the contract the same way (Step 4); a finding in code starts the
+  mechanism search of RATCHET THE CODE (Step 4).
 - A source-tied finding is not downgraded by the author's own rationale:
   "intentional" or "left it per YAGNI" is the author grading their own work —
   it NEVER by itself lowers a tied finding's severity or dismisses it. Rebut
@@ -541,18 +566,23 @@ THE KEY RULE (the verifier is not an oracle either):
 - A finding with no source tie — you REJECT it and record why. Don't fix what the
   reviewer couldn't prove. Blindly executing its list is the same uncontrolled
   mode, just with an extra step.
-- After fixes, run the gate (Step 4) again.
+- After fixes, run the gate (Step 4) again AND this step on what changed: a fix,
+  a later commit, a merge's resolution — anything in this change no pass has
+  read — gets a pass of the kind this tier requires. Each such round
+  counts against the Step 2 budget; out of budget → ESCALATE naming what no pass
+  has read, never a re-read shrunk to fit.
 
 ================================================================================
 STEP 6. VERDICT (+ CLOSING SUMMARY)
 ================================================================================
 End the task with one of three explicit outcomes:
 
-- PASS — all gates green against a state that has not moved (Step 4), adversarial
-  findings adjudicated. Attach EVIDENCE (gate
-  log / source quotes). Done.
+- PASS — all gates green AND the adversarial pass read that same state, which has
+  not moved since (Step 4); findings adjudicated. The EVIDENCE names that state
+  once for both (a commit, a content hash) and attaches the gate log / source
+  quotes. Done.
 - ITERATE — a fixable defect, budget left and not a no-progress loop (Step 2) →
-  return to Step 3/4.
+  return to Step 3, then Steps 4 and 5 again.
 - ESCALATE — budget exhausted or a no-progress loop (Step 2), or no source of
   truth, or a needed access (incl. an independent reviewer, Step 5) is
   unavailable, or the result is refuted with a source and the fix is unclear →
@@ -586,9 +616,9 @@ Rules for the block:
   need a paragraph, you're in the wrong place). Plain language; an AC/clause
   reference in parentheses is allowed, never required.
 - The summary is the human-readable BODY of the verdict; it does NOT replace the
-  PASS/ITERATE/ESCALATE word and does NOT replace EVIDENCE — the gate log / source
-  quotes still attach (the Done list may just say "gate: green" instead of pasting
-  the log).
+  PASS/ITERATE/ESCALATE word and does NOT replace EVIDENCE — the state it names,
+  the gate log and source quotes still attach (the Done list may just say
+  "gate: green" instead of pasting the log).
 - Emitted to the human ONLY — not persisted. The decision log is for decisions,
   not status (see that section); don't mirror the summary into it.
 - Honor-system: no hook polices this block, same as the decision log. Its

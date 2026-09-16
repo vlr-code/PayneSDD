@@ -83,7 +83,7 @@ task the agent reads the full file before writing the contract. `git pull` =
 protocol updated everywhere.
 
 **Any other agent** — paste [`AGENT.md`](AGENT.md) whole into the system
-instructions (≈11.6k tokens always-on; the way to go for web chats and agents
+instructions (≈12.2k tokens always-on; the way to go for web chats and agents
 without file access).
 
 That's it. The agent follows the cycle automatically.
@@ -127,25 +127,26 @@ you don't have to re-read the chat for.
    you didn't ask for.
 6. Two tests go red → it fixes the **cause**; the machine gate blocks "done"
    until green.
-7. The skeptic finds an enumeration leak, tied to a line → fixed. A vague
-   "feels insecure" with no source → rejected.
-8. **PASS**, with the test log and a Done / Remaining / Open-questions
-   checklist.
+7. The skeptic finds an enumeration leak, tied to a line → fixed, re-gated, and
+   the skeptic re-reads the fix. A vague "feels insecure" with no source →
+   rejected.
+8. **PASS**, with the test log naming the commit the gate and the skeptic both
+   read, and a Done / Remaining / Open-questions checklist.
 
 *Light tier — same gates, a fraction of the ceremony: open decisions listed
 inline, a one-line "doing X — ok?", the same machine gate, a short self-review.*
 
 ## Token cost — measured
 
-Numbers, not vibes (static: tiktoken `o200k_base`, re-measured 2026-09-14
+Numbers, not vibes (static: tiktoken `o200k_base`, re-measured 2026-09-15
 against the files as they stand; live: real `claude -p` calls, usage from the
 API's own JSON — that column was measured at 0.6.0 and is NOT re-measured here,
 so read it as the shape of the difference, not as today's digits):
 
 | Install | Always-on load | Measured Δ input per call |
 |---|---:|---:|
-| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,386 tok | ≈ +2,254 tok |
-| Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 11,644 tok | ≈ +9,050 tok |
+| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,411 tok | ≈ +2,254 tok |
+| Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 12,241 tok | ≈ +9,050 tok |
 | [`ROLES.md`](ROLES.md) multi-agent overlay | read on demand | — |
 
 The digest was live-tested against the full file (≈50 scored runs, scripted
