@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "That's because you don't have any. Yet."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.9.2-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.9.3-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -145,7 +145,7 @@ so read it as the shape of the difference, not as today's digits):
 
 | Install | Always-on load | Measured Δ input per call |
 |---|---:|---:|
-| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,411 tok | ≈ +2,254 tok |
+| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,405 tok | ≈ +2,254 tok |
 | Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 12,241 tok | ≈ +9,050 tok |
 | [`ROLES.md`](ROLES.md) multi-agent overlay | read on demand | — |
 
@@ -210,8 +210,9 @@ included:
 
 **Actively used on real projects, and dogfooded** — PayneSDD develops itself
 under its own protocol: every change runs the full cycle and an independent
-review before it ships. Latest release: **v0.9.2**.
+review before it ships. Latest release: **v0.9.3**.
 
+- **0.9.3** — a review describes the state it read, so a late commit gets read before PASS or a handover, changed lines no run reached, a module-wide search for a fixed defect's mechanism, a green bound to the exact artifact and environment it ran in, a gate that names a broken tool, and copies found by concept;
 - **0.9.2** — a written rule for the release number, the README Status list checked by the gate, reading rules whose branches cover every result, protocol edits that must first search for the copies of what they change, 0.7.0 measured against 0.9.1 on the stand (no gross regression seen), and the stand's contradiction probe and start-up guards repaired;
 - **0.9.1** — red proofs only where a revert undoes what they write, four inbox gaps closed (a transient spawn retry, fast questions with the depth choice, reading rules whose branches are shown reachable, the reason-line recipe), and the consent probe repaired against a blind read;
 - **0.9.0** — widening a check named as a loosening, a published number carries its rule, the 27-task suite, and an acceptance threshold stated by its measured false-alarm rate;

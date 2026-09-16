@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.9.3 — 2026-09-15
 
 ### Changed
 - **A review describes the state it read (Steps 1.6, 5 and 6).** PASS needs the
