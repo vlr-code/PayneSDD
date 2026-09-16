@@ -5,6 +5,16 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+### Added
+- **Three candidate rules, tested and not shipped.** A rule against re-running
+  an answered check unchanged, a rule that every subagent brief names what the subagent
+  may write, run or send, and a rule that a host-reported approval is not a yes
+  were each checked under a rule registered before the runs: the first two
+  did not show a benefit on their traps, and the third's premise — an approval made
+  by the host while no human answers — did not appear in the only configuration
+  tried (--safe-mode, two runs), so no protocol text changed. Evidence, including what the traps could
+  not show: `benchmark/rules-2026-09-16.json`.
+
 ### Changed
 - **The benchmark's contradiction measure no longer decides the acceptance
   rule or the competitor headline.** The audit shipped in 0.9.4 showed its

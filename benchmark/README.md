@@ -272,6 +272,16 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   snapshot with no companion page: three protocol clauses went in, the
   no-regression half passed, the benefit half came back empty on both traps, and
   one clause was dropped on that null rather than shipped with an excuse.
+- **Three borrowed rules, tested before shipping — none shipped.**
+  [`rules-2026-09-16.json`](rules-2026-09-16.json) (one plan-mode check of two
+  runs and 40 trap runs read blind, 2026-09-16): every candidate rule got a check
+  registered before its runs; two did not show a benefit on their traps, and the
+  third's premise — an approval made by the host while no human answers — did
+  not appear in the only configuration tried (--safe-mode, two runs), so none went into the
+  protocol and no stand epoch ran — there was no text to check for harm. The file names what the
+  traps could not show: the flaky-check trap's second run reads a cache its first
+  run wrote, which that rule itself counts as a new run, and in the delegation
+  trap no helper wrote without authority in either arm.
 - **The rule, run once against a knowingly broken protocol.**
   [`power-2026-09-13.json`](power-2026-09-13.json) (108 runs plus a blind read,
   2026-09-13): the same protocol text with its plan-consent STOP cut out — the
