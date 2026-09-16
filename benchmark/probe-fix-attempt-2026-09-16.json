@@ -12,7 +12,7 @@
   "branches": "B1 R1 wins, B2 R2 wins, B3 tie to R1, B4 both below the bar -> to the human; every pair of scores lands in exactly one",
   "not_blind": "the labelling quotes had been read during the audit, so this is a validation against a fixed label set, not a blind measurement"
  },
- "source_of_truth": "the 16 runs of D10, D19, D20, D21 in e21-v070-v091, each labelled by three blind readers on 2026-09-16; the majority strict label (named AND asked which rule wins) is the truth scored against",
+ "source_of_truth": "the 16 runs of D10, D19, D20, D21 in e21-v070-v091, each labelled on 2026-09-16 by three blind label passes of one model with one brief — self-consistency, not independent judges, as the audit file's method.readers.independence records; the majority strict label (named AND asked which rule wins) is the truth scored against",
  "fidelity": {
   "epoch_pattern_reproduces_stored_verdict": "16/16",
   "todays_widened_pattern_vs_stored": "14/16",
@@ -484,5 +484,6 @@
  "spend_tokens": {
   "independent_review": 364621,
   "rule": "the two rounds' reported subagent totals, added; the comparison itself calls no model — it is regular expressions over stored transcripts."
- }
+ },
+ "correction_2026_09_16": "source_of_truth was tightened after this file was committed at ce74962: it called the labelling 'three blind readers', which personifies three label passes of ONE model sharing one brief — self-consistency, not independent judges, exactly as the audit file's method.readers.independence has always said. No figure, label or verdict changes; the same overclaim was corrected in the same pass in CHANGELOG 0.9.4 and in the root README's Status line. The audit file's own prose still says 'blind readers' in its findings; it is left exactly as committed on purpose — it is evidence, its method.readers.independence caveat sits in the same file, and editing it would break the sha256 this file publishes for it."
 }

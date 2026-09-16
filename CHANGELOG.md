@@ -3,6 +3,51 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 0.9.4 — 2026-09-16
+
+### Changed
+- **No protocol rule changed in this release.** The only edits to `AGENT.md`
+  and `DIGEST.md` are the version stamp and the checksum that pins one to the
+  other; `ROLES.md`, the commands, the agent and the gate scripts are
+  byte-identical to 0.9.3. What ships is the evidence behind one measure of the
+  benchmark, and the version moves only so that evidence has a released number
+  to cite.
+
+### Added
+- **The "found the contradiction" measure, audited**
+  ([`benchmark/contradiction-audit-2026-09-16.json`](benchmark/contradiction-audit-2026-09-16.json)).
+  Three blind label passes of one model — self-consistency, not independent
+  judges — labelled the sixteen runs of the four contradiction tasks. Both arms
+  named the collision in 8 of 8 runs; they asked which rule wins in 4 of 8 and
+  5 of 8, against the probe's 8 of 8 and 6 of 8. Against that label the probe
+  has no false misses and five false credits — the whole of the dip published
+  in 0.9.2's comparison, and an artifact of its question test: it counts any
+  question mark in the turn-1 text as the question. Nothing was re-scored; the
+  stored verdicts reproduce exactly.
+- **Two replacements for that question test, registered before the run and both
+  rejected**
+  ([`benchmark/probe-fix-attempt-2026-09-16.json`](benchmark/probe-fix-attempt-2026-09-16.json)).
+  The handback shape the consent probe already uses, and that shape plus a
+  question sentence about the collision, were frozen and hashed with their
+  acceptance bar — 14 of 16 against the blind labels — before a single number
+  existed. They reached 10 of 16 and 10 of 16, the second 11 of 16 under the
+  wider spelling its own code carried against its frozen text; all three
+  readings are below the bar, so the registered reading says nothing ships. The
+  scorer is untouched and the axis keeps the test the audit criticised until a
+  next cycle redefines it. The handback shape turns out to equal an existing
+  measure on all 16 runs and cannot tell "asked which rule wins" from "asked me
+  to approve my plan".
+
+### Fixed
+- **A claim of absence, corrected inside published evidence.** The audit file
+  said no Python 3.10+ was runnable on the author's machine and built its tools
+  around that; an installed arm64 3.12 had never been looked for. The comparison
+  was re-run importing the real scorer, with identical numbers, and the file now
+  carries the correction at the sentence that made the claim — the protocol's
+  own "not-found is UNKNOWN" rule, failed by its author and repaired in the
+  record rather than quietly. The stand itself still pins an interpreter that no
+  longer runs on that machine; that is recorded in the evidence, not fixed here.
+
 ## 0.9.3 — 2026-09-15
 
 ### Changed

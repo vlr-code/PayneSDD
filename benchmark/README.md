@@ -244,8 +244,18 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   not contain; none of the four asked which rule wins. It stays unrepaired for
   this verdict and is to be repaired before that task is scored again, with the
   maintainer's yes, because a probe that credits more is a loosening; that
-  repair has since been made on that yes, for future scoring only. Every other
-  gated measure moved 0.9.1's way or held; the rule is one-sided, so that is
+  repair has since been made on that yes, for future scoring only. AUDITED
+  2026-09-16: the wording miss is real — the repaired pattern scores both arms
+  8/8 — but it does not settle the measure. Blind labelling (three label passes
+  of one model — self-consistency, not independent judges) of all 16 runs of the
+  four contradiction tasks says both arms named the collision 8/8 and asked
+  which rule wins 4/8 against 5/8, while the probe credited 8/8 against 6/8: no
+  false miss and five false credits, which is the whole of the gap. Two
+  replacements for the question test were registered with a bar before the run
+  and both fell short, so the measure still carries the criticised test; see
+  [contradiction-audit-2026-09-16.json](contradiction-audit-2026-09-16.json) and
+  [probe-fix-attempt-2026-09-16.json](probe-fix-attempt-2026-09-16.json). Every
+  other gated measure moved 0.9.1's way or held; the rule is one-sided, so that is
   described, not claimed. The blind read of turn 1 agreed with the write and
   handback probes on every consent-scored run. What this PASS cannot say: how
   small a drop the rule can see — on a measure scored by four tasks even 6/8 →
