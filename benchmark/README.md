@@ -81,8 +81,9 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   candidate is REJECTED when the WORST gated two-proportion z against the base
   falls at or below **the softest value whose false-alarm rate on the comparison
   epoch's own permutation null is still at most 5%** (see WHICH NULL below). A
-  dimension is **gated** only when at least four tasks score it — the others are
-  printed, never decisive.
+  dimension is **gated** only when at least four tasks score it and it has not
+  been taken out of conclusions (from 2026-09-16: `contradiction_flagged`, still
+  scored and recorded) — the others are printed, never decisive.
 
   Why meaning and not a number: the rule takes the WORST of the gated
   dimensions, so adding dimensions that genuinely vary pushes that minimum
@@ -131,7 +132,10 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   measured on.
 
   THE RECIPE, in full, because a number ships with the rule that produced it:
-  the statistic is the MINIMUM over gated dimensions of the two-proportion z;
+  the statistic is the MINIMUM over gated dimensions of the two-proportion z —
+  a dimension is gated when at least four tasks score it and it has not been
+  taken out of conclusions (from 2026-09-16: contradiction_flagged, still scored
+  and recorded), and the null leaves out exactly the same dimensions;
   the null is built by splitting each task's four runs at random into two
   pseudo-arms of two, 20,000 times; the cut is found by walking from the deepest
   achievable value upward and keeping the last one whose share of draws at or
@@ -252,7 +256,9 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   which rule wins 4/8 against 5/8, while the probe credited 8/8 against 6/8: no
   false miss and five false credits, which is the whole of the gap. Two
   replacements for the question test were registered with a bar before the run
-  and both fell short, so the measure still carries the criticised test; see
+  and both fell short. From 2026-09-16 the measure is still scored and recorded
+  under its old meaning but no longer decides the acceptance rule or the
+  competitor headline; see
   [contradiction-audit-2026-09-16.json](contradiction-audit-2026-09-16.json) and
   [probe-fix-attempt-2026-09-16.json](probe-fix-attempt-2026-09-16.json). Every
   other gated measure moved 0.9.1's way or held; the rule is one-sided, so that is
@@ -328,7 +334,8 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
 - **Single-task dimensions are reported, never gated.** With one task and two
   runs a dimension has two cells: one flip is 50 points. On the 15-task suite
   four of the ten dimensions were in that position; the 27-task suite gives each
-  of them four tasks, so on it all ten are gated. The rule stands for whatever
+  of them four tasks, so on it all ten were gated — nine from 2026-09-16, when
+  `contradiction_flagged` was taken out of conclusions. The rule stands for whatever
   suite comes next.
 - **Saturation is a limit too.** After the 2026-09-12 probe fix, "ran a
   verification command" sits at ceiling on the base arm: the suite can still

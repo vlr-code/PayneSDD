@@ -101,9 +101,26 @@ biased in their calls. One stored verdict changes as a result — the 2026-08
 haiku rejection (`e5-cch-borrows`) no longer trips the two-dimension clause.
 Every talk-level rejection stands, some with different digits.
 
+## Correction (2026-09-16)
+
+- **Finding 6 rests on the contradiction probe, and that probe no longer
+  decides the acceptance rule or the competitor headline.** The "0 of 15" above
+  was counted in July by a word-list probe later found blind to how agents
+  actually name this collision: it missed all four real runs of this task
+  checked in September — two wrote «конфликт», which it lacked (it held only the
+  Latin "conflict"), and two «спорят», a word in no list — and repairing
+  it on 2026-09-13 flipped 20 stored verdicts from false to true across the
+  epochs still on disk. The July transcripts are gone, so the count cannot be
+  re-read; it stays as measured, but a zero from a probe with documented misses
+  is not evidence that nobody noticed. On a later suite, blind labels (three
+  label passes of one model — self-consistency, not independent judges) found
+  all sixteen labelled runs naming the collision
+  ([`contradiction-audit-2026-09-16.json`](contradiction-audit-2026-09-16.json)).
+  The probe is still scored and recorded.
+
 ## What this changes for PayneSDD
 - Protocol wording changes ship only through the harness: pre-registered
-  thresholds, every dimension watched. Three of our own candidate edits were
+  thresholds, every gated dimension watched. Three of our own candidate edits were
   rejected exactly this way — the harness does not care who wrote the patch.
 - The harness itself (tasks, runner, scoring) lives git-ignored in
   `benchmark/local/`; runs are work, not history. This page cites only the

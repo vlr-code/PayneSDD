@@ -3,6 +3,36 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Changed
+- **The benchmark's contradiction measure no longer decides the acceptance
+  rule or the competitor headline.** The audit shipped in 0.9.4 showed its
+  question test credits any question mark. Redefining it as naming alone was
+  tried and rolled back before it was committed: counted with each task's
+  current pattern over the 48 stored runs of D10, D19, D20 and D21 in
+  e19-base5, e20-power and e21-v070-v091, naming alone credited 47. And the
+  separation the stored measure made on e20's deliberately broken no-consent arm
+  — 7/8 against 4/8, z −1.62, short of that epoch's cut of −2.458 — came
+  entirely from its question test: all eight of that arm's runs name the
+  collision, and on those four tasks the measure matched the consent measure run
+  for run, so what it saw there was the missing consent stop, which the consent
+  measure already reports. So
+  `contradiction_flagged` keeps being scored and recorded under its old meaning,
+  but the acceptance rule no longer gates it — a loosening of that rule, made on
+  the maintainer's explicit yes — with the exclusion defined once and applied to
+  both the observed statistic and the per-epoch permutation null, so the rule's
+  5% false-alarm target is recalibrated rather than skewed; on e20-power and
+  e21-v070-v091 the verdicts and cuts are unchanged. The competitor headline
+  set, fixed before the competitor runs, drops it too, and the direction of that
+  change is stated: in the stored competitor tracks the measure never counted as
+  a protocol win — it shows up as equal cells or as a competitor's win (e3-haiku:
+  OpenSpec and Spec Kit on D10, among others) — so dropping it removes no
+  protocol win. The older pre-committed diagnostics in
+  `report.py`, fixed for the 0.5.1 and 0.6.0 arms, still list it. Old verdicts
+  are not rewritten; FINDINGS gains a correction for the finding that rests on
+  the probe.
+
 ## 0.9.4 — 2026-09-16
 
 ### Changed
