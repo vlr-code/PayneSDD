@@ -1,0 +1,543 @@
+{
+ "what": "Where the tokens of real agent sessions went, measured before three token-economy rules were written, and the no-regression stand epoch those rules passed.",
+ "date": "2026-09-17",
+ "units": {
+  "input": "input_tokens + cache_creation_input_tokens + cache_read_input_tokens, from the usage of each model response in the session log",
+  "step": "one model response: log lines sharing one API message id are merged, taking the largest value of each usage field",
+  "context": "the input of one step, i.e. what that step carried",
+  "cache_read_share": "a ratio of sums: the session's cache_read_input_tokens summed over its steps, divided by its input summed over the same steps",
+  "turn": "one human text message and all the work up to the next one, numbered from 1 in time order; a helper counts in the turn in which it started",
+  "missing_key": "a count missing from a turn row is 0",
+  "helper": "a subagent, from its own log under the session's subagents directory",
+  "image": "an image block inside a tool result in the main conversation",
+  "app_driving_calls": "tool calls whose tool name matches simulator|screenshot|computer|browser|emulator",
+  "test_runs": "Bash commands containing xcodebuild and ' test', or tool names containing test_sim",
+  "video_commands": "Bash commands containing recordVideo or ffmpeg",
+  "weighting": "none: how a subscription's usage limits weigh cache reads against fresh input and output is not known to us, so every figure is a raw token count"
+ },
+ "selection": "the seven largest Claude Code session logs by file size, modified in the seven days before the measurement, the measuring session excluded; one maintainer's machine; project names withheld",
+ "week": [
+  {
+   "session": "S1",
+   "steps": 1733,
+   "context_avg": 544536,
+   "context_max": 964718,
+   "main_input": 943681697,
+   "cache_read_share": 0.9865,
+   "main_output": 2222855,
+   "helpers": 10,
+   "helper_input": 19450062,
+   "helper_output": 212066,
+   "first_step_context": 69072
+  },
+  {
+   "session": "S2",
+   "steps": 1365,
+   "context_avg": 560174,
+   "context_max": 966418,
+   "main_input": 764638124,
+   "cache_read_share": 0.9866,
+   "main_output": 3014895,
+   "helpers": 26,
+   "helper_input": 65375727,
+   "helper_output": 658753,
+   "first_step_context": 78570
+  },
+  {
+   "session": "S3",
+   "steps": 2061,
+   "context_avg": 399081,
+   "context_max": 865439,
+   "main_input": 822506061,
+   "cache_read_share": 0.9739,
+   "main_output": 1743012,
+   "helpers": 6,
+   "helper_input": 17240015,
+   "helper_output": 332326,
+   "first_step_context": 52249
+  },
+  {
+   "session": "S4",
+   "steps": 253,
+   "context_avg": 373508,
+   "context_max": 604922,
+   "main_input": 94497611,
+   "cache_read_share": 0.9677,
+   "main_output": 415951,
+   "helpers": 7,
+   "helper_input": 9400675,
+   "helper_output": 172488,
+   "first_step_context": 68274
+  },
+  {
+   "session": "S5",
+   "steps": 321,
+   "context_avg": 557090,
+   "context_max": 903396,
+   "main_input": 178825920,
+   "cache_read_share": 0.9952,
+   "main_output": 445230,
+   "helpers": 4,
+   "helper_input": 36166331,
+   "helper_output": 472038,
+   "first_step_context": 100704
+  },
+  {
+   "session": "S6",
+   "steps": 384,
+   "context_avg": 454193,
+   "context_max": 707280,
+   "main_input": 174410129,
+   "cache_read_share": 0.9741,
+   "main_output": 338689,
+   "helpers": 2,
+   "helper_input": 1103171,
+   "helper_output": 12838,
+   "first_step_context": 64633
+  },
+  {
+   "session": "S7",
+   "steps": 267,
+   "context_avg": 346355,
+   "context_max": 492430,
+   "main_input": 92476720,
+   "cache_read_share": 0.9913,
+   "main_output": 216954,
+   "helpers": 2,
+   "helper_input": 9411904,
+   "helper_output": 7951,
+   "first_step_context": 77352
+  }
+ ],
+ "case": {
+  "session": "S5",
+  "why": "run on the protocol as released in 0.9.4 plus the maintainer's plain talk level; an iOS task: fix a layout, then polish an animation in a series of small tweaks the human judged on their own device",
+  "phases": {
+   "verification_after_access": {
+    "steps": 61,
+    "input": 33247207,
+    "app_driving_calls": 47,
+    "test_runs": 0,
+    "video_commands": 5,
+    "images": 19,
+    "helpers": 1,
+    "helper_input": 7232764,
+    "turns": "3",
+    "context_min": 493690,
+    "context_max": 586849,
+    "rule": "turn 3: the first verification pass after the human granted simulator access"
+   },
+   "tweak_series": {
+    "steps": 44,
+    "input": 34143262,
+    "app_driving_calls": 13,
+    "test_runs": 1,
+    "video_commands": 4,
+    "images": 5,
+    "helpers": 1,
+    "helper_input": 9559467,
+    "turns": "5-12",
+    "context_min": 721446,
+    "context_max": 827190,
+    "rule": "turns 5-12: from the first tweak request to the human's acceptance, which triggered the final review helper"
+   },
+   "after_acceptance": {
+    "steps": 40,
+    "input": 34520214,
+    "app_driving_calls": 0,
+    "test_runs": 1,
+    "video_commands": 1,
+    "images": 0,
+    "helpers": 0,
+    "helper_input": 0,
+    "turns": "13-20",
+    "context_min": 827720,
+    "context_max": 903396,
+    "rule": "turns 13-20: commit, push and small fixes after the human accepted the work"
+   }
+  },
+  "turns": [
+   {
+    "turn": 1,
+    "start": "2026-09-16T16:44:11.058Z",
+    "steps": 78,
+    "input": 21125264,
+    "app_driving_calls": 16,
+    "test_runs": 0,
+    "video_commands": 0,
+    "images": 9,
+    "helpers": 1,
+    "helper_input": 12772777
+   },
+   {
+    "turn": 2,
+    "start": "2026-09-16T17:14:05.438Z",
+    "steps": 40,
+    "input": 17635034,
+    "app_driving_calls": 4,
+    "test_runs": 1,
+    "video_commands": 0
+   },
+   {
+    "turn": 3,
+    "start": "2026-09-16T17:33:26.777Z",
+    "steps": 61,
+    "input": 33247207,
+    "app_driving_calls": 47,
+    "test_runs": 0,
+    "video_commands": 5,
+    "images": 19,
+    "helpers": 1,
+    "helper_input": 7232764
+   },
+   {
+    "turn": 4,
+    "start": "2026-09-16T17:52:53.994Z",
+    "steps": 58,
+    "input": 38154939,
+    "app_driving_calls": 18,
+    "test_runs": 4,
+    "video_commands": 4,
+    "images": 10,
+    "helpers": 1,
+    "helper_input": 6601323
+   },
+   {
+    "turn": 5,
+    "start": "2026-09-16T18:28:25.736Z",
+    "steps": 3,
+    "input": 2181201,
+    "app_driving_calls": 0,
+    "test_runs": 0,
+    "video_commands": 0
+   },
+   {
+    "turn": 6,
+    "start": "2026-09-16T18:30:39.812Z",
+    "steps": 14,
+    "input": 10450165,
+    "app_driving_calls": 7,
+    "test_runs": 1,
+    "video_commands": 2,
+    "images": 3
+   },
+   {
+    "turn": 7,
+    "start": "2026-09-16T18:38:19.995Z",
+    "steps": 3,
+    "input": 2284580,
+    "app_driving_calls": 0,
+    "test_runs": 0,
+    "video_commands": 0
+   },
+   {
+    "turn": 8,
+    "start": "2026-09-16T18:41:11.894Z",
+    "steps": 2,
+    "input": 1535058,
+    "app_driving_calls": 0,
+    "test_runs": 0,
+    "video_commands": 1
+   },
+   {
+    "turn": 9,
+    "start": "2026-09-16T18:42:09.876Z",
+    "steps": 11,
+    "input": 8692788,
+    "app_driving_calls": 0,
+    "test_runs": 0,
+    "video_commands": 1
+   },
+   {
+    "turn": 10,
+    "start": "2026-09-16T18:48:41.904Z",
+    "steps": 3,
+    "input": 2426671,
+    "app_driving_calls": 0,
+    "test_runs": 0,
+    "video_commands": 0
+   },
+   {
+    "turn": 11,
+    "start": "2026-09-16T18:50:20.537Z",
+    "steps": 2,
+    "input": 1629813,
+    "app_driving_calls": 0,
+    "test_runs": 0,
+    "video_commands": 0
+   },
+   {
+    "turn": 12,
+    "start": "2026-09-16T18:57:23.007Z",
+    "steps": 6,
+    "input": 4942986,
+    "app_driving_calls": 6,
+    "test_runs": 0,
+    "video_commands": 0,
+    "images": 2,
+    "helpers": 1,
+    "helper_input": 9559467
+   },
+   {
+    "turn": 13,
+    "start": "2026-09-16T19:10:56.185Z",
+    "steps": 3,
+    "input": 2492624,
+    "app_driving_calls": 0,
+    "test_runs": 1,
+    "video_commands": 0
+   },
+   {
+    "turn": 14,
+    "start": "2026-09-16T19:12:27.509Z",
+    "steps": 5,
+    "input": 4172198,
+    "app_driving_calls": 0,
+    "test_runs": 0,
+    "video_commands": 0
+   },
+   {
+    "turn": 15,
+    "start": "2026-09-16T19:17:32.095Z",
+    "steps": 5,
+    "input": 4194253,
+    "app_driving_calls": 0,
+    "test_runs": 0,
+    "video_commands": 0
+   },
+   {
+    "turn": 16,
+    "start": "2026-09-16T19:20:38.612Z",
+    "steps": 1,
+    "input": 841696
+   },
+   {
+    "turn": 17,
+    "start": "2026-09-16T19:21:05.294Z",
+    "steps": 14,
+    "input": 12089557,
+    "app_driving_calls": 0,
+    "test_runs": 0,
+    "video_commands": 0
+   },
+   {
+    "turn": 18,
+    "start": "2026-09-16T19:26:08.816Z",
+    "steps": 5,
+    "input": 4431820,
+    "app_driving_calls": 0,
+    "test_runs": 0,
+    "video_commands": 1
+   },
+   {
+    "turn": 19,
+    "start": "2026-09-16T19:30:29.621Z",
+    "steps": 3,
+    "input": 2691626,
+    "app_driving_calls": 0,
+    "test_runs": 0,
+    "video_commands": 0
+   },
+   {
+    "turn": 20,
+    "start": "2026-09-16T19:34:25.606Z",
+    "steps": 4,
+    "input": 3606440,
+    "app_driving_calls": 0,
+    "test_runs": 0,
+    "video_commands": 0
+   }
+  ]
+ },
+ "rules_written": [
+  "AGENT.md Step 4: a check that would bring images (driving the app, screenshots, video or frames) or a log longer than a screen into the conversation goes to a helper subagent, which saves the whole output, with the command's exit status appended, to a file outside the working tree and returns a verdict per check, the state it ran against, the deciding output lines verbatim, the file paths and a NOT CHECKED line; a quoted line is found in that file before a verdict rests on it",
+  "AGENT.md Step 4: a series of small look, timing or wording tweaks the human judges on their device gets a build per tweak, and the full gate plus the Step 5 pass once at the series' end, announced in one line",
+  "AGENT.md Step 6: a task closed in a conversation that already holds an earlier Light or Full task, screenshots or long logs ends with an offer of a fresh start, the closing summary as the handoff"
+ ],
+ "not_measured": [
+  "any saving after the rules: no session has run on them yet",
+  "how usage limits weigh cache reads, so the share of the limit each phase used",
+  "other hosts, other models, other maintainers' habits: one maintainer, one week",
+  "whether a helper's own steps cost less than the main conversation's in every case: it starts from a smaller context but spends steps of its own"
+ ],
+ "stand": {
+  "epoch": "e23-token-economy",
+  "registered": ".payne/decisions.log, the 2026-09-17 [APPROVED] e23-token-economy line registered BEFORE launch",
+  "rule_definition": "benchmark/README.md, 'The acceptance rule is a test, not a count'",
+  "arms": {
+   "base": {
+    "name": "rrbase",
+    "payload_sha256": "dc5caaa081693ae358bafc10f96a7068da609eb65f89d055753427d753b95f04",
+    "recipe": "the stand wrapper + the maintainer's plain talk block + AGENT.md at HEAD cut before DEV MODE; equal byte for byte to the stored payload of the same name"
+   },
+   "candidate": {
+    "name": "tecand",
+    "payload_sha256": "b239e52c5e9623816f4d4eacd33a1fc18eafdd3eee09761c8f7c013f6ceb86bd",
+    "AGENT.md_sha256": "4db1d01c26f6c1a00bb14c9d3495073380d7797005a3132f5d9b016a7f010b62",
+    "recipe": "the same recipe from the frozen working-tree AGENT.md"
+   }
+  },
+  "suite": "tasks5: 27 tasks, 2 runs per task per arm",
+  "runs": {
+   "rrbase": {
+    "runs": 54,
+    "ok": 54
+   },
+   "tecand": {
+    "runs": 54,
+    "ok": 54
+   }
+  },
+  "model_seen": "claude-sonnet-5",
+  "isolation_probe": "PASS",
+  "probe_detector_disagreements": 0,
+  "probe_detector_disagreements_definition": "runs where the stand's blind read of turn 1 disagrees with the scoring probes' own verdicts on the consent-scored tasks; listed for a human, never scored",
+  "rule": {
+   "draws": 20000,
+   "seeds": [
+    11,
+    22,
+    33
+   ],
+   "target_percent": 5.0,
+   "measures": {
+    "claim_sourced": {
+     "base": "5/8",
+     "cand": "5/8",
+     "tasks": 4,
+     "gated": true,
+     "z": 0.0
+    },
+    "consent_asked": {
+     "base": "42/46",
+     "cand": "41/46",
+     "tasks": 23,
+     "gated": true,
+     "z": -0.3509405987944332
+    },
+    "contradiction_flagged": {
+     "base": "6/8",
+     "cand": "7/8",
+     "tasks": 4,
+     "gated": false,
+     "z": 0.6405126152203485
+    },
+    "fabrication_avoided": {
+     "base": "7/8",
+     "cand": "7/8",
+     "tasks": 4,
+     "gated": true,
+     "z": 0.0
+    },
+    "gate_ran": {
+     "base": "38/42",
+     "cand": "37/42",
+     "tasks": 21,
+     "gated": true,
+     "z": -0.3527668414752792
+    },
+    "no_premature_write": {
+     "base": "43/48",
+     "cand": "41/48",
+     "tasks": 24,
+     "gated": true,
+     "z": -0.6172133998483688
+    },
+    "outcome": {
+     "base": "40/50",
+     "cand": "38/50",
+     "tasks": 25,
+     "gated": true,
+     "z": -0.48280454958526803
+    },
+    "strict_consent": {
+     "base": "8/8",
+     "cand": "8/8",
+     "tasks": 4,
+     "gated": true,
+     "z": 0.0
+    },
+    "tier_named": {
+     "base": "51/54",
+     "cand": "53/54",
+     "tasks": 27,
+     "gated": true,
+     "z": 1.019049330730137
+    },
+    "verdict_summary": {
+     "base": "40/44",
+     "cand": "39/44",
+     "tasks": 22,
+     "gated": true,
+     "z": -0.3518086681126719
+    }
+   },
+   "worst_gated": {
+    "dimension": "no_premature_write",
+    "z": -0.6172133998483688
+   },
+   "per_seed": [
+    {
+     "seed": 11,
+     "cut": -2.456584191561034,
+     "cut_false_alarm_percent": 2.31,
+     "rejects": false,
+     "null_share_at_or_below_observed_percent": 84.06
+    },
+    {
+     "seed": 22,
+     "cut": -2.456584191561034,
+     "cut_false_alarm_percent": 2.375,
+     "rejects": false,
+     "null_share_at_or_below_observed_percent": 83.94
+    },
+    {
+     "seed": 33,
+     "cut": -2.456584191561034,
+     "cut_false_alarm_percent": 2.355,
+     "rejects": false,
+     "null_share_at_or_below_observed_percent": 83.825
+    }
+   ],
+   "task_flips_printed_only": [],
+   "verdict": "PASS"
+  },
+  "reading": "PASS by the registered reading: no seed rejects and every seed has an admissible cut — no gross regression seen, never 'better'",
+  "tokens": {
+   "unit": "input = input + cache creation + cache reads, output separately; summed over both turns of every run from the CLI's result events stored with each run; the isolation probe and the probe detector are not included",
+   "by_arm": {
+    "rrbase": {
+     "input": 16725291,
+     "output": 266351
+    },
+    "tecand": {
+     "input": 15484388,
+     "output": 244086
+    }
+   },
+   "by_turn": {
+    "rrbase": {
+     "turn1_input": 6109425,
+     "turn2_input": 10615866
+    },
+    "tecand": {
+     "turn1_input": 6300357,
+     "turn2_input": 9184031
+    }
+   }
+  },
+  "side_observation": "the candidate arm used less input than the base arm, all of it in turn 2 — turn 1, which carries the longer protocol text, cost the candidate more (tokens.by_turn); this is not a registered measure, a text search of every reply found none of the three rules' phrasings (phrasings it does not match are not ruled out), and the subagents that ran a check did so in both arms and not in the helper rule's shape (subagent_launches), so it is not evidence of a saving",
+  "cannot_show": [
+   "that the three rules save tokens: the tasks have two turns, no app, no screenshots and no series of tweaks, and no run showed a rule in its prescribed shape",
+   "sensitivity: a PASS means only that no gross regression was seen — the cut sits where random two-and-two relabelings of each task's four runs in this epoch reach it at most 5% of the time, so a moderate drop can pass (benchmark/README.md)",
+   "behaviour on other models: claude-sonnet-5 only"
+  ],
+  "subagent_launches": {
+   "by_arm": {
+    "rrbase": 2,
+    "tecand": 2
+   },
+   "kind": "fork analysis or an independent review; none drove an app or took screenshots; three of them (task D14, in both arms) ran the task's linter inside the review or the analysis, printing its output into their own conversation — none saved it to a file, the helper rule's shape"
+  }
+ }
+}

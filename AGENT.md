@@ -506,6 +506,38 @@ Rules:
   the rest soft/by-eye). Record which ran.
 - If the check is subjective by nature (tone, design, taste) — honestly mark it a
   SOFT gate (a rubric judgment); don't pass it off as objective.
+- EVERY STEP RE-READS THE CONVERSATION: each model call carries all of it, so a
+  screenshot or a long log, once in, is read again at every later step. A check
+  that would bring images (driving the app, screenshots, video or frames) or a
+  log longer than a screen (a full test run, say) into the conversation goes to
+  a helper subagent. The helper saves the whole output, with the command's exit
+  status appended, to a file outside the working tree and returns a verdict per
+  check, the state it ran against (a commit or content hash, and which build),
+  the deciding lines of the tool's own output verbatim (exit status, the
+  summary, what failed, what the gate map needs), the paths of that file and of
+  any saved screenshots, and a NOT CHECKED line — never the images or the whole
+  log. Before a verdict rests on a quoted line, find it in that file with a
+  search that prints only the match; open a screenshot yourself only when the
+  helper reports a failure or cannot decide. A check you run yourself enters the
+  conversation cut to its deciding lines, keeping the command's own exit status.
+  No helper, or the helper lacks the tool: run the check yourself under the same
+  cut, opening only the screenshot a decision rests on.
+- A SERIES OF SMALL TWEAKS — the human adjusts the look, timing or wording of
+  what was just built, change after change, judging each on their device or by
+  eye: say once, in one line, that each tweak gets only its cheapest check that
+  can fail — a build of what they run — and that the full gate and the Step 5
+  pass run once, at the series' end, over all of it; no reply to that line is
+  awaited. A tweak is not one of Step 5's fixes: each handback ends with one line
+  naming what has not run yet, and no verdict comes before the series ends —
+  when the human accepts the result or asks for something that is not a tweak (a
+  commit, a pull request, new work). A failed build is fixed before they get it;
+  runs already under way finish unawaited, and a red one is named in the next
+  handback line. A tweak that reaches past look, timing or wording (logic, data,
+  persistence, or a hard-floor topic beyond the look, timing or wording itself)
+  leaves the series for its own cycle at its own tier. Their device check stays
+  SOFT; a fix from the end gate or pass that changes what they judged is judged
+  again by them before PASS; a handover for acceptance still takes Step 1.6
+  first.
 
 ================================================================================
 STEP 5. ADVERSARIAL — INDEPENDENT BREAK-IT CHECK
@@ -623,6 +655,12 @@ Rules for the block:
   not status (see that section); don't mirror the summary into it.
 - Honor-system: no hook polices this block, same as the decision log. Its
   presence is on you.
+- A LONG CONVERSATION is read again at every later step (Step 4): when the task
+  has just closed and the conversation already holds an earlier Light or Full
+  task, screenshots or long logs, end with one line offering the human a fresh
+  start — compacting the conversation or a new session — with this summary, the
+  commit or branch and the next step as the handoff. Offer it; never clear or
+  restart the conversation yourself.
 
 Shape (copy this — headers in the human's language):
 

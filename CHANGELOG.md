@@ -6,6 +6,31 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## Unreleased
 
 ### Added
+- **Three token-economy rules.** Every model call carries the whole
+  conversation, so all of it is read again at every step: in the seven largest
+  sessions of one maintainer's week, 96.8–99.5% of the main agent's input
+  tokens were cache re-reads, at 346K–560K tokens a step on average (input =
+  input + cache creation + cache reads of each model response, from the session
+  logs; figures and method: `benchmark/token-economy-2026-09-17.json`). Step 4
+  now sends a check that would bring images or a long log into the conversation
+  to a helper subagent, which saves the whole output with its exit status to a file and returns a
+  verdict per check, the state it ran against, the deciding lines verbatim —
+  found in that file before a verdict rests on them — and the file paths, never
+  the images or the whole log. A series of small look, timing or wording tweaks
+  the human judges on their device gets a build per tweak, with the full gate
+  and the Step 5 pass once at the series' end, announced in one line. Step 6
+  ends a task closed in a long conversation with an offer of a fresh start, the
+  summary as the handoff. The digest carries all three in 293 more bytes
+  (wc -c). No saving is measured yet — no session has run on these rules. The
+  stand's short two-turn tasks are not built to exercise them, and a text
+  search of every reply found none of their phrasings. What the stand can check
+  is a gross regression elsewhere, and the no-regression epoch registered before
+  launch (27 tasks, two runs per task per arm, claude-sonnet-5) found none: no
+  seed of the acceptance rule rejected; the worst gated measure's
+  two-proportion z was −0.62 against the rule's own-null cut of −2.46 (rule:
+  `benchmark/README.md`; figures: the JSON's stand section). Five gated measures
+  read slightly lower for the new text, one higher and three equal, all inside
+  the cut — a pass means no gross drop was seen, never "better".
 - **Three candidate rules, tested and not shipped.** A rule against re-running
   an answered check unchanged, a rule that every subagent brief names what the subagent
   may write, run or send, and a rule that a host-reported approval is not a yes

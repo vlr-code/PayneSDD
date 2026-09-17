@@ -29,12 +29,12 @@ the full discipline is one file-read away the moment a real task appears.
 ## Shipped implementation: `DIGEST.md`
 
 You don't have to hand-roll the slim core: the repo ships [`DIGEST.md`](DIGEST.md)
-(~2.4k tokens) — a richer floor than the minimal core below. It carries the
+(~2.5k tokens) — a richer floor than the minimal core below. It carries the
 binding essentials of EVERY gate (tiers + hard floor, contract shape, consent
 STOP, machine gate, adversarial pass, verdict + summary, the never-do list,
 the voice) plus the loading rule pointing at the full `AGENT.md`. Even if the
 on-demand read ever fails to fire, the gates still bind — that safety is what
-the extra ≈2.2k tokens over the minimal core buy (the digest's count in the
+the extra ≈2.3k tokens over the minimal core buy (the digest's count in the
 README token table, less the minimal core's 178).
 
 It cannot silently drift from the protocol: `DIGEST.md` is checksum-pinned to
@@ -186,7 +186,7 @@ silent (trivial tasks aren't punished). Add `.payne-active*` to your
 `.gitignore` — the marker and its block counter are runtime files, never
 committed.
 
-Three honest notes:
+Four honest notes:
 - **Disarming is loud, not impossible.** The marker is the agent's to remove —
   that is the contract for done / abandoned / honestly escalated — and the hook
   cannot tell an honest disarm from a dishonest one. It can make it visible: if
@@ -198,6 +198,11 @@ Three honest notes:
 - **`PAYNE_TEST_CMD` is a command the gate executes on every stop.** In a
   shared repo where `.claude/settings.json` is committed, review changes to it
   like code — it runs with your user's permissions.
+- **Under an armed hook a series of small tweaks (AGENT.md Step 4) still runs
+  `PAYNE_TEST_CMD` at every stop** — a full suite per tweak. Pointing the
+  command at just the build for the series narrows an enforced check, a
+  loosening under Step 4's DIRECTION ASYMMETRY: only on the human's yes, and
+  restored before the series' end.
 
 **Portability, honestly:** the *enforcement* (auto-block on stop) is Claude-Code
 only. On other agents run `hooks/payne-gate-core.sh` directly — same red/green
