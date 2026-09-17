@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "That's because you don't have any. Yet."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.9.4-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.9.5-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -145,7 +145,7 @@ so read it as the shape of the difference, not as today's digits):
 
 | Install | Always-on load | Measured Δ input per call |
 |---|---:|---:|
-| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,483 tok | ≈ +2,254 tok |
+| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,475 tok | ≈ +2,254 tok |
 | Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 12,937 tok | ≈ +9,050 tok |
 | [`ROLES.md`](ROLES.md) multi-agent overlay | read on demand | — |
 
@@ -210,8 +210,9 @@ included:
 
 **Actively used on real projects, and dogfooded** — PayneSDD develops itself
 under its own protocol: every change runs the full cycle and an independent
-review before it ships. Latest release: **v0.9.4**.
+review before it ships. Latest release: **v0.9.5**.
 
+- **0.9.5** — three token-economy rules, because every step re-reads the whole conversation: a check that would bring images or a long log goes to a helper subagent, a series of small look, timing or wording tweaks gets a build per tweak and the full gate and review once at its end, and a task closed in a long conversation ends with an offer of a fresh start; a no-regression stand epoch saw no gross drop and no saving is measured yet; three other candidate rules were tested and did not ship, and the contradiction measure no longer decides the stand's acceptance rule;
 - **0.9.4** — no protocol rule changed: what shipped is the evidence behind one benchmark measure — the "found the contradiction" probe audited against blind labels, and two registered replacements for it rejected against a bar set before the run;
 - **0.9.3** — a review describes the state it read, so a late commit gets read before PASS or a handover, changed lines no run reached, a module-wide search for a fixed defect's mechanism, a green bound to the exact artifact and environment it ran in, a gate that names a broken tool, and copies found by concept;
 - **0.9.2** — a written rule for the release number, the README Status list checked by the gate, reading rules whose branches cover every result, protocol edits that must first search for the copies of what they change, 0.7.0 measured against 0.9.1 on the stand (no gross regression seen), and the stand's contradiction probe and start-up guards repaired;

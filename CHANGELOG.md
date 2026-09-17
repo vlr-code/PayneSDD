@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.9.5 — 2026-09-17
 
 ### Added
 - **Three token-economy rules.** Every model call carries the whole
