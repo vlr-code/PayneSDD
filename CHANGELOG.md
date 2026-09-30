@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.9.6 — 2026-09-30
 
 ### Added
 - **A look-back before anything goes out.** Step 1.6's plan block already named
