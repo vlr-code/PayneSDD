@@ -3,6 +3,28 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Added
+- **A look-back before anything goes out.** Step 1.6's plan block already named
+  the irreversible and external acts; now each one others will see under a name
+  or in a form — a release, deploy or upload, a tag, a pull request, a commit to
+  a shared branch, a message — carries one more line: how it will look, how the
+  previous ones of its kind look from outside and where they were seen, and the
+  differences. The agent reads the published result, not the script that made
+  it, and only reads. A name left to a tool's default is said to be one. A
+  previous one it cannot see is reported as not seen, with a request for a
+  reference; a yes without one covers going ahead. A known difference the
+  approved plan did not name goes back to the human before the act. The trigger
+  was one live report: the plan for an SDK release named the publish command and
+  got its yes, nobody looked at how the last release appeared in the package
+  registry, and the new one went out under a label the tool generated instead of
+  the one the team's releases carry. The digest's Step 1.6 line now names the
+  irreversible acts and the look-back: 341 more bytes (wc -c). `/payne-edit` §7
+  reads the last two GitHub releases before asking to cut one. The README and
+  DEPLOYMENT token figures are recounted for the longer files. The benefit is
+  not measured: no stand task contains a publish.
+
 ## 0.9.5 — 2026-09-17
 
 ### Added

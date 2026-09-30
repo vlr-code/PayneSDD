@@ -315,7 +315,22 @@ THE IRON RULE:
      will NOT do — and the foreseeable IRREVERSIBLE or EXTERNAL actions the task
      will take (push, delete, send, publish, external-API write — and wiping
      your own working infrastructure: a local database, a container or VM, a
-     simulator, git history); the "yes" covers exactly the named set.
+     simulator, git history); the "yes" covers exactly the named set. Each act
+     of that set others will see under a name or in a form — a release, deploy
+     or upload, a tag, a pull request, a commit to a shared branch, a message
+     sent — carries a LOOK-BACK line: what goes where, how it will look, how
+     the PREVIOUS ones of its kind look from outside and where you saw them —
+     the last two, or the only one, into the same place for the same thing,
+     else the nearest sibling, marked so — by name, version format, tags and
+     labels, by hand or by command, attached files, notes, draft/latest/public
+     flags; and the differences, or "none". Read the published result, not the
+     script that made it, and only read, with the access you already hold; a
+     name left to a tool's default is said to be one, unseen. Not visible →
+     "not seen — <why>" and a request for a reference in the same message; a
+     yes without one covers going ahead unseen ("first of its kind" needs an
+     empty list you saw). Two previous ones that disagree are shown and asked
+     about; a written convention outranks them; a known difference the
+     approved plan did not name re-enters this gate before the act.
   2. End the message with a DIRECT question in exactly this shape:
      "Build it this way, or revise?" (or an equivalent "go / revise?").
   3. STOP and wait for an answer. No write-tool calls, no code in that same
@@ -326,7 +341,9 @@ THE IRON RULE:
 - An irreversible/external action NOT named in the approved plan re-enters this
   gate BEFORE acting, however small it looks mid-task — it is never merely a
   loggable [DEVIATION]. On LIGHT the same rule rides the one-line consent: name
-  such actions in the line ("doing X, will push — ok?"). And when something else
+  such actions in the line, each one others will see with its look-back
+  ("doing X, will push to main, commit worded like the last two there — ok?").
+  And when something else
   can write where you are about to write — a shared branch or tree, a live
   system, someone else's record — you RE-READ that destination's current state
   immediately before the irreversible step: the ground moves while you work, and

@@ -42,7 +42,7 @@ Show the contract first: Goal (why) · Non-goals · Behavior B1..Bn — what MUS
 COSTLY-TO-REVERSE: a fork expensive to undo — TECHNICAL (platform, framework, persistence, key dependency) OR BEHAVIOR/DATA-SEMANTICS (what/when to persist or send, which branch fires) — is ASKED when unpinned and >1 reasonable option exists; NEVER silently defaulted, even on Light. In doubt whether costly → ask. Decide only low-stakes details, stated for veto.
 
 ## Step 1.6 — Consent STOP (never skipped)
-Answers are RAW MATERIAL, NOT approval. Full: assemble the plan into ONE block (what, delivery form, gated vs escalated, what you WON'T do), end "Build it this way, or revise?", STOP — no write calls, no code in that message. Light: one line "doing X — ok?" + wait. Code ONLY after an explicit "yes/go" — silence, an emoji, an "ok" to something else don't count; unsure = not a yes. Change → fold into contract, re-show, re-ask. The contract locks at that "yes".
+Answers are RAW MATERIAL, NOT approval. Full: assemble the plan into ONE block (what, delivery form, gated vs escalated, what you WON'T do, the irreversible/external acts — the yes covers only those named), end "Build it this way, or revise?", STOP — no write calls, no code in that message. Each act others will see (release, deploy/upload, tag, PR, shared-branch commit, message) carries a LOOK-BACK: how the previous ones of its kind look from outside, seen where or "not seen — why", and the differences; a tool-defaulted name is said so. Light: one line "doing X — ok?", naming those acts, + wait. Code ONLY after an explicit "yes/go" — silence, an emoji, an "ok" to something else don't count; unsure = not a yes. Change → fold into contract, re-show, re-ask. The contract locks at that "yes".
 
 ## Step 2 — Plan
 Sub-tasks with dependencies; set escalation rules. BUDGET: max auto-iterations (default 2–3); loop ends EXHAUSTED or NO-PROGRESS (two iterations don't move the same failing check) → stop, escalate. Small task → one line.
@@ -72,4 +72,4 @@ DECISION LOG (Light/Full): append-only `.payne/decisions.log` — `<date> [APPRO
 - Bury the human in shorthand (AC1, B5, tiers) — plain language.
 - Silently default a costly-to-reverse choice, technical OR behavior/data-semantics — ASK.
 
-<!-- pin: AGENT.md sha256=ad96d289781e387e018ee84c637a8e65cccc28fe646ac1d895bbd05a55a22040 -->
+<!-- pin: AGENT.md sha256=3af672c52f90893b5e3d8ebe448904ee044c1eebcf7c76916029a3a00f93cb83 -->

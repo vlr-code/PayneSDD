@@ -113,6 +113,9 @@ Dev-mode edits are Full-tier, so the normal decision-log rule applies: append
   entry to the Status list; promote the CHANGELOG `## Unreleased` entry to the
   version; tag `vX.Y.Z`; `gh release create` — each with approval, with an
   `[APPROVED] release X.Y.Z` line in the decision log that says why this number.
+  Before asking, read the last two releases (`gh release list --limit 2`:
+  titles, tags, Latest; `gh release view <tag>` for each: notes, assets,
+  draft/prerelease) and put their look-back (AGENT.md Step 1.6) in the ask.
 - **The number:** only what ships counts — changes to the git-ignored benchmark
   stand never move it. Protocol rules, docs, fixes and a new check inside an
   existing hook or tool are a PATCH; a new user-facing feature, or a new hook,
