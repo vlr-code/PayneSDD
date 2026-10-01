@@ -2,6 +2,10 @@
 
 Status: draft | locked   ·   Module: <name>
 
+Rule files: <AGENTS.md / CLAUDE.md / CONTRIBUTING read at the root and in the
+touched directories, and the in-repo files they link to — each rule the change
+touches as file:line plus its words — or "none found">
+
 ## 1. Goal
 <1–2 sentences: why this exists. Not how — why.>
 
@@ -18,6 +22,9 @@ If non-code (e.g. a written answer), describe the required structure here.>
 - **B3.** <…>
 
 ## 5. Edge cases → decided resolution
+Sweep (every category, its case or "—"): boundary · adjacency (±1) · empty ·
+encoding · ordering · precision · idempotency · concurrency · trigger (who or
+what starts it, and when: at start or at a lazy first use) · setup failure
 - <case> → <the DECIDED behavior, not "somehow">
 
 ## 6. Acceptance criteria (each = a check)
@@ -35,4 +42,5 @@ reference docs / source lookup. PREFER an executable one when it exists — a
 reference implementation or golden dataset you can diff against beats docs or
 eyeballing; build that comparison harness FIRST, before the main code. What
 must be made injectable/observable so the check can be deterministic. If
-nothing can be named → STOP and escalate.>
+nothing can be named → STOP and escalate. Plus each rule quoted under Rule
+files above.>

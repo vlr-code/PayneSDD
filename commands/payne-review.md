@@ -7,7 +7,9 @@ You are running Step 5 (ADVERSARIAL) of the PayneSDD protocol.
 Do this:
 1. Gather the current changes (e.g. `git diff` / the files just edited) and the
    relevant `SPEC.md` if one exists — from a FIXED point (a commit or a stash),
-   so the review and the gate describe the same tree.
+   so the review and the gate describe the same tree — plus the plan and, when
+   one is named, where the sibling lives (the same feature on another
+   platform, service or repo).
 2. Launch a SEPARATE subagent — not yourself — with a "break it, don't praise it"
    brief (on Full, a host with no subagent mechanism at all runs a DISCLOSED
    self-pass instead, and the verdict is then never PASS — ESCALATE, the human
@@ -27,12 +29,20 @@ Do this:
    contract itself. Drift runs in BOTH directions: hunt undeclared extras in the
    diff AND contracted/planned items the diff never touched — silently dropped
    work is a finding (cite the plan/contract line it dropped), never something
-   left to the author's own Remaining list. Every finding MUST cite a source
+   left to the author's own Remaining list. Beyond the contract: look for the
+   repo's rule files yourself — AGENTS.md, CLAUDE.md and CONTRIBUTING at the
+   root and in each directory the change touches, and the in-repo files they
+   link to, never only the ones the author named — and read the change through each lens that applies: the repo
+   rules on any code change; the sibling when there is one; the trigger (who
+   or what starts the behavior, and when: at start or at a lazy first use) when
+   it starts on a signal or a clock; setup failure when the change adds a
+   setup, attach or subscribe step. Every finding MUST cite a source
    (file:line, a doc quote, a concrete test). Findings with no source tie are
    marked "unconfirmed", not asserted as bugs. The report comes back COMPACT:
    one line per finding — source tie + claim + proposed fix; an explicit "none"
    when clean, and a required NOT CHECKED line naming what the pass could not
-   cover — silence about an uncovered area reads as coverage.
+   cover, each lens above that applies but could not be covered included, with
+   why — silence about an uncovered area reads as coverage.
 3. Adjudicate the findings yourself (the verifier is not an oracle): accept and
    fix only source-tied findings; reject the rest and say why. When an accepted
    finding exposes a hole in the contract itself, ratchet: the clause plus the

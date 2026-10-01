@@ -36,12 +36,12 @@ step. Mapping onto AGENT.md:
 
 | Role | Owns which Step | INPUT | OUTPUT artifact |
 |---|---|---|---|
-| **Product** | Step 1 (contract: draft, then final) | raw request; then forks + the human's answers | draft `SPEC.md`, then the final `SPEC.md` (filled from the template) |
-| **Analyst** | Step 1.5a (prep) | raw request + the draft SPEC | fork structure (the depth analysis) + contradictions found in the draft |
+| **Product** | Step 1 (contract: draft, then final) | raw request + the repo rule files; then forks + the human's answers | draft `SPEC.md`, then the final `SPEC.md` (filled from the template) |
+| **Analyst** | Step 1.5a (prep) | raw request + the draft SPEC + the sibling the request, the draft SPEC or the human names | fork structure (the depth analysis) + contradictions found in the draft |
 | **Architect** | Step 2 (plan) | SPEC.md | design + dependency-ordered approach |
 | **Scrum Master** | Step 2 (decompose) | design | task list (each task ties to AC IDs) |
 | **Developer** | Step 3 (execute) | one task | code for that task, referencing `// B*` |
-| **QA** | Steps 4 + 5 | code + SPEC.md | gate result + adversarial findings (hypotheses) + recommended verdict (incl. the Step 6 Done / Remaining / Open-questions closing summary) |
+| **QA** | Steps 4 + 5 | code + SPEC.md + the repo rule files (found by QA itself) and the sibling the SPEC names | gate result + adversarial findings (hypotheses) + recommended verdict (incl. the Step 6 Done / Remaining / Open-questions closing summary) |
 
 ## Hard rules so roles don't become the monster
 - **The gates do not move.** Step 1.6 plan-approval STOP still happens (after
@@ -54,8 +54,10 @@ step. Mapping onto AGENT.md:
   main thread that runs the chain — not QA itself — accepts only those tied to a
   source (Step 5) and issues the final Step 6 verdict. A role title does not
   make a claim true.
-- **One artifact per handoff.** A role reads the previous artifact and the SPEC,
-  nothing else. No role rewrites an upstream artifact silently — if Architect
+- **One artifact per handoff.** A role reads the previous artifact and the SPEC
+  — plus the repo rule files for Product and QA, and the sibling for Analyst and
+  QA (AGENT.md Steps 1, 1.5a, 5); the SPEC quotes each touched rule for the rest
+  — nothing else. No role rewrites an upstream artifact silently — if Architect
   finds the SPEC wrong, it escalates back to Product (fix the contract first,
   Step 1), it does not patch around it.
 - **Collapse freely.** At the smaller end of the large-task range you may merge

@@ -8,8 +8,9 @@ You are starting Step 1 (CONTRACT) of the PayneSDD protocol for: **$ARGUMENTS**
 
 Do this:
 1. Read the skeleton at `templates/SPEC.template.md` (relative to the project
-   root). If it isn't there, use the structure: Goal / Non-goals / Contract /
-   Behavior (B1..) / Edge cases / Acceptance criteria (AC1..) / Source of truth.
+   root). If it isn't there, use the structure: Rule files / Goal / Non-goals /
+   Contract / Behavior (B1..) / Edge cases with the sweep row / Acceptance
+   criteria (AC1..) / Source of truth.
 2. Fill it in for "$ARGUMENTS" — concrete and verifiable. Every AC must be
    checkable; ban vague phrasings — cast each AC as "WHEN <condition> the system
    SHALL <observable behavior>", error/edge paths as "IF <failure> THEN

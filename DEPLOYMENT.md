@@ -29,12 +29,12 @@ the full discipline is one file-read away the moment a real task appears.
 ## Shipped implementation: `DIGEST.md`
 
 You don't have to hand-roll the slim core: the repo ships [`DIGEST.md`](DIGEST.md)
-(~2.6k tokens) — a richer floor than the minimal core below. It carries the
+(~2.7k tokens) — a richer floor than the minimal core below. It carries the
 binding essentials of EVERY gate (tiers + hard floor, contract shape, consent
 STOP, machine gate, adversarial pass, verdict + summary, the never-do list,
 the voice) plus the loading rule pointing at the full `AGENT.md`. Even if the
 on-demand read ever fails to fire, the gates still bind — that safety is what
-the extra ≈2.4k tokens over the minimal core buy (the digest's count in the
+the extra ≈2.5k tokens over the minimal core buy (the digest's count in the
 README token table, less the minimal core's 178).
 
 It cannot silently drift from the protocol: `DIGEST.md` is checksum-pinned to

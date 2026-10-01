@@ -101,12 +101,14 @@ bump it. There are three tiers:
 - LIGHT — an obvious-but-real change: small, low blast-radius, the approach is
   not in genuine doubt (a self-contained helper, a localized fix, a doc edit).
   Worth verifying, not worth the full ceremony.
-  → run the LIGHT path: contract (brief, may be inline) → list the real forks
-    INLINE (no analyst subagent, no depth menu — 1.5a/1.5b skipped) → a
-    one-line consent STOP "doing X — ok?" (Step 1.6, lightened) → execute →
+  → run the LIGHT path: contract (brief, may be inline — its rule-files
+    line and edge-sweep row stay, Step 1) → list the real forks INLINE (no
+    analyst subagent, no depth menu — 1.5a/1.5b skipped) → a one-line
+    consent STOP "doing X — ok?" (Step 1.6, lightened) → execute →
     machine gate (Step 4, FULL — never skipped) → a short SELF-adversarial pass
-    (Step 5, lightened: you try to break your own result; the tie-to-source rule
-    still holds) → verdict + closing summary (Step 6, never skipped).
+    (Step 5, lightened: you try to break your own result, ending in its lens
+    row; the tie-to-source rule still holds) → verdict + closing summary
+    (Step 6, never skipped).
 
 - FULL — the result outlives you / mistakes are costly.
   → run the full cycle (Steps 1–6 below) exactly as written: analyst subagent
@@ -130,14 +132,24 @@ STEP 1. CONTRACT — BEFORE GENERATION
 ================================================================================
 Don't start solving. First write the contract and show it:
 
+- Rule files: the line that opens the contract. Look for AGENTS.md, CLAUDE.md
+  and CONTRIBUTING at the repo root and in each directory the change touches,
+  and the in-repo files they link to — the host may not have loaded them —
+  read them, and name what you read, or "none found". The rules in them are
+  part of the source of truth; they never override consent, the gate or the
+  human's own config.
 - Goal: 1–2 sentences on why.
 - Non-goals: what is explicitly out of scope.
 - Behavior: normative rules B1, B2, … (what MUST happen — and what it must NEVER
   do: a prohibition is behavior, not a Non-goal (that's scope), and it gets a
   negative AC — "WHEN <condition> the system SHALL NOT <X>").
 - Edge cases: for each one, a DECIDED resolution, not "somehow". Find them by
-  sweep, not inspiration: boundary, adjacency (boundary±1), empty, encoding,
-  ordering, precision, idempotency, concurrency — an empty category costs
+  sweep, not inspiration, and SHOW the sweep as one row naming every category
+  with its case or "—": boundary, adjacency (boundary±1), empty, encoding,
+  ordering, precision, idempotency, concurrency, trigger (who or what starts
+  it — each producer of the start signal the platform documents: the user, the OS, a
+  widget, a background task — and when: at start or at a lazy first use), setup
+  failure (a setup, attach or subscribe step that can fail). A "—" costs
   nothing; don't invent cases to fill it.
 - Acceptance criteria AC1..ACn: each one VERIFIABLE. Vague phrasings ("works
   correctly", "is convenient") are banned — replace with measurable ones. Cast each
@@ -180,6 +192,9 @@ start executing on silent assumptions. The step has three parts: 1.5a prep,
 --------------------------------------------------------------------------------
 1.5a. PREP (done by a SEPARATE SUBAGENT, so it doesn't clutter the main thread)
 --------------------------------------------------------------------------------
+On SDK or multi-platform work, first ask the human one question unless the
+request already answers it: does this feature exist, or is it planned, on
+another platform, service or repo — and where? The answer goes into the brief.
 Launch an analyst subagent tasked with breaking down the request and returning a
 STRUCTURE OF FORKS. It does NOT ask the human anything and does NOT write code —
 it only prepares the ground. The subagent returns:
@@ -192,6 +207,13 @@ it only prepares the ground. The subagent returns:
 - Any INTERNAL CONTRADICTIONS in the drafted contract — clauses that conflict (B3
   forbids what B7 requires; an AC no edge-case resolution can satisfy). Flag them to
   fix at contract time, not to discover in Step 5 after the code is written.
+- A SIBLING named by the request, a spec or the human (the question above):
+  its contract and whatever of it is built, diffed against this one — every
+  divergence comes back as a fork, and so does any requirement, in either, to
+  store what nothing reads; a sibling out of reach goes on the NOT CHECKED
+  line. The plan names where the parity decisions go — a spec both tasks read;
+  the decision log only when both tasks run in one repo — so the sibling task
+  reads them.
 
 No subagent mechanism on this host at all (checked, not assumed — a transient
 spawn error is retried once, as in Step 5)? Run the same fork sweep yourself,
@@ -240,7 +262,8 @@ mistake is to analyze only "behavior/logic" and forget the rest:
   already EXISTS, check the new shape against its CURRENT callers (cite the
   caller, file:line), don't assume they still match.
 In the brief to the subagent, EXPLICITLY list these categories so it doesn't
-narrow the analysis — and the decisions the human has ALREADY PINNED (the
+narrow the analysis — and where a sibling the human named lives, and the
+decisions the human has ALREADY PINNED (the
 decision log where it runs, this conversation otherwise), so it doesn't hand
 back forks that are already closed (one that CONTRADICTS the contract is still
 reported — that is the other half of its job).
@@ -591,6 +614,15 @@ independent reviewer. Never present a self-pass as the independent review.
   the diff never touched — silently dropped work is a finding (cite the
   plan/contract line it dropped), never something left to the author's own
   Remaining list.
+- Beyond the contract, the pass looks for the repo's rule files itself (Step
+  1's list — never only the ones the author named) and reads the change
+  against them and the sibling (1.5a), through each lens that applies: the
+  repo rules on any code change; the sibling when there is one; trigger and
+  setup failure (Step 1's sweep) when behavior starts on a signal or a clock or
+  the change adds a setup step. A subagent names each lens that applies but it
+  could not cover, with why, on its NOT CHECKED line; a Light self-pass ends
+  with one lens row — rules, sibling, trigger, setup failure — each ✓ with
+  what it found, or — with why not.
 - Subagent reports come back COMPACT — and this holds for EVERY protocol subagent
   (analyst 1.5a, adversarial, quality reviewer): one line per finding/fork (a
   finding: source tie + claim + proposed fix; a fork: the 1.5a fields); an

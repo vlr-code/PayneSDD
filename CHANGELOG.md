@@ -3,6 +3,49 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Changed
+- **What a review misses beyond the ticket becomes required output.** A field
+  report: the same SDK feature, built for two platforms in separate sessions,
+  passed every gate and three independent reviews; a lead reading both platforms
+  side by side at release found four defects and two spec problems, because
+  every check compared the code only with its own ticket. The same rules written
+  as prose were tested first on the benchmark stand against blind-authored traps
+  and did not move it (decision log, 2026-09-30 and 2026-10-01). On the easy
+  traps the protocol without them already caught the repo rule and the sibling
+  divergence in every run. On two harder ones — a rule that lives only in an
+  AGENTS.md the CLAUDE.md merely links to, in a large repository, and an
+  undocumented subscription failure — they made no measured difference. Counted
+  after those runs, not a registered measure: on the large-repository trap 4 of
+  10 runs with the prose rule opened AGENTS.md (a tool call naming it) against 0
+  of 10 without it, and all four followed the rule; on the subscription trap the
+  task ran Light in 19 of 20 runs (the first tier word of the first reply, any
+  case) and no run named more than one edge-sweep category (category words
+  matched in that reply; rules and counts in the stand's evidence file). So the
+  fix is now output the agent must show. Every Light and Full contract opens
+  with a rule-files line: AGENTS.md, CLAUDE.md and CONTRIBUTING, looked for at
+  the root and in the touched directories with the in-repo files they link to,
+  read, or "none found". The edge sweep is shown as one row naming every
+  category with its case or "—", and gains trigger (who or what starts the
+  behavior, and when: at start or at a lazy first use) and setup failure. Step 5
+  looks for the rule files itself instead of taking the author's list, reads the
+  change through the lenses that apply, and a Light self-pass ends with one lens
+  row. On SDK or multi-platform work the human is asked, before the analyst
+  runs, whether the feature exists or is planned on another platform, and a
+  named sibling is diffed. `/payne-review`, `/payne-spec`, ROLES.md and the SPEC
+  template carry the same; the digest gains the rule-files line, the sweep row,
+  the lens row and the sibling question, so its size band moves from 10,500 to
+  10,800 bytes (a loosening of that check, approved). Evidence: a pre-release
+  check on the stand (5 runs on each of two traps, its rule logged before the
+  run) did not pass as registered — it looked for a literal «Rule files:» label
+  and for the sweep row, and found neither. Read after that verdict, not a
+  registered measure: on the large-repository trap all 5 runs opened AGENTS.md
+  and kept its rule (no new lock), reporting the lookup in their own words,
+  against 3 of 10 without these rules and 4 of 10 with the earlier prose (an
+  earlier epoch); the sweep row appeared in none of the 10 runs, and the
+  subscription failure was still missed in 5 of 5.
+
 ## 0.9.6 — 2026-09-30
 
 ### Added
