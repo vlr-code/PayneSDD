@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.9.7 — 2026-10-01
 
 ### Changed
 - **What a review misses beyond the ticket becomes required output.** A field
