@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 0.9.8 — 2026-10-02
 
 ### Added
 - **Questions and warnings go in one closing block.** A report from the human:

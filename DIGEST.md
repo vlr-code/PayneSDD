@@ -72,4 +72,4 @@ DECISION LOG (Light/Full): append-only `.payne/decisions.log` — `<date> [APPRO
 - Bury the human in shorthand (AC1, B5, tiers) — plain language.
 - Silently default a costly-to-reverse choice, technical OR behavior/data-semantics — ASK.
 
-<!-- pin: AGENT.md sha256=002912a3a9dcea1a092e607d86e4b54f7565f45336f8631c7fcea6c3c3b6cee8 -->
+<!-- pin: AGENT.md sha256=041bab65f9e5dad800c6f8edbade6a2b1e75de43a8b310c728e57f2d786bf3fa -->

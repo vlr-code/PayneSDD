@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "That's because you don't have any. Yet."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.9.7-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.9.8-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -145,7 +145,7 @@ so read it as the shape of the difference, not as today's digits):
 
 | Install | Always-on load | Measured Δ input per call |
 |---|---:|---:|
-| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,666 tok | ≈ +2,254 tok |
+| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,665 tok | ≈ +2,254 tok |
 | Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 14,294 tok | ≈ +9,050 tok |
 | [`ROLES.md`](ROLES.md) multi-agent overlay | read on demand | — |
 
@@ -213,8 +213,9 @@ included:
 
 **Actively used on real projects, and dogfooded** — PayneSDD develops itself
 under its own protocol: every change runs the full cycle and an independent
-review before it ships. Latest release: **v0.9.7**.
+review before it ships. Latest release: **v0.9.8**.
 
+- **0.9.8** — questions and warnings go in one closing block: everything waiting for the human ends the reply under a ❓ marker and repeats until answered, and only four kinds of warning get an ⚠️ line; on the stand every consent reply ended on its question, and the marker held in 3 of 3 once the Light example carried it;
 - **0.9.7** — what a review misses beyond the ticket becomes required output: every contract opens with the repo's rule files read, the edge sweep is shown as a row with every category (who or what starts it, and setup failure, added), the review looks for the rule files itself and a Light self-pass ends with a lens row, and SDK work asks about a sibling platform first; the same rules as plain prose did not move the stand, on the stand the repo's rule was then kept in 5 of 5 runs of the large-repository trap (read after a check that did not pass as registered), while the sweep row did not appear and the subscription failure is still missed;
 - **0.9.6** — a look-back before anything goes out: the plan names, for every act others will see — a release, deploy or upload, a tag, a pull request, a commit to a shared branch, a message — how the previous ones of its kind look from outside, where they were seen, and what differs; not measured on the stand;
 - **0.9.5** — three token-economy rules, because every step re-reads the whole conversation: a check that would bring images or a long log goes to a helper subagent, a series of small look, timing or wording tweaks gets a build per tweak and the full gate and review once at its end, and a task closed in a long conversation ends with an offer of a fresh start; a no-regression stand epoch saw no gross drop and no saving is measured yet; three other candidate rules were tested and did not ship, and the contradiction measure no longer decides the stand's acceptance rule;
