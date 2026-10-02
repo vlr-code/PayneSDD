@@ -126,7 +126,9 @@ Dev-mode edits are Full-tier, so the normal decision-log rule applies: append
   is costly to reverse.
 
 ## 8. Close with the Step 6 summary
-End with the verdict word + the **Done / Remaining / Open questions** checklist.
+End with the verdict word + the **Done / Remaining / Open questions** checklist —
+before the closing question block, where the §7 commit question sits
+(AGENT.md, QUESTIONS AND WARNINGS).
 
 ## 9. Inbox triage (`/payne-edit inbox`)
 `~/.payne/inbox.md` collects the gap lines the agent appends across

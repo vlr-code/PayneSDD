@@ -32,7 +32,7 @@ You don't have to hand-roll the slim core: the repo ships [`DIGEST.md`](DIGEST.m
 (~2.7k tokens) — a richer floor than the minimal core below. It carries the
 binding essentials of EVERY gate (tiers + hard floor, contract shape, consent
 STOP, machine gate, adversarial pass, verdict + summary, the never-do list,
-the voice) plus the loading rule pointing at the full `AGENT.md`. Even if the
+the closing question block, the voice) plus the loading rule pointing at the full `AGENT.md`. Even if the
 on-demand read ever fails to fire, the gates still bind — that safety is what
 the extra ≈2.5k tokens over the minimal core buy (the digest's count in the
 README token table, less the minimal core's 178).
@@ -89,13 +89,15 @@ answer, and never invent a fact (`AGENT.md` RULES). They don't relax with the
 tier, and they keep a "load it later" agent honest even on Trivial chat. The
 protocol's *other* guarantees — the machine gate runs on every Light/Full, consent
 before code is never skipped — aren't in the slim core; they ride in via the
-hand-off to `payne-protocol.md`.
+hand-off to `payne-protocol.md`. The closing question block binds every reply,
+but on Trivial chat it reaches a slim-core install only through the digest.
 
 ### The on-demand file (`payne-protocol.md`)
 
 This is `AGENT.md` with the persona block, the talk-level section (its recipe
 already sits in the always-loaded config) and the dev-mode section stripped out —
-just Steps 0–6, the decision log, and "what you never do". The slim core's only
+just Steps 0–6, the decision log, the questions-and-warnings placement and
+"what you never do". The slim core's only
 job is to make the agent actually read it at the right moment.
 
 ## Caveats — where this bites if you're sloppy

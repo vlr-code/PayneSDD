@@ -3,6 +3,36 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Added
+- **Questions and warnings go in one closing block.** A report from the human:
+  questions got lost in long replies. Read back in that session, a question was
+  followed by status text and then by several progress notes, and one was not
+  understood. A new section, QUESTIONS AND WARNINGS, sits in the core protocol
+  before the never-do list and holds for every reply, Trivial and chat included:
+  everything that waits for the human's answer or action goes in one block at
+  the very end under a «❓ Question:» line (the word in the human's language),
+  with nothing after it; until answered it repeats in every later reply, and a
+  progress note carries it as one line; when nothing runs in the background and
+  the host has a questioning tool, the question goes through it and the block
+  holds a pointer; only four things get a «⚠️ Important:» line — an irreversible
+  or external act, a spend past its cap, a red or unverified result handed over,
+  a risk of losing data. Step 1.6's consent question (its Light example now
+  reads «❓ Question: doing X — ok?», since agents copy the example), Step 4's
+  tweak handback line, Step 6's fresh-start offer, the dev-mode report,
+  /payne-edit §8 and DEPLOYMENT follow. The talk level keeps the block and the
+  warning lines whole, so its recipe changes for the first time since 0.8.0: a
+  host that copied it should copy it again (now ≈490 tokens, tiktoken
+  o200k_base, counted as AGENT.md SETTING IT says). The digest gains a four-line
+  paragraph; to stay inside its band it drops a maintainer note and a path hint,
+  and the persona's optional status moves into its heading. Evidence, on the
+  stand with the scorer and its rule logged before the runs (a reply counts when
+  its first turn ends in the ❓ block): every consent reply ended on its
+  question; the marker held in 3 of 6 while the Light example lacked it and in 3
+  of 3 once the example carried it; a plain answer carried no marker on its
+  first turn (2 of 2). Repetition across replies is not measured.
+
 ## 0.9.7 — 2026-10-01
 
 ### Changed

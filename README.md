@@ -83,7 +83,7 @@ task the agent reads the full file before writing the contract. `git pull` =
 protocol updated everywhere.
 
 **Any other agent** — paste [`AGENT.md`](AGENT.md) whole into the system
-instructions (≈13.8k tokens always-on; the way to go for web chats and agents
+instructions (≈14.3k tokens always-on; the way to go for web chats and agents
 without file access).
 
 That's it. The agent follows the cycle automatically.
@@ -145,8 +145,8 @@ so read it as the shape of the difference, not as today's digits):
 
 | Install | Always-on load | Measured Δ input per call |
 |---|---:|---:|
-| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,661 tok | ≈ +2,254 tok |
-| Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 13,791 tok | ≈ +9,050 tok |
+| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,666 tok | ≈ +2,254 tok |
+| Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 14,294 tok | ≈ +9,050 tok |
 | [`ROLES.md`](ROLES.md) multi-agent overlay | read on demand | — |
 
 The digest was live-tested against the full file (≈50 scored runs, scripted
@@ -198,7 +198,10 @@ switch in plain words ("shorter", "back to standard"). It shapes how much is
 said, never what is done: gates, checks, the verdict — and the persona's own
 lines — hold.
 
-Measured, not assumed: across 72 runs replies came out ~39% shorter (the turn
+Measured, not assumed (the 0.8.0 recipe; since then the closing question
+block and the warning lines joined what it keeps whole and the plain answer
+line points to the block, not re-measured): across 72
+runs replies came out ~39% shorter (the turn
 that carries the plan and the questions: −42%), no protocol dimension fell more
 than 1 against the base, and a blind position-swapped judge found no quality
 drift. Three earlier cuts of this wording were rejected by the harness first,
