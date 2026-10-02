@@ -510,7 +510,9 @@ Rules:
   never at the pattern: a change that yields more REDS is strengthening and is
   free, one that yields more PASSES is loosening and needs consent — so a
   detector whose trigger grew lands on the second side whenever its firing means
-  "this one is fine". Never silently, whatever the motive.
+  "this one is fine". Never silently, whatever the motive. "Existing" includes
+  a check written in this same task — at the latest once it was committed,
+  registered or shown to the human before a run, or read as a gate verdict.
 - RATCHET THE CONTRACT: a FAIL is also a contract question, not just a code bug.
   Did this failure expose a hole the contract never covered (a missed edge case, a
   missing negative AC)? If yes — ratchet first: add the clause plus the named check

@@ -347,6 +347,43 @@ rules — fixed BEFORE any numbers existed, so there were no numbers to inflate:
   of them four tasks, so on it all ten were gated — nine from 2026-09-16, when
   `contradiction_flagged` was taken out of conclusions. The rule stands for whatever
   suite comes next.
+- **A bar a comparison adds is measured on noise before the run** (added
+  2026-10-02). A comparison that registers its own bars beside or instead of
+  the acceptance rule above — a length ratio, a count tolerance, a benefit bar
+  — prints, before the run, how often IDENTICAL text crosses each bar, and the
+  whole rule's rate in each direction (rejecting identical text, and showing a
+  benefit on it) — measured on one null of the rule's design, or printed as
+  the sum of its bars' rates, an upper bound. Three ways count as measured: a
+  null of the comparison's own design (the same scorer and probes, the same
+  tasks, the same runs per arm, or resampled to that shape); a bar stated by
+  meaning and calibrated on the comparison epoch's own null, as the acceptance
+  cut is (WHICH NULL above); or a test whose size is bounded by construction —
+  an exact test at its α, both arms in one epoch — which prints that α.
+  Anything else is printed as "noise not measured" and decides nothing on its
+  own. A bar registered as a number never moves after the run: a null computed
+  then is a reference, not a repair (Step 4: repairing a measurer after its
+  numbers came back is tuning the result). The rule names the false-alarm rate
+  it accepts for the whole rule — 5% when it names none; only the human
+  accepts a higher one. A bar or a rule that noise crosses more often than its
+  accepted rate goes to the human with the options: another form of the
+  measure, more runs where the bar's noise falls with runs (a ratio of totals
+  does; a z or a fixed count does not), a wider bar, or the rate accepted and
+  printed. Before the run the agent may tighten a bar on its own; it never
+  widens one. The two bullets above bind such a rule too: base and candidate
+  in the same epoch, single-task dimensions reported and never gated. Why: a
+  bar copied from a sibling comparison, "median turn-1 words ≤ 1.15 × base",
+  crossed identical text in about 30% of splits on that experiment's 12-task
+  design, and the same bar on the TOTAL of those words in about 6%
+  ([`ste-method-2026-10-02.json`](ste-method-2026-10-02.json), part 1).
+- **Every number of a reading rule has worked values at its edge** (added
+  2026-10-02). For each threshold the registration shows the last value that
+  passes and the first that does not, in the measure's own unit — one word,
+  one run, the last digit read. When the rule is code, those values run
+  through that code, and the decision log names the file. Worked values far
+  from the bars do not pin the rule: in the same experiment six deliberate
+  changes to the rule's code (five constants, one removed check) all passed
+  them; values at the edges caught the five constants, and on those inputs
+  another check of the same rule covered the removed one (same file, part 2).
 - **Saturation is a limit too.** After the 2026-09-12 probe fix, "ran a
   verification command" sits at ceiling on the base arm: the suite can still
   catch a collapse there, but it can never show that a change IMPROVED gate

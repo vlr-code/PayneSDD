@@ -138,15 +138,15 @@ inline, a one-line "doing X — ok?", the same machine gate, a short self-review
 
 ## Token cost — measured
 
-Numbers, not vibes (static: tiktoken `o200k_base`, re-measured 2026-10-01
+Numbers, not vibes (static: tiktoken `o200k_base`, re-measured 2026-10-02
 against the files as they stand; live: real `claude -p` calls, usage from the
 API's own JSON — that column was measured at 0.6.0 and is NOT re-measured here,
 so read it as the shape of the difference, not as today's digits):
 
 | Install | Always-on load | Measured Δ input per call |
 |---|---:|---:|
-| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,665 tok | ≈ +2,254 tok |
-| Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 14,294 tok | ≈ +9,050 tok |
+| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,660 tok | ≈ +2,254 tok |
+| Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 14,334 tok | ≈ +9,050 tok |
 | [`ROLES.md`](ROLES.md) multi-agent overlay | read on demand | — |
 
 The digest was live-tested against the full file (≈50 scored runs, scripted

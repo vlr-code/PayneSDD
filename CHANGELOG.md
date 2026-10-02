@@ -3,6 +3,33 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Added
+- **A bar a stand comparison adds is measured on noise first, and every number
+  of a reading rule has worked values at its edge** (benchmark/README.md,
+  Battle-validation methodology). From an experiment with ASD-STE100 borrows on
+  a separate stand: a bar copied from a sibling comparison crossed identical
+  text in about 30% of splits, and worked values far from the bars let all six
+  deliberate changes to the rule pass. Evidence:
+  [`benchmark/ste-method-2026-10-02.json`](benchmark/ste-method-2026-10-02.json).
+
+### Changed
+- **Step 4, DIRECTION ASYMMETRY:** «existing» now says it includes a check
+  written in the same task — at the latest once it was committed, registered or
+  shown to the human before a run, or read as a gate verdict. It narrows
+  nothing. Found when the independent review of that experiment's own checks
+  caught its author loosening a check written in the same task without asking.
+
+### Not shipped
+- **The ASD-STE100 borrows themselves** — one name per concept with a check, the
+  protocol rewritten in sentences of at most 25 words, a shape for the ⚠️ line,
+  STE lines in the host plain-language block. On the stand the rewrite passed
+  no-harm only at the edge, with no benefit registered for it; the STE block met
+  its sentence-length bar but made replies longer than the length bar allows;
+  the digest arm failed; and the rewrite costs more tokens (AGENT.md 14,294 →
+  15,216 tokens by tiktoken `o200k_base`). Results in the same evidence file, part 3.
+
 ## 0.9.8 — 2026-10-02
 
 ### Added
