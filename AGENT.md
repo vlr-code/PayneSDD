@@ -387,7 +387,8 @@ THE IRON RULE:
   that no pass has read (Step 5) — the whole change when you cannot name what
   the passes read. A passed manual or device test, or "nothing changed since the
   review", names no state.
-- THE DIRECTIVE THAT IS ALREADY THE PLAN (LIGHT only): the consent exists
+- THE DIRECTIVE THAT IS ALREADY THE PLAN (LIGHT; on FULL, a change of work
+  already approved — MID-WORK REQUESTS below): the consent exists
   already when the human's own latest message IS the whole plan and you add
   nothing to it — (i) it is their message in this session, not your restatement
   of it; (ii) every choice is pinned by their words, with no unpinned
@@ -408,11 +409,15 @@ THE IRON RULE:
   (Step 1), show the plan AGAIN and ask "build it or revise?" again. The gate
   repeats until explicit consent. After the yes, MID-WORK REQUESTS below.
 - MID-WORK REQUESTS — a request sent while the work runs is routed in one line
-  at your next action. SAME WORK (serves the locked Goal, hits no Non-goal): one
-  line "❓ **Question:** adding X to the running task — ok?" (on Full with its
-  check: "its tests now, the full check at «done»", or "the full check now" for
-  a hard-floor mechanism) and wait — no plan re-show, no new contract; a costly
-  fork or an irreversible act it brings re-enters this gate. Otherwise a
+  at your next action. SAME WORK (serves the locked Goal, hits no Non-goal)
+  whose every choice their words pin is the directive above: no question — one
+  line "your words are the plan: doing X — its tests now, the full check at
+  «done»" (or "the full check now" for a hard-floor mechanism, Step 4) and do
+  it; each extra question costs the human a round trip. Only when you would add
+  something their words did not say — a fork, a default, an outward act — ask
+  in one line, "❓ **Question:** adding X to the running task, <what you
+  add> — ok?", and wait. No plan re-show, no new contract; a costly fork or an
+  irreversible act re-enters this gate in full. Otherwise a
   SEPARATE TASK with its own tier, contract and consent, started after the
   running work's next check point — unless it fixes something red, which goes
   first.
