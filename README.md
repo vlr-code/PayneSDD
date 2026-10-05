@@ -83,7 +83,7 @@ task the agent reads the full file before writing the contract. `git pull` =
 protocol updated everywhere.
 
 **Any other agent** — paste [`AGENT.md`](AGENT.md) whole into the system
-instructions (≈16.7k tokens always-on; the way to go for web chats and agents
+instructions (≈15.6k tokens always-on; the way to go for web chats and agents
 without file access).
 
 That's it. The agent follows the cycle automatically.
@@ -99,7 +99,7 @@ That's it. The agent follows the cycle automatically.
 | **0 — Classify** | **Trivial / Light / Full** per task. Risky work — auth, billing, migrations, public output — is *forced* to Full. A typo never pays full ceremony. |
 | **1 — Contract** | The repo's rule files read, goal, non-goals, decided edge cases (a sweep row), testable criteria (`WHEN … the system SHALL …`) tied to a named source of truth. "Works correctly" is banned. |
 | **1.5 — Interrogate** | An analyst maps the real decision forks; **you** pick how much to be asked. Costly-to-reverse choices are never guessed silently. |
-| **1.6 — Approve** | A hard **STOP**. One plan block, an explicit "go" — before that, zero code. (On a small task, when your own message already IS the whole plan, the agent echoes it back in one line and proceeds.) |
+| **1.6 — Approve** | A hard **STOP**. One plan block, an explicit "go" — before that, zero code. (On a small task — or a change you dictate to work already approved — when your own message already IS the whole plan, the agent echoes it back in one line and proceeds.) |
 | **2 — Plan** | Sub-tasks, an iteration budget, escalation rules. Stuck ≠ loop forever. |
 | **3 — Execute** | Exactly the contract — no gold-plating, no silent refactors, no second copy of anything. |
 | **4 — Machine gate** | Every criterion mapped to the check that proves it. Red blocks "done". The check is never weakened to go green. |
@@ -145,8 +145,8 @@ so read it as the shape of the difference, not as today's digits):
 
 | Install | Always-on load | Measured Δ input per call |
 |---|---:|---:|
-| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,682 tok | ≈ +2,254 tok |
-| Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 16,659 tok | ≈ +9,050 tok |
+| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,697 tok | ≈ +2,254 tok |
+| Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 15,600 tok | ≈ +9,050 tok |
 | [`ROLES.md`](ROLES.md) multi-agent overlay | read on demand | — |
 
 The digest was live-tested against the full file (≈50 scored runs, scripted

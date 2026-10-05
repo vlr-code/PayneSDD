@@ -54,7 +54,8 @@ Do this:
    them) counts against the Step 2 budget. Then give the Step 6
    verdict: PASS only on one state the gate ran green on and the reviews have
    read in full, confirmed at the verdict not to have moved since (Step 4), and
-   the evidence names it; ITERATE; or ESCALATE naming what no review has read —
+   the evidence names it — on Full work with later changes, also which changes
+   that review read; ITERATE; or ESCALATE naming what no review has read —
    and, on Light/Full, the compact Done / Remaining / Open questions closing
    summary.
 

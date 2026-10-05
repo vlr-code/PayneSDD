@@ -204,7 +204,7 @@ Four honest notes:
   `PAYNE_TEST_CMD` at every stop** — a full suite per change. Pointing the
   command at the cheapest check for the work in progress narrows an enforced
   check, a loosening under Step 4's DIRECTION ASYMMETRY: only on the human's
-  yes, and restored before the next check point.
+  yes, and restored before the next check point or the series' end.
 
 **Portability, honestly:** the *enforcement* (auto-block on stop) is Claude-Code
 only. On other agents run `hooks/payne-gate-core.sh` directly — same red/green

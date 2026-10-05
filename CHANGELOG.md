@@ -6,47 +6,64 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## Unreleased
 
 ### Added
-- **A manager for work in progress (Step 4) and for requests sent mid-work (Step
-  1.6); on Full the verdict closes the work, not a build (Step 6).** On Full the
-  agent keeps a 📋 work list from the first build until the work closes — each
-  change with its state, what checked it and when its full check comes — ordered
-  red or broken first, then hard-floor mechanism changes, then the human's
-  order. Each change gets only the tests that can see it, marked "tests only",
-  and no review is launched after it; the full gate and the independent pass run
-  at a check point: a handover (a commit or push, a pull request, a merge, a
-  release, a publish), the human saying the work is done or asking for the
-  check, three "tests only" items (a chosen bound, not measured), a change to a
-  hard-floor mechanism — a change to a condition or a computation that decides
-  an outcome (money, access, limits, a secret), not a field that reports a
-  decided value, a message that reveals nothing, a formatter or an accessor
-  inside a payment or auth function — or before building what is costly to
-  unwind. The verdict word and the closing summary come once, when the work
-  closes — at a handover or at the human's "done"; until then every Full
-  handback, the first build's included, ends with the work list and carries no
-  PASS and no closing summary (an ESCALATE still may), and no PASS comes while
-  any change, listed or not, is unread by an independent pass. When all that was
-  asked is built and nothing is queued, the question block asks whether the
-  work is done. New, unrelated work no longer ends the series: it joins the list
-  as a separate task. On Full the human can switch the batching on for certain
-  in their own words (e.g. "копи правки", "batch my changes"); the three-item
-  bound is then off, the other check points stay. A request sent mid-work is
-  routed in one line; the same work gets a one-line consent, which on Full names
-  its check plan ("its tests now, the full check when you say done", or after
-  the third change, or before a costly-to-unwind step). Step 0 now says the hard
-  floor sets the tier of the work, not a full cycle per change: on Full, a
-  follow-up to work already built, before the work closes, is a change on the
-  work list, not a new task; a floor topic added to lower-tier work makes it
-  Full. Step 5 runs the Full independent pass at check points, not per build or
-  change, and now says what a round is. Light keeps the look, timing and wording
-  series it had, and the digest states it again (it had dropped out of an
-  earlier draft). Why: the maintainer kept seeing the full check and an
+- **A manager for work in progress (Step 4), and no consent question for a change
+  the human dictated (Step 1.6).** On Full, the first build gets the full cycle
+  (gate, independent pass, PASS); each later change of the same work gets only
+  the cheapest check that can see it — its tests — and comes back under the
+  headline TESTS GREEN, not PASS: no independent pass, no full gate, no
+  decision-log line of its own (the check point writes one [APPROVED] line for
+  the changes folded in), and its new tests' red proof waits for the check
+  point, where one run against the code as it was before those changes shows
+  them red together. The full gate and the independent pass run over every
+  change no pass has read at a check point: a handover (a commit or push, a
+  pull request, a merge, a release, a publish), the human's "done", three
+  TESTS GREEN changes (a chosen bound, not measured; look, timing or wording
+  tweaks judged by eye do not count), a change whose own diff alters a
+  hard-floor mechanism (a condition or computation that decides money, access,
+  a retry, limit, expiry or idempotency rule, a migration, concurrency, an
+  interface published beyond this work, a deletion, infra, a secret — not a
+  reporting field, a text that reveals nothing, a formatter or an accessor,
+  even inside payment or auth code; in doubt, it is a mechanism), before
+  building on what is costly to unwind, or on request. At a handover or the
+  human's "done" the first act names every change no pass has read, and they
+  are gated and passed before the PASS; a PASS's evidence names which changes
+  its pass read. A PASS alone never closes the work — the human's "done" or a
+  handover does — so a follow-up serving work already built is a change of it,
+  not a new Full task; work re-tiered to Full has what was built under Light
+  read at its first Full check point. A same-work change whose every choice the
+  human's words pin takes the directive carve-out on Full too — one line "your
+  words are the plan: doing X", no question; a question only when the agent
+  would add a fork or a default, and a costly fork, an irreversible act or an
+  outward act (with its look-back) still re-enters the consent gate in full.
+  The human's own words ("копи правки", "batch my changes") switch the
+  three-change bound off. Light keeps its look, timing and wording series, which
+  the digest states again. Why: the maintainer kept seeing the full check and an
   independent review run after every change of work that was still changing,
-  and asked for a manager that balances quality and speed; on the stand, a PASS
-  and a closing summary after the first build made agents treat each later
-  change as a new Full task with the whole ritual. The digest stays inside its
-  size band (two NEVER lines that repeated its own Step 0 and its
-  costly-to-reverse paragraph word for word are gone); its text grows by 20
-  tokens (o200k_base, pin line excluded); AGENT.md grows by the rule's own text.
+  and every dictated change wait on an "ok?". Measured on the local stand, a
+  billing task with eight dictated changes, both sides reading the full
+  protocol, two runs per side
+  ([`benchmark/check-manager-2026-10-05.json`](benchmark/check-manager-2026-10-05.json),
+  with every definition): the old text asked before every dictated change (8 of
+  8 in both runs) and the new one before none (0 of 8 in both); the old text
+  reviewed every change in one run and closed the other with its last change
+  unread by any review; the new one reviewed at the first build, at the
+  retry-policy change and at the close in both runs, but its three-change check
+  point fired late — at the fifth and the sixth change instead of the third (at the latest the
+  fourth);
+  per-change time, input tokens and model calls, new over old, read 0.79, 1.10
+  and 0.87 — inside the noise: the old text's own two runs differed 1.71x in
+  per-change time, 1.30x in tokens and 1.20x in calls. Caveats: the measured
+  text is form 15 before this release's review fixes, among them ("in doubt, it is a
+  mechanism", the tweak exemption from the three-change bound, the check
+  point's one decision-log line), which were not run on the stand; and it was
+  compared with the old text's runs from an earlier same-day epoch, not one of
+  its own, against the stand's methodology — an earlier form compared in one
+  epoch read 0.70, 0.96 and 0.83. The digest stays inside its size band by
+  shorter wording and by dropping three lines: two whose meaning it states
+  elsewhere — the NEVER lines "self-assign Light past the hard floor" (its Step
+  0 hard floor) and "silently default a costly-to-reverse choice" (its
+  costly-to-reverse paragraph) — and "tier choice has no machine enforcement",
+  which AGENT.md Step 0 keeps. AGENT.md grows by 1,266 tokens (o200k_base).
 - **A bar a stand comparison adds is measured on noise first, and every number
   of a reading rule has worked values at its edge** (benchmark/README.md,
   Battle-validation methodology). From an experiment with ASD-STE100 borrows on

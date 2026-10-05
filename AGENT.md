@@ -121,11 +121,13 @@ HARD FLOOR — these force FULL and FORBID Light, however small the task looks:
 billing, retries, concurrency, migrations, public-facing output, an SDK or
 library, infra, security/auth, data-loss risk, or work shared across multiple
 agents/humans. If any apply → FULL. The floor sets the tier of the WORK, not a
-cycle per change: on FULL, a follow-up to work already built in this
-conversation, before the work closes (Step 4, WORK IN PROGRESS), is a change of
-that work — first line "Full (<topic>) — continuing <work>, change N" — never a
-new task; a PASS closes a check, never the work. A floor topic added to work
-below Full re-tiers it to Full, out loud.
+cycle per change: on FULL, a follow-up serving work already built in this
+conversation (Step 1.6, MID-WORK REQUESTS), before the work closes (Step 4,
+WORK IN PROGRESS), is a change of that work — first line "Full (<topic>) —
+continuing <work>, change N" — never a new task. On Full a PASS alone never
+closes the work; the human's "done" or a handover does. A floor topic added to
+work below Full re-tiers it to Full, out loud, and its first Full check point
+also reads what was built under Light.
 
 When in doubt between tiers, BUMP UP (Trivial→Light→Full). Self-classification is
 a conflict of interest: an agent that wants to skip ceremony will under-classify.
@@ -331,7 +333,8 @@ The most common mistake is treating the Step 1.5 answers as permission to start.
 THEY ARE NOT.
 
 TIER NOTE: the consent STOP happens on BOTH the LIGHT and FULL tiers — consent
-before code is never skipped. On FULL it's the full assembled-plan block below.
+before code is never skipped. On FULL it's the full assembled-plan block below
+— except a same-work change after the yes (MID-WORK REQUESTS below).
 On LIGHT it collapses to one line — "❓ **Question:** doing X — ok?", the
 closing block — and a wait, unless the directive carve-out below applies. Only TRIVIAL skips it.
 
@@ -411,23 +414,24 @@ THE IRON RULE:
 - MID-WORK REQUESTS — a request sent while the work runs is routed in one line
   at your next action. SAME WORK (serves the locked Goal, hits no Non-goal)
   whose every choice their words pin is the directive above: no question — one
-  line "your words are the plan: doing X — its tests now, the full check at
-  «done»" (or "the full check now" for a hard-floor mechanism, Step 4) and do
-  it; each extra question costs the human a round trip. Only when you would add
-  something their words did not say — a fork, a default, an outward act — ask
-  in one line, "❓ **Question:** adding X to the running task, <what you
-  add> — ok?", and wait. No plan re-show, no new contract; a costly fork or an
-  irreversible act re-enters this gate in full. Otherwise a
-  SEPARATE TASK with its own tier, contract and consent, started after the
-  running work's next check point — unless it fixes something red, which goes
-  first.
+  line "your words are the plan: doing X" and do it (on Full add its check:
+  "— its tests now, the full check at «done»", or "— the full check now" for a
+  hard-floor mechanism, Step 4); each extra question costs the human a round
+  trip. Only when you would add something their words did not say — a fork, a
+  default — ask in one line, "❓ **Question:** adding X to the running task,
+  <what you add> — ok?", and wait. No plan re-show, no new contract; a costly
+  fork, an irreversible act, or an outward act with its look-back re-enters
+  this gate in full. Otherwise a SEPARATE TASK with its own tier, contract and
+  consent — on Full started after the running work's next check point, on
+  Light after its series — unless it fixes something red, which goes first.
 
 The contract (Step 1) locks at the moment of that "yes", and only then. Not
 before.
 
 Exception: per the tier note above — Trivial skips this gate; Light uses the
 one-line consent form, or the directive carve-out when all three conjuncts hold;
-Full uses the full assembled-plan block.
+Full uses the full assembled-plan block, except a same-work change after the
+yes (MID-WORK REQUESTS).
 
 ================================================================================
 STEP 2. PLAN + BOUNDARIES
@@ -590,38 +594,45 @@ Rules:
 - WORK IN PROGRESS — one piece of work keeps changing before it goes out: the
   human adjusts it or sends more requests (Step 1.6, MID-WORK REQUESTS). What
   they run is built before they get it; a failed cheap check is fixed first;
-  their device check stays SOFT, and a fix that changes what they judged is
-  judged again by them before PASS. A change is not one of Step 5's fixes.
+  runs already under way finish unawaited, and a red one is named in the next
+  handback; their device check stays SOFT, and a fix that changes what they
+  judged is judged again by them before PASS. A change is not one of Step 5's
+  fixes.
   • LIGHT — tweaks to the look, timing or wording judged by eye: a build each,
-    said once in one line. The series ends when the human accepts the result or
-    asks for something else (a commit, a pull request, new work); the full gate
-    and the Step 5 pass then run once over all of it. Until then each handback
-    ends with one line naming what has not run yet, and no verdict comes. A
-    tweak past look, timing or wording leaves the series for its own cycle.
+    said once in one line, no reply awaited. The series ends when the human
+    accepts the result or asks for something else (a commit, a pull request,
+    new work); the full gate and the Step 5 pass then run once over all of it.
+    Until then each handback ends with one line naming what has not run yet,
+    and no verdict comes. A tweak past look, timing or wording leaves the
+    series for its own cycle.
   • FULL — the first build gets the full cycle: gate, Step 5 pass, PASS. Each
     LATER change gets only the cheapest check that can SEE it — its tests; a
     build alone only when nothing cheaper can fail on it — and comes back as
     TESTS GREEN (Step 6): no Step 5 pass, no full gate, no decision-log line of
     its own; the red proof of its new tests waits for the check point, where
     one run against the code as it was before those changes shows them red
-    together. "A quick review is safer", "the floor doesn't lift" and "the last
-    PASS closed the work" are the habits this replaces. The full gate and the
-    Step 5 pass run over every change no pass has read, on one named state, at
-    the first CHECK POINT: (1) a handover — a commit or push, a pull request,
-    a merge, a release, a publish (Step 1.6 still applies); (2) the human's
-    "done" — asked in the question block once all that was asked is built;
-    (3) three TESTS GREEN changes since the last pass; (4) a change whose own
-    diff alters a hard-floor MECHANISM — a condition or computation deciding an
-    outcome (money, access, a retry, limit, expiry or idempotency rule, a
+    together, and the check point writes one [APPROVED] line naming the
+    changes folded into the contract. "A quick review is safer", "the floor
+    doesn't lift" and "the last PASS closed the work" are the habits this
+    replaces. The full gate and the Step 5 pass run over every change no pass
+    has read, on one named state, at the first CHECK POINT: (1) a handover — a
+    commit or push, a pull request, a merge, a release, a publish (Step 1.6
+    still applies); (2) the human's "done" — asked in the question block once
+    all that was asked is built; (3) three TESTS GREEN changes since the last
+    pass (a chosen bound, not measured; look, timing or wording tweaks judged
+    by eye do not count — they run as Light's series does); (4) a change whose
+    own diff alters a hard-floor MECHANISM — a condition or computation deciding
+    an outcome (money, access, a retry, limit, expiry or idempotency rule, a
     migration, concurrency, an interface published beyond this work, a
     deletion, infra, a secret) — not a reporting field, a text revealing
-    nothing, a formatter or an accessor, even inside payment or auth code; (5) before building on what is costly to unwind (a
-    schema, a dependency, a data write, a published interface); (6) the human
-    asks. At (1) and (2) the FIRST act names every change no pass has read, and
-    they are gated and passed before the PASS that closes the work. The human's
-    own words ("копи правки", "batch my changes") switch (3) off; (4) and (5)
-    still fire. Unrelated work is queued as a separate task, never a close. The
-    Step 2 budget counts rounds per check point.
+    nothing, a formatter or an accessor, even inside payment or auth code; in
+    doubt, it is a mechanism; (5) before building on what is costly to unwind
+    (a schema, a dependency, a data write, a published interface); (6) the
+    human asks. At (1) and (2) the FIRST act names every change no pass has
+    read, and they are gated and passed before the PASS. The human's own words
+    ("копи правки", "batch my changes") switch (3) off; (4) and (5) still fire.
+    Unrelated work is queued as a separate task, never a close. The Step 2
+    budget counts rounds per check point.
 
 ================================================================================
 STEP 5. ADVERSARIAL — INDEPENDENT BREAK-IT CHECK
@@ -629,8 +640,9 @@ STEP 5. ADVERSARIAL — INDEPENDENT BREAK-IT CHECK
 Passing the gate is necessary but NOT sufficient — the gate can be weak.
 
 TIER NOTE: on the FULL tier this is an INDEPENDENT subagent — NOT the one that
-produced the result. Independence is the point. It runs at the first build and at the work's check points
-(Step 4, WORK IN PROGRESS) — not after each change. On the LIGHT tier it collapses to
+produced the result. Independence is the point. It runs at the first build and
+at the work's check points (Step 4, WORK IN PROGRESS) — not after each change.
+On the LIGHT tier it collapses to
 a short SELF-adversarial pass — fake the independence you don't have: re-read
 the actual DIFF (or the finished artifact) — not your memory of what you wrote —
 and break it as if it were someone else's work. Lightened on Light, never
@@ -710,8 +722,9 @@ build's PASS keeps the work open.
 - PASS — all gates green AND the adversarial pass read that same state, which has
   not moved since (Step 4); findings adjudicated. The EVIDENCE names that state
   once for both (a commit, a content hash) and attaches the gate log / source
-  quotes — and, on Full work with later changes, which changes that pass read;
-  a change after it means no PASS yet. Done.
+  quotes — and, on Full work with later changes, which changes that pass read.
+  Done (on Full, the work itself closes at the human's "done" or a handover,
+  Step 4).
 - ITERATE — a fixable defect, budget left and not a no-progress loop (Step 2) →
   return to Step 3, then Steps 4 and 5 again.
 - ESCALATE — budget exhausted or a no-progress loop (Step 2), or no source of
@@ -777,10 +790,10 @@ Shape (copy this — headers in the human's language):
 
 Shape of a change's handback while the work is open (Full):
 
-  **TESTS GREEN** — `amount_cents` added to the result; full check at your «done».
+  **TESTS GREEN** — `list_orders` sorted newest first; full check at your «done».
 
   **Done**
-  - [x] `amount_cents` in the result — its 3 tests green
+  - [x] `list_orders` returns the newest order first — its 2 tests green
 
   **Remaining**
   - [ ] Full check + independent review of changes 2–3 — at your «done» or a commit
@@ -824,6 +837,8 @@ Tags:
 
 Write [APPROVED]/[REJECTED] at Step 1.6, a [DEVIATION] the moment you stray. One
 line per entry — if you need a paragraph, you're putting it in the wrong place.
+On Full work in progress, same-work changes folded in after the yes are logged
+together, in one [APPROVED] line at their check point (Step 4), not one each.
 
 NOT logged: benchmark/test runs, validation exercises, exploration, or routine
 execution — that's work, not a decision. The log holds only decisions that shape
