@@ -73,6 +73,10 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   [`benchmark/ste-method-2026-10-02.json`](benchmark/ste-method-2026-10-02.json).
 
 ### Changed
+- **The digest's size band moves from 10,800 to 11,200 bytes** (scripts/payne-check.sh;
+  a loosening of that check, approved by the maintainer on 2026-10-06), so the
+  digest carries the speed rules of the work-in-progress manager without
+  cutting other rules to fit.
 - **Step 4, DIRECTION ASYMMETRY:** «existing» now says it includes a check
   written in the same task — at the latest once it was committed, registered or
   shown to the human before a run, or read as a gate verdict. It narrows

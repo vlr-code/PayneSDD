@@ -229,6 +229,14 @@ spawn error is retried once, as in Step 5)? Run the same fork sweep yourself,
 say so, and still offer the 1.5b depth menu — the menu is the human's choice,
 not a subagent product.
 
+A REQUEST THAT ALREADY PINS IT: when the human's request names every behavior
+the contract needs — your draft adds only decided edge cases, no default of
+yours on a costly-to-reverse fork, no interface, no sibling — run the same fork
+sweep yourself, in one pass over the categories below, say so in one line, and
+go straight to 1.6 (0 forks: no depth menu); a fork the sweep does find sends
+the work to the subagent after all. Its brief is narrow either way: the
+request, the drafted contract and the files the change touches.
+
 MANDATORY FORK CATEGORIES — walk through EACH, not just the obvious one. A common
 mistake is to analyze only "behavior/logic" and forget the rest:
 - Behavior & logic (what it does, edge cases, errors) — and note a BEHAVIOR /
@@ -608,7 +616,8 @@ Rules:
   • FULL — the first build gets the full cycle: gate, Step 5 pass, PASS. Each
     LATER change gets only the cheapest check that can SEE it — its tests; a
     build alone only when nothing cheaper can fail on it — and comes back as
-    TESTS GREEN (Step 6): no Step 5 pass, no full gate, no decision-log line of
+    TESTS GREEN (Step 6) in the fewest steps: one edit per file, its tests run
+    once, a short handback; no Step 5 pass, no full gate, no decision-log line of
     its own; the red proof of its new tests waits for the check point, where
     one run against the code as it was before those changes shows them red
     together, and the check point writes one [APPROVED] line naming the

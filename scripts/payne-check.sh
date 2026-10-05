@@ -100,10 +100,10 @@ if [ -f "$ROOT/DIGEST.md" ]; then
   if ! printf '%s' "$agent_sha" | grep -Eq '^[0-9a-f]{64}$'; then
     echo "FAIL (digest)      ${hasher} produced no sha256 of AGENT.md — the tool is broken or missing; the pin was NOT checked (fix the tool, do not re-stamp)" >&2
     fail=1
-  elif [ -n "$pin" ] && [ "$pin" = "$agent_sha" ] && [ "$digest_size" -le 10800 ] && [ "$digest_size" -ge 8000 ]; then
-    echo "ok   (digest)      DIGEST.md pinned to current AGENT.md, ${digest_size} bytes (band 8000-10800)"
+  elif [ -n "$pin" ] && [ "$pin" = "$agent_sha" ] && [ "$digest_size" -le 11200 ] && [ "$digest_size" -ge 8000 ]; then
+    echo "ok   (digest)      DIGEST.md pinned to current AGENT.md, ${digest_size} bytes (band 8000-11200)"
   else
-    echo "FAIL (digest)      pin/size mismatch (pin='${pin:-none}', AGENT.md=${agent_sha}, size=${digest_size} bytes, band 8000-10800) — AGENT.md changed? review DIGEST.md, then run scripts/payne-digest-stamp.sh" >&2
+    echo "FAIL (digest)      pin/size mismatch (pin='${pin:-none}', AGENT.md=${agent_sha}, size=${digest_size} bytes, band 8000-11200) — AGENT.md changed? review DIGEST.md, then run scripts/payne-digest-stamp.sh" >&2
     fail=1
   fi
 else
