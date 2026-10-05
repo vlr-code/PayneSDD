@@ -200,11 +200,11 @@ Four honest notes:
 - **`PAYNE_TEST_CMD` is a command the gate executes on every stop.** In a
   shared repo where `.claude/settings.json` is committed, review changes to it
   like code — it runs with your user's permissions.
-- **Under an armed hook a series of small tweaks (AGENT.md Step 4) still runs
-  `PAYNE_TEST_CMD` at every stop** — a full suite per tweak. Pointing the
-  command at just the build for the series narrows an enforced check, a
-  loosening under Step 4's DIRECTION ASYMMETRY: only on the human's yes, and
-  restored before the series' end.
+- **Under an armed hook, work in progress (AGENT.md Step 4) still runs
+  `PAYNE_TEST_CMD` at every stop** — a full suite per change. Pointing the
+  command at the cheapest check for the work in progress narrows an enforced
+  check, a loosening under Step 4's DIRECTION ASYMMETRY: only on the human's
+  yes, and restored before the next check point.
 
 **Portability, honestly:** the *enforcement* (auto-block on stop) is Claude-Code
 only. On other agents run `hooks/payne-gate-core.sh` directly — same red/green

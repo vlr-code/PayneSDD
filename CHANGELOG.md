@@ -6,6 +6,47 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## Unreleased
 
 ### Added
+- **A manager for work in progress (Step 4) and for requests sent mid-work (Step
+  1.6); on Full the verdict closes the work, not a build (Step 6).** On Full the
+  agent keeps a 📋 work list from the first build until the work closes — each
+  change with its state, what checked it and when its full check comes — ordered
+  red or broken first, then hard-floor mechanism changes, then the human's
+  order. Each change gets only the tests that can see it, marked "tests only",
+  and no review is launched after it; the full gate and the independent pass run
+  at a check point: a handover (a commit or push, a pull request, a merge, a
+  release, a publish), the human saying the work is done or asking for the
+  check, three "tests only" items (a chosen bound, not measured), a change to a
+  hard-floor mechanism — a change to a condition or a computation that decides
+  an outcome (money, access, limits, a secret), not a field that reports a
+  decided value, a message that reveals nothing, a formatter or an accessor
+  inside a payment or auth function — or before building what is costly to
+  unwind. The verdict word and the closing summary come once, when the work
+  closes — at a handover or at the human's "done"; until then every Full
+  handback, the first build's included, ends with the work list and carries no
+  PASS and no closing summary (an ESCALATE still may), and no PASS comes while
+  any change, listed or not, is unread by an independent pass. When all that was
+  asked is built and nothing is queued, the question block asks whether the
+  work is done. New, unrelated work no longer ends the series: it joins the list
+  as a separate task. On Full the human can switch the batching on for certain
+  in their own words (e.g. "копи правки", "batch my changes"); the three-item
+  bound is then off, the other check points stay. A request sent mid-work is
+  routed in one line; the same work gets a one-line consent, which on Full names
+  its check plan ("its tests now, the full check when you say done", or after
+  the third change, or before a costly-to-unwind step). Step 0 now says the hard
+  floor sets the tier of the work, not a full cycle per change: on Full, a
+  follow-up to work already built, before the work closes, is a change on the
+  work list, not a new task; a floor topic added to lower-tier work makes it
+  Full. Step 5 runs the Full independent pass at check points, not per build or
+  change, and now says what a round is. Light keeps the look, timing and wording
+  series it had, and the digest states it again (it had dropped out of an
+  earlier draft). Why: the maintainer kept seeing the full check and an
+  independent review run after every change of work that was still changing,
+  and asked for a manager that balances quality and speed; on the stand, a PASS
+  and a closing summary after the first build made agents treat each later
+  change as a new Full task with the whole ritual. The digest stays inside its
+  size band (two NEVER lines that repeated its own Step 0 and its
+  costly-to-reverse paragraph word for word are gone); its text grows by 20
+  tokens (o200k_base, pin line excluded); AGENT.md grows by the rule's own text.
 - **A bar a stand comparison adds is measured on noise first, and every number
   of a reading rule has worked values at its edge** (benchmark/README.md,
   Battle-validation methodology). From an experiment with ASD-STE100 borrows on
