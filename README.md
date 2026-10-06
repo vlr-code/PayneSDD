@@ -53,7 +53,7 @@ don't re-read line by line — plus a committed one-line log of every decision.
 > where to keep the clone (a permanent path — your config will point at it),
 > clone there, read its AGENT.md and README — then run the installation itself
 > as your first task under that protocol: ask me the remaining setup questions
-> (which projects — all or specific ones; the ≈2.8k-token digest or the full
+> (which projects — all or specific ones; the ≈3.1k-token digest or the full
 > file always-on; persona on or off; enforced Stop-hook or honor-system gate;
 > dev mode — only if I maintain a PayneSDD clone, default off, and it lets the
 > agent append its protocol-gap notes to a file in my home),
@@ -69,21 +69,22 @@ Prefer your own hands? The manual version:
 git clone https://github.com/vlr-code/PayneSDD.git
 ```
 
-**Claude Code — recommended** (≈2.8k tokens always-on): paste these two lines
+**Claude Code — recommended** (≈3.1k tokens always-on): paste these two lines
 into `~/.claude/CLAUDE.md` — create the file if it doesn't exist, replace
 `/path/to` with your absolute clone path, both lines go in literally:
 
 ```
 @/path/to/PayneSDD/DIGEST.md
-Full protocol: /path/to/PayneSDD/AGENT.md — the digest tells the agent when to read it.
+Full protocol: /path/to/PayneSDD/AGENT.md — on a Full task read it in full before the contract; on Light the digest is the protocol.
 ```
 
-[`DIGEST.md`](DIGEST.md) is the compressed floor of the protocol — on any real
-task the agent reads the full file before writing the contract. `git pull` =
+[`DIGEST.md`](DIGEST.md) is the protocol a Light task runs on and the floor under
+a Full one — on a Full task the agent reads the full file before writing the
+contract. `git pull` =
 protocol updated everywhere.
 
 **Any other agent** — paste [`AGENT.md`](AGENT.md) whole into the system
-instructions (≈16.0k tokens always-on; the way to go for web chats and agents
+instructions (≈16.7k tokens always-on; the way to go for web chats and agents
 without file access).
 
 That's it. The agent follows the cycle automatically.
@@ -98,11 +99,11 @@ That's it. The agent follows the cycle automatically.
 |---|---|
 | **0 — Classify** | **Trivial / Light / Full** per task. Risky work — auth, billing, migrations, public output — is *forced* to Full. A typo never pays full ceremony. |
 | **1 — Contract** | The repo's rule files read, goal, non-goals, decided edge cases (a sweep row), testable criteria (`WHEN … the system SHALL …`) tied to a named source of truth. "Works correctly" is banned. |
-| **1.5 — Interrogate** | An analyst maps the real decision forks; **you** pick how much to be asked. Costly-to-reverse choices are never guessed silently. |
-| **1.6 — Approve** | A hard **STOP**. One plan block, an explicit "go" — before that, zero code. (On a small task — or a change you dictate to work already built — when your own message already IS the whole plan, the agent echoes it back in one line and proceeds.) |
+| **1.5 — Interrogate** | An analyst maps the real decision forks (or the agent sweeps them itself in one pass when your request already pins everything); **you** pick how much to be asked. Costly-to-reverse choices are never guessed silently. |
+| **1.6 — Approve** | A hard **STOP**. One plan block, an explicit "go" — before that, zero code. (When you dictate a change to work already built and your message already IS the whole plan, the agent echoes it back in one line and proceeds — on the full-file install, a small task's first message too.) |
 | **2 — Plan** | Sub-tasks, an iteration budget, escalation rules. Stuck ≠ loop forever. |
 | **3 — Execute** | Exactly the contract — no gold-plating, no silent refactors, no second copy of anything. |
-| **4 — Machine gate** | Every criterion mapped to the check that proves it. Red blocks "done". The check is never weakened to go green. |
+| **4 — Machine gate** | Every criterion mapped to the check that proves it. Red blocks "done". The check is never weakened to go green. On Full, later changes to work in progress come back TESTS GREEN on their own tests; the full check and the independent review run at check points and over everything unread when you say done. |
 | **5 — Adversarial** | A *different* agent tries to break the result. Findings without a source die. |
 | **6 — Verdict** | **PASS / ITERATE / ESCALATE** + a Done / Remaining / Open-questions checklist. |
 
@@ -145,8 +146,8 @@ so read it as the shape of the difference, not as today's digits):
 
 | Install | Always-on load | Measured Δ input per call |
 |---|---:|---:|
-| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per task | 2,799 tok | ≈ +2,254 tok |
-| Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 16,023 tok | ≈ +9,050 tok |
+| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per Full task | 3,086 tok | ≈ +2,254 tok |
+| Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 16,661 tok | ≈ +9,050 tok |
 | [`ROLES.md`](ROLES.md) multi-agent overlay | read on demand | — |
 
 The digest was live-tested against the full file (≈50 scored runs, scripted
@@ -162,7 +163,7 @@ The protocol in `AGENT.md` is self-contained. Everything else is opt-in:
 
 | File | What it adds |
 |---|---|
-| [`DIGEST.md`](DIGEST.md) | The ≈2.8k-token always-on digest — can't silently drift from `AGENT.md` (checksum-checked) |
+| [`DIGEST.md`](DIGEST.md) | The ≈3.1k-token always-on digest — can't silently drift from `AGENT.md` (checksum-checked) |
 | [`hooks/payne-gate.sh`](hooks/payne-gate.sh) + [`hooks/payne-gate-core.sh`](hooks/payne-gate-core.sh) | The **enforced** gate: a Stop-hook that blocks "done" on red tests |
 | [`templates/SPEC.template.md`](templates/SPEC.template.md) | A fixed contract skeleton for Step 1 |
 | [`commands/payne-spec.md`](commands/payne-spec.md) · [`commands/payne-review.md`](commands/payne-review.md) | Slash commands: start a contract / run the adversarial review |
