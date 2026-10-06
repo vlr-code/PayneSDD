@@ -113,7 +113,8 @@ bump it. There are three tiers:
 
 - FULL — the result outlives you / mistakes are costly.
   → run the full cycle (Steps 1–6 below) exactly as written: analyst subagent
-    (1.5a), human-picked depth (1.5b), the full plan-approval STOP (1.6), and an
+    (1.5a, or the inline sweep when the request pins it), human-picked depth
+    (1.5b), the full plan-approval STOP (1.6), and an
     INDEPENDENT adversarial subagent (Step 5) — at the first build and at the
     work's check points, not per change (Step 4, WORK IN PROGRESS).
 
@@ -229,13 +230,16 @@ spawn error is retried once, as in Step 5)? Run the same fork sweep yourself,
 say so, and still offer the 1.5b depth menu — the menu is the human's choice,
 not a subagent product.
 
-A REQUEST THAT ALREADY PINS IT: when the human's request names every behavior
-the contract needs — your draft adds only decided edge cases, no default of
-yours on a costly-to-reverse fork, no interface, no sibling — run the same fork
-sweep yourself, in one pass over the categories below, say so in one line, and
-go straight to 1.6 (0 forks: no depth menu); a fork the sweep does find sends
-the work to the subagent after all. Its brief is narrow either way: the
-request, the drafted contract and the files the change touches.
+A REQUEST THAT ALREADY PINS IT: when every Behavior line of your draft restates
+a sentence of the human's request — the draft adds only decided edge cases, no
+default of yours on a costly-to-reverse fork, no UI, no sibling — run the same
+fork sweep yourself, in one pass over the categories below, report the draft's
+internal contradictions as the subagent would, say so in one line, and go
+straight to 1.6; a fork the sweep does find, or doubt whether the request pins
+it, sends the work to the subagent after all. The subagent reads the request,
+the drafted contract, the files the change touches and what a category sends
+it to (current callers, the sibling) — not the whole repo; its brief still
+carries the categories, the sibling and the pinned decisions (below).
 
 MANDATORY FORK CATEGORIES — walk through EACH, not just the obvious one. A common
 mistake is to analyze only "behavior/logic" and forget the rest:
@@ -331,7 +335,8 @@ go straight to the plan in 1.6.)
   fork.
 
 Exception: per the tier note at the top of this step (Trivial skips it; Light lists
-forks inline; Full runs it all). When in doubt whether to interrogate — you do.
+forks inline; Full runs it all — the analyst, or the inline sweep when the
+request pins it, 1.5a). When in doubt whether to interrogate — you do.
 
 ================================================================================
 STEP 1.6. PLAN-APPROVAL GATE — STOP, DON'T SKIP
@@ -342,7 +347,7 @@ THEY ARE NOT.
 
 TIER NOTE: the consent STOP happens on BOTH the LIGHT and FULL tiers — consent
 before code is never skipped. On FULL it's the full assembled-plan block below
-— except a same-work change after the yes (MID-WORK REQUESTS below).
+— except a same-work change once the work is built (MID-WORK REQUESTS below).
 On LIGHT it collapses to one line — "❓ **Question:** doing X — ok?", the
 closing block — and a wait, unless the directive carve-out below applies. Only TRIVIAL skips it.
 
@@ -378,6 +383,10 @@ THE IRON RULE:
   3. STOP and wait for an answer. No write-tool calls, no code in that same
      message.
 - You may move to code (Step 3+) ONLY after an explicit "build it / go / yes".
+  Before it, no file of the work and no measurement script is written,
+  anywhere: a measurement the plan needs runs from the shell without writing a
+  file. The protocol's own files are outside this rule (a SPEC.md the human
+  asked for, the decision log, the gate marker).
   Silence, an emoji, an "ok" to something else — do NOT count. If you're unsure
   whether it was a "yes", it wasn't: ask again.
 - An irreversible/external action NOT named in the approved plan re-enters this
@@ -398,8 +407,8 @@ THE IRON RULE:
   that no pass has read (Step 5) — the whole change when you cannot name what
   the passes read. A passed manual or device test, or "nothing changed since the
   review", names no state.
-- THE DIRECTIVE THAT IS ALREADY THE PLAN (LIGHT; on FULL, a change of work
-  already approved — MID-WORK REQUESTS below): the consent exists
+- THE DIRECTIVE THAT IS ALREADY THE PLAN (LIGHT; on FULL only a change of work
+  already built after its yes — MID-WORK REQUESTS below): the consent exists
   already when the human's own latest message IS the whole plan and you add
   nothing to it — (i) it is their message in this session, not your restatement
   of it; (ii) every choice is pinned by their words, with no unpinned
@@ -416,9 +425,10 @@ THE IRON RULE:
   you had to interpret re-enters this gate. A slash command with its arguments
   is such a message for (i) only — (ii) and (iii) still have to hold, and a
   command whose own documentation carries a STOP keeps that STOP.
-- If the human asks for a change before that yes — fold it into the contract
-  (Step 1), show the plan AGAIN and ask "build it or revise?" again. The gate
-  repeats until explicit consent. After the yes, MID-WORK REQUESTS below.
+- If the human asks for a change before that yes — or, on Full, before the
+  work is built — fold it into the contract (Step 1), show the plan AGAIN and
+  ask "build it or revise?" again. The gate repeats until explicit consent.
+  After that, MID-WORK REQUESTS below.
 - MID-WORK REQUESTS — a request sent while the work runs is routed in one line
   at your next action. SAME WORK (serves the locked Goal, hits no Non-goal)
   whose every choice their words pin is the directive above: no question — one
@@ -438,8 +448,8 @@ before.
 
 Exception: per the tier note above — Trivial skips this gate; Light uses the
 one-line consent form, or the directive carve-out when all three conjuncts hold;
-Full uses the full assembled-plan block, except a same-work change after the
-yes (MID-WORK REQUESTS).
+Full uses the full assembled-plan block, except a same-work change once the
+work is built (MID-WORK REQUESTS).
 
 ================================================================================
 STEP 2. PLAN + BOUNDARIES
@@ -617,7 +627,7 @@ Rules:
     LATER change gets only the cheapest check that can SEE it — its tests; a
     build alone only when nothing cheaper can fail on it — and comes back as
     TESTS GREEN (Step 6) in the fewest steps: one edit per file, its tests run
-    once, a short handback; no Step 5 pass, no full gate, no decision-log line of
+    once when green (a red run is fixed and re-run); no Step 5 pass, no full gate, no decision-log line of
     its own; the red proof of its new tests waits for the check point, where
     one run against the code as it was before those changes shows them red
     together, and the check point writes one [APPROVED] line naming the
@@ -637,8 +647,13 @@ Rules:
     nothing, a formatter or an accessor, even inside payment or auth code; in
     doubt, it is a mechanism; (5) before building on what is costly to unwind
     (a schema, a dependency, a data write, a published interface); (6) the
-    human asks. At (1) and (2) the FIRST act names every change no pass has
-    read, and they are gated and passed before the PASS. The human's own words
+    human asks. At (1) and (2) the tier line carries the count — "Full
+    (<topic>) — closing <work>: changes 1–N; the last pass read 1–M" — and
+    when M < N the gate and the Step 5 pass run over changes M+1–N before the
+    PASS; a PASS without that count, or over M < N, is the very gap these two
+    check points exist to close. The close also accounts for every request
+    since this work began: done, or named under Remaining as the next task —
+    none dropped without the human's word. The human's own words
     ("копи правки", "batch my changes") switch (3) off; (4) and (5) still fire.
     Unrelated work is queued as a separate task, never a close. The Step 2
     budget counts rounds per check point.

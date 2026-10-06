@@ -25,9 +25,11 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   reporting field, a text that reveals nothing, a formatter or an accessor,
   even inside payment or auth code; in doubt, it is a mechanism), before
   building on what is costly to unwind, or on request. At a handover or the
-  human's "done" the first act names every change no pass has read, and they
-  are gated and passed before the PASS; a PASS's evidence names which changes
-  its pass read. A PASS alone never closes the work — the human's "done" or a
+  human's "done" the tier line carries a count — "changes 1–N; the last pass
+  read 1–M" — and changes M+1–N are gated and passed before the PASS; every
+  request since the work began is done or named under Remaining as the next
+  task, none dropped without the human's word; a PASS's evidence names which
+  changes its pass read. A PASS alone never closes the work — the human's "done" or a
   handover does — so a follow-up serving work already built is a change of it,
   not a new Full task; work re-tiered to Full has what was built under Light
   read at its first Full check point. A same-work change whose every choice the
@@ -63,7 +65,40 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   elsewhere — the NEVER lines "self-assign Light past the hard floor" (its Step
   0 hard floor) and "silently default a costly-to-reverse choice" (its
   costly-to-reverse paragraph) — and "tier choice has no machine enforcement",
-  which AGENT.md Step 0 keeps. AGENT.md grows by 1,266 tokens (o200k_base).
+  which AGENT.md Step 0 keeps. AGENT.md grows by 1,689 tokens (o200k_base, 14,334 → 16,023), this and the entry below together.
+- **An inline fork sweep for a fully dictated Full request, one-pass changes,
+  and no work written before the yes (Steps 1.5a, 1.6, 4).** When every Behavior line of the drafted contract
+  restates a sentence of the request (no UI, no sibling, no default of the
+  agent's on a costly-to-reverse fork), the agent runs the fork sweep itself in
+  one pass, reports the draft's contradictions, and goes straight to the
+  consent STOP; a fork found, or doubt, sends the work to the analyst subagent,
+  which reads the request, the draft, the touched files and what a category
+  sends it to (current callers, the sibling) — not the whole repo — while its
+  brief still carries the categories, the sibling and the pinned decisions. A
+  TESTS GREEN change takes the fewest steps: one edit per file, its tests run
+  once when green. Before the yes no file of the work and no measurement
+  script is written anywhere — a measurement runs from the shell; the
+  protocol's own files are outside this rule. The no-ask carve-out on Full
+  covers only a change of work already built, after its yes. Why: the
+  maintainer asked for wall-clock speed. Measured on the local stand
+  ([`benchmark/check-manager-2026-10-06.json`](benchmark/check-manager-2026-10-06.json),
+  with every definition and each registered reading rule's text): on the long billing task, new over
+  old per change — model calls 0.75, output tokens 0.80, time 0.89 — inside
+  the noise (a difference needs 0.6 or below); turn 1 took 89 and 264 s
+  against 191 and 458 s (descriptive). In a dialog with a separate task asked
+  mid-work, neither text forgot a request (no benefit shown on forgetting);
+  the new text carried the close's count line in 2 of 2 runs, the old in 0 of
+  2, and ran 3 and 3 reviews after the first build against 6 and 2. On eight
+  trap tasks, an earlier form wrote before the yes in 8 of 16 runs against
+  the old text's 2 (REJECT by the acceptance rule) — the cause, in the agents'
+  words, was a measurement script written to get honest numbers and the no-ask
+  carve-out taken on a first message; the next form read 5 of 16 against 2
+  (inconclusive; the acceptance rule PASS), and 4 of those 5 were scratch
+  scripts outside the project (counted after the run), which the shipped text
+  no longer allows. The
+  no-harm epoch (27 tasks, 108 runs, one epoch) passed the acceptance rule on
+  the text before these speed rules, with no_premature_write as its worst
+  measure (z −2.00); the shipped text itself has no stand run of its own.
 - **A bar a stand comparison adds is measured on noise first, and every number
   of a reading rule has worked values at its edge** (benchmark/README.md,
   Battle-validation methodology). From an experiment with ASD-STE100 borrows on
@@ -75,8 +110,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ### Changed
 - **The digest's size band moves from 10,800 to 11,200 bytes** (scripts/payne-check.sh;
   a loosening of that check, approved by the maintainer on 2026-10-06), so the
-  digest carries the speed rules of the work-in-progress manager without
-  cutting other rules to fit.
+  digest carries the work-in-progress rules without cutting other rules to
+  fit.
 - **Step 4, DIRECTION ASYMMETRY:** «existing» now says it includes a check
   written in the same task — at the latest once it was committed, registered or
   shown to the human before a run, or read as a gate verdict. It narrows
