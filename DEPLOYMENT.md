@@ -8,9 +8,10 @@ math breaks: the whole of `AGENT.md`
 rides in **every** message, including the 90% that are plain chat (Trivial), where
 no protocol runs at all. You pay for discipline you aren't using.
 
-This guide is the pattern that fixes it without losing any capability:
+This guide is the pattern that fixes it:
 **slim-core always loaded, full protocol on demand** — the digest install the
-README recommends is this exact pattern, shipped. Two general sections also
+README recommends is this pattern, shipped, with one difference: on Light the
+digest itself is the protocol. Two general sections also
 live at the bottom of this file, linked from the README: the **enforced
 Stop-hook setup** and **where the add-ons install**.
 
@@ -29,12 +30,15 @@ the full discipline is one file-read away the moment a real task appears.
 ## Shipped implementation: `DIGEST.md`
 
 You don't have to hand-roll the slim core: the repo ships [`DIGEST.md`](DIGEST.md)
-(~2.7k tokens) — a richer floor than the minimal core below. It carries the
+(~3.1k tokens) — a richer floor than the minimal core below. It carries the
 binding essentials of EVERY gate (tiers + hard floor, contract shape, consent
 STOP, machine gate, adversarial pass, verdict + summary, the never-do list,
-the closing question block, the voice) plus the loading rule pointing at the full `AGENT.md`. Even if the
-on-demand read ever fails to fire, the gates still bind — that safety is what
-the extra ≈2.5k tokens over the minimal core buy (the digest's count in the
+the closing question block, the voice, and the Light path — AGENT.md Step 0
+lists the details it leaves out) plus
+the loading rule: a Full task reads the full `AGENT.md` before its contract.
+On Light the digest is the protocol; on Full, even if the read ever fails to
+fire, the gates still bind — that is what
+the extra ≈2.9k tokens over the minimal core buy (the digest's count in the
 README token table, less the minimal core's 178).
 
 It cannot silently drift from the protocol: `DIGEST.md` is checksum-pinned to
@@ -54,7 +58,12 @@ knowingly.
 
 Install: point your always-loaded config at `DIGEST.md` instead of `AGENT.md`
 (e.g. a global `CLAUDE.md` `@`-import), and keep the full file's absolute path
-in that config so the digest's loading rule can find it. Hand-roll the minimal
+in that config so the digest's loading rule can find it, worded like the
+README's install line («on a Full task read it in full before the contract;
+on Light the digest is the protocol») — on the stand, with a softer line like
+«the digest tells the agent when to read it» and an earlier digest wording,
+Full tasks skipped the read (both host lines measured in their Russian form).
+Hand-roll the minimal
 slim core below only when every token counts and you accept the weaker floor.
 
 ## What goes where
@@ -200,11 +209,11 @@ Four honest notes:
 - **`PAYNE_TEST_CMD` is a command the gate executes on every stop.** In a
   shared repo where `.claude/settings.json` is committed, review changes to it
   like code — it runs with your user's permissions.
-- **Under an armed hook a series of small tweaks (AGENT.md Step 4) still runs
-  `PAYNE_TEST_CMD` at every stop** — a full suite per tweak. Pointing the
-  command at just the build for the series narrows an enforced check, a
-  loosening under Step 4's DIRECTION ASYMMETRY: only on the human's yes, and
-  restored before the series' end.
+- **Under an armed hook, work in progress (AGENT.md Step 4) still runs
+  `PAYNE_TEST_CMD` at every stop** — a full suite per change. Pointing the
+  command at the cheapest check for the work in progress narrows an enforced
+  check, a loosening under Step 4's DIRECTION ASYMMETRY: only on the human's
+  yes, and restored before the next check point or the series' end.
 
 **Portability, honestly:** the *enforcement* (auto-block on stop) is Claude-Code
 only. On other agents run `hooks/payne-gate-core.sh` directly — same red/green
@@ -223,8 +232,8 @@ Slash commands go into your project's `.claude/commands/` or globally into
 `~/.claude/commands/`; the `payne-quality` agent into `.claude/agents/` or
 `~/.claude/agents/` (copy — or symlink, so they auto-update with your clone).
 `ROLES.md` is read on demand — import it always-on only if you run roles
-routinely; otherwise the digest's pointer ("read it from the repo when
-summoned") is enough, and its ~1k tokens stay out of every session. Dev
+routinely; otherwise the digest's ROLES pointer is enough, and its ~1k
+tokens stay out of every session. Dev
 mode, once its command is installed, toggles with `/payne-edit on|off|status`;
 `/payne-edit inbox` triages the gap notes it saves to `~/.payne/inbox.md`
 (outside every repo, never committed).

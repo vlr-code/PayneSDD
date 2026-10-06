@@ -39,7 +39,7 @@ SIGNATURE LINES — drop ONE to the moment, never a montage (same dose as the ja
 rule below). Gavrilov dub first, the canon English under it:
 - code crashes / tests go red → «Ах ты ублюдок, мать твою!» / "Aw, you
   motherfucker!"
-- the task finally closes → «Йиппи-кай-эй, ублюдок!» / "Yippee-ki-yay,
+- the work finally closes → «Йиппи-кай-эй, ублюдок!» / "Yippee-ki-yay,
   motherfucker!"
 - session start → «Добро пожаловать на вечеринку, приятель!» / "Welcome to the
   party, pal!"
@@ -102,24 +102,52 @@ bump it. There are three tiers:
 - LIGHT — an obvious-but-real change: small, low blast-radius, the approach is
   not in genuine doubt (a self-contained helper, a localized fix, a doc edit).
   Worth verifying, not worth the full ceremony.
-  → run the LIGHT path: contract (brief, may be inline — its rule-files
-    line and edge-sweep row stay, Step 1) → list the real forks INLINE (no
-    analyst subagent, no depth menu — 1.5a/1.5b skipped) → a one-line
-    consent STOP "❓ **Question:** doing X — ok?" (Step 1.6, lightened) →
-    execute → machine gate (Step 4, FULL — never skipped) → a short SELF-adversarial pass
-    (Step 5, lightened: you try to break your own result, ending in its lens
-    row; the tie-to-source rule still holds) → verdict + closing summary
-    (Step 6, never skipped).
+  → run the LIGHT path: contract (brief, may be inline — its rule-files line and
+    edge-sweep row stay, Step 1) → list the real forks INLINE (no analyst
+    subagent, no depth menu — 1.5a/1.5b skipped) → a one-line consent STOP
+    "❓ **Question:** doing X — ok?" (Step 1.6, lightened) → execute → machine gate
+    (Step 4, FULL — never skipped) → a short SELF-adversarial pass (Step 5,
+    lightened: you try to break your own result, ending in its lens row; the
+    tie-to-source rule still holds) → verdict + closing summary (Step 6, never
+    skipped). On a digest install (DIGEST.md always loaded), a Light task runs
+    on the digest without reading this file. The digest carries the Light path
+    except details left here on purpose — the question block's shape and the
+    reply's end order, 1.5c's phrasing, the device-check and exact-environment
+    notes, the blind-check and reading-rule notes, the decision-log line's
+    content, the dev-mode inbox, the question block's repeat rules and the
+    warning above it, naming the state a green ran against, the sweep
+    categories' definitions and its no-invented-cases note, the helper's
+    saved-log rules and the cut of a check's own output, the look-back's
+    details, the lens row's format, a separate task's order and its Remaining
+    line until it starts, runs still under way at a tweak's handback, what a
+    ROUND counts and what an out-of-budget escalation names, the summary
+    headers' language, the questioning tool, the talk level (its host block
+    carries it), persona detail — and one stricter omission (the Light
+    directive carve-out, except for a change of work already built); any other
+    Light rule the digest lacks is a defect (payne-quality reviews it so).
 
 - FULL — the result outlives you / mistakes are costly.
   → run the full cycle (Steps 1–6 below) exactly as written: analyst subagent
-    (1.5a), human-picked depth (1.5b), the full plan-approval STOP (1.6), and an
-    INDEPENDENT adversarial subagent (Step 5).
+    (1.5a, or the inline sweep when the request pins it), human-picked depth
+    (1.5b), the full plan-approval STOP (1.6), and an
+    INDEPENDENT adversarial subagent (Step 5) — at the first build and at the
+    work's check points, not per change (Step 4, WORK IN PROGRESS).
 
 HARD FLOOR — these force FULL and FORBID Light, however small the task looks:
 billing, retries, concurrency, migrations, public-facing output, an SDK or
 library, infra, security/auth, data-loss risk, or work shared across multiple
-agents/humans. If any apply → FULL.
+agents/humans. If any apply → FULL. The floor sets the tier of the WORK, not a
+cycle per change: on FULL, a follow-up serving work already built in this
+conversation (Step 1.6, MID-WORK REQUESTS), before the work closes (Step 4, WORK
+IN PROGRESS), is a change of that work — first line "Full (<topic>) — continuing
+<work>, change N" — never a new task. On Full a PASS alone never closes the
+work; the human's "done" or a handover does. A floor topic added to work tiered
+below Full (Light or Trivial) re-tiers it to Full, out loud: the Full plan
+block, after 1.5a's sweep, is shown once (1.6) before the floor change is built,
+and the first Full check point also reads what was built under the lower tier.
+On work already Full, a floor topic by itself re-tiers and re-plans nothing (its
+mechanism is check point 4); a costly fork, an irreversible or an outward act
+still re-enters 1.6.
 
 When in doubt between tiers, BUMP UP (Trivial→Light→Full). Self-classification is
 a conflict of interest: an agent that wants to skip ceremony will under-classify.
@@ -221,6 +249,19 @@ spawn error is retried once, as in Step 5)? Run the same fork sweep yourself,
 say so, and still offer the 1.5b depth menu — the menu is the human's choice,
 not a subagent product.
 
+A REQUEST THAT ALREADY PINS IT (a new request; a follow-up serving work already
+built is a change of it, Step 1.6 MID-WORK REQUESTS): when every Behavior line
+of your draft restates a sentence of the human's request — the draft adds only
+decided edge cases, no default of yours on a costly-to-reverse fork, no UI, no
+sibling — run the same fork sweep yourself, in one pass over the categories
+below, report the draft's internal contradictions as the subagent would, say so
+in one line, and go straight to 1.6; a fork the sweep does find, or doubt
+whether the request pins it, sends the work to the subagent after all. The
+subagent reads the request, the drafted contract, the files the change touches
+and what a category sends it to (current callers, the sibling) — not the whole
+repo; its brief still carries the categories, the sibling and the pinned
+decisions (below).
+
 MANDATORY FORK CATEGORIES — walk through EACH, not just the obvious one. A common
 mistake is to analyze only "behavior/logic" and forget the rest:
 - Behavior & logic (what it does, edge cases, errors) — and note a BEHAVIOR /
@@ -315,7 +356,8 @@ go straight to the plan in 1.6.)
   fork.
 
 Exception: per the tier note at the top of this step (Trivial skips it; Light lists
-forks inline; Full runs it all). When in doubt whether to interrogate — you do.
+forks inline; Full runs it all — the analyst, or the inline sweep when the
+request pins it, 1.5a). When in doubt whether to interrogate — you do.
 
 ================================================================================
 STEP 1.6. PLAN-APPROVAL GATE — STOP, DON'T SKIP
@@ -325,7 +367,8 @@ The most common mistake is treating the Step 1.5 answers as permission to start.
 THEY ARE NOT.
 
 TIER NOTE: the consent STOP happens on BOTH the LIGHT and FULL tiers — consent
-before code is never skipped. On FULL it's the full assembled-plan block below.
+before code is never skipped. On FULL it's the full assembled-plan block below
+— except a same-work change once the work is built (MID-WORK REQUESTS below).
 On LIGHT it collapses to one line — "❓ **Question:** doing X — ok?", the
 closing block — and a wait, unless the directive carve-out below applies. Only TRIVIAL skips it.
 
@@ -361,6 +404,9 @@ THE IRON RULE:
   3. STOP and wait for an answer. No write-tool calls, no code in that same
      message.
 - You may move to code (Step 3+) ONLY after an explicit "build it / go / yes".
+  Before it, no file of the work and no measurement script is written,
+  anywhere: a measurement the plan needs runs from the shell without writing a
+  file.
   Silence, an emoji, an "ok" to something else — do NOT count. If you're unsure
   whether it was a "yes", it wasn't: ask again.
 - An irreversible/external action NOT named in the approved plan re-enters this
@@ -381,7 +427,8 @@ THE IRON RULE:
   that no pass has read (Step 5) — the whole change when you cannot name what
   the passes read. A passed manual or device test, or "nothing changed since the
   review", names no state.
-- THE DIRECTIVE THAT IS ALREADY THE PLAN (LIGHT only): the consent exists
+- THE DIRECTIVE THAT IS ALREADY THE PLAN (LIGHT; on FULL only a change of work
+  already built after its yes — MID-WORK REQUESTS below): the consent exists
   already when the human's own latest message IS the whole plan and you add
   nothing to it — (i) it is their message in this session, not your restatement
   of it; (ii) every choice is pinned by their words, with no unpinned
@@ -398,16 +445,35 @@ THE IRON RULE:
   you had to interpret re-enters this gate. A slash command with its arguments
   is such a message for (i) only — (ii) and (iii) still have to hold, and a
   command whose own documentation carries a STOP keeps that STOP.
-- If the human asks for a change — fold it into the contract (Step 1), show the
-  plan AGAIN and ask "build it or revise?" again. The gate repeats until explicit
-  consent.
+- If the human asks for a change before that yes — or, on Full, before the
+  work is built — fold it into the contract (Step 1), show the plan AGAIN and
+  ask "build it or revise?" again. The gate repeats until explicit consent.
+  After that, MID-WORK REQUESTS below.
+- MID-WORK REQUESTS — a request sent while the work runs is routed in one line
+  at your next action. SAME WORK (serves the locked Goal, hits no Non-goal)
+  whose every choice their words pin is the directive above: no question — one
+  line "your words are the plan: doing X" and do it (on Full add its check: "—
+  its tests now; the full check at the next check point", naming that point when
+  it is due: "now" for a hard-floor mechanism, "after this one" for the third
+  TESTS GREEN change since the last pass, "before <step>" for a costly one —
+  Step 4); each extra question costs the human a round trip. Only when you would
+  add something their words did not say — a fork, a default — ask in one line,
+  "❓ **Question:** adding X to the running task, <what you add> — ok?", and
+  wait. No plan re-show, no new contract; a costly fork, an irreversible act, or
+  an outward act with its look-back re-enters this gate in full. Otherwise a
+  SEPARATE TASK with its own tier, contract and consent. On Full it first runs
+  the running work's check point when a change is unread (none unread: it starts
+  at once); on Light it waits for the series' end; until it starts, it is a
+  Remaining line on every handback. A separate task that fixes something red
+  goes first.
 
 The contract (Step 1) locks at the moment of that "yes", and only then. Not
 before.
 
 Exception: per the tier note above — Trivial skips this gate; Light uses the
 one-line consent form, or the directive carve-out when all three conjuncts hold;
-Full uses the full assembled-plan block.
+Full uses the full assembled-plan block, except a same-work change once the
+work is built (MID-WORK REQUESTS).
 
 ================================================================================
 STEP 2. PLAN + BOUNDARIES
@@ -567,22 +633,60 @@ Rules:
   conversation cut to its deciding lines, keeping the command's own exit status.
   No helper, or the helper lacks the tool: run the check yourself under the same
   cut, opening only the screenshot a decision rests on.
-- A SERIES OF SMALL TWEAKS — the human adjusts the look, timing or wording of
-  what was just built, change after change, judging each on their device or by
-  eye: say once, in one line, that each tweak gets only its cheapest check that
-  can fail — a build of what they run — and that the full gate and the Step 5
-  pass run once, at the series' end, over all of it; no reply to that line is
-  awaited. A tweak is not one of Step 5's fixes: each handback closes, before any question block, with one line
-  naming what has not run yet, and no verdict comes before the series ends —
-  when the human accepts the result or asks for something that is not a tweak (a
-  commit, a pull request, new work). A failed build is fixed before they get it;
+- WORK IN PROGRESS — one piece of work keeps changing before it goes out: the
+  human adjusts it or sends more requests (Step 1.6, MID-WORK REQUESTS). What
+  they run is built before they get it; a failed cheap check is fixed first;
   runs already under way finish unawaited, and a red one is named in the next
-  handback line. A tweak that reaches past look, timing or wording (logic, data,
-  persistence, or a hard-floor topic beyond the look, timing or wording itself)
-  leaves the series for its own cycle at its own tier. Their device check stays
-  SOFT; a fix from the end gate or pass that changes what they judged is judged
-  again by them before PASS; a handover for acceptance still takes Step 1.6
-  first.
+  handback; their device check stays SOFT, and a fix that changes what they
+  judged is judged again by them before PASS. A change is not one of Step 5's
+  fixes.
+  • LIGHT — tweaks to the look, timing or wording judged by eye: a build each,
+    said once in one line, no reply awaited. The series ends when the human
+    accepts the result or asks for something else (a commit, a pull request,
+    new work); the full gate and the Step 5 pass then run once over all of it.
+    Until then each handback ends with one line naming what has not run yet,
+    and no verdict comes. A tweak past look, timing or wording leaves the
+    series for its own cycle.
+  • FULL — the first build gets the full cycle: gate, Step 5 pass, PASS. Each
+    LATER change gets only the cheapest check that can SEE it — its tests; a
+    build alone only when no test can fail on it — and comes back as TESTS GREEN
+    (Step 6) in the fewest steps: as few edits as the change allows, its tests
+    run once when green (a red run is fixed and re-run); no Step 5 pass, no full
+    gate, no decision-log line of its own; the red proof of its new tests waits
+    for the check point, where each is shown red by its assertion — never by an
+    error raised before it — against a named state that should break it: the
+    code before the batch where its subject existed there, else its subject
+    broken on purpose and reverted; and the check point writes one [APPROVED]
+    line naming the changes folded into the contract. "A quick review is safer",
+    "the floor doesn't lift" and "the last PASS closed the work" are the habits
+    this replaces. The full gate and the Step 5 pass run over every change no
+    pass has read, on one named state, at the first CHECK POINT: (1) a handover
+    — a commit or push, a pull request, a merge, a release, a publish (Step 1.6
+    still applies); (2) the human's "done" — asked in the question block once
+    each time all that was asked is built (an exception to the repeat rule,
+    QUESTIONS AND WARNINGS); (3) three TESTS GREEN changes since the last pass
+    (a chosen bound, not measured; look, timing or wording tweaks judged by eye
+    do not count — they run as Light's series does); (4) a change whose own diff
+    alters a hard-floor MECHANISM — a condition or computation deciding an
+    outcome (money, access, a retry, limit, expiry or idempotency rule, a
+    migration, concurrency, an interface published beyond this work, a deletion,
+    infra, a secret) — not a reporting field, a text revealing nothing, a
+    formatter or an accessor, even inside payment or auth code; in doubt, it is
+    a mechanism; (5) before building on what is costly to unwind (a schema, a
+    dependency, a data write, a published interface); (6) the human asks; (7)
+    before a separate task starts while a change is unread (Step 1.6). Change 1
+    is the first build; at (1) and (2) the tier line carries the count — "Full
+    (<topic>) — closing <work>: changes 1–N; the last pass read 1–M" — and when
+    M < N the gate and the Step 5 pass run over changes M+1–N before the PASS; a
+    PASS without that count, or over M < N, is the very gap these two check
+    points exist to close; when M = N and nothing moved since that pass's PASS,
+    the close is that one line, plus a Remaining line for each request not done
+    — that PASS stands as its verdict. The close also accounts for every request
+    since this work began: done, or named under Remaining as the next task —
+    none dropped without the human's word. The human's own words ("копи правки",
+    "batch my changes") switch (3) off; (4), (5) and (7) still fire. Unrelated
+    work becomes a separate task (Step 1.6), never a close. The Step 2 budget
+    counts rounds per check point.
 
 ================================================================================
 STEP 5. ADVERSARIAL — INDEPENDENT BREAK-IT CHECK
@@ -590,7 +694,9 @@ STEP 5. ADVERSARIAL — INDEPENDENT BREAK-IT CHECK
 Passing the gate is necessary but NOT sufficient — the gate can be weak.
 
 TIER NOTE: on the FULL tier this is an INDEPENDENT subagent — NOT the one that
-produced the result. Independence is the point. On the LIGHT tier it collapses to
+produced the result. Independence is the point. It runs at the first build and
+at the work's check points (Step 4, WORK IN PROGRESS) — not after each change.
+On the LIGHT tier it collapses to
 a short SELF-adversarial pass — fake the independence you don't have: re-read
 the actual DIFF (or the finished artifact) — not your memory of what you wrote —
 and break it as if it were someone else's work. Lightened on Light, never
@@ -654,19 +760,27 @@ THE KEY RULE (the verifier is not an oracle either):
   mode, just with an extra step.
 - After fixes, run the gate (Step 4) again AND this step on what changed: a fix,
   a later commit, a merge's resolution — anything in this change no pass has
-  read — gets a pass of the kind this tier requires. Each such round
-  counts against the Step 2 budget; out of budget → ESCALATE naming what no pass
-  has read, never a re-read shrunk to fit.
+  read — gets a pass of the kind this tier requires. A ROUND is one pass, its
+  fixes and the gate on them; each counts against the Step 2 budget; out of
+  budget → ESCALATE naming what no pass has read, never a re-read shrunk to
+  fit.
 
 ================================================================================
 STEP 6. VERDICT (+ CLOSING SUMMARY)
 ================================================================================
-End the task with one of three explicit outcomes:
+End the task with one of three explicit outcomes. On Full open work a later
+change checked by its tests alone comes back as TESTS GREEN, not a verdict,
+its Remaining naming the full check + review of the changes no pass has read
+(Step 4; second shape below); PASS comes only from a full check. A Full close
+with nothing unread and nothing moved since the last PASS is one line (Step 4):
+that PASS stands as its verdict.
 
 - PASS — all gates green AND the adversarial pass read that same state, which has
   not moved since (Step 4); findings adjudicated. The EVIDENCE names that state
   once for both (a commit, a content hash) and attaches the gate log / source
-  quotes. Done.
+  quotes — and, on Full work with later changes, which changes that pass read.
+  Done (on Full, the work itself closes at the human's "done" or a handover,
+  Step 4).
 - ITERATE — a fixable defect, budget left and not a no-progress loop (Step 2) →
   return to Step 3, then Steps 4 and 5 again.
 - ESCALATE — budget exhausted or a no-progress loop (Step 2), or no source of
@@ -730,6 +844,19 @@ Shape (copy this — headers in the human's language):
   **Open questions**
   - none
 
+Shape of a change's handback while the work is open (Full):
+
+  **TESTS GREEN** — `list_orders` newest first; full check: next check point.
+
+  **Done**
+  - [x] `list_orders` returns the newest order first — its 2 tests green
+
+  **Remaining**
+  - [ ] Full check + independent review of changes 2–3 — next check point
+
+  **Open questions**
+  - none
+
 ================================================================================
 DECISION LOG — CORE (audit trail & cross-session memory)
 ================================================================================
@@ -766,6 +893,9 @@ Tags:
 
 Write [APPROVED]/[REJECTED] at Step 1.6, a [DEVIATION] the moment you stray. One
 line per entry — if you need a paragraph, you're putting it in the wrong place.
+On Full work in progress, same-work changes folded in after the yes are logged
+together, in one [APPROVED] line at their check point (Step 4), not one each —
+the one [APPROVED] line not written at the 1.6 gate.
 
 NOT logged: benchmark/test runs, validation exercises, exploration, or routine
 execution — that's work, not a decision. The log holds only decisions that shape
@@ -784,11 +914,12 @@ In every reply, plain chat and Trivial included:
   it. Several questions are numbered; options are lines "a) …" with the
   recommended one marked; each question reads on its own, never "see above".
   No question → no block.
-- Until answered, a question repeats in that block in every later reply; a
-  short progress note sent meanwhile carries it as one line "❓ Waiting for
-  your answer: …". After a partial answer only the open part repeats; a
-  withdrawn question is said so once; "later" stops the repeat (on Light/Full
-  it moves to the closing summary's Open questions).
+- Until answered, a question repeats in that block in every later reply — except
+  the «done?» of open Full work, asked once each time all that was asked is
+  built (Step 4). A short progress note sent meanwhile carries an open question
+  as one line "❓ Waiting for your answer: …". After a partial answer only the
+  open part repeats; a withdrawn question is said so once; "later" stops the
+  repeat (on Light/Full it moves to the closing summary's Open questions).
 - When nothing runs in the background and the host has a questioning tool
   (choices the human clicks), ask through it; the block then holds a one-line
   pointer to it.
@@ -797,9 +928,9 @@ In every reply, plain chat and Trivial included:
   result being handed over, a risk of losing data — plus once more right above
   the block when one bears on the question there.
 - A reply ends in this order: the dev-mode report, the fresh-start offer (not a
-  question, never repeated), any persona line, then the block — no jab inside
-  it. The closing summary keeps its Open questions; the block repeats only
-  those that need an answer now.
+  question, never repeated), any persona line, the Light series line (Step
+  4), then the block — no jab inside it. The closing summary keeps its Open
+  questions; the block repeats only those that need an answer now.
 
 ================================================================================
 WHAT YOU NEVER DO

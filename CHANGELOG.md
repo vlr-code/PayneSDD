@@ -6,6 +6,188 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## Unreleased
 
 ### Added
+- **A manager for work in progress (Step 4), and no consent question for a
+  change the human dictated (Step 1.6).** On Full, the first build gets the full
+  cycle (gate, independent pass, PASS); each later change of the same work gets
+  only the cheapest check that can see it — its tests — and comes back under the
+  headline TESTS GREEN, not PASS: no independent pass, no full gate, no
+  decision-log line of its own (the check point writes one [APPROVED] line for
+  the changes folded in), and its new tests' red proof waits for the check
+  point, where each is shown red by its assertion — never by an error raised
+  before it — against the code before the batch, or its subject broken on
+  purpose and reverted. The full gate and the independent pass run over every
+  change no pass has read at a check point: a handover (a commit or push, a pull
+  request, a merge, a release, a publish), the human's "done" (asked once each
+  time all that was asked is built, not repeated), three TESTS GREEN changes (a
+  chosen bound, not measured; look, timing or wording tweaks judged by eye do
+  not count), a change whose own diff alters a hard-floor mechanism (a condition
+  or computation that decides money, access, a retry, limit, expiry or
+  idempotency rule, a migration, concurrency, an interface published beyond this
+  work, a deletion, infra, a secret — not a reporting field, a text that reveals
+  nothing, a formatter or an accessor, even inside payment or auth code; in
+  doubt, it is a mechanism), before building on what is costly to unwind, or on
+  request; the one-line note on each change names that next check point, not
+  "done". At a handover or the human's "done" the tier line carries a count —
+  "changes 1–N; the last pass read 1–M" — and changes M+1–N are gated and passed
+  before the PASS; with nothing unread the close is that one line. Every request
+  since the work began is done or named under Remaining as the next task, none
+  dropped without the human's word; a separate task asked mid-work first runs
+  the running work's check point when a change is unread, else starts at once,
+  and stays a Remaining line on every handback until it starts. A PASS's
+  evidence names which changes its pass read. On Full a PASS alone never closes
+  the work — the human's "done" or a handover does — so a follow-up serving work
+  already built is a change of it, not a new Full task; work re-tiered to Full
+  shows the Full plan block once before the floor change and has what was built
+  under Light read at its first Full check point. A same-work change whose every
+  choice the human's words pin takes the directive carve-out on Full too — one
+  line "your words are the plan: doing X", no question; a question only when the
+  agent would add a fork or a default, and a costly fork, an irreversible act or
+  an outward act (with its look-back) still re-enters the consent gate in full.
+  The human's own words ("копи правки", "batch my changes") switch the
+  three-change bound off. Light keeps its look, timing and wording series, which
+  the digest states again. Besides the batching itself, approved with the plan
+  on 2026-10-05, three of these reduce checking on Full against the
+  previous text — the no-ask carve-out for a dictated change, the inline fork
+  sweep in place of the analyst subagent for a fully dictated request (1.5a,
+  below), and the red proof waiting for the check point — and are loosenings,
+  each approved by the maintainer by name on 2026-10-06. Why: the maintainer
+  kept seeing the full check and an independent review run after every change of
+  work that was still changing. Measured on the local stand
+  ([`benchmark/check-manager-2026-10-05.json`](benchmark/check-manager-2026-10-05.json),
+  with every definition): on a billing task with eight dictated changes, both
+  sides reading the full protocol, two runs per side, the old text asked before
+  every dictated change (8 of 8 in both runs; a later pair on the same task,
+  check-manager-2026-10-06.json e34_speed1: 8 and 1 of 8) and form 15 before
+  none (0 of 8 in both); the old text reviewed every change in one run and closed the other with
+  its last change unread by any review; form 15 reviewed at the first build, at
+  the retry-policy change and at the close in both runs, but its three-change
+  check point fired late — at the fifth and the sixth change instead of the
+  third (at the latest the fourth); per-change time, input tokens and model
+  calls, new over old, read 0.79, 1.10 and 0.87 — inside the noise (the old
+  text's own two runs differed 1.71x in per-change time, 1.30x in tokens and
+  1.20x in calls). Caveats: these figures come from forms 13 and 15; no stand
+  run has read the shipped wording yet (the second no-harm epoch below ran the
+  branch text before this review, wip20); the form-15 comparison used the old
+  text's runs from an earlier same-day epoch, against the stand's methodology
+  (an earlier form compared in one epoch read 0.70, 0.96 and 0.83). The digest
+  stays inside its size band by shorter wording and by dropping: the NEVER lines
+  "self-assign Light past the hard floor" (its Step 0 hard floor) and "silently
+  default a costly-to-reverse choice" (its costly-to-reverse paragraph); "tier
+  choice has no machine enforcement" and ROLES' definition of a large task
+  (AGENT.md and ROLES.md keep both); and its header line ("checksum-pinned to
+  AGENT.md", which payne-check still enforces). The persona's closing line now
+  fires when the work closes, not the task. AGENT.md grows by 2,327 tokens
+  (o200k_base, 14,334 → 16,661), this and the two entries below together.
+- **An inline fork sweep for a fully dictated Full request, changes in as few
+  steps as they allow, and no work written before the yes (Steps 1.5a, 1.6,
+  4).** When every Behavior line of the drafted contract restates a sentence of
+  the request (no UI, no sibling, no default of the agent's on a
+  costly-to-reverse fork), the agent runs the fork sweep itself in one pass,
+  reports the draft's contradictions, and goes straight to the consent STOP; a
+  fork found, or doubt, sends the work to the analyst subagent, which reads the
+  request, the draft, the touched files and what a category sends it to (current
+  callers, the sibling) — not the whole repo — while its brief still carries the
+  categories, the sibling and the pinned decisions. A TESTS GREEN change takes
+  as few edits as it allows, its tests run once when green. Before the yes no
+  file of the work and no measurement script is written anywhere — a measurement
+  runs from the shell. The
+  no-ask carve-out on Full covers only a change of work already built, after its
+  yes. Why: the maintainer asked for wall-clock speed. Measured on the local
+  stand
+  ([`benchmark/check-manager-2026-10-06.json`](benchmark/check-manager-2026-10-06.json),
+  with every definition and each registered reading rule's text): on the long
+  billing task, form 17 over the old text per change — model calls 0.75, output
+  tokens 0.80, time 0.89 — inside the noise (a difference needs 0.6 or below;
+  the output-token bar's noise was not measured on committed data); turn 1 took
+  89 and 264 s against 191 and 458 s (descriptive); whole runs used more input
+  tokens, 17.5M and 23.9M against 9.9M and 19.4M (raw, no verdict); one form-17
+  run closed with its last change unread by any pass, the registered quality
+  override, which the close's count line now answers — measured only on the
+  dialog task, where an unread change at the close arose in one of two runs. In
+  a dialog with a separate task asked mid-work (form 18), neither text forgot a
+  request (no benefit shown on forgetting); the new text carried the close's
+  count line in 2 of 2 runs, the old in 0 of 2, and ran 3 and 3 reviews after
+  the first build against 6 and 2 — fewer in total, not fewer than each old run,
+  the miss its registered criterion names. On eight trap tasks, form 18 wrote
+  before the yes in 8 of 16 runs against the old text's 2 (REJECT by the
+  acceptance rule) — the cause, in the agents' words, was a measurement script
+  written to get honest numbers and the no-ask carve-out taken on a first
+  message; form 19 read
+  5 of 16 against 2 (inconclusive; the acceptance rule PASS), and 4 of those 5
+  were scratch scripts outside the project (counted after the run), which the
+  shipped text no longer allows. The no-harm epoch (27 tasks, 108 runs, base and
+  candidate in one epoch) passed the acceptance rule twice: on the text before
+  these speed rules, with no_premature_write as its worst measure (z −2.00), and
+  on the branch text before this review (wip20, b6f5160), whose worst decisive
+  measure was claim_sourced at z −1.03 (reached by 88% of random splits of that
+  epoch) with no_premature_write 40/48 against the old text's 38/48; its runs
+  used more input tokens than the old text's (median per run 437k against 297k,
+  26.2M against 23.3M in all) in about the same wall time (a mean of 144 against
+  151 s per run) — reported raw, no verdict.
+- **A Light task runs on the digest; a Full task reads AGENT.md every time (the
+  loading rule); two guards on the manager (Steps 0, 1.5a).** The digest's
+  loading rule changes from «every Light/Full task reads AGENT.md before the
+  contract» to «every Full task reads AGENT.md before the contract, no
+  exception; on Light this digest is the protocol», and the install line becomes
+  «on a Full task read it in full before the contract; on Light the digest is
+  the protocol». The digest now carries the Light path — the red proof of a
+  check you wrote, the check map's run signal and red value, CHANGED LINES NO
+  RUN REACHED, the mechanism search after a fixed defect, the re-tier of Light
+  work a floor topic turns Full, the decision log read at contract time,
+  «not-found is unknown», the re-read before an irreversible step and the gate
+  re-run before a handover, external systems' docs as a claim, the self-pass
+  audit items and the Light series' end — and AGENT.md Step 0 names what it
+  leaves out on purpose (the details it lists) and one stricter omission (the
+  Light directive carve-out, except for a change of work already built). The
+  reviewer side follows: payne-quality's digest lens and /payne-edit's digest
+  step hold the digest to the whole Light path, and /payne-review counts a round
+  as AGENT.md Step 5 defines it and, on Full work with later changes, names
+  which changes a PASS's review read. Guards: the inline fork sweep is for
+  a new request, not a follow-up serving work already built; a re-tier applies
+  only to work tiered below Full, and on Full work a floor topic by itself
+  re-plans nothing. This reduces checking on Light against the previous text
+  (Light no longer reads AGENT.md) and is a loosening, approved by the
+  maintainer on 2026-10-06 when asked by name (the maintainer delegated the
+  choice); the digest's size band grows for it (Changed, below). Why: on
+  ordinary tasks a Light run that read AGENT.md used two to three times the
+  input tokens of one that did not (median per run, Light-tier runs with a Read
+  of AGENT.md over those without: 1.96–3.19 for the installed text in five
+  no-harm epochs — runs that read are not a random half, so this is a
+  correlation), and the manager text made agents read it more often (in every
+  epoch: 45–75% of Light runs against 24–45%). Measured on the local stand
+  (benchmark/check-manager-2026-10-06.json): with the Light rule alone and a
+  softer install line, ordinary tasks used 0.55 of the branch text's input
+  tokens in 0.67 of its time (acceptance rule PASS, six measures lower) but no
+  Full-tier run read AGENT.md (0 of 7); with
+  the hard Full read (form 23), 0.91 of the installed protocol's tokens and 0.87
+  of its time (inside the noise, so not adopted by its registered rule; PASS),
+  every Full-tier run read AGENT.md (11 of
+  11), and the manager held in a 13-turn dialog in 3 of 3 runs; on form 25 —
+  this text before the review fixes that followed it — it held again in 3
+  of 3, while the installed text asked before 4 of 4 dictated changes and
+  reviewed 6 times after the first build in both its runs. In one epoch with
+  the installed text and the branch text before the loading rule (27 tasks, 162
+  runs), form 25 passed the acceptance rule against both (worst decisive
+  measure verdict_summary: z −2.25 against the branch text, −1.70 against the
+  installed text) and used 0.62 of the branch
+  text's input tokens and 0.78 of the installed text's (19.4M against 31.3M and
+  25.0M; median per run 241k, 472k and 311k) in 0.79 and 0.80 of their mean
+  wall time per run (170 s against 216 and 212 s); every Full-tier run read
+  AGENT.md (8 of 8, against 4 of 6 for the branch text and 5 of 9 for the
+  installed one). The rule registered before the run reads it as adopted (both
+  verdicts PASS, 0.62 ≤ 0.79), but that bar came from one between-epoch drift —
+  noise not measured, so it decides nothing on its own; the adoption is the
+  maintainer-delegated call. As a reference measured after the run, input-token
+  totals of same-text halves differ by up to 1.36x, 1.41x and 1.65x (95th
+  percentile, larger over smaller; form 25, branch, installed): the 1.61x gain
+  over the branch text exceeds the first two, not the third; the 1.29x over the
+  installed text exceeds none. Watch: the closing verdict came less often — 29 of
+  44 runs against 38 and 36; in 11 of the 15 misses a Light run wrote the three
+  summary headers without a verdict word (counted after the run), and the
+  measure was also lower in both earlier Light-on-digest epochs (33 against
+  37, 30 against 35).
+  The digest grows to 3,086 tokens always-on (o200k_base; 2,660 before this
+  release).
 - **A bar a stand comparison adds is measured on noise first, and every number
   of a reading rule has worked values at its edge** (benchmark/README.md,
   Battle-validation methodology). From an experiment with ASD-STE100 borrows on
@@ -15,6 +197,11 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   [`benchmark/ste-method-2026-10-02.json`](benchmark/ste-method-2026-10-02.json).
 
 ### Changed
+- **The digest's size band moves from 10,800 to 12,300 bytes** (scripts/payne-check.sh;
+  a loosening of that check, approved by the maintainer on 2026-10-06 in two
+  steps: to 11,200 for the work-in-progress rules, then, by delegation, to
+  12,300 for the Light path). The digest still dropped text to fit — the first
+  entry above names it.
 - **Step 4, DIRECTION ASYMMETRY:** «existing» now says it includes a check
   written in the same task — at the latest once it was committed, registered or
   shown to the human before a run, or read as a gate verdict. It narrows

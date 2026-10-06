@@ -46,8 +46,11 @@ rejected (the protocol's own "verifier is not an oracle" rule applies to you too
    concept as well as by words, with wrapped lines joined — all still line up.
    DIGEST.md stays a faithful compression of AGENT.md — never a superset, never a
    different rule: every changed AGENT.md rule is either reflected in the digest
-   or deliberately left to the full file, and "re-stamp only" is a claim you
-   check, not a formality.
+   or deliberately left to the full file — and, since a digest install runs a
+   Light task on the digest alone, only a Full-only rule may be left to the full
+   file: a Light-binding rule missing from the digest is a finding, unless AGENT.md
+   Step 0 names it as left out on purpose or as a stricter omission. "Re-stamp
+   only" is a claim you check, not a formality.
 
 Output: a tight findings list — for each `[SOURCED file:line | UNSOURCED]`,
 severity (high/med/low), the problem, a concrete fix — then a required

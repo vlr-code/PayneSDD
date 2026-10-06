@@ -79,7 +79,9 @@ evidence (the CHANGELOG 0.4.4 keeps, the persona block) — they pass by prior d
 - Any AGENT.md edit turns the digest check RED until you re-review DIGEST.md
   against the change and re-pin (`scripts/payne-digest-stamp.sh`). The pin proves
   a re-stamp; the review is yours: decide whether the digest needs text (it is a
-  floor — never a superset, never a different rule) and state the call in the
+  floor — never a superset, never a different rule — and the whole Light path:
+  a Light-binding change must reach it, or be named in AGENT.md Step 0 as
+  left out on purpose or as a stricter omission) and state the call in the
   diff summary — the quality reviewer checks it (its `Digest:` line).
 - What stays manual — YOUR deterministic check by hand: step numbers intact,
   README cycle table / CHANGELOG entries match the change, public claims match

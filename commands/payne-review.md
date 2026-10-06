@@ -50,10 +50,12 @@ Do this:
    code also starts the mechanism search (Step 4, RATCHET THE CODE).
 4. After any fix, re-run the machine gate (Step 4) and run this review again on
    anything no review has read yet — the fix, a later commit, a merge's
-   resolution; each round counts against the Step 2 budget. Then give the Step 6
+   resolution; each round (AGENT.md Step 5: a pass, its fixes and the gate on
+   them) counts against the Step 2 budget. Then give the Step 6
    verdict: PASS only on one state the gate ran green on and the reviews have
    read in full, confirmed at the verdict not to have moved since (Step 4), and
-   the evidence names it; ITERATE; or ESCALATE naming what no review has read —
+   the evidence names it — on Full work with later changes, also which changes
+   that review read; ITERATE; or ESCALATE naming what no review has read —
    and, on Light/Full, the compact Done / Remaining / Open questions closing
    summary.
 

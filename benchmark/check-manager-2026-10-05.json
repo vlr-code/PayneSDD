@@ -1,0 +1,695 @@
+{
+ "what": "check manager (Full work in progress + no consent question for a dictated change), stand measurements 2026-10-05",
+ "task": "tasks13/L01 (local stand): a billing module with retries and an idempotency key, then 8 dictated same-work changes (change 7 alters the retry policy), each followed by a scripted «Да, делай эту правку.», then «Всё, принимаю. Закрывай задачу.»; check.py validated ref 0 / broken 1 / seed 1 plus four mutants red",
+ "model": "claude-sonnet-5",
+ "consent": "«Да, делай.»",
+ "arms": {
+  "costdig": "PayneSDD at 19bab52 as installed (DIGEST + path to AGENT.md + Joe + plain-talk block)",
+  "wip13": "form 13 (first commit on branch check-manager)",
+  "wip14": "form 14 (compressed)",
+  "wip15": "form 15 (dictated change: no question)"
+ },
+ "loading_control": "every run went through harness/staged_run.py: a run whose turn 1 did not Read the full AGENT.md would be killed and restarted; none was",
+ "definitions": {
+  "change": "the change turn + the scripted yes turn after it",
+  "seconds": "sum of EVERY result line's duration_ms in those turns (a background review writes two)",
+  "input_tokens": "uncached + cache writes + cache reads, per unique message id, subagents included",
+  "model_calls": "unique assistant message ids, main + subagent",
+  "asked_first": "the change turn's last text has «?»/«？»/«❓» and the turn made no code edit",
+  "per-arm value": "median over the arm's 16 changes (2 runs × 8)",
+  "ratio": "new / old (wipNN / costdig)",
+  "reviews": "launches of an Agent/Task subagent in the main thread whose subagent_type or description reads as a review (harness review_rounds.review_kind), counted in the turn that launched it",
+  "reviews_at_first_build": "such launches in the turns before the first followup (the plan and first-build turns)",
+  "changes_with_review": "1-based numbers of the changes whose change turn or yes turn launched such a review",
+  "review_in_done_turn": "the «done» turn launched such a review"
+ },
+ "noise_rule": "registered before the runs: a ratio counts as a difference only at <= 0.6 or >= 1.67, from same-text per-change medians on a shorter series task (S01, pilots 14–15, up to 1.4x — not in this file); the in-file L01 spreads below are larger (the old text's two runs: see same_text_spread_L01), so 1.67 sits inside this task's own time noise; time is void when the arms' seconds-per-call differ 1.67x or more",
+ "reading_rules_sha256": {
+  "long2": "b85b87ef73f04489a448869042e38f351ef347e676a72180992e8a2ea579f2e2",
+  "long3": "b2b49792d2cd68216ecbaf97993d8899c70a38f540c8348be98fa3354032ccc4",
+  "long4": "f2b5666aaa0706ed07cdccccc130e69eb297bbffcd6dff18c1984fafbd55de14"
+ },
+ "caveat": "wip14 (e34-long3) and wip15 (e34-long4) were compared with e34-long2's costdig runs, not with a base run in their own epoch, against benchmark/README.md «Battle-validation methodology»; their time/token/call ratios carry that caveat. wip14's time is void (seconds per call 4x the base's).",
+ "summary": {
+  "costdig": {
+   "seconds": 62.900000000000006,
+   "input_tokens": 970201.0,
+   "model_calls": 11.5,
+   "asked_first_per_run": [
+    8,
+    8
+   ],
+   "seconds_per_call": 6.34
+  },
+  "wip13": {
+   "seconds": 44.2,
+   "input_tokens": 927990.0,
+   "model_calls": 9.5,
+   "asked_first_per_run": [
+    0,
+    5
+   ],
+   "seconds_per_call": 6.67
+  },
+  "wip14": {
+   "seconds": 286.4,
+   "input_tokens": 989189.0,
+   "model_calls": 10.5,
+   "asked_first_per_run": [
+    0,
+    8
+   ],
+   "seconds_per_call": 25.94
+  },
+  "wip15": {
+   "seconds": 49.55,
+   "input_tokens": 1066920.5,
+   "model_calls": 10.0,
+   "asked_first_per_run": [
+    0,
+    0
+   ],
+   "seconds_per_call": 9.04
+  }
+ },
+ "ratios_new_over_old": {
+  "wip13": {
+   "seconds": 0.7,
+   "input_tokens": 0.96,
+   "model_calls": 0.83
+  },
+  "wip14": {
+   "seconds": 4.55,
+   "input_tokens": 1.02,
+   "model_calls": 0.91
+  },
+  "wip15": {
+   "seconds": 0.79,
+   "input_tokens": 1.1,
+   "model_calls": 0.87
+  }
+ },
+ "verdicts": {
+  "wip13": "inside the noise on time, tokens and calls",
+  "wip14": "time void; tokens and calls inside the noise (cross-epoch base)",
+  "wip15": "asked first 0/8 and 0/8 vs the base's 8/8 and 8/8; time, tokens and calls inside the noise (cross-epoch base)"
+ },
+ "runs": [
+  {
+   "epoch": "e34-long2-base-r1-t1",
+   "arm": "costdig",
+   "run_input_tokens": 9307366,
+   "run_seconds": 1113.8,
+   "reviews_after_first_build": 10,
+   "review_in_done_turn": false,
+   "changes": [
+    {
+     "seconds": 92.6,
+     "input_tokens": 625974,
+     "model_calls": 10,
+     "reviews": 1,
+     "asked_first": true
+    },
+    {
+     "seconds": 63.6,
+     "input_tokens": 600039,
+     "model_calls": 9,
+     "reviews": 1,
+     "asked_first": true
+    },
+    {
+     "seconds": 85.1,
+     "input_tokens": 848484,
+     "model_calls": 12,
+     "reviews": 1,
+     "asked_first": true
+    },
+    {
+     "seconds": 119.8,
+     "input_tokens": 1368606,
+     "model_calls": 18,
+     "reviews": 2,
+     "asked_first": true
+    },
+    {
+     "seconds": 69.8,
+     "input_tokens": 900924,
+     "model_calls": 10,
+     "reviews": 1,
+     "asked_first": true
+    },
+    {
+     "seconds": 67.5,
+     "input_tokens": 830993,
+     "model_calls": 9,
+     "reviews": 1,
+     "asked_first": true
+    },
+    {
+     "seconds": 152.4,
+     "input_tokens": 1566131,
+     "model_calls": 16,
+     "reviews": 2,
+     "asked_first": true
+    },
+    {
+     "seconds": 62.2,
+     "input_tokens": 971679,
+     "model_calls": 9,
+     "reviews": 1,
+     "asked_first": true
+    }
+   ],
+   "reviews_at_first_build": 2,
+   "changes_with_review": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ]
+  },
+  {
+   "epoch": "e34-long2-base-r2-t1",
+   "arm": "costdig",
+   "run_input_tokens": 12091916,
+   "run_seconds": 810.8,
+   "reviews_after_first_build": 1,
+   "review_in_done_turn": false,
+   "changes": [
+    {
+     "seconds": 51.9,
+     "input_tokens": 828430,
+     "model_calls": 11,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 32.1,
+     "input_tokens": 730201,
+     "model_calls": 9,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 47.8,
+     "input_tokens": 1051470,
+     "model_calls": 12,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 53.9,
+     "input_tokens": 1234488,
+     "model_calls": 13,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 42.7,
+     "input_tokens": 1229550,
+     "model_calls": 12,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 29.2,
+     "input_tokens": 968723,
+     "model_calls": 9,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 218.1,
+     "input_tokens": 2541445,
+     "model_calls": 23,
+     "reviews": 1,
+     "asked_first": true
+    },
+    {
+     "seconds": 41.4,
+     "input_tokens": 1675377,
+     "model_calls": 12,
+     "reviews": 0,
+     "asked_first": true
+    }
+   ],
+   "reviews_at_first_build": 1,
+   "changes_with_review": [
+    7
+   ]
+  },
+  {
+   "epoch": "e34-long2-wip-r1-t1",
+   "arm": "wip13",
+   "run_input_tokens": 15414549,
+   "run_seconds": 1443.4,
+   "reviews_after_first_build": 3,
+   "review_in_done_turn": true,
+   "changes": [
+    {
+     "seconds": 61.2,
+     "input_tokens": 920340,
+     "model_calls": 10,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 36.0,
+     "input_tokens": 690630,
+     "model_calls": 7,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 70.5,
+     "input_tokens": 1054217,
+     "model_calls": 10,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 45.8,
+     "input_tokens": 1112411,
+     "model_calls": 10,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 46.0,
+     "input_tokens": 935640,
+     "model_calls": 8,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 239.7,
+     "input_tokens": 2495188,
+     "model_calls": 21,
+     "reviews": 1,
+     "asked_first": false
+    },
+    {
+     "seconds": 253.7,
+     "input_tokens": 3184204,
+     "model_calls": 23,
+     "reviews": 1,
+     "asked_first": false
+    },
+    {
+     "seconds": 44.4,
+     "input_tokens": 1754739,
+     "model_calls": 10,
+     "reviews": 0,
+     "asked_first": false
+    }
+   ],
+   "reviews_at_first_build": 1,
+   "changes_with_review": [
+    6,
+    7
+   ]
+  },
+  {
+   "epoch": "e34-long2-wip-r2-t1",
+   "arm": "wip13",
+   "run_input_tokens": 8359055,
+   "run_seconds": 559.4,
+   "reviews_after_first_build": 2,
+   "review_in_done_turn": true,
+   "changes": [
+    {
+     "seconds": 24.6,
+     "input_tokens": 473218,
+     "model_calls": 6,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 17.1,
+     "input_tokens": 326816,
+     "model_calls": 4,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 44.0,
+     "input_tokens": 1038811,
+     "model_calls": 12,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 33.5,
+     "input_tokens": 831258,
+     "model_calls": 9,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 38.8,
+     "input_tokens": 784726,
+     "model_calls": 8,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 29.6,
+     "input_tokens": 824638,
+     "model_calls": 8,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 123.5,
+     "input_tokens": 1721944,
+     "model_calls": 18,
+     "reviews": 1,
+     "asked_first": true
+    },
+    {
+     "seconds": 18.5,
+     "input_tokens": 639950,
+     "model_calls": 5,
+     "reviews": 0,
+     "asked_first": false
+    }
+   ],
+   "reviews_at_first_build": 1,
+   "changes_with_review": [
+    7
+   ]
+  },
+  {
+   "epoch": "e34-long3-wip-r1-t1",
+   "arm": "wip14",
+   "run_input_tokens": 9129591,
+   "run_seconds": 2888.3,
+   "reviews_after_first_build": 2,
+   "review_in_done_turn": true,
+   "changes": [
+    {
+     "seconds": 87.3,
+     "input_tokens": 879818,
+     "model_calls": 11,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 297.5,
+     "input_tokens": 506934,
+     "model_calls": 6,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 167.1,
+     "input_tokens": 992441,
+     "model_calls": 11,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 351.7,
+     "input_tokens": 968271,
+     "model_calls": 10,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 32.4,
+     "input_tokens": 606560,
+     "model_calls": 6,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 247.2,
+     "input_tokens": 729051,
+     "model_calls": 7,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 685.9,
+     "input_tokens": 2047077,
+     "model_calls": 19,
+     "reviews": 1,
+     "asked_first": false
+    },
+    {
+     "seconds": 275.3,
+     "input_tokens": 784176,
+     "model_calls": 6,
+     "reviews": 0,
+     "asked_first": false
+    }
+   ],
+   "reviews_at_first_build": 1,
+   "changes_with_review": [
+    7
+   ]
+  },
+  {
+   "epoch": "e34-long3-wip-r2-t1",
+   "arm": "wip14",
+   "run_input_tokens": 18947006,
+   "run_seconds": 4484.9,
+   "reviews_after_first_build": 3,
+   "review_in_done_turn": true,
+   "changes": [
+    {
+     "seconds": 445.3,
+     "input_tokens": 985937,
+     "model_calls": 11,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 53.8,
+     "input_tokens": 861145,
+     "model_calls": 9,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 475.9,
+     "input_tokens": 1461543,
+     "model_calls": 14,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 426.9,
+     "input_tokens": 2805108,
+     "model_calls": 26,
+     "reviews": 1,
+     "asked_first": true
+    },
+    {
+     "seconds": 911.3,
+     "input_tokens": 1626764,
+     "model_calls": 12,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 235.5,
+     "input_tokens": 1419198,
+     "model_calls": 10,
+     "reviews": 0,
+     "asked_first": true
+    },
+    {
+     "seconds": 354.1,
+     "input_tokens": 3902942,
+     "model_calls": 29,
+     "reviews": 1,
+     "asked_first": true
+    },
+    {
+     "seconds": 37.4,
+     "input_tokens": 1563759,
+     "model_calls": 9,
+     "reviews": 0,
+     "asked_first": true
+    }
+   ],
+   "reviews_at_first_build": 1,
+   "changes_with_review": [
+    4,
+    7
+   ]
+  },
+  {
+   "epoch": "e34-long4-wip-r1-t1",
+   "arm": "wip15",
+   "run_input_tokens": 10434359,
+   "run_seconds": 1870.8,
+   "reviews_after_first_build": 4,
+   "review_in_done_turn": true,
+   "changes": [
+    {
+     "seconds": 49.7,
+     "input_tokens": 366818,
+     "model_calls": 5,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 33.1,
+     "input_tokens": 384047,
+     "model_calls": 5,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 58.0,
+     "input_tokens": 984322,
+     "model_calls": 12,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 705.5,
+     "input_tokens": 988117,
+     "model_calls": 11,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 109.9,
+     "input_tokens": 1573391,
+     "model_calls": 21,
+     "reviews": 1,
+     "asked_first": false
+    },
+    {
+     "seconds": 38.8,
+     "input_tokens": 903988,
+     "model_calls": 8,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 134.7,
+     "input_tokens": 2518386,
+     "model_calls": 37,
+     "reviews": 2,
+     "asked_first": false
+    },
+    {
+     "seconds": 34.3,
+     "input_tokens": 996519,
+     "model_calls": 7,
+     "reviews": 0,
+     "asked_first": false
+    }
+   ],
+   "reviews_at_first_build": 1,
+   "changes_with_review": [
+    5,
+    7
+   ]
+  },
+  {
+   "epoch": "e34-long4-wip-r2-t1",
+   "arm": "wip15",
+   "run_input_tokens": 17169144,
+   "run_seconds": 1431.4,
+   "reviews_after_first_build": 3,
+   "review_in_done_turn": true,
+   "changes": [
+    {
+     "seconds": 65.6,
+     "input_tokens": 968916,
+     "model_calls": 10,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 22.5,
+     "input_tokens": 507354,
+     "model_calls": 5,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 49.4,
+     "input_tokens": 1174125,
+     "model_calls": 11,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 44.1,
+     "input_tokens": 1137322,
+     "model_calls": 10,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 41.3,
+     "input_tokens": 1197724,
+     "model_calls": 10,
+     "reviews": 0,
+     "asked_first": false
+    },
+    {
+     "seconds": 203.6,
+     "input_tokens": 2383481,
+     "model_calls": 20,
+     "reviews": 1,
+     "asked_first": false
+    },
+    {
+     "seconds": 206.4,
+     "input_tokens": 3064623,
+     "model_calls": 21,
+     "reviews": 1,
+     "asked_first": false
+    },
+    {
+     "seconds": 38.8,
+     "input_tokens": 1674404,
+     "model_calls": 10,
+     "reviews": 0,
+     "asked_first": false
+    }
+   ],
+   "reviews_at_first_build": 1,
+   "changes_with_review": [
+    6,
+    7
+   ]
+  }
+ ],
+ "same_text_spread_L01": {
+  "definition": "for each arm, the larger over the smaller of its two runs' per-change medians",
+  "values": {
+   "costdig": {
+    "seconds": 1.71,
+    "input_tokens": 1.3,
+    "model_calls": 1.2
+   },
+   "wip13": {
+    "seconds": 1.7,
+    "input_tokens": 1.35,
+    "model_calls": 1.25
+   },
+   "wip14": {
+    "seconds": 1.49,
+    "input_tokens": 1.82,
+    "model_calls": 1.35
+   },
+   "wip15": {
+    "seconds": 1.15,
+    "input_tokens": 1.2,
+    "model_calls": 1.05
+   }
+  }
+ }
+}
