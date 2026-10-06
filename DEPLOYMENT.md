@@ -44,7 +44,8 @@ README token table, less the minimal core's 178).
 It cannot silently drift from the protocol: `DIGEST.md` is checksum-pinned to
 `AGENT.md`, and `scripts/payne-check.sh` goes RED on any `AGENT.md` change
 until the digest is re-reviewed and re-pinned (`scripts/payne-digest-stamp.sh`).
-Live-tested against the full file — see README "Token cost — measured".
+Live-tested against the full file at 0.6.0, when every Light task also read
+it — see README "Token cost — measured"; for 1.0.0, CHANGELOG 1.0.0.
 
 Model floor, measured honestly: the digest's gates were validated on
 Sonnet-class models. On a weaker model (a Haiku-class benchmark epoch) the

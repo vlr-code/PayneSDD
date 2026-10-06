@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "That's because you don't have any. Yet."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.9.8-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -146,16 +146,18 @@ so read it as the shape of the difference, not as today's digits):
 
 | Install | Always-on load | Measured Δ input per call |
 |---|---:|---:|
-| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per Full task | 3,086 tok | ≈ +2,254 tok |
+| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per Full task | 3,081 tok | ≈ +2,254 tok |
 | Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 16,661 tok | ≈ +9,050 tok |
 | [`ROLES.md`](ROLES.md) multi-agent overlay | read on demand | — |
 
-The digest was live-tested against the full file (≈50 scored runs, scripted
-scoring): it held **every safeguard** — never wrote code before consent on a
-risky payments probe, asked before coding, answered trivial questions cheaply,
-kept the persona. Run summary + caveats:
+At 0.6.0, when every Light task also read AGENT.md, the digest was live-tested
+against the full file (≈50 scored runs, scripted scoring): it held **every
+safeguard** — never wrote code before consent on a risky payments probe, asked
+before coding, answered trivial questions cheaply, kept the persona. Run
+summary + caveats:
 [`benchmark/token-tests-0.6.0.md`](benchmark/token-tests-0.6.0.md) ·
-methodology: [`benchmark/README.md`](benchmark/README.md).
+methodology: [`benchmark/README.md`](benchmark/README.md). For 1.0.0, where a
+Light task runs on the digest alone, see CHANGELOG 1.0.0.
 
 ## Optional add-ons
 
@@ -214,8 +216,9 @@ included:
 
 **Actively used on real projects, and dogfooded** — PayneSDD develops itself
 under its own protocol: every change runs the full cycle and an independent
-review before it ships. Latest release: **v0.9.8**.
+review before it ships. Latest release: **v1.0.0**.
 
+- **1.0.0** — a manager for work in progress, and Light on the digest: on Full, a later change comes back TESTS GREEN on its own tests, and the full check and the independent review run at check points and over everything unread when you say done; a change you dictate needs no «ok?»; a Light task runs on the digest and every Full task reads AGENT.md before its contract; on the stand its text before the last review fixes passed the acceptance rule against the installed protocol (19bab52) and used 0.78 of its input tokens in 0.80 of its mean wall time per run (the tokens inside the same-text noise measured after the run, the time's noise not measured; definitions in benchmark/check-manager-2026-10-06.json), the closing verdict came less often (29 of 44 runs against 36), most misses Light runs that wrote the summary headers without a verdict word, and in a 13-turn dialog the manager held in 3 of 3 runs;
 - **0.9.8** — questions and warnings go in one closing block: everything waiting for the human ends the reply under a ❓ marker and repeats until answered, and only four kinds of warning get an ⚠️ line; on the stand every consent reply ended on its question, and the marker held in 3 of 3 once the Light example carried it;
 - **0.9.7** — what a review misses beyond the ticket becomes required output: every contract opens with the repo's rule files read, the edge sweep is shown as a row with every category (who or what starts it, and setup failure, added), the review looks for the rule files itself and a Light self-pass ends with a lens row, and SDK work asks about a sibling platform first; the same rules as plain prose did not move the stand, on the stand the repo's rule was then kept in 5 of 5 runs of the large-repository trap (read after a check that did not pass as registered), while the sweep row did not appear and the subscription failure is still missed;
 - **0.9.6** — a look-back before anything goes out: the plan names, for every act others will see — a release, deploy or upload, a tag, a pull request, a commit to a shared branch, a message — how the previous ones of its kind look from outside, where they were seen, and what differs; not measured on the stand;

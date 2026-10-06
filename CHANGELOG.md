@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 1.0.0 — 2026-10-06
 
 ### Added
 - **A manager for work in progress (Step 4), and no consent question for a
@@ -65,9 +65,11 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   third (at the latest the fourth); per-change time, input tokens and model
   calls, new over old, read 0.79, 1.10 and 0.87 — inside the noise (the old
   text's own two runs differed 1.71x in per-change time, 1.30x in tokens and
-  1.20x in calls). Caveats: these figures come from forms 13 and 15; no stand
-  run has read the shipped wording yet (the second no-harm epoch below ran the
-  branch text before this review, wip20); the form-15 comparison used the old
+  1.20x in calls). Caveats: these figures come from forms 13 and 15; the
+  shipped wording was read by one small stand run only (e34-verdict1: nine
+  Light tasks, no manager work — in the loading-rule entry below; the second
+  no-harm epoch below ran the branch text
+  before this review, wip20); the form-15 comparison used the old
   text's runs from an earlier same-day epoch, against the stand's methodology
   (an earlier form compared in one epoch read 0.70, 0.96 and 0.83). The digest
   stays inside its size band by shorter wording and by dropping: the NEVER lines
@@ -151,16 +153,20 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   choice); the digest's size band grows for it (Changed, below). Why: on
   ordinary tasks a Light run that read AGENT.md used two to three times the
   input tokens of one that did not (median per run, Light-tier runs with a Read
-  of AGENT.md over those without: 1.96–3.19 for the installed text in five
-  no-harm epochs — runs that read are not a random half, so this is a
-  correlation), and the manager text made agents read it more often (in every
-  epoch: 45–75% of Light runs against 24–45%). Measured on the local stand
+  of AGENT.md over those without, counted after the runs: 1.96–3.19 for the
+  installed text in five no-harm epochs — runs that read are not a random half,
+  so this is a correlation), and the manager text made agents read it more
+  often (in each of the four epochs that ran a manager text with the old
+  loading rule: 45–75% of Light runs against 24–45%; the digest-only arms — 0
+  of 46, 0 of 39 and 2 of 43 Light runs reading it — are left out). Measured on
+  the local stand
   (benchmark/check-manager-2026-10-06.json): with the Light rule alone and a
   softer install line, ordinary tasks used 0.55 of the branch text's input
   tokens in 0.67 of its time (acceptance rule PASS, six measures lower) but no
   Full-tier run read AGENT.md (0 of 7); with
   the hard Full read (form 23), 0.91 of the installed protocol's tokens and 0.87
-  of its time (inside the noise, so not adopted by its registered rule; PASS),
+  of its time (inside the registered bar, noise not measured, so not adopted by
+  its rule; PASS),
   every Full-tier run read AGENT.md (11 of
   11), and the manager held in a 13-turn dialog in 3 of 3 runs; on form 25 —
   this text before the review fixes that followed it — it held again in 3
@@ -185,8 +191,15 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   44 runs against 38 and 36; in 11 of the 15 misses a Light run wrote the three
   summary headers without a verdict word (counted after the run), and the
   measure was also lower in both earlier Light-on-digest epochs (33 against
-  37, 30 against 35).
-  The digest grows to 3,086 tokens always-on (o200k_base; 2,660 before this
+  37, 30 against 35). One small run read the shipped wording itself
+  (e34-verdict1: nine Light tasks picked on form 25's verdict-word misses, two
+  runs per arm, against a candidate fix only — no installed-text arm, so no
+  no-harm reading): the fix's verdict-word gain stayed below its registered bar
+  (18 of 18 against 15 of 18, z +1.81 against +2.68), and, counted after the
+  run, the shipped text skipped the consent ask in 6 of 18 runs against the
+  fix's 0 — the agents named the skip themselves; the installed text skipped
+  it in 4 of 18 on the same tasks in e34-noharm7, another epoch.
+  The digest grows to 3,081 tokens always-on (o200k_base; 2,660 before this
   release).
 - **A bar a stand comparison adds is measured on noise first, and every number
   of a reading rule has worked values at its edge** (benchmark/README.md,
@@ -197,6 +210,10 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   [`benchmark/ste-method-2026-10-02.json`](benchmark/ste-method-2026-10-02.json).
 
 ### Changed
+- **Upgrading a digest install: replace the host line** with the README's
+  («on a Full task read it in full before the contract; on Light the digest is
+  the protocol») — `git pull` does not change it, and the old line («the
+  digest tells the agent when to read it») was not measured with this digest.
 - **The digest's size band moves from 10,800 to 12,300 bytes** (scripts/payne-check.sh;
   a loosening of that check, approved by the maintainer on 2026-10-06 in two
   steps: to 11,200 for the work-in-progress rules, then, by delegation, to

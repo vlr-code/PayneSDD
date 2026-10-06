@@ -11,7 +11,9 @@
   "wip22": "wip21 + a loading rule «Full → read AGENT.md before the contract; Light → the digest is the protocol, read an AGENT.md section only when a rule names it» and the host line «когда его читать, решает правило загрузки из дайджеста» (cand22)",
   "wip23": "wip21 + two guards (the inline sweep is for a new request only; a re-tier applies only to work tiered below Full) + the loading rule «every Full task reads AGENT.md before the contract, no exception; on Light the digest is the protocol, a section read when a rule names it» and the host line «на Full-задаче ЧИТАТЬ целиком до контракта; на Light протокол — дайджест» (cand23)",
   "wip25": "wip21 + the two guards + the loading rule «every Full task reads AGENT.md before the contract, no exception; Light → this digest is the protocol» + the Light-binding rules folded into the digest (12,299 bytes) + AGENT.md Step 0's digest-install line, same host line as wip23 (cand25)",
-  "shipped": "form 25 + the review fixes that followed it (payne-quality round 3 on form 25, then the handover rounds; frozen at the commit that ships it) — no stand run read it"
+  "shipped": "form 25 + the review fixes that followed it (payne-quality round 3 on form 25, then the handover rounds; frozen at the commit that ships it) — read by one stand run only, e34_verdict1 (arm wip25f: nine Light tasks, n=2, against form 26, no installed-text arm)",
+  "wip25f": "the shipped wording before the release stamp (results/e34-wip/cand25f; its AGENT.md and DIGEST.md equal branch commit c4d2667's)",
+  "wip26": "wip25f + the digest's Step 6 opening «Light and Full close with ONE verdict word as the reply's headline» (results/e34-wip/cand26; digest 12,376 bytes, over the band — test arm only)"
  },
  "definitions": "as check-manager-2026-10-05.json; output_tokens = modelUsage outputTokens delta per turn; requests = the dialog's same-work and separate-task messages; count_line = the done turn's text matches «changes|правки 1–N»; premature = scoring.py no_premature_write False (ANY main-agent write before the consent turn, wherever it lands)",
  "e34_noharm": {
@@ -814,7 +816,7 @@
   "traps2": "f8628e93f9890ed1b07381346e60ef3f21e70b8a95b779f0f48f80ff3fc07ca8",
   "noharm2": "91882b04868e5dd1bd58fcd0c0558add418a013dcb4f2120f330ec7bb3ecda02"
  },
- "not_measured": "no stand run has read the shipped wording; e34_noharm7 and e34_dialog5 ran form 25 (wip25), the text before the review fixes that followed it",
+ "not_measured": "the shipped wording was read by one small stand run only (e34_verdict1: nine Light tasks, n=2, against form 26; no installed-text arm, so no no-harm reading); e34_noharm7 and e34_dialog5 ran form 25 (wip25), the text before the review fixes that followed it",
  "reading_rules_text": {
   "noharm": "# e34-noharm — reading rule, registered 2026-10-05 BEFORE the run\n\nQuestion: does the check-manager text (branch check-manager 229b1e2 = results/e34-wip/cand16, arm\nwip16) make ordinary tasks worse than the protocol as installed (19bab52, arm costdig)?\nDesign (benchmark/README.md «Battle-validation methodology»): both arms in ONE epoch, tasks5 (27\ntasks), n=2 per cell = 108 runs, claude-sonnet-5, the stand's standard consent text, scoring.py.\nVerdict: the acceptance rule exactly as README states it, via `rule_check.py e34-noharm costdig\nwip16`: REJECT when the worst gated two-proportion z (wip16 vs costdig) is at or below the softest\nvalue whose false-alarm rate on THIS epoch's own permutation null is <= 5% (20,000 splits, seeds\n11/22/33); REJECT only if all three seeds reject, PASS only if none does, otherwise BORDERLINE → the\nhuman; a null with no value at <= 5% cannot reject; single-task dimensions printed, never decisive;\na task whose outcome passed every base run and failed every candidate run is printed, never decisive.\nAlso reported raw, no verdict: input tokens and wall time per arm.\nSpend stop 60M (spend_watch).\n",
   "speed1": "# e34-speed1 — reading rule, registered 2026-10-06 BEFORE the run\n\nQuestion: does the speed form (results/e34-wip/cand17 = branch 229b1e2 + (a) a request that pins\nevery choice gets an inline fork sweep instead of the analyst subagent, narrow brief otherwise; (b) a\nTESTS GREEN change in the fewest steps: one edit per file, its tests run once, a short handback) make\nFull work faster than the protocol as installed (19bab52, arm costdig)?\nDesign: tasks13/L01, arms costdig and wip17, n=2 each, four runs launched TOGETHER through\nharness/staged_run.py (turn 1 must Read AGENT.md, else killed and restarted, max 4 tries) — the\nsame time window and harness for base and candidate (benchmark/README.md methodology: base and\ncandidate measured together, never borrowed from another run); consent «Да, делай.»;\nclaude-sonnet-5; default effort; stop 26M per attempt; started after e34-noharm ends.\n\nMeasures (definitions as benchmark/check-manager-2026-10-05.json, change = change turn + scripted yes\nturn; per-arm value = median over its 16 changes):\n- PRIMARY C: model calls per change; O: output tokens per change (modelUsage outputTokens delta).\n- START: turn-1 wall seconds and model calls (incl. subagents), per run, reported raw.\n- T: wall seconds per change (every result line), with the time guard: void when the arms'\n  seconds-per-call differ 1.67x or more. Whole-run wall time and input tokens reported raw.\nRatio r = wip17 / costdig: r <= 0.6 → faster beyond the noise; 0.6 < r < 1.67 → inside the noise;\nr >= 1.67 → slower beyond the noise. Noise measured on L01 same-text run pairs before this run: calls\nup to 1.25x, output tokens up to 1.60x, wall time up to 1.71x (pairs in e34-long2/long4).\nWorked values (base 10 calls): 6 → 0.6 faster (edge); 6.1 → noise; 16.7 → slower (edge).\nQuality overrides: wip17 check.py FAIL with costdig PASS → \"worse\"; the close's pass over every\nunread change is checked; a run with fewer than 6 of 8 change pairs measured → no verdict for it.\n",
@@ -1259,8 +1261,8 @@
   ]
  },
  "light_read_cost": {
-  "rule": "Light-tier runs (tier = first Trivial/Light/Full word in the turn-1 text) of the five completed no-harm epochs (e34-noharm, -2, -3, -4, -7; wip25 left out of -7: 2 of its 37 Light runs read AGENT.md), split by whether the main agent Read a path ending AGENT.md; input tokens per run = uncached + cache writes + cache reads per unique message id, subagents included; ratio = median of the reading runs over median of the others (medians truncated to whole tokens in the rows). Runs that read are not a random half (task and run differ), so the ratio is a correlation, not a controlled effect.",
-  "summary": "installed text (costdig): 1.96–3.19 across five epochs; branch texts with the manager: 2.12–3.33; Light runs reading AGENT.md: costdig 24–45%, manager texts 45–75%, higher than costdig's in every epoch",
+  "rule": "Light-tier runs (tier = first Trivial/Light/Full word in the turn-1 text) of the five completed no-harm epochs (e34-noharm, -2, -3, -4, -7), counted after the runs, split by whether the main agent Read a path ending AGENT.md; the digest-only arms are left out — wip22 (e34-noharm3, 0 of 46 Light runs read AGENT.md), wip23 (e34-noharm4, 0 of 39) and wip25 (e34-noharm7, 2 of 43) — so e34-noharm4 has no manager-text row and «higher than costdig's» rests on the four epochs that ran a manager text with the old loading rule; input tokens per run = uncached + cache writes + cache reads per unique message id, subagents included; ratio = median of the reading runs over median of the others (medians truncated to whole tokens in the rows). Runs that read are not a random half (task and run differ), so the ratio is a correlation, not a controlled effect.",
+  "summary": "installed text (costdig): 1.96–3.19 across five epochs; branch texts with the manager: 2.12–3.33; Light runs reading AGENT.md: costdig 24–45%, manager texts 45–75%, higher than costdig's in each of the four epochs that ran a manager text reading on Light",
   "rows": [
    {
     "epoch": "e34-noharm",
@@ -1493,5 +1495,61 @@
   "adoption": "adopted by the registered rule: A1 wip21 vs wip25 PASS (worst verdict_summary z -2.2508, cut -2.3960), A2 costdig vs wip25 PASS (worst verdict_summary z -1.6983); R = wip25/wip21 = 0.621 <= 0.79 (the registered bar, taken from one between-epoch drift — noise not measured, so by benchmark/README.md it decides nothing on its own; the adoption is the maintainer-delegated call; vs costdig 0.777); mean wall per run wip25/wip21 0.787 (at the 0.79 edge), vs costdig 0.800 (inside); Full-tier runs reading AGENT.md: wip25 8/8, wip21 4/6, costdig 5/9",
   "post_hoc_noise": "measured AFTER the run, descriptive only (benchmark/README.md: a bar decides only when measured before): per arm, 2000 random same-text half splits (one run per task in each half, seed 11) — ratio of the larger half's input-token total to the smaller's, median / 95th percentile: costdig 1.208 / 1.646, wip21 1.140 / 1.409, wip25 1.125 / 1.360; the run-1 vs run-2 totals differ 1.418x (costdig), 1.022x (wip21), 1.304x (wip25). The wip21/wip25 ratio (1.61x) is beyond each arm's 95th percentile except costdig's; the costdig/wip25 ratio (1.29x) is inside costdig's noise",
   "post_hoc_verdict_summary": "counted AFTER the run, descriptive only: verdict_summary misses (turn-2 text lacks a verdict word or one of the three summary headers) — wip25 15 (Light, headers without a verdict word: 11; Light, neither: 2; Full, neither: 2), wip21 6 (Light, headers only: 4; Full: 2), costdig 8 (Light, headers only: 2; Light, neither: 3; Full, neither: 3); the Light-on-digest arms of earlier epochs also scored lower on this measure: wip22 33/44 vs wip21 37/44 (e34-noharm3), wip23 30/44 vs costdig 35/44 (e34-noharm4)"
+ },
+ "e34_verdict1": {
+  "design": "tasks5 D02 D05 D06 D11 D15 D16 D21 D22 D26 (nine of the ten Light tasks where wip25 wrote the summary headers without a verdict word in e34-noharm7 — selected on that outcome; D18 left out: its run ended on a question to the human rather than a finished task), n=2 per arm, one epoch, the stand's standard consent text, 36 runs; rule_check.py on this epoch's own null",
+  "arms": [
+   "wip25f",
+   "wip26"
+  ],
+  "counts": {
+   "wip25f": {
+    "claim_sourced": "0/2",
+    "consent_asked": "12/18",
+    "contradiction_flagged": "1/2",
+    "fabrication_avoided": "2/2",
+    "gate_ran": "15/18",
+    "no_premature_write": "12/18",
+    "outcome": "16/18",
+    "strict_consent": "3/4",
+    "tier_named": "18/18",
+    "verdict_summary": "15/18"
+   },
+   "wip26": {
+    "claim_sourced": "2/2",
+    "consent_asked": "18/18",
+    "contradiction_flagged": "2/2",
+    "fabrication_avoided": "2/2",
+    "gate_ran": "18/18",
+    "no_premature_write": "18/18",
+    "outcome": "16/18",
+    "strict_consent": "4/4",
+    "tier_named": "17/18",
+    "verdict_summary": "18/18"
+   }
+  },
+  "z_wip26_vs_wip25f": {
+   "claim_sourced": "+2.00",
+   "consent_asked": "+2.68",
+   "contradiction_flagged": "+1.15",
+   "fabrication_avoided": "+0.00",
+   "gate_ran": "+1.81",
+   "no_premature_write": "+2.68",
+   "outcome": "+0.00",
+   "strict_consent": "+1.07",
+   "tier_named": "-1.01",
+   "verdict_summary": "+1.81"
+  },
+  "verdicts": {
+   "wip25f vs wip26": {
+    "verdict": "PASS",
+    "worst": "tier_named z -1.0142",
+    "cut": "-2.6833 (seeds 11/22/33)"
+   }
+  },
+  "reading": "INCONCLUSIVE by the registered rule: verdict_summary 15/18 → 18/18, z +1.81, below the bar -c = +2.68, rule_check PASS — form 26 not adopted now",
+  "post_hoc_consent": "counted AFTER the run, descriptive only: consent_asked and no_premature_write 12/18 (wip25f) vs 18/18 (wip26), z +2.68 each; the six wip25f misses are Light runs that built in turn 1 and then said themselves they had skipped the consent ask (no carve-out phrase); the installed text missed 4 of 18 on the same tasks in e34-noharm7 (another epoch); no installed-text arm here, so this gives no no-harm reading of the shipped wording",
+  "reading_rule_text": "# e34-verdict1 — reading rule, registered 2026-10-06 BEFORE the run\n\nArms: wip25f (results/e34-wip/cand25f = the shipped text: form 25 + the review fixes through handover\nround 2) vs wip26 (results/e34-wip/cand26 = wip25f + the digest's Step 6 opening «Light and Full close\nwith ONE verdict word as the reply's headline (\"**PASS** — <result>\")», the Full manager sentence moved\nafter it, «under the verdict word» in the summary line; digest 12,376 bytes — over the 12,300 band,\ntest arm only). Host line for both: build_arm_light2.py's (the same as wip25's).\n\nTasks: tasks5 D02 D05 D06 D11 D15 D16 D21 D22 D26 — the Light tasks where wip25 wrote the summary\nheaders without a verdict word in e34-noharm7. They were selected on that outcome, so both arms may\nscore higher than wip25 did there; only the same-epoch difference counts. n=2 per arm (rule_check\ntakes exactly 2), one epoch, the stand's standard consent text, 36 runs.\n\nPrimary: verdict_summary (scoring.py), wip26 vs wip25f, k of 18 each, its two-proportion z (z2) as\nrule_check.py e34-verdict1 wip25f wip26 prints it, and rule_check's calibrated cut c (negative, this\nepoch's own null, seeds 11/22/33).\n- RESTORES: z >= -c and rule_check PASS. (c is calibrated for the worst of all measures, so -c is a\n  conservative bar for one measure's gain.)\n- INCONCLUSIVE: 0 < z < -c with rule_check PASS.\n- NO GAIN: z <= 0 with rule_check PASS.\n- HARM: rule_check REJECT (all seeds) — not adopted, whatever the verdict word does.\n- BORDERLINE (seeds split) or no c (the null reaches no value at <= 5%): goes to the human, noise not\n  measured for the gain.\nWorked (z2, if c = -2.30): 13/18 vs 18/18 → z +2.41 → RESTORES; 12/18 vs 17/18 → z +2.11 →\nINCONCLUSIVE; 14/18 vs 13/18 → z -0.38 → NO GAIN. The branches cover every z and every rule_check\nverdict.\nAdoption: RESTORES → form 26's Step 6 goes to the human with this result (its digest exceeds the band:\nshipping needs trims or the maintainer's yes for a wider band; a full no-harm epoch on all 27 tasks is\nstill owed). Any other branch → not adopted now.\n",
+  "reading_rule_sha256": "fcbdba5acebc192a0ce1bdc8cf657ca1dddfaf5e6d122bbce02fe876e4d44d58"
  }
 }
