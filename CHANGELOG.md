@@ -96,9 +96,12 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   (inconclusive; the acceptance rule PASS), and 4 of those 5 were scratch
   scripts outside the project (counted after the run), which the shipped text
   no longer allows. The
-  no-harm epoch (27 tasks, 108 runs, one epoch) passed the acceptance rule on
-  the text before these speed rules, with no_premature_write as its worst
-  measure (z −2.00); the shipped text itself has no stand run of its own.
+  no-harm epoch (27 tasks, 108 runs, base and candidate in one epoch) passed
+  the acceptance rule twice: on the text before these speed rules, with
+  no_premature_write as its worst measure (z −2.00), and on the shipped text,
+  whose worst decisive measure was claim_sourced at z −1.03 (reached by 88% of
+  random splits of that epoch) with no_premature_write 40/48 against the old
+  text's 38/48.
 - **A bar a stand comparison adds is measured on noise first, and every number
   of a reading rule has worked values at its edge** (benchmark/README.md,
   Battle-validation methodology). From an experiment with ASD-STE100 borrows on
