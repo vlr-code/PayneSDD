@@ -146,7 +146,7 @@ so read it as the shape of the difference, not as today's digits):
 
 | Install | Always-on load | Measured Δ input per call |
 |---|---:|---:|
-| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per Full task | 3,081 tok | ≈ +2,254 tok |
+| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per Full task | 3,100 tok | ≈ +2,254 tok |
 | Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 16,661 tok | ≈ +9,050 tok |
 | [`ROLES.md`](ROLES.md) multi-agent overlay | read on demand | — |
 

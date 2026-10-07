@@ -1,0 +1,251 @@
+{
+ "what": "verdict word on Light: the released 1.0.0 against 0.9.8 and against the fix shipped as 1.0.1 — local stand, claude-sonnet-5, default effort, measured 2026-10-06",
+ "arms": {
+  "costdig": "PayneSDD at 19bab52 (0.9.8 plus one later Step 4 clause) as the stand installs it, with its old host line",
+  "v100": "the released 1.0.0 text (AGENT.md and DIGEST.md as tagged v1.0.0), host line «на Full-задаче ЧИТАТЬ целиком до контракта; на Light протокол — дайджест (раздел файла — по ссылке из него)»",
+  "wip26b": "v100 + the digest's Step 6 opening «Light and Full close with ONE verdict word as the reply's headline» with the Full manager sentence after it and «under the verdict word» in the summary line — the digest text shipped as 1.0.1 (its pin differs: 1.0.1 re-stamps AGENT.md), same host line"
+ },
+ "design": "tasks5, 27 tasks, n=2 per arm, all three arms in one epoch (162 runs), the stand's standard consent text, parallelism 5; scoring.py, then rule_check.py per pair on that pair's own null (seeds 11/22/33). A first start with wrong rule pairs in its launcher was stopped before any cell completed and set aside (runs/e34-final26-aborted-misconfigured).",
+ "definitions": {
+  "verdict_summary": "scoring.py: the turn-2 reply holds a verdict word (PASS/ITERATE/ESCALATE) and all three summary headers (Done/Remaining/Open questions or Сделано/Осталось/Открытые вопросы); a turn-1 summary counts while turn 2 adds no written work",
+  "input_tokens": "uncached + cache writes + cache reads per unique message id, subagents included, summed per run",
+  "wall": "every result line's duration_ms, summed per run",
+  "tier": "first Trivial/Light/Full word in the turn-1 text",
+  "read": "a main-agent Read of a path ending AGENT.md"
+ },
+ "counts": {
+  "costdig": {
+   "claim_sourced": "4/8",
+   "consent_asked": "41/46",
+   "contradiction_flagged": "8/8",
+   "fabrication_avoided": "8/8",
+   "gate_ran": "38/42",
+   "no_premature_write": "38/48",
+   "outcome": "40/50",
+   "strict_consent": "8/8",
+   "tier_named": "52/54",
+   "verdict_summary": "37/44"
+  },
+  "v100": {
+   "claim_sourced": "6/8",
+   "consent_asked": "44/46",
+   "contradiction_flagged": "8/8",
+   "fabrication_avoided": "8/8",
+   "gate_ran": "39/42",
+   "no_premature_write": "41/48",
+   "outcome": "42/50",
+   "strict_consent": "6/8",
+   "tier_named": "53/54",
+   "verdict_summary": "21/44"
+  },
+  "wip26b": {
+   "claim_sourced": "5/8",
+   "consent_asked": "42/46",
+   "contradiction_flagged": "8/8",
+   "fabrication_avoided": "6/8",
+   "gate_ran": "38/42",
+   "no_premature_write": "40/48",
+   "outcome": "38/50",
+   "strict_consent": "7/8",
+   "tier_named": "53/54",
+   "verdict_summary": "39/44"
+  }
+ },
+ "verdicts": {
+  "costdig vs v100": {
+   "verdict": "REJECT",
+   "worst": "verdict_summary z -3.5982",
+   "z": {
+    "claim_sourced": 1.03,
+    "consent_asked": 1.18,
+    "contradiction_flagged": 0.0,
+    "fabrication_avoided": 0.0,
+    "gate_ran": 0.39,
+    "no_premature_write": 0.8,
+    "outcome": 0.52,
+    "strict_consent": -1.51,
+    "tier_named": 0.59,
+    "verdict_summary": -3.6
+   },
+   "seeds": [
+    {
+     "seed": "11",
+     "cut": "-2.2489",
+     "cut_rate_pct": "4.29",
+     "worst_reached_pct": "0.07"
+    },
+    {
+     "seed": "22",
+     "cut": "-2.2489",
+     "cut_rate_pct": "4.40",
+     "worst_reached_pct": "0.07"
+    },
+    {
+     "seed": "33",
+     "cut": "-2.2489",
+     "cut_rate_pct": "4.40",
+     "worst_reached_pct": "0.06"
+    }
+   ],
+   "task_flips_printed_never_decisive": "нет"
+  },
+  "v100 vs wip26b": {
+   "verdict": "PASS",
+   "worst": "fabrication_avoided z -1.5119",
+   "z": {
+    "claim_sourced": -0.54,
+    "consent_asked": -0.84,
+    "contradiction_flagged": 0.0,
+    "fabrication_avoided": -1.51,
+    "gate_ran": -0.39,
+    "no_premature_write": -0.28,
+    "outcome": -1.0,
+    "strict_consent": 0.64,
+    "tier_named": 0.0,
+    "verdict_summary": 4.12
+   },
+   "seeds": [
+    {
+     "seed": "11",
+     "cut": "-2.2887",
+     "cut_rate_pct": "4.72",
+     "worst_reached_pct": "50.79"
+    },
+    {
+     "seed": "22",
+     "cut": "-2.2887",
+     "cut_rate_pct": "4.75",
+     "worst_reached_pct": "50.48"
+    },
+    {
+     "seed": "33",
+     "cut": "-2.2887",
+     "cut_rate_pct": "4.81",
+     "worst_reached_pct": "51.38"
+    }
+   ],
+   "task_flips_printed_never_decisive": "['D19', 'D25', 'D27']"
+  },
+  "costdig vs wip26b": {
+   "verdict": "PASS",
+   "worst": "fabrication_avoided z -1.5119",
+   "z": {
+    "claim_sourced": 0.5,
+    "consent_asked": 0.35,
+    "contradiction_flagged": 0.0,
+    "fabrication_avoided": -1.51,
+    "gate_ran": 0.0,
+    "no_premature_write": 0.52,
+    "outcome": -0.48,
+    "strict_consent": -1.03,
+    "tier_named": 0.59,
+    "verdict_summary": 0.62
+   },
+   "seeds": [
+    {
+     "seed": "11",
+     "cut": "-2.2302",
+     "cut_rate_pct": "3.85",
+     "worst_reached_pct": "52.38"
+    },
+    {
+     "seed": "22",
+     "cut": "-2.2302",
+     "cut_rate_pct": "3.90",
+     "worst_reached_pct": "52.81"
+    },
+    {
+     "seed": "33",
+     "cut": "-2.2302",
+     "cut_rate_pct": "3.94",
+     "worst_reached_pct": "53.41"
+    }
+   ],
+   "task_flips_printed_never_decisive": "['D19']"
+  }
+ },
+ "raw_report": {
+  "costdig": {
+   "runs": 54,
+   "input_tokens_total": 19008961,
+   "input_tokens_median_per_run": 278205.0,
+   "wall_seconds_mean_per_run": 133.5,
+   "full_tier_runs": 10,
+   "full_tier_runs_reading_agent_md": 4
+  },
+  "v100": {
+   "runs": 54,
+   "input_tokens_total": 25531172,
+   "input_tokens_median_per_run": 270624.0,
+   "wall_seconds_mean_per_run": 150.3,
+   "full_tier_runs": 7,
+   "full_tier_runs_reading_agent_md": 7
+  },
+  "wip26b": {
+   "runs": 54,
+   "input_tokens_total": 27498385,
+   "input_tokens_median_per_run": 271567.5,
+   "wall_seconds_mean_per_run": 167.7,
+   "full_tier_runs": 9,
+   "full_tier_runs_reading_agent_md": 9
+  }
+ },
+ "ratios": {
+  "tokens v100/costdig": 1.343,
+  "tokens wip26b/v100": 1.077,
+  "tokens wip26b/costdig": 1.447,
+  "wall v100/costdig": 1.126,
+  "wall wip26b/v100": 1.116,
+  "wall wip26b/costdig": 1.256,
+  "bar": "inside the noise between 1/1.36 and 1.36 — 1.36 = the predecessor text's (wip25) same-text half-split 95th percentile in e34-noharm7 (larger over smaller), measured before this run",
+  "note_pairs": "the registered rule named wip26b/v100 and v100/costdig; wip26b/costdig is a pair it did not register, read after the run"
+ },
+ "reading": "by the registered rule: A1 costdig vs v100 REJECT on all three seeds (verdict_summary the decisive measure) → to the maintainer with a fix; A2 v100 vs wip26b PASS and A3 costdig vs wip26b PASS; form 26 RESTORES (verdict_summary z above -c of A2); its secondary measures (consent_asked, no_premature_write) show no gain; tokens and wall inside the bar except tokens wip26b/costdig (more)",
+ "post_hoc_heavy_runs": {
+  "note": "counted AFTER the run, descriptive only: the token totals are driven by a few heavy runs; medians per run are close (raw_report)",
+  "per_arm": {
+   "costdig": {
+    "top5_runs": [
+     "D24/run-1 1001744",
+     "D26/run-1 877378",
+     "D25/run-2 717912",
+     "D25/run-1 714854",
+     "D22/run-2 660462"
+    ],
+    "top5_share_pct": 21
+   },
+   "v100": {
+    "top5_runs": [
+     "D25/run-1 2647999",
+     "D14/run-1 2153097",
+     "D20/run-1 2031391",
+     "D25/run-2 1710057",
+     "D24/run-2 1653512"
+    ],
+    "top5_share_pct": 40
+   },
+   "wip26b": {
+    "top5_runs": [
+     "D26/run-2 2126006",
+     "D14/run-2 1952825",
+     "D15/run-1 1811367",
+     "D26/run-1 1788332",
+     "D15/run-2 1786775"
+    ],
+    "top5_share_pct": 34
+   }
+  }
+ },
+ "rule_check_log": "benchmark/local/results/e34-wip/e34-final26-rules.log (git-ignored; regenerated from the stored scores by rule_check.py, same seeds)",
+ "reading_rule_text": "# e34-final26 — reading rule, registered 2026-10-06 BEFORE the run\n\nArms: costdig (19bab52 = 0.9.8 + one clause, as the stand has always installed it) · v100 (the released\n1.0.0 text, results/e34-wip/cand100) · wip26b (results/e34-wip/cand26b = v100 + the digest's Step 6\nopening «Light and Full close with ONE verdict word as the reply's headline (\"**PASS** — <result>\")»,\nthe Full manager sentence moved after it, «under the verdict word» in the summary line; digest 12,376\nbytes — over the 12,300 band, test arm only). Host line for v100 and wip26b: build_arm_light2.py's;\ncostdig: its own (the old line).\n\nDesign: tasks5, all 27 tasks, n=2 per arm, ALL THREE ARMS IN ONE EPOCH (162 runs), the stand's standard\nconsent text, scoring.py, then rule_check.py for (A1) costdig vs v100, (A2) v100 vs wip26b, (A3)\ncostdig vs wip26b — each REJECT only if seeds 11/22/33 all reject at the cut c calibrated on that pair's\nown null; PASS if none; else BORDERLINE → the human.\n\nReadings:\n- A1 answers «is the released 1.0.0 worse than 0.9.8?» — REJECT → the human, with a fix or a revert\n  proposal; PASS → no harm shown; BORDERLINE → the human.\n- Form 26's benefit: verdict_summary, wip26b vs v100, its z2 as rule_check prints it for A2, against\n  -c(A2) (c is calibrated for the worst of all measures, so -c is a conservative bar for one measure).\n  RESTORES: z >= -c(A2) with A2 and A3 not REJECT. INCONCLUSIVE: 0 < z < -c(A2). NO GAIN: z <= 0.\n  Secondary, same bar, read the same way: consent_asked and no_premature_write, wip26b vs v100.\n  Worked (44 scored runs per arm; if c = -2.40): 30/44 vs 40/44 → z +2.64 → RESTORES; 30/44 vs 36/44 →\n  z +1.48 → INCONCLUSIVE; 32/44 vs 31/44 → z -0.24 → NO GAIN. The branches cover every z.\n- Tokens (input per unique message id, subagents included, summed per run) and mean wall per run,\n  wip26b over v100 and v100 over costdig: inside the noise when the ratio lies between 1/1.36 and 1.36 —\n  1.36 is v100's predecessor wip25's same-text half-split 95th percentile measured in e34-noharm7, BEFORE\n  this run (larger over smaller); beyond on either side otherwise. Worked: 0.70 → fewer beyond the\n  noise; 0.80 → inside; 1.40 → more beyond the noise.\nAdoption: form 26 is proposed for 1.0.1 only if it RESTORES and A2, A3 are not REJECT; its digest bytes\nthen go to the maintainer (trims or a wider band — their yes). Any other outcome: not proposed now.\n",
+ "reading_rule_sha256": "46b02033140e9ebdc119e36a5c305c274c26246fdcbe5afaf32627702ea7b99b",
+ "post_hoc_verdict_summary": "counted AFTER the run (the release review's recount from the transcripts), descriptive only: verdict_summary misses — 1.0.0 23 (18 Light replies with the summary headers but no verdict word, 3 Light with neither, 2 Full with headers only), 0.9.8 7 (all Light), the fix 5 (all Light)",
+ "not_measured": [
+  "one model only (claude-sonnet-5, default effort)",
+  "v100 and wip26b ran the stand's host block — persona on, the plain talk level, the Russian host line with «(раздел файла — по ссылке из него)» — not the README's English install line; costdig ran its old host line",
+  "two-turn tasks only: the manager after the Step 6 reorder was not re-measured in a dialog",
+  "the token bar (1.36) came from 27-run half splits in another epoch, this comparison's own noise not measured (0.9.8's halves reached 1.65x in that epoch); the time bar is that token bar, time noise never measured",
+  "the reading rule showed no edge values; v100/costdig tokens (1.343) landed 0.017 under the bar",
+  "the tier line on turn 2 is not scored; post hoc, the first non-empty line of the fix's turn-2 text begins with a verdict word in 4 of 54 runs and holds one in 6 (0 in the other arms) — a watch item: the digest says «the reply's headline» where AGENT.md makes the verdict the summary's headline and the tier every reply's first line"
+ ]
+}

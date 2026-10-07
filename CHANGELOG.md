@@ -3,6 +3,48 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Fixed
+- **A task closes with its verdict word again (DIGEST.md, Step 6).** The
+  digest's Step 6 line now opens with «Light and Full close with ONE verdict
+  word as the reply's headline ("**PASS** — <result>")», the manager's Full
+  sentence follows it, and the summary sits «under the verdict word». In 1.0.0
+  that line opened with the Full manager sentence, and a Light task — which in
+  1.0.0 runs on the digest alone — closed without its verdict word far more
+  often (counted after the run: 18 of 1.0.0's 23 misses were Light replies with
+  the summary headers but no verdict word). Measured on the local stand in one
+  epoch of 0.9.8 as installed (19bab52), 1.0.0 and this fix
+  (27 tasks, two runs per text, 162 runs;
+  [`benchmark/verdict-word-2026-10-06.json`](benchmark/verdict-word-2026-10-06.json),
+  with every definition and the reading rule registered before the run): the
+  acceptance rule REJECTED 1.0.0 against 0.9.8 on all three seeds — the
+  closing verdict with its summary came in 21 of 44 runs against 37 (z −3.60;
+  random splits of that epoch reach it in 0.07%), and no other measure came
+  near the cut (next lowest: strict consent, 8 of 8 → 6 of 8, z −1.51); with
+  the fix it came in 39 of 44 (z +4.12 against 1.0.0, above the bar the rule
+  set), and the fix passed the acceptance rule against both texts (its lowest
+  measure: fabrication avoided, 8 of 8 → 6 of 8, z −1.51, reached by about half
+  of random splits; outcome 38 of 50 against 42 for 1.0.0). Its
+  consent measures showed no gain: the hint from the earlier nine-task run
+  (6 consent skips of 18 against 0) did not replicate. In the same epoch 1.0.0
+  used 1.34 of 0.9.8's input tokens in 1.13 of its mean wall time per run, and
+  the fix 1.08 and 1.12 of 1.0.0's — inside the bar registered before the run
+  (token noise of half-size samples of one text in another epoch — this
+  comparison's own noise not measured, and 0.9.8's halves reached 1.65x there;
+  the time's noise not measured), except the fix against 0.9.8 on tokens (1.45; a
+  pair the rule did not register, read after the run);
+  the medians per run were close (278k, 271k and 272k), the excess sitting in
+  a few heavy runs (counted after the run). So 1.0.0's token and time gain
+  over 0.9.8 is not shown: the earlier epoch's 0.78 and 0.80 did not hold.
+
+### Changed
+- **The digest's size band moves from 12,300 to 12,400 bytes**
+  (scripts/payne-check.sh; a loosening of that check, approved by the
+  maintainer on 2026-10-07), so the fix ships exactly as measured, the pin
+  aside (12,376 bytes). The digest grows to 3,100 tokens always-on (o200k_base; 3,081 in
+  1.0.0).
+
 ## 1.0.0 — 2026-10-06
 
 ### Added
