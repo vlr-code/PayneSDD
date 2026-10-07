@@ -1,8 +1,7 @@
 name: gate
 
-# The repo's own Step 4 machine gate — the same check the dogfood Stop-hook
-# runs locally, here on every push and PR (blocking merges needs branch
-# protection on top; without it this is a loud red X, not a lock).
+# The repo's own machine check, on every push and PR (blocking merges needs
+# branch protection on top; without it this is a loud red X, not a lock).
 on:
   push:
     branches: [main]

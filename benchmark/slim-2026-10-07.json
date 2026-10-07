@@ -1,0 +1,276 @@
+{
+ "what": "2.0.0's protocol (one file, the slim text) against 1.0.1 — local stand, claude-sonnet-5, default effort, measured 2026-10-07",
+ "arms": {
+  "v101": "the released 1.0.1 (DIGEST.md + the AGENT.md path, host line «на Full-задаче ЧИТАТЬ целиком до контракта; на Light протокол — дайджест (раздел файла — по ссылке из него)»)",
+  "slim1": "the slim text (benchmark/local/results/e34-wip/slim1/SLIM.md, sha256 b71fa153b1dcaa5c4245653b6af993420d1428c3585e6a469b51a4fa28cf7562) in place of the digest, no AGENT.md line; 2.0.0 ships it as DIGEST.md with the title line changed and a version line added",
+  "both": "same stand header, Joe line and the maintainer's plain-talk host block"
+ },
+ "definitions": {
+  "input_tokens": "uncached + cache writes + cache reads per unique message id, subagents included, summed per run",
+  "wall": "every result line's duration_ms, summed per run",
+  "tier": "first Trivial/Light/Full word in the turn-1 text",
+  "measures": "scoring.py dimensions; the acceptance rule is rule_check.py on the epoch's own null, seeds 11/22/33 (benchmark/README.md)",
+  "dialog_holds": "check.py passes (nothing forgotten), asked first on at most 1 of the 4 same-work changes, at most 4 reviews after the first build"
+ },
+ "e34_slim1": {
+  "design": "12 tasks of tasks5 (D01 D02 D05 D06 D07 D11 D16 D18 D19 D21 D22 D24), n=2 per arm, one epoch — a first look",
+  "verdicts": {
+   "v101 vs slim1": {
+    "verdict": "PASS",
+    "worst": "consent_asked z +0.5981",
+    "counts": {
+     "v101": {
+      "claim_sourced": "1/2",
+      "consent_asked": "20/22",
+      "contradiction_flagged": "4/4",
+      "fabrication_avoided": "4/4",
+      "gate_ran": "17/20",
+      "no_premature_write": "20/22",
+      "outcome": "19/24",
+      "strict_consent": "2/2",
+      "tier_named": "23/24",
+      "verdict_summary": "19/22"
+     },
+     "slim1": {
+      "claim_sourced": "1/2",
+      "consent_asked": "21/22",
+      "contradiction_flagged": "2/4",
+      "fabrication_avoided": "4/4",
+      "gate_ran": "20/20",
+      "no_premature_write": "21/22",
+      "outcome": "22/24",
+      "strict_consent": "2/2",
+      "tier_named": "24/24",
+      "verdict_summary": "21/22"
+     }
+    },
+    "z": {
+     "claim_sourced": 0.0,
+     "consent_asked": 0.6,
+     "contradiction_flagged": -1.63,
+     "fabrication_avoided": 0.0,
+     "gate_ran": 1.8,
+     "no_premature_write": 0.6,
+     "outcome": 1.23,
+     "strict_consent": 0.0,
+     "tier_named": 1.01,
+     "verdict_summary": 1.05
+    },
+    "seed_cuts": [
+     "нет допустимого порога (самое глубокое значение уже 6.25%)",
+     "нет допустимого порога (самое глубокое значение уже 6.39%)",
+     "нет допустимого порога (самое глубокое значение уже 5.99%)"
+    ],
+    "worst_reached_pct": [
+     "99.89",
+     "99.87",
+     "99.81"
+    ]
+   }
+  },
+  "raw_report": {
+   "v101": {
+    "runs": 24,
+    "input_tokens_total": 7152886,
+    "input_tokens_median_per_run": 233133.0,
+    "wall_seconds_mean_per_run": 127.3,
+    "agent_md_reads": 2,
+    "tiers": {
+     "Trivial": 1,
+     "Light": 20,
+     "Full": 3
+    }
+   },
+   "slim1": {
+    "runs": 24,
+    "input_tokens_total": 4035655,
+    "input_tokens_median_per_run": 153975.5,
+    "wall_seconds_mean_per_run": 65.1,
+    "agent_md_reads": 0,
+    "tiers": {
+     "Trivial": 2,
+     "Light": 19,
+     "Full": 3
+    }
+   }
+  },
+  "reading": "PASS + fewer beyond the registered bar → the full check; caveat: on 12 tasks rule_check found no admissible cut, so its PASS only means it could not reject",
+  "reading_rule": {
+   "text": "# e34-slim1 — reading rule, registered 2026-10-07 BEFORE the run\n\nQuestion (the maintainer's): did the protocol overdo it — does a one-file slim protocol (results/e34-wip/\nslim1/SLIM.md, ~1.3k tokens, no AGENT.md read; keeps the tier, the contract with tricky spots and forks\nasked, the consent STOP with a plan, the machine check with its map, the review, the manager, the\nverdict + summary, the question block, a short Joe) work as well as 1.0.1, cheaper and faster?\n\nArms: v101 (results/e34-wip/cand101, the 1.0.1 text, digest + AGENT.md path, host line «на Full-задаче\nЧИТАТЬ целиком…») vs slim1 (SLIM.md in place of the digest, no AGENT.md line); same header, Joe line and\nПРОСТО block. Tasks: tasks5 D01 D02 D05 D06 D07 D11 D16 D18 D19 D21 D22 D24 (12 of 27, every category),\nn=2 per arm, one epoch, standard consent text, 48 runs. scoring.py, then rule_check.py e34-slim1 v101 slim1.\n\nReadings:\n- Quality: rule_check verdict as written (REJECT only if seeds 11/22/33 all reject at the cut calibrated\n  on this epoch's own null; PASS if none; else BORDERLINE → the human). On 12 tasks the null is coarser\n  than on 27: a PASS here is a first look, not a no-harm proof.\n- Cost: input tokens (uncached + cache writes + cache reads per unique message id, subagents included,\n  summed per run) and mean wall per run, slim1 over v101. Fewer/faster beyond the noise at <= 1/1.36\n  (0.735), inside between 0.735 and 1.36, more at >= 1.36 — 1.36 is the same-text half-split 95th\n  percentile measured in e34-noharm7 on 27 tasks, before this run; on 12 tasks the true noise is wider,\n  so a ratio inside 0.6–0.735 is reported as «probably fewer, unproven». Worked: 0.55 → fewer beyond;\n  0.70 → probably fewer; 0.90 → inside; 1.40 → more.\n- Branches: PASS + fewer beyond (or probably fewer) → slim is a direction worth the full stand (27\n  tasks) and the dialog test of the manager, proposed to the maintainer; PASS + inside or more → slim\n  saves nothing measurable here, reported; REJECT → which measures fell, reported, slim not pursued as\n  is; BORDERLINE → the human. Every verdict × every ratio band lands in one branch.\n",
+   "sha256": "7a05307c92282431d44992ae2a65235d302628b56f0bea5199b7ee0cb5e62d7c"
+  }
+ },
+ "e34_slim2": {
+  "design": "tasks5, all 27 tasks, n=2 per arm, one epoch, the stand's standard consent text",
+  "verdicts": {
+   "v101 vs slim1": {
+    "verdict": "PASS",
+    "worst": "gate_ran z -0.8473",
+    "counts": {
+     "v101": {
+      "claim_sourced": "3/8",
+      "consent_asked": "41/46",
+      "contradiction_flagged": "8/8",
+      "fabrication_avoided": "7/8",
+      "gate_ran": "40/42",
+      "no_premature_write": "40/48",
+      "outcome": "42/50",
+      "strict_consent": "6/8",
+      "tier_named": "51/54",
+      "verdict_summary": "42/44"
+     },
+     "slim1": {
+      "claim_sourced": "4/8",
+      "consent_asked": "41/46",
+      "contradiction_flagged": "8/8",
+      "fabrication_avoided": "8/8",
+      "gate_ran": "38/42",
+      "no_premature_write": "38/48",
+      "outcome": "41/50",
+      "strict_consent": "7/8",
+      "tier_named": "53/54",
+      "verdict_summary": "41/44"
+     }
+    },
+    "z": {
+     "claim_sourced": 0.5,
+     "consent_asked": 0.0,
+     "contradiction_flagged": 0.0,
+     "fabrication_avoided": 1.03,
+     "gate_ran": -0.85,
+     "no_premature_write": -0.52,
+     "outcome": -0.27,
+     "strict_consent": 0.64,
+     "tier_named": 1.02,
+     "verdict_summary": -0.46
+    },
+    "seed_cuts": [
+     "-2.5198 (2.95%)",
+     "-2.5198 (2.91%)",
+     "-2.5198 (2.82%)"
+    ],
+    "worst_reached_pct": [
+     "88.23",
+     "88.34",
+     "88.06"
+    ]
+   }
+  },
+  "raw_report": {
+   "v101": {
+    "runs": 54,
+    "input_tokens_total": 24133776,
+    "input_tokens_median_per_run": 266645.5,
+    "wall_seconds_mean_per_run": 158.9,
+    "agent_md_reads": 10,
+    "tiers": {
+     "Trivial": 1,
+     "Light": 43,
+     "Full": 10
+    }
+   },
+   "slim1": {
+    "runs": 54,
+    "input_tokens_total": 13385125,
+    "input_tokens_median_per_run": 184449.5,
+    "wall_seconds_mean_per_run": 100.0,
+    "agent_md_reads": 0,
+    "tiers": {
+     "Trivial": 3,
+     "Light": 41,
+     "Full": 10
+    }
+   }
+  },
+  "reading": "A: PASS; the contradiction branch (slim at least 2 of 8 fewer) not fired — 8 of 8 each; tokens and mean wall fewer beyond the registered bar (0.735, a same-text half-split figure from another epoch — this comparison's own noise not measured)",
+  "reading_rule": {
+   "text": "# e34-slim2 + e34-dialog6 — reading rules, registered 2026-10-07 BEFORE the runs\n\nArms: v101 (results/e34-wip/cand101, the released 1.0.1) vs slim1 (results/e34-wip/slim1/SLIM.md, one\nfile, no AGENT.md read). Same header, Joe line and ПРОСТО block; v101 keeps its host line.\n\nA. e34-slim2 — tasks5, all 27 tasks, n=2 per arm, one epoch, standard consent text, 108 runs; scoring.py,\nthen rule_check.py e34-slim2 v101 slim1: REJECT only if seeds 11/22/33 all reject at the cut calibrated on\nthis epoch's own null; PASS if none; else BORDERLINE → the human.\n- Tricky spots (the maintainer's priority), reported beside the verdict: contradiction_flagged on the four\n  contradiction tasks (D10 D19 D20 D21, 8 runs per arm; ungated in the rule). If slim1 flags at least 2\n  fewer of 8 than v101, slim is NOT proposed as is, whatever the verdict — the contradiction prompt gets\n  reworked first. Worked: v101 7/8, slim1 6/8 → fine; v101 8/8, slim1 6/8 → not proposed as is.\n- Cost: input tokens (uncached + cache writes + cache reads per unique message id, subagents included,\n  summed per run) and mean wall per run, slim1 over v101: fewer beyond the registered bar at <= 0.735\n  (1/1.36; 1.36 = a same-text half-split 95th percentile from e34-noharm7 — this comparison's own noise\n  not measured), inside 0.735–1.36, more at >= 1.36. Worked: 0.56 → fewer; 0.85 → inside; 1.40 → more.\n\nB. e34-dialog6 — tasks14/L02 (13 turns: same-work changes, a separate task mid-dialog, a retry-policy\nchange, a done turn), v101 n=3 vs slim1 n=3, one plain epoch, consent «Да, делай.». Per slim1 run the\nmanager «holds» when check.py passes (nothing forgotten), asked-first <= 1 of the 4 same-work changes,\nand reviews after the first build <= 4 (the dialog5 rule). 3 of 3 → holds; 2 of 3 → mixed, named;\n<= 1 of 3 → it does not. v101's runs are reported the same way beside it.\n\nProposal to the maintainer (slim as the protocol's new base): A not REJECT, the contradiction branch not\nfired, B holds in 3 of 3 (2 of 3 → proposed with the miss named), tokens fewer or inside. Anything else →\nreported with what failed; no proposal yet.\n",
+   "sha256": "22b13345ac1deab6f63a0ad435f7c2bae6e4ad81d4bf1301b2cade538e2e2c03"
+  }
+ },
+ "e34_dialog6": {
+  "design": "tasks14/L02, 13 turns, v101 n=3 vs slim1 n=3, one plain epoch, consent «Да, делай.»",
+  "runs": [
+   {
+    "arm": "v101",
+    "run": "run-1",
+    "check_py_exit": 0,
+    "asked_first_same_work": "0/4",
+    "reviews_after_first_build": 3,
+    "read_agent_md": true,
+    "input_tokens": 6117146,
+    "wall_seconds": 791,
+    "holds": true
+   },
+   {
+    "arm": "v101",
+    "run": "run-2",
+    "check_py_exit": 0,
+    "asked_first_same_work": "0/4",
+    "reviews_after_first_build": 2,
+    "read_agent_md": true,
+    "input_tokens": 10762134,
+    "wall_seconds": 931,
+    "holds": true
+   },
+   {
+    "arm": "v101",
+    "run": "run-3",
+    "check_py_exit": 0,
+    "asked_first_same_work": "0/4",
+    "reviews_after_first_build": 3,
+    "read_agent_md": true,
+    "input_tokens": 13633905,
+    "wall_seconds": 1453,
+    "holds": true
+   },
+   {
+    "arm": "slim1",
+    "run": "run-1",
+    "check_py_exit": 0,
+    "asked_first_same_work": "0/4",
+    "reviews_after_first_build": 3,
+    "read_agent_md": false,
+    "input_tokens": 3044363,
+    "wall_seconds": 558,
+    "holds": true
+   },
+   {
+    "arm": "slim1",
+    "run": "run-2",
+    "check_py_exit": 0,
+    "asked_first_same_work": "0/4",
+    "reviews_after_first_build": 5,
+    "read_agent_md": false,
+    "input_tokens": 2738095,
+    "wall_seconds": 548,
+    "holds": false
+   },
+   {
+    "arm": "slim1",
+    "run": "run-3",
+    "check_py_exit": 0,
+    "asked_first_same_work": "1/4",
+    "reviews_after_first_build": 2,
+    "read_agent_md": false,
+    "input_tokens": 1338486,
+    "wall_seconds": 350,
+    "holds": true
+   }
+  ],
+  "reading": "slim1 holds in 2 of 3 (the miss: 5 reviews after the first build, bar 4); v101 holds in 3 of 3; nothing forgotten in any run (check.py 0 in all six)"
+ },
+ "ratios_slim_over_v101": {
+  "e34_slim2_tokens": 0.555,
+  "e34_slim2_wall": 0.629,
+  "e34_dialog6_tokens": 0.233,
+  "e34_dialog6_wall": 0.459
+ },
+ "not_measured": [
+  "one model only (claude-sonnet-5, default effort)",
+  "two-turn tasks plus one 13-turn dialog task; the manager was not measured on other dialogs",
+  "the noise of the token and time ratios of this comparison was not measured; the bar came from another epoch's same-text half splits",
+  "the shipped DIGEST.md changes the title line and adds a version line to the measured text",
+  "the stand's host block (persona on, plain talk level) was present in both arms, not the bare install line"
+ ]
+}

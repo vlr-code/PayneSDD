@@ -2,9 +2,6 @@
 .preview/
 .claude/
 
-# PayneSDD per-task gate marker + its block counter (runtime, never committed)
-.payne-active*
-
 # OS / editor noise
 .DS_Store
 *.swp

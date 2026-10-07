@@ -3,6 +3,68 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Changed
+- **The protocol is one short file.** `DIGEST.md` now holds the whole protocol
+  (~1.3k tokens by tiktoken o200k_base, 5,070 bytes): name the tier; write a short contract that puts
+  the tricky spots — contradictions, missing data, assumptions, risks — first
+  and asks about them; ask before code (one line on Light, a plan block naming
+  every irreversible act on Full); prove "done" with the machine check and its
+  criterion → check map; break the result (a self-review on Light, an
+  independent reviewer on Full); run long work through the manager (each change
+  checked by its own tests, the full check and the review at check points, no
+  «ok?» for a change the human dictated, nothing dropped); close with a verdict
+  and the three-header summary; questions in one block at the end; Joe in a
+  few lines. There is no second file to read: the full protocol (`AGENT.md`,
+  ~16.7k tokens) and the rule that a Full task reads it are gone; `AGENT.md` is
+  now a pointer to `DIGEST.md`. Why: the maintainer asked whether the protocol
+  was overdoing it — on the stand the measure of the work itself (outcome)
+  stayed inside each pair's acceptance cut across 0.9.8, 1.0.0 and its fix
+  (z +0.52, −1.0, −0.48 against cuts of about −2.2)
+  (benchmark/verdict-word-2026-10-06.json), while releases moved the ritual
+  measures.
+  Measured on the local stand in one epoch of 27 tasks, two runs per text
+  ([`benchmark/slim-2026-10-07.json`](benchmark/slim-2026-10-07.json), every
+  definition and the reading rules registered before the runs): against 1.0.1
+  the one-file text passed the acceptance rule (worst measure: checks run, 38
+  of 42 against 40, z −0.85, reached by about 88% of random splits of that
+  epoch), flagged contradictions in 8 of 8 against 8 of 8, and used 0.56 of the
+  input tokens (13.4M against 24.1M) in 0.63 of the mean wall time per run (100
+  s against 159 s) — beyond the bar registered before the run, a bar taken from
+  another epoch's same-text halves (this comparison's own noise not measured).
+  In a 13-turn dialog, three runs each, nothing was forgotten in any run; the
+  manager held in 2 of 3 runs against 1.0.1's 3 of 3 (the miss: 5 reviews after
+  the first build where the bar is 4), at 0.23 of the tokens and 0.46 of the
+  time. A 12-task first look preceded it (a PASS without an admissible cut;
+  contradictions flagged 2 of 4 against 4 of 4 there). The shipped file changes
+  the title line and adds a version line to the measured text.
+- **Rewritten for one file:** README (install is one `@DIGEST.md` line),
+  `scripts/payne-check.sh` (the protocol's size band is 3,000–7,000 bytes, the
+  version stamp now lives in `DIGEST.md`, `AGENT.md` must stay a pointer),
+  `/payne-review`, `/payne-edit` and the `payne-quality` reviewer, and the
+  repo's own `CLAUDE.md`. The rules for changing the protocol — the decision
+  log, the independent review, measurement on the stand, releases, dev mode and
+  its inbox — move to `MAINTAINING.md`; they are not part of the protocol an
+  agent runs on a project.
+- **Upgrading from 1.x:** import `DIGEST.md` and delete a host line that points
+  at `AGENT.md` (a config that loaded `AGENT.md` whole must switch); remove a
+  `payne-spec` command copy or link; a copied Stop-hook is no longer maintained;
+  a talk-level block still works but its «AGENT.md, TALK LEVEL» pointer is stale;
+  dev mode in other projects needs `@…/MAINTAINING.md` in the host config.
+
+### Removed
+- The full protocol text in `AGENT.md`, `ROLES.md`, `DEPLOYMENT.md`, the
+  enforced Stop-hook (`hooks/`) with its behavior suite and
+  `settings.example.json`, `scripts/payne-digest-stamp.sh`, the `/payne-spec`
+  command and `templates/SPEC.template.md`. Every rule not in `DIGEST.md` is
+  gone from the protocol, among them: the analyst subagent and the depth
+  choice, the look-back before outward acts, the decision log in user projects
+  (projects no longer keep `.payne/decisions.log`), the ratchets, the helper
+  subagent for heavy checks, the no-subagent fallback, the talk level, dev mode
+  (now in `MAINTAINING.md`), the measurement-method rules and the long examples.
+  All of it stays in the git history (v1.0.1).
+
 ## 1.0.1 — 2026-10-07
 
 ### Fixed

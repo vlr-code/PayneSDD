@@ -1,168 +1,26 @@
 ---
-description: Dev mode — improve PayneSDD itself from any project: edit the canonical repo live, gate it, quality-review, then commit/push (and optionally release) with your approval.
+description: Dev mode — improve PayneSDD itself from any project, gate it, quality-review it, then commit/push (and release if asked) with your approval.
 disable-model-invocation: true
 ---
 
-# /payne-edit — PayneSDD self-improvement (dev mode)
+# /payne-edit — change the PayneSDD protocol (dev mode)
 
-You are about to modify the **canonical PayneSDD repository itself**, possibly from
-inside a *different* project. This is the dev-mode execution engine. Be disciplined:
-it edits a public product and writes to a real repo.
+Arguments: `on` / `off` / `status` toggle dev mode (the marker
+`~/.claude/.payne-dev-mode`, first line = the repo path); `inbox` triages the gap
+notes in `~/.payne/inbox.md`; anything else is the change to make.
 
-## 0. Precondition — dev mode must be ON
-Dev mode is ON iff the marker file `~/.claude/.payne-dev-mode` exists.
-- Subcommands, handle first and STOP: `on` → create the marker with the repo
-  path as its first line (resolve it: `PAYNE_REPO`, else the clone path your
-  host config imports — `@…/DIGEST.md` or `@…/AGENT.md` — else ask; never
-  guess); `off` → remove it; `status` → report ON/OFF + the resolved repo path.
-- `inbox` is NOT a toggle: it runs the triage in §9. Dev mode must be ON; while
-  OFF, name the inbox path so the human can read it themselves, mention
-  `/payne-edit on`, and stop — naming a path is the one thing OFF still does.
-- If a change is requested while dev mode is OFF → say so, mention `/payne-edit on`,
-  and STOP. Edit nothing.
+The repo path is the marker's first line. Never touch the project you are working
+in — only the PayneSDD repo. Follow MAINTAINING.md in that repo:
 
-## 1. Resolve the target repo (NEVER the current project)
-The repo path is configured, not assumed. Resolve in order:
-1. the first line of `~/.claude/.payne-dev-mode`, else
-2. the `PAYNE_REPO` env var, else
-3. nothing resolved → STOP and ask the user for the repo path. Never guess it.
+1. Read MAINTAINING.md and the decision log; a resembling [REJECTED] → ask first.
+2. Full tier: contract, plan, the maintainer's explicit yes before any edit.
+3. Make the change; keep DIGEST.md short — cut before you add.
+4. `bash scripts/payne-check.sh` green.
+5. Independent review: the `payne-quality` agent, up to three rounds; fix only
+   findings with a source.
+6. A change to what an agent does: measure it on the stand before it ships.
+7. Show `git diff`; commit and push only on one explicit yes; a release only if
+   asked (MAINTAINING.md, Releases).
 
-Use `git -C "<repo>" …` for every git op and absolute paths for every edit.
-**Never modify the current project's files** — only the PayneSDD repo.
-
-## 2. Understand the change first (consent before code)
-The request can arrive as an explicit `/payne-edit <ask>`, a free-text trigger
-("…надо тут доработать PayneSDD"), or a self-noticed protocol gap. In all cases:
-- Pin the MOTIVATING CONTEXT — which concrete moment/gap prompted this, tied to a
-  source (a transcript moment, a `file:line`, a real friction). No invented gaps.
-- FAIL CLOSED: if the gap can't be tied to a concrete source, do NOT guess — STOP
-  and ask the human to point at it.
-- Find the copies before you edit: search the whole repo — history excepted
-  (released CHANGELOG sections, the decision log, benchmark evidence files) —
-  for the clause's distinctive words, the other words for what it governs (for a
-  PASS rule: its evidence, log, checklist), and any number or path it carries,
-  with wrapped lines joined first — a line grep misses a phrase split across two
-  lines, and a word search misses a restatement in other words. A copy
-  is a verbatim, paraphrased or compressed restatement, or a repeated figure; a
-  bare "see Step N" pointer is not. Name every copy in the restate block below,
-  each with its edit or the reason it stays.
-- Restate in one short block: "the gap is X; I'll change Y in <files>."
-- Ask "fix it this way?" and STOP. Do not edit until an explicit yes.
-
-## 3. Run the PayneSDD protocol on the change (Step 0–3)
-Editing the protocol is editing a public product → Step 0 tier is FULL — the hard
-floor (public-facing / SDK) applies however small the edit looks, typos included
-(a typo just has 0 forks, so Step 1.5 collapses; the gate and review still run).
-Run the cycle: contract → real forks / depth → execute against the contract.
-
-**Match the form to the failure when wording a clause.** Name the failure it
-targets, then fit the form — the wrong one backfires: discipline slip → a
-prohibition + a rationalization line; wrong-shaped output → a positive recipe
-(what the output IS, its parts in order); omission → a required slot in the
-template; context-dependent → a conditional keyed to an observable predicate.
-Bare prohibitions backfire on shaping problems, and a "…unless it matters" rider
-on a working recipe reopens the negotiation.
-
-**Run the no-op test on the prose you touch** (repo-wide only when the contract
-IS a dehydration pass). A sentence earns its place only if it changes agent
-behavior versus the model's DEFAULT; one that fails is deleted whole, never
-trimmed. A dispute over whether it fails is settled by a measured behavioral run
-(A/B on the benchmark stand — see `benchmark/README.md`), not by debate. Exempt: reinforcements the project deliberately kept on measured
-evidence (the CHANGELOG 0.4.4 keeps, the persona block) — they pass by prior data.
-
-## 4. Machine gate (Step 4)
-- `bash "<repo>/scripts/payne-check.sh"` is the repo's gate, and it DOES go red on
-  prose: shell lint (bash -n + shellcheck), one version everywhere, README links
-  and CLAUDE.md imports resolve, DIGEST.md pinned to the current AGENT.md and
-  inside its size band, no drifting local command copies, and the Stop-hook
-  behavior suite (`scripts/payne-gate-test.sh`, incl. its red-proof mutants).
-- Any AGENT.md edit turns the digest check RED until you re-review DIGEST.md
-  against the change and re-pin (`scripts/payne-digest-stamp.sh`). The pin proves
-  a re-stamp; the review is yours: decide whether the digest needs text (it is a
-  floor — never a superset, never a different rule — and the whole Light path:
-  a Light-binding change must reach it, or be named in AGENT.md Step 0 as
-  left out on purpose or as a stricter omission) and state the call in the
-  diff summary — the quality reviewer checks it (its `Digest:` line).
-- What stays manual — YOUR deterministic check by hand: step numbers intact,
-  README cycle table / CHANGELOG entries match the change, public claims match
-  their evidence (a capability/benefit claim carries its measured run / gate log
-  / artifact — wording never outruns what was proven). Run §2's copy search
-  again over the final diff, review fixes included: that is where copies
-  drifted. List each copy kept, with why, in the diff summary — the quality
-  reviewer checks it (its `Copies:` line).
-
-## 5. Quality review (Step 5) — the SEPARATE quality agent
-Spawn the **payne-quality** agent (independent, not yourself) on the diff. It guards
-coherence, anti-bloat, fidelity to principles, and cross-reference integrity.
-- FALLBACK: file-based agents load only at session start, so in the same session you
-  first install dev mode `payne-quality` won't be a known agent type yet. If it isn't
-  available, run the SAME reviewer brief via a general subagent — never skip the
-  review. It loads normally next session (dev mode is usually invoked from another
-  project = a fresh session, so this only bites the install session).
-Adjudicate by the tie-to-source rule: fix only source-tied findings, reject the rest
-with a reason, then re-run the gate and have the quality agent read what no review
-has read yet (AGENT.md Step 5).
-
-## 6. Decision log
-Dev-mode edits are Full-tier, so the normal decision-log rule applies: append
-`[APPROVED]` / `[DEVIATION]` one-liners to `<repo>/.payne/decisions.log`.
-
-## 7. Commit / push (one approval) — release only if asked
-- Show `git -C "<repo>" diff`. On ONE explicit "yes": commit and push to `main`.
-- NEVER commit or push without that explicit yes.
-- **Release** only if the user asks: bump the version badge, the README Status
-  section's "Latest release" line and the `AGENT.md` header stamp; add a new top
-  entry to the Status list; promote the CHANGELOG `## Unreleased` entry to the
-  version; tag `vX.Y.Z`; `gh release create` — each with approval, with an
-  `[APPROVED] release X.Y.Z` line in the decision log that says why this number.
-  Before asking, read the last two releases (`gh release list --limit 2`:
-  titles, tags, Latest; `gh release view <tag>` for each: notes, assets,
-  draft/prerelease) and put their look-back (AGENT.md Step 1.6) in the ask.
-- **The number:** only what ships counts — changes to the git-ignored benchmark
-  stand never move it. Protocol rules, docs, fixes and a new check inside an
-  existing hook or tool are a PATCH; a new user-facing feature, or a new hook,
-  script, CI workflow or tool capability, is a MINOR; a single change that fits
-  both (a new check that changes how a tool behaves) is a PATCH. Numbers chosen
-  before this rule was written do not all fit it (0.9.0 would be a patch).
-  Propose the number with that reason and let the human pick — a published tag
-  is costly to reverse.
-
-## 8. Close with the Step 6 summary
-End with the verdict word + the **Done / Remaining / Open questions** checklist —
-before the closing question block, where the §7 commit question sits
-(AGENT.md, QUESTIONS AND WARNINGS).
-
-## 9. Inbox triage (`/payne-edit inbox`)
-`~/.payne/inbox.md` collects the gap lines the agent appends across
-projects and sessions (AGENT.md, DEV MODE → INBOX). Triage is how they get
-looked at — and it is the only thing allowed to rewrite that file:
-1. Move the live file ASIDE FIRST — rename it to
-   `inbox.triage-<date>-<hhmmss>.md`, and never onto an existing name — so
-   reports from other sessions keep landing in a fresh inbox instead of being
-   lost to your rewrite. No inbox, or an empty one: say so and stop. A snapshot
-   left from an unfinished triage is picked up first, before a new one is cut.
-2. Re-check every line against the CURRENT protocol, not the one it was written
-   against: already fixed / still real / a duplicate of another line (count the
-   repeats — a gap reported five times is a signal, not noise) / unverifiable
-   (its source can't be reopened — say so, never silently promote it). §2's
-   tie-to-source rule holds: a saved line is a claim, not a finding.
-3. Hand the human ONE short numbered list, plain words, a line each: the gap,
-   its status, your recommendation (take / drop / defer) and why.
-4. Taken items run §2–§8 ONCE, batched into a single cycle — not one cycle per
-   item. Deferred items go back into the live inbox. Dropped ones are not
-   logged anywhere — a deliberate exception to the decision log's `[REJECTED]`
-   rule, and it costs what that rule buys: a dropped gap can be reported again
-   and will come back through this triage.
-5. The snapshot goes only after an explicit yes — to the OS trash where there is
-   one, so a mis-triage is recoverable.
-6. Whatever reaches a PUBLIC artifact (CHANGELOG, decision log, commit message,
-   release notes) describes the gap generically: no host-project names, no
-   customer data, no code from the project where it was noticed.
-
-## Hard rules
-- Dev mode OFF → refuse and stop (`inbox` may still name the file's path).
-- Touch ONLY the PayneSDD repo, never the host project.
-- Never commit / push / release without explicit approval.
-- Tie every gap/finding to a source — no invented problems.
-- No standing watcher: the quality agent is invoked on demand, not always-on.
-- The inbox lives OUTSIDE every repo: never move it in, never commit it.
+`inbox`: read `~/.payne/inbox.md`, group the notes, propose which to take, and run
+each taken one through the steps above. Never rewrite the file — it is shared.

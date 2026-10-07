@@ -12,7 +12,7 @@
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
 
-*An easy-going custom SDD protocol for agentic coding — the paperwork is the agent's problem, not yours.*
+*A short spec-driven protocol for agentic coding — the paperwork is the agent's problem, not yours.*
 
 </div>
 
@@ -22,201 +22,99 @@
 
 You prompt → the agent codes → it says **"done"** → and now you either re-read
 everything anyway, or play everyone's favorite game: ***Guess What Shipped!***
-An agent's "done" means nothing on its own. That's the tax of vibe-coding:
-speed up front, paid back as distrust.
+An agent's "done" means nothing on its own.
 
 ## What PayneSDD does about it
 
-One file of rules your agent actually follows. You keep writing requests the
-way you always did — plain words, no specs, no plans. The protocol does the
-formal part, and gives you three things a raw prompt doesn't:
+One short file of rules your agent follows. You keep writing requests in plain
+words; the protocol does the formal part:
 
-1. **It asks you — not the other way around.** The agent maps the open
-   decisions in your request, asks the few questions that actually matter,
-   and shows one plan for your "go". A wrong assumption dies in a 30-second
-   question — not in 200 lines you now have to unpick.
-2. **"Done" is the machine's word, not the agent's.** Every task ends by
-   running your real tests / build — and the optional Stop-hook makes a red
-   check *physically* block "finished".
-3. **An independent skeptic attacks every result.** A second agent with a
-   "break it" brief — and every finding needs a source (a line, a test), or
-   it's rejected.
+1. **It names the tricky spots and asks.** Before any plan the agent says what in
+   your request contradicts itself, is missing or risky, asks the few questions
+   that matter, and shows a plan for your "go". No code before it.
+2. **"Done" is the machine's word.** Every task ends by running your real tests or
+   build, with a map from each requirement to the check that proves it.
+3. **The result gets attacked.** On risky work an independent reviewer subagent
+   tries to break it; every finding needs a source or it is dropped.
+4. **Long work stays cheap.** After the first build each change is checked by its
+   own tests; the full check and the review run at check points, and nothing you
+   asked for is dropped.
 
-The trade: about a minute of up-front agreement, in exchange for code you
-don't re-read line by line — plus a committed one-line log of every decision.
+## Install
 
-## Install — one message, then it interviews you
-
-**Paste this into Claude Code:**
-
-> Install PayneSDD from https://github.com/vlr-code/PayneSDD. First ask me
-> where to keep the clone (a permanent path — your config will point at it),
-> clone there, read its AGENT.md and README — then run the installation itself
-> as your first task under that protocol: ask me the remaining setup questions
-> (which projects — all or specific ones; the ≈3.1k-token digest or the full
-> file always-on; persona on or off; enforced Stop-hook or honor-system gate;
-> dev mode — only if I maintain a PayneSDD clone, default off, and it lets the
-> agent append its protocol-gap notes to a file in my home),
-> show one plan, and touch only my config after my explicit "go" — apply my
-> choices there, never by editing the cloned files, and remove nothing that's
-> already in my config.
-
-The protocol interviews you, you say "go", it installs itself. That's the
-whole product in one demo: **the first task PayneSDD runs on is PayneSDD.**
-Prefer your own hands? The manual version:
-
-```bash
-git clone https://github.com/vlr-code/PayneSDD.git
-```
-
-**Claude Code — recommended** (≈3.1k tokens always-on): paste these two lines
-into `~/.claude/CLAUDE.md` — create the file if it doesn't exist, replace
-`/path/to` with your absolute clone path, both lines go in literally:
+**Claude Code:** clone the repo to a permanent path and add one line to
+`~/.claude/CLAUDE.md` (create the file if needed):
 
 ```
 @/path/to/PayneSDD/DIGEST.md
-Full protocol: /path/to/PayneSDD/AGENT.md — on a Full task read it in full before the contract; on Light the digest is the protocol.
 ```
 
-[`DIGEST.md`](DIGEST.md) is the protocol a Light task runs on and the floor under
-a Full one — on a Full task the agent reads the full file before writing the
-contract. `git pull` =
-protocol updated everywhere.
+That's it — every session follows the protocol; `git pull` updates it everywhere.
+**Any other agent:** paste [`DIGEST.md`](DIGEST.md) into its system instructions.
+**Upgrading from 1.x** (`git pull` does the protocol; these are yours):
+- import `DIGEST.md` and delete any host line that points at `AGENT.md` (a config
+  that imported or pasted `AGENT.md` whole must switch to `DIGEST.md`);
+- remove a `payne-spec` command copy or link — the command is gone;
+- a copied 1.x Stop-hook (`PAYNE_TEST_CMD`, `.payne-active`) is no longer
+  maintained: delete it, or keep it at your own risk;
+- a talk-level block in your config keeps working on its own; its pointer to
+  «AGENT.md, TALK LEVEL» is stale;
+- projects no longer keep `.payne/decisions.log`;
+- dev mode in other projects needs `@/path/to/PayneSDD/MAINTAINING.md` in the host
+  config next to the `DIGEST.md` line.
 
-**Any other agent** — paste [`AGENT.md`](AGENT.md) whole into the system
-instructions (≈16.7k tokens always-on; the way to go for web chats and agents
-without file access).
-
-That's it. The agent follows the cycle automatically.
+**Optional extras:** `/payne-review` (an independent break-it review on demand) —
+copy or symlink `commands/payne-review.md` into `~/.claude/commands/`.
+Maintainers: see [`MAINTAINING.md`](MAINTAINING.md).
 
 ## The cycle
 
-<div align="center" markdown="1">
-<img src="assets/cycle.png" alt="PayneSDD — the cycle, Steps 0–6" width="100%">
-</div>
-
-| Step | What it enforces (full rules: [`AGENT.md`](AGENT.md)) |
+| | |
 |---|---|
-| **0 — Classify** | **Trivial / Light / Full** per task. Risky work — auth, billing, migrations, public output — is *forced* to Full. A typo never pays full ceremony. |
-| **1 — Contract** | The repo's rule files read, goal, non-goals, decided edge cases (a sweep row), testable criteria (`WHEN … the system SHALL …`) tied to a named source of truth. "Works correctly" is banned. |
-| **1.5 — Interrogate** | An analyst maps the real decision forks (or the agent sweeps them itself in one pass when your request already pins everything); **you** pick how much to be asked. Costly-to-reverse choices are never guessed silently. |
-| **1.6 — Approve** | A hard **STOP**. One plan block, an explicit "go" — before that, zero code. (When you dictate a change to work already built and your message already IS the whole plan, the agent echoes it back in one line and proceeds — on the full-file install, a small task's first message too.) |
-| **2 — Plan** | Sub-tasks, an iteration budget, escalation rules. Stuck ≠ loop forever. |
-| **3 — Execute** | Exactly the contract — no gold-plating, no silent refactors, no second copy of anything. |
-| **4 — Machine gate** | Every criterion mapped to the check that proves it. Red blocks "done". The check is never weakened to go green. On Full, later changes to work in progress come back TESTS GREEN on their own tests; the full check and the independent review run at check points and over everything unread when you say done. |
-| **5 — Adversarial** | A *different* agent tries to break the result. Findings without a source die. |
-| **6 — Verdict** | **PASS / ITERATE / ESCALATE** + a Done / Remaining / Open-questions checklist. |
+| **Tier** | Trivial / Light / Full per task. Risky work — billing, auth, migrations, public output — is always Full. |
+| **Contract** | Goal, what it must and must never do, decided edge cases, checkable criteria, what it is checked against — and the tricky spots, asked. |
+| **Consent** | Light: one line "doing X — ok?". Full: one plan block with every irreversible act named. Nothing written before "yes". |
+| **Machine check** | Tests / build / lint, each criterion mapped to its check. Never weakened to go green. |
+| **Break it** | Light: the agent re-reads its own diff. Full: an independent reviewer. |
+| **Verdict** | PASS / ITERATE / ESCALATE + Done / Remaining / Open questions. |
 
-Across the whole cycle: the machine gate runs on Light **and** Full, and the
-agent keeps a one-line decision log (`.payne/decisions.log`) — an audit trail
-you don't have to re-read the chat for.
+## Measured
 
-## Example: "add password reset to the login flow"
+On the local stand (claude-sonnet-5; 27 tasks, two runs per text, both texts in
+one epoch; the acceptance rule and every definition in
+[`benchmark/slim-2026-10-07.json`](benchmark/slim-2026-10-07.json), methodology in
+[`benchmark/README.md`](benchmark/README.md)), 2.0.0's text against 1.0.1:
 
-<div align="center" markdown="1">
-<img src="assets/example.png" alt="Same task, two outcomes — without vs with PayneSDD" width="100%">
-</div>
+- **Quality:** passed the acceptance rule (worst measure: checks run, 38 of 42
+  against 40, a gap random splits of that epoch reach in 88%); contradictions
+  flagged in 8 of 8 against 8 of 8; nothing fabricated in 8 of 8 against 7.
+- **Cost:** 0.56 of the input tokens (13.4M against 24.1M; uncached + cache
+  writes + cache reads per model call, subagents included) in 0.63 of the mean
+  wall time per run (100 s against 159 s).
+- **Long work** (one 13-turn dialog, three runs each): nothing forgotten in any
+  run; the manager held in 2 of 3 (one run ran 5 reviews where the bar is 4)
+  against 3 of 3; about a quarter of the tokens and half the time.
 
-1. Auth → hard floor → **Full** tier, out loud.
-2. Contract with testable criteria: *WHEN the reset link is older than 1 hour
-   the system SHALL reject it*; *IF the email is unknown THEN respond
-   identically — no account-enumeration leak*.
-3. The analyst surfaces the real questions (token TTL? rate limit?); you
-   answer as many as you choose.
-4. One plan block → **"build it or revise?"** → you say go. Only now: code.
-5. It builds the *minimum that meets the contract* — no speculative plugins
-   you didn't ask for.
-6. Two tests go red → it fixes the **cause**; the machine gate blocks "done"
-   until green.
-7. The skeptic finds an enumeration leak, tied to a line → fixed, re-gated, and
-   the skeptic re-reads the fix. A vague "feels insecure" with no source →
-   rejected.
-8. **PASS**, with the test log naming the commit the gate and the skeptic both
-   read, and a Done / Remaining / Open-questions checklist.
-
-*Light tier — same gates, a fraction of the ceremony: open decisions listed
-inline, a one-line "doing X — ok?", the same machine gate, a short self-review.*
-
-## Token cost — measured
-
-Numbers, not vibes (static: tiktoken `o200k_base`, re-measured 2026-10-07
-against the files as they stand; live: real `claude -p` calls, usage from the
-API's own JSON — that column was measured at 0.6.0 and is NOT re-measured here,
-so read it as the shape of the difference, not as today's digits):
-
-| Install | Always-on load | Measured Δ input per call |
-|---|---:|---:|
-| **Recommended:** [`DIGEST.md`](DIGEST.md) always-on, full protocol read per Full task | 3,099 tok | ≈ +2,254 tok |
-| Classic: paste full [`AGENT.md`](AGENT.md) (protocol + persona) | 16,661 tok | ≈ +9,050 tok |
-| [`ROLES.md`](ROLES.md) multi-agent overlay | read on demand | — |
-
-At 0.6.0, when every Light task also read AGENT.md, the digest was live-tested
-against the full file (≈50 scored runs, scripted scoring): it held **every
-safeguard** — never wrote code before consent on a risky payments probe, asked
-before coding, answered trivial questions cheaply, kept the persona. Run
-summary + caveats:
-[`benchmark/token-tests-0.6.0.md`](benchmark/token-tests-0.6.0.md) ·
-methodology: [`benchmark/README.md`](benchmark/README.md). For 1.0.0, where a
-Light task runs on the digest alone, see CHANGELOG 1.0.0 and 1.0.1.
-
-## Optional add-ons
-
-The protocol in `AGENT.md` is self-contained. Everything else is opt-in:
-
-| File | What it adds |
-|---|---|
-| [`DIGEST.md`](DIGEST.md) | The ≈3.1k-token always-on digest — can't silently drift from `AGENT.md` (checksum-checked) |
-| [`hooks/payne-gate.sh`](hooks/payne-gate.sh) + [`hooks/payne-gate-core.sh`](hooks/payne-gate-core.sh) | The **enforced** gate: a Stop-hook that blocks "done" on red tests |
-| [`templates/SPEC.template.md`](templates/SPEC.template.md) | A fixed contract skeleton for Step 1 |
-| [`commands/payne-spec.md`](commands/payne-spec.md) · [`commands/payne-review.md`](commands/payne-review.md) | Slash commands: start a contract / run the adversarial review |
-| [`commands/payne-edit.md`](commands/payne-edit.md) · [`agents/payne-quality.md`](agents/payne-quality.md) | Dev mode for maintainers (default OFF) + its independent reviewer + the local gap inbox it triages |
-| [`ROLES.md`](ROLES.md) | Multi-agent role overlay for LARGE tasks only |
-| [`DEPLOYMENT.md`](DEPLOYMENT.md) | Variant installs: digest / minimal slim-core / zero-footprint — plus the full hook setup and where each add-on installs |
-
-## The enforced gate, in one paragraph
-
-Copy the two hook files, wire `PAYNE_TEST_CMD` to your real test command, and
-`touch .payne-active` when you start a gated task — from then on a red test suite
-**physically blocks** the agent from saying "finished" (up to 3 blocks, then
-it releases with an explicit UNVERIFIED warning — the call goes back to you;
-disarming the marker while red is allowed but announced to you as UNVERIFIED —
-a tripwire, not a lock).
-Full setup, honest caveats, and a zero-install `/goal` variant:
-[`DEPLOYMENT.md`](DEPLOYMENT.md#enforced-stop-hook-setup-claude-code).
+What it does not show: one model only, two-turn tasks plus one dialog, the
+noise of this comparison's token and time ratios not measured, and both texts
+ran with the stand's host block (persona on, a plain-talk block), not the bare
+install line.
 
 ## The personality is optional
 
-`AGENT.md` ships with Joe — a sardonic, uncensored partner who pushes back on
-lazy specs. Flavor, not substance: strip it or swap it, the protocol works
-identically. The one rule baked in: **attitude never replaces the work**.
+`DIGEST.md` ends with Joe — a sardonic partner who pushes back on lazy specs.
+Delete that section to drop him; the protocol works the same. The one rule baked
+in: **attitude never replaces the work**.
 
-> *Yes, "Payne" is a pun. But this is the opposite of fix-it-when-it-hurts:
-> the whole point is to feel the pain at spec time, not in production.*
+## Maintaining
 
-## Answers too long?
-
-`AGENT.md` carries an optional **talk level** — `standard` / `plain`.
-A short block in your always-loaded config names it and carries its recipe; you
-switch in plain words ("shorter", "back to standard"). It shapes how much is
-said, never what is done: gates, checks, the verdict — and the persona's own
-lines — hold.
-
-Measured, not assumed (the 0.8.0 recipe; since then the closing question
-block and the warning lines joined what it keeps whole and the plain answer
-line points to the block, not re-measured): across 72
-runs replies came out ~39% shorter (the turn
-that carries the plan and the questions: −42%), no protocol dimension fell more
-than 1 against the base, and a blind position-swapped judge found no quality
-drift. Three earlier cuts of this wording were rejected by the harness first,
-two of them for making agents skip the consent gate. Numbers, failures
-included:
-[`benchmark/talk-level-2026-09.md`](benchmark/talk-level-2026-09.md).
+Changing the protocol itself: [`MAINTAINING.md`](MAINTAINING.md) — the decision
+log, the independent review (`payne-quality`), measurement on the stand, release
+rules, and the optional dev mode with `/payne-edit`.
 
 ## Status
 
-**Actively used on real projects, and dogfooded** — PayneSDD develops itself
-under its own protocol: every change runs the full cycle and an independent
-review before it ships. Latest release: **v1.0.1**.
+**Actively used on real projects, and dogfooded.** Latest release: **v1.0.1**.
 
 - **1.0.1** — a task closes with its verdict word again: 1.0.0's digest opened Step 6 with the Full manager sentence, and on the stand 1.0.0 closed with a verdict and summary in 21 of 44 runs against 0.9.8's 37 (as installed, 19bab52; REJECT by the acceptance rule); the fix brought it to 39 of 44 and passed against both; the same epoch did not show 1.0.0 cheaper or faster than 0.9.8 (1.34 of its input tokens, 1.13 of its mean wall time — inside the bar registered before the run, this comparison's own noise not measured; time noise not measured; definitions in benchmark/verdict-word-2026-10-06.json);
 - **1.0.0** — a manager for work in progress, and Light on the digest: on Full, a later change comes back TESTS GREEN on its own tests, and the full check and the independent review run at check points and over everything unread when you say done; a change you dictate needs no «ok?»; a Light task runs on the digest and every Full task reads AGENT.md before its contract; on the stand its text before the last review fixes passed the acceptance rule against the installed protocol (19bab52) and used 0.78 of its input tokens in 0.80 of its mean wall time per run (the tokens inside the same-text noise measured after the run, the time's noise not measured; definitions in benchmark/check-manager-2026-10-06.json), the closing verdict came less often (29 of 44 runs against 36), most misses Light runs that wrote the summary headers without a verdict word, and in a 13-turn dialog the manager held in 3 of 3 runs;
@@ -233,14 +131,11 @@ review before it ships. Latest release: **v1.0.1**.
 - **0.7.0** — loud disarm + behavior-tested Stop-hook (six red-proof mutants as a gate check), the no-subagent-host fallback (never PASS), digest-checking dev-mode review;
 - **0.6.2** — check-edit consent asymmetry, red-proofed ratchets, both-direction drift, not-observed ≠ absent, named irreversible actions;
 - **0.6.1** — the tautological-test audit, the read-your-decision-log rule, dependency-ordered questions;
-- **0.6.0** — the tested always-on digest + measured token costs (this README's table);
+- **0.6.0** — the tested always-on digest + measured token costs;
 - **0.5.x** — the failure→contract ratchet, loop-safe enforced gate, CI on every push;
 - **0.4.x** — testable `WHEN … SHALL` criteria, the criterion→check map, the simplicity rule.
 
-Full history: [`CHANGELOG.md`](CHANGELOG.md). After an install or a big
-protocol change, run the fixed sanity task in
-[`benchmark/README.md`](benchmark/README.md). Use it, break it, file what
-doesn't hold.
+Full history: [`CHANGELOG.md`](CHANGELOG.md).
 
 ## License
 

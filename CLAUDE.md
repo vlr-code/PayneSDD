@@ -1,32 +1,13 @@
-# PayneSDD — active operating protocol (dogfooding)
+# PayneSDD — this repo runs on its own protocol (dogfooding)
 
-This repository runs on its own protocol. Working here, you ARE the PayneSDD
-agent: classify every task and name its tier (Step 0 — Trivial / Light / Full),
-then run that tier's path. "Done" is confirmed by the machine gate (Step 4) on
-both Light and Full, never by eyeballing. The core Decision Log is active: on any
-Light/Full task, append your decisions to `.payne/decisions.log`.
+Working here you follow the protocol below on every task: name the tier, write the
+contract, ask before code, prove "done" with the machine check, break your own
+result, close with a verdict and the summary. The persona is ON here.
 
-The full protocol (Steps 0–6) and the optional Joe persona live in
-`AGENT.md` and are imported below verbatim — single source of truth, no second
-copy to drift. The persona is **ON** here.
+The machine check for this markdown + shell repo is `bash scripts/payne-check.sh`.
+Changing the protocol itself follows `MAINTAINING.md` (decision log, independent
+review, measurement on the stand, release rules).
 
-The multi-agent role overlay (`ROLES.md`) is imported too, but per its own rules it
-stays OFF for normal work — only large tasks (many files, multi-day, shared across
-several humans/agents) summon it. Don't summon the monster the project avoids.
+@DIGEST.md
 
-## Enforcement on Claude Code
-The Step 4 machine gate is wired as a Stop-hook (`hooks/payne-gate.sh`) and fires
-ONLY when a `.payne-active` marker is present, so trivial work and plain chat
-pass untouched.
-- `touch .payne-active` — arm the gate when a spec is in play.
-- `rm .payne-active` — disarm it when the task is done, abandoned, or honestly
-  ESCALATED (Step 6, red log attached — an honest escalation is not a bypass).
-  Removing it while the gate is red is announced to the human by the hook.
-
-The gate command for this markdown+shell repo is `scripts/payne-check.sh`
-(wired as `PAYNE_TEST_CMD` in the git-ignored `.claude/settings.json`; a
-committed `settings.example.json` mirrors it).
-
-@AGENT.md
-
-@ROLES.md
+@MAINTAINING.md
