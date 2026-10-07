@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 1.0.1 — 2026-10-07
 
 ### Fixed
 - **A task closes with its verdict word again (DIGEST.md, Step 6).** The
@@ -42,7 +42,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 - **The digest's size band moves from 12,300 to 12,400 bytes**
   (scripts/payne-check.sh; a loosening of that check, approved by the
   maintainer on 2026-10-07), so the fix ships exactly as measured, the pin
-  aside (12,376 bytes). The digest grows to 3,100 tokens always-on (o200k_base; 3,081 in
+  aside (12,376 bytes). The digest grows to 3,099 tokens always-on (o200k_base; 3,081 in
   1.0.0).
 
 ## 1.0.0 — 2026-10-06

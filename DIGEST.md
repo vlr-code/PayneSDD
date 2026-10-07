@@ -69,4 +69,4 @@ DECISION LOG (Light/Full): append-only `.payne/decisions.log` — `<date> [APPRO
 - Report a failed search or an unread file as absence — not-found is UNKNOWN.
 - Bury the human in shorthand (AC1, B5, tiers) — plain language.
 
-<!-- pin: AGENT.md sha256=b999adb661ffe9d0d9161dbb7630dd5e3440260cbccead6766ad3b89a8b04655 -->
+<!-- pin: AGENT.md sha256=fd43388d519abc583dc6193a7a8f645590af2949809d21cfe28e93f86781437c -->
