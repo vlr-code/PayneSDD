@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "That's because you don't have any. Yet."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.0.1-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -114,8 +114,9 @@ rules, and the optional dev mode with `/payne-edit`.
 
 ## Status
 
-**Actively used on real projects, and dogfooded.** Latest release: **v2.0.0**.
+**Actively used on real projects, and dogfooded.** Latest release: **v2.0.1**.
 
+- **2.0.1** — at a check point the reviewer goes first, its fixes get their own tests, and the full check runs once on the final code, alone on the machine — from a real session where checks started beside the reviewer went stale and overlapped fix-tests; on the stand's 13-turn dialog its text before the review's last fixes showed no harm (the manager held in 3 of 3 runs, nothing forgotten; the final wording not run; benchmark/checkpoint-order-2026-10-07.json);
 - **2.0.0** — one short protocol file: the whole protocol is `DIGEST.md` (~1.3k tokens) in place of a 3.1k-token digest plus a 16.7k-token full file (tiktoken o200k_base); on the stand, against 1.0.1 in one epoch of 27 tasks, it passed the acceptance rule, flagged contradictions as often (8 of 8 each), and used 0.56 of the input tokens in 0.63 of the mean time per run; in a 13-turn dialog it held the manager in 2 of 3 runs (1.0.1: 3 of 3) at about a quarter of the tokens and half the time (definitions in benchmark/slim-2026-10-07.json);
 - **1.0.1** — a task closes with its verdict word again: 1.0.0's digest opened Step 6 with the Full manager sentence, and on the stand 1.0.0 closed with a verdict and summary in 21 of 44 runs against 0.9.8's 37 (as installed, 19bab52; REJECT by the acceptance rule); the fix brought it to 39 of 44 and passed against both; the same epoch did not show 1.0.0 cheaper or faster than 0.9.8 (1.34 of its input tokens, 1.13 of its mean wall time — inside the bar registered before the run, this comparison's own noise not measured; time noise not measured; definitions in benchmark/verdict-word-2026-10-06.json);
 - **1.0.0** — a manager for work in progress, and Light on the digest: on Full, a later change comes back TESTS GREEN on its own tests, and the full check and the independent review run at check points and over everything unread when you say done; a change you dictate needs no «ok?»; a Light task runs on the digest and every Full task reads AGENT.md before its contract; on the stand its text before the last review fixes passed the acceptance rule against the installed protocol (19bab52) and used 0.78 of its input tokens in 0.80 of its mean wall time per run (the tokens inside the same-text noise measured after the run, the time's noise not measured; definitions in benchmark/check-manager-2026-10-06.json), the closing verdict came less often (29 of 44 runs against 36), most misses Light runs that wrote the summary headers without a verdict word, and in a 13-turn dialog the manager held in 3 of 3 runs;

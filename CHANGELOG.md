@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 2.0.1 — 2026-10-07
 
 ### Fixed
 - **At a check point the reviewer goes first and the full check runs once, last
