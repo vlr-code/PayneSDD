@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 2.0.0 — 2026-10-07
 
 ### Changed
 - **The protocol is one short file.** `DIGEST.md` now holds the whole protocol
