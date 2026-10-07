@@ -3,6 +3,31 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Fixed
+- **At a check point the reviewer goes first and the full check runs once, last
+  and alone (DIGEST.md §4, §5).** In a real 2.0.0 session (Storia) the agent
+  started the full check in the background beside the independent reviewer; the
+  reviewer came back first, and its fixes and their tests ran while the full
+  check still ran — the load turned timing tests red for nothing once in that
+  check point (and once earlier that day) — and each round started a new full
+  check on code the next fixes then changed: on one check point three full
+  checks started beside a reviewer and a fourth alone, in 30 minutes. Now the reviewer reads first,
+  its findings are fixed with their own tests, the next round reads only the
+  fixes until one finds nothing, and the full check runs once on that code with
+  nothing else building or testing on the machine; a red that load could cause
+  is re-run once alone and that run counts, and a full check whose code changed under it is
+  stopped as stale. No-harm check on the stand's 13-turn dialog, three runs per
+  text, one epoch, the reading rule registered first
+  ([`benchmark/checkpoint-order-2026-10-07.json`](benchmark/checkpoint-order-2026-10-07.json)):
+  nothing forgotten in any run, the manager held in 3 of 3 runs against 2.0.0's
+  2 of 3; input tokens 10.0M against 10.7M and wall time 1864 s
+  against 1691 s (each summed over the three runs), reported without a verdict. The
+  review tightened the wording after that run (rounds repeat until one finds
+  nothing; the load re-run counts); that wording was not run on the stand. The gain itself needs a slow
+  background check, which the stand does not have.
+
 ## 2.0.0 — 2026-10-07
 
 ### Changed
@@ -21,7 +46,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   now a pointer to `DIGEST.md`. Why: the maintainer asked whether the protocol
   was overdoing it — on the stand the measure of the work itself (outcome)
   stayed inside each pair's acceptance cut across 0.9.8, 1.0.0 and its fix
-  (z +0.52, −1.0, −0.48 against cuts of about −2.2)
+  (z +0.52, −1.0, −0.48 against cuts of −2.25, −2.29 and −2.23)
   (benchmark/verdict-word-2026-10-06.json), while releases moved the ritual
   measures.
   Measured on the local stand in one epoch of 27 tasks, two runs per text

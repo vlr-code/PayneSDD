@@ -37,17 +37,23 @@ and ask them before the plan; small details you decide and list for veto.
 ## 4. Build, then a machine check — never "done" by eye
 Do exactly the contract, nothing extra; no silent refactors; a second copy of a
 block → propose extracting it. Then run the real check (tests, build, lint, a
-deterministic compare). Show the map: each criterion → the check that proves it,
-what showed it ran, what would turn it red. A new test you wrote: see it fail once
-on a broken state, then revert. A red check → fix the cause; never weaken or skip
-a check to get green. No tool to check → say UNVERIFIED, never fake it. An app:
-also launch it.
+deterministic compare; on Full after the review rounds, §5). Show the map: each
+criterion → the check that proves it, what showed it ran, what would turn it red.
+A new test you wrote: see it fail once on a broken state, then revert. A red check
+→ fix the cause; never weaken or skip a check to get green. No tool to check → say
+UNVERIFIED, never fake it. An app: also launch it. The full check runs alone:
+while it runs, nothing else builds or tests on the machine; a red that load could
+cause is re-run once alone, and that run counts; code changed under a running full
+check makes it stale — stop it.
 
 ## 5. Break your own result
 Light: re-read your actual diff as someone else's work and try to break it.
 Full: an independent reviewer subagent (not you) does it, at the first build and at
-check points. Accept a finding only with a source (a code line, a test, a doc
-quote); otherwise reject it and say why.
+check points — the reviewer first, then its findings fixed with their own tests,
+then a next round on the fixes alone until one finds nothing to fix (out of tries
+→ ESCALATE); then the full check once, on that code.
+Accept a finding only with a source (a code line, a test, a doc quote); otherwise
+reject it and say why.
 
 ## 6. Work in progress (the manager)
 After the first build, each further change of the same work gets only its own

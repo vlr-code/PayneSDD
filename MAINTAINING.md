@@ -39,9 +39,9 @@ maintainer picks the number.
 
 ## Dev mode (optional)
 These rules reach other projects only if your host config imports this file
-(`@/path/to/PayneSDD/MAINTAINING.md` next to the `DIGEST.md` line) and
-`commands/payne-edit.md` and `agents/payne-quality.md` are copied or symlinked into
-`~/.claude/commands/` and `~/.claude/agents/`. On when
+(`@/path/to/PayneSDD/MAINTAINING.md` next to the `DIGEST.md` line); `/payne-edit`
+and its reviewer also need `commands/payne-edit.md` and `agents/payne-quality.md`
+copied or symlinked into `~/.claude/commands/` and `~/.claude/agents/`. On when
 `~/.claude/.payne-dev-mode` exists (first line: this repo's path). Then
 every Light/Full task ends with a one-line-per-item protocol-gap report (default
 «none», each item tied to a source, tagged 🔴/🟡/🟢), and each item is appended as
