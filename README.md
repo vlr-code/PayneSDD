@@ -76,9 +76,23 @@ Maintainers: see [`MAINTAINING.md`](MAINTAINING.md).
 | **Consent** | Light: one line "doing X — ok?". Full: one plan block with every irreversible act named. Nothing written before "yes". |
 | **Machine check** | Tests / build / lint, each criterion mapped to its check. Never weakened to go green. |
 | **Break it** | Light: the agent re-reads its own diff. Full: an independent reviewer. |
-| **Verdict** | PASS / ITERATE / ESCALATE + Done / Remaining / Open questions. |
+| **Verdict** | PASS / ITERATE / ESCALATE + Done / Remaining / Open questions; each guess marked 🔸 and counted («PASS · 🔸1»), told, not asked unless a wrong guess is costly to undo. |
 
 ## Measured
+
+**Against no protocol** (unreleased text, 2026-10-11; 34 aider Python exercises
+with hidden tests, claude-sonnet-5-5, three runs per task, one epoch; every
+figure and definition in
+[`benchmark/naked-2026-10-11.json`](benchmark/naked-2026-10-11.json)): solved 83
+of 99 against 85 of 102 for the same agent with no protocol, at 1.36× its input
+tokens, 1.76× its output tokens and 1.45× its time; a confident «done» on broken
+work in 1 of 16 failed runs against 9 of 17; a closing question in 14 of 99 runs.
+The 2.0.1 release on the same runs: 86 of 98 solved, 1.60×/2.15×/1.65×, a
+confident «done» in 5 of 12 failed runs, a closing question in 29 of 98. On
+claude-opus-5-5 (one run each) 33 of 34 against 32. Not shown: the stand answers
+consent with a script, the exercises are public, the «done» reader is one model
+(single readings moved the naked arm between 7 and 9 of 17; the figures above
+pool every reading), and the bars were set after two earlier candidates' figures.
 
 On the local stand (claude-sonnet-5; 27 tasks, two runs per text, both texts in
 one epoch; the acceptance rule and every definition in

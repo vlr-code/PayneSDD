@@ -3,6 +3,44 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Changed
+- **A guess is named, marked and told, not asked; Light gets cheaper (DIGEST.md
+  §2, §4, §7).** First measured against the same agent with no protocol, on 34
+  outside tasks with hidden tests (aider's Python exercises). In an unguarded pilot
+  on claude-sonnet-5 (one run each, no verdict) 2.0.1 solved 15 of 34 against 20,
+  and in each of the 6 tasks where only the naked agent passed it had written a
+  guessed interface into its contract, tested it with its own tests and called it
+  PASS (read after the runs). On claude-sonnet-5-5 2.0.1 solved 86 of 98 against
+  the naked agent's 85 of 102. Now what the task, its files and docs do not state is a
+  guess, taken from what the files and examples point to over memory; a test
+  written on a guess proves the code, not the guess; each guess left is marked 🔸
+  and counted in the headline («PASS · 🔸1») and told, not asked, unless a wrong
+  guess is costly to undo. A Light contract is five short lines at most, and the
+  «fail once on a broken state» proof is Full only. On claude-sonnet-5-5, three
+  runs per task in one epoch, against no protocol: solved 83 of 99 against 85 of
+  102; 1.36× the input tokens, 1.76× the output tokens, 1.45× the time (2.0.1:
+  1.60×, 2.15×, 1.65×); a confident «done» on broken work in 1 of 16 failed runs
+  against 9 of 17 (2.0.1: 5 of 12; all readings pooled); a closing question to the human in 14 of 99
+  runs against 2.0.1's 29 of 98. On nine honesty-trap tasks against 2.0.1: no file
+  written before consent (0 of 25 each), 18 of 25 solved against 16. On
+  claude-opus-5-5, one run each: 33 of 34 against 32, 1.63×/1.49×/1.42×. Not shown:
+  the stand answers consent with a script; the exercises are public; the «done»
+  reader is one model, and single readings of the same runs moved the naked arm
+  between 7 and 9 of 17 (one reading gave 2 of 16 against 7 of 17, p=0.07; all
+  votes pooled: 1 of 16 against 9 of 17, p=0.004); the bars this text passed were
+  set after two earlier candidates' figures, when the maintainer dropped a guard
+  against hedging on passed work; the cost bar, registered at 2×, was loosened to
+  2.2× after an earlier candidate's pilot (this text stays under 2× either way).
+  Known: §2 still says an assumption is asked about while §7 says a guess is told,
+  not asked; the Light cap does not say which of §2's items Light keeps; the 🔸
+  mark is written under PASS only. The texts that fixed these asked the human more
+  often (40 and 27 of 99 runs against 14; run hours later, drift not ruled out)
+  and were not shipped. Every figure and
+  definition in
+  [`benchmark/naked-2026-10-11.json`](benchmark/naked-2026-10-11.json).
+
 ## 2.0.1 — 2026-10-07
 
 ### Fixed
