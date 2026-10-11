@@ -3,7 +3,7 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## 2.0.2 — 2026-10-11
 
 ### Changed
 - **A guess is named, marked and told, not asked; Light gets cheaper (DIGEST.md
