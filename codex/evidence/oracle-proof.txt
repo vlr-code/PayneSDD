@@ -1,0 +1,52 @@
+Agent test file emptied in both cases. Trusted oracle:
+BROKEN
+test_types (test_labels.Labels) ... FAIL
+test_values (test_labels.Labels) ... FAIL
+
+======================================================================
+FAIL: test_types (test_labels.Labels)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/payne-oracle-2as4q1gm/test_labels.py", line 9, in test_types
+    with self.assertRaises(TypeError): normalize_label(value)
+AssertionError: TypeError not raised
+
+======================================================================
+FAIL: test_values (test_labels.Labels)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/payne-oracle-2as4q1gm/test_labels.py", line 6, in test_values
+    self.assertEqual(normalize_label(value), expected)
+AssertionError: 'WRONG' != ''
+- WRONG
++
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+FAILED (failures=2)
+
+FIXED
+test_types (test_labels.Labels) ... ok
+test_values (test_labels.Labels) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+
+Regression test with broken oracle (trust agent test file):
+F
+======================================================================
+FAIL: test_agent_cannot_weaken_oracle (__main__.TrustedOracle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/tmp3znk5oam/test_compare.py", line 14, in test_agent_cannot_weaken_oracle
+    self.assertNotEqual(oracle(folder).returncode, 0)
+AssertionError: 0 == 0
+
+----------------------------------------------------------------------
+Ran 1 test in 0.030s
+
+FAILED (failures=1)

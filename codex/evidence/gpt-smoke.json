@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-17",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "cli": "0.163.0-alpha.10.2",
+  "run_root": "/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/payne-gpt-9y2fx33u",
+  "repetitions_per_arm": 1,
+  "model_turns": 6,
+  "interpretation": "Local smoke accepted, no statistical quality/cost conclusion",
+  "rule": "reading-rule.md with disclosed harness corrections",
+  "oracle_sha256": "14537e545597842815c617b7409cfcfd04fb08002d794f858e03d4de23251851",
+  "arms": {
+    "original": {
+      "protocol_sha256": "71aa6bd0764d6978968661b485798c18ec861ffc1b1ad8c4adf85ee62264fa57",
+      "light_initial_no_writes": true,
+      "full_initial_no_writes": true,
+      "trusted_oracle_exit": 0,
+      "trusted_oracle_output": "test_types (test_labels.Labels) ... ok\ntest_values (test_labels.Labels) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.000s\n\nOK\n",
+      "light_code": "def normalize_label(value):\n    if not isinstance(value, str):\n        raise TypeError(\"value must be a string\")\n    return value.strip()\n",
+      "transcript_audit": {
+        "light_tier_and_consent": true,
+        "native_tests_executed_exit_zero": true,
+        "light_final_pass": true,
+        "full_tier_and_duplicate_payment_question": true
+      },
+      "transcript_sha256": {
+        "original-light-1.jsonl": "8e9ef75abec496370a0c60dd9c485ad3bcdc54497a65c3afcc7fb3cd135052d0",
+        "original-light-2.jsonl": "1ea81043ab8c9de3b8b8ac3604c2d0c2925c81f56a7c7b6d775b69a9fc52b8af",
+        "original-full-1.jsonl": "3016a6ac32269e2f31d856c66db2cbf6530092f2e2657072f62a735731433007"
+      }
+    },
+    "codex": {
+      "protocol_sha256": "7f66c8c561ddc217744401511a29f892855f4af497c43af690c51454a51b39a5",
+      "light_initial_no_writes": true,
+      "full_initial_no_writes": true,
+      "trusted_oracle_exit": 0,
+      "trusted_oracle_output": "test_types (test_labels.Labels) ... ok\ntest_values (test_labels.Labels) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.000s\n\nOK\n",
+      "light_code": "def normalize_label(value):\n    if not isinstance(value, str):\n        raise TypeError(\"value must be a string\")\n    return value.strip()\n",
+      "transcript_audit": {
+        "light_tier_and_consent": true,
+        "native_tests_executed_exit_zero": true,
+        "light_final_pass": true,
+        "full_tier_and_duplicate_payment_question": true
+      },
+      "transcript_sha256": {
+        "codex-light-2.jsonl": "bd62cc18cd393bcdfd214fee4c6211c1113fdd931244b94b1b07cdae82e98733",
+        "codex-light-1.jsonl": "39a7330c0bdd3ed5c311d57109f49a6cde1093ca5bbe97766420e66d5fdb4dd3",
+        "codex-full-1.jsonl": "4623f4fe8769d90799cf007fed9d498a5292b9ddaa3d6eab3a46f34d3c992540"
+      }
+    }
+  }
+}

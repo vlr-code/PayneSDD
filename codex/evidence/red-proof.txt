@@ -1,0 +1,90 @@
+Five independent temporary broken copies. Source files untouched; each test failed on its relevant mutation.
+
+preserve_backup_live_links_repeat_and_off
+Mutation: return left + block() + "\n\n" + right -> return left + block() + "\n\n"
+F
+======================================================================
+FAIL: test_preserve_backup_live_links_repeat_and_off (__main__.Installation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/tmpd_bh5mmi/test_install.py", line 35, in test_preserve_backup_live_links_repeat_and_off
+    self.assertTrue(result.endswith("# Machine\nKeep that.\n"))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (failures=1)
+
+collision_is_no_write
+Mutation: raise ValueError(f"Existing unrelated installation: {dest}; no changes made") -> pass  # mutation: ignore collision
+E
+======================================================================
+ERROR: test_collision_is_no_write (__main__.Installation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/tmpms1wjvo8/test_install.py", line 51, in test_collision_is_no_write
+    self.run_install()
+  File "/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/tmpms1wjvo8/test_install.py", line 29, in run_install
+    installer.install(self.home, self.skills)
+  File "/private/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/tmpms1wjvo8/install.py", line 109, in install
+    dest.symlink_to(source, target_is_directory=source.is_dir())
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1393, in symlink_to
+    self._accessor.symlink(target, self, target_is_directory)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 446, in symlink
+    return os.symlink(a, b)
+FileExistsError: [Errno 17] File exists: '/Users/valery/PayneSDD/codex/skills/payne-review' -> '/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/tmp_unf58m_/skills/payne-review'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (errors=1)
+
+shadow_and_bad_managed_block_rejected
+Mutation: if override.exists() and override.read_text().strip(): -> if False:
+F
+======================================================================
+FAIL: test_shadow_and_bad_managed_block_rejected (__main__.Installation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/tmpgpf0an2i/test_install.py", line 60, in test_shadow_and_bad_managed_block_rejected
+    self.run_install()
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (failures=1)
+
+failure_rolls_back_links_and_marker
+Mutation: for path in reversed(created): -> for path in []:
+F
+======================================================================
+FAIL: test_failure_rolls_back_links_and_marker (__main__.Installation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/tmp2792nnc0/test_install.py", line 77, in test_failure_rolls_back_links_and_marker
+    self.assertFalse((self.skills / "payne-review").exists())
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (failures=1)
+
+fresh_install_and_toggle
+Mutation: print("INSTALLED " + str(INSTANCE)) -> marker.unlink(missing_ok=True)
+    print("INSTALLED " + str(INSTANCE))
+F
+======================================================================
+FAIL: test_fresh_install_and_toggle (__main__.Installation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/tmpglmya3ed/test_install.py", line 86, in test_fresh_install_and_toggle
+    self.assertTrue(result.stdout.startswith(expected))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 1 test in 0.026s
+
+FAILED (failures=1)

@@ -1,0 +1,5 @@
+2026-10-17 [APPROVED] Codex adaptation — maintainer approved separate codex/ instance, verification and Codex activation; preserve Claude files; no commit/push/release. Evidence: evidence/validation.md.
+2026-10-17 [DEVIATION] comparison harness — preliminary runs invalidated for global-instruction leakage and resume read-only default; corrected isolation before accepted measurement; evidence: evidence/validation.md.
+2026-10-17 [APPROVED] review round 2 — accept sourced oracle-isolation finding; independently rerun fixed original tests on generated code, allow additive agent tests; evidence: evidence/oracle-proof.txt.
+2026-10-17 [APPROVED] reviewer compatibility — named-role invocation failed in the installed CLI; make the existing ordinary-subagent path explicit in both skills without changing DIGEST behavior; evidence: evidence/validation.md.
+2026-10-17 [APPROVED] publish Codex adaptation — maintainer explicitly requested commit and push of codex/ only; preserve Claude, no tag or release; evidence: evidence/validation.md.
