@@ -1,4 +1,35 @@
-# PayneSDD for Codex — adaptation 1
+# PayneSDD for Codex
+
+## Adaptation 1.1 — named reviewer registration
+
+2026-10-17 · Tag: `codex-adaptation-1.1` · Fix release for adaptation 1.
+
+The first installer made `payne-quality` visible in the role catalog but did not
+register its configuration for the launcher. Native named spawns failed with
+`agent type is currently not available`; fallback review worked.
+
+- Registers `agents.payne-quality.config_file` in Codex's `config.toml`.
+- Preserves unrelated settings and matching roles; rejects conflicting roles and
+  invalid TOML before writing. Backs up settings and rolls back partial updates.
+- Requests the named role first in the protocol-edit and review skills.
+- Adds four installer regression tests covering registration, existing roles,
+  rollback and invalid configuration; all four detected intentional failures.
+
+Validation: native named-role launches succeeded in a fresh CLI without overrides
+and in the desktop application after restart, without fallback or copied reviewer
+instructions. The combined gate passed all ten tests (nine installer tests and
+one test-oracle check); independent review returned SHIP. Evidence:
+`codex/evidence/named-role.md` and `codex/evidence/named-role-activation.json`.
+
+Upgrade: run `python3 codex/scripts/install.py` from the repository root, then
+restart Codex to reload role settings. TOML parsing needs Python 3.11+; older
+launchers can use an already installed Python 3.11–3.14 from PATH or uv.
+No interpreter is downloaded. Personal project preferences remain owner-specific.
+
+The protocol's nine steps and adaptation-1 core remain unchanged. No Claude files,
+version numbers or releases change; Claude v2.0.2 remains the repository's Latest.
+
+## Adaptation 1 — initial release
 
 2026-10-17 · Tag: `codex-adaptation-1` · Based on PayneSDD v2.0.2.
 

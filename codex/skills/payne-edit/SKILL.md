@@ -13,8 +13,8 @@ For inbox, read ~/.payne/inbox.md, group findings and propose changes; do not
 rewrite or clear the inbox. Changing a rule follows the consent gate.
 
 For a change: show the Full contract and plan, wait for explicit consent, then
-edit only the approved scope. Invoke an independent subagent with the instructions
-in <instance>/agents/payne-quality.toml (or the registered payne-quality role).
+edit only the approved scope. Request the registered payne-quality role for the
+independent review; its instructions live in <instance>/agents/payne-quality.toml.
 If the named role is rejected as unavailable, spawn an ordinary independent
 subagent and pass that file's developer_instructions as its review assignment.
 Only absence/failure of independent delegation itself blocks the review.

@@ -1,0 +1,63 @@
+role_registration_preserves_config_and_repeats
+Mutation: runtime_new = register_role((runtime_old or b"").decode("utf-8"), home).encode("utf-8") -> runtime_new = runtime_old or b""
+E
+======================================================================
+ERROR: test_role_registration_preserves_config_and_repeats (__main__.Installation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/tmpvaqd0gl6/test_install.py", line 99, in test_role_registration_preserves_config_and_repeats
+    self.assertEqual(Path(data["agents"]["payne-quality"]["config_file"]), installer.INSTANCE / "agents/payne-quality.toml")
+KeyError: 'payne-quality'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.047s
+
+FAILED (errors=1)
+
+existing_role_preserved_or_conflict_rejected
+Mutation: raise ValueError("Existing payne-quality role belongs to another configuration; no changes made") -> return old
+F
+======================================================================
+FAIL: test_existing_role_preserved_or_conflict_rejected (__main__.Installation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/tmp5hd1sfbb/test_install.py", line 111, in test_existing_role_preserved_or_conflict_rejected
+    self.run_install()
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.047s
+
+FAILED (failures=1)
+
+config_rollback_on_later_failure
+Mutation: for target, before in reversed(changed): -> for target, before in []:
+F
+======================================================================
+FAIL: test_config_rollback_on_later_failure (__main__.Installation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/tmp8n4va9tg/test_install.py", line 135, in test_config_rollback_on_later_failure
+    self.assertEqual(runtime.read_text() if runtime.exists() else None, original)
+AssertionError: '\n\n# PayneSDD Codex named reviewer\n[ag[190 chars]l"\n' != None
+
+----------------------------------------------------------------------
+Ran 1 test in 0.128s
+
+FAILED (failures=1)
+
+invalid_or_inline_toml_rejected_without_writes
+Mutation: runtime_new = register_role((runtime_old or b"").decode("utf-8"), home).encode("utf-8") -> runtime_new = runtime_old or b""
+F
+======================================================================
+FAIL: test_invalid_or_inline_toml_rejected_without_writes (__main__.Installation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/9z/7m38vypd00d4wl73ct5pvm8w0000gn/T/tmpg21139f8/test_install.py", line 145, in test_invalid_or_inline_toml_rejected_without_writes
+    self.run_install()
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (failures=1)

@@ -8,8 +8,8 @@ Collect the agreed contract, relevant repository rules and actual changed files
 subagent, passing those inputs. If the caller authored the change, it must delegate;
 a new role description in the same conversation is not independence. If delegation
 is unavailable, report ESCALATE and the missing review, not a fabricated verdict.
-For protocol changes use the payne-quality instructions in this instance's
-agents/payne-quality.toml. If the named role cannot start, pass those instructions
+For protocol changes request the registered payne-quality role first; its
+instructions are in this instance's agents/payne-quality.toml. If it cannot start, pass those instructions
 to an ordinary independent subagent; a rejected role name alone is not the absence
 of all delegation tools. Confirm a child actually ran and returned its findings.
 

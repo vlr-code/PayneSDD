@@ -4,3 +4,5 @@
 2026-10-17 [APPROVED] reviewer compatibility — named-role invocation failed in the installed CLI; make the existing ordinary-subagent path explicit in both skills without changing DIGEST behavior; evidence: evidence/validation.md.
 2026-10-17 [APPROVED] publish Codex adaptation — maintainer explicitly requested commit and push of codex/ only; preserve Claude, no tag or release; evidence: evidence/validation.md.
 2026-10-17 [APPROVED] Codex adaptation 1 release — maintainer explicitly requested the release; tag codex-adaptation-1 follows the existing adaptation identifier, preserve Claude files and Latest v2.0.2; evidence: CHANGELOG.md and evidence/validation.md.
+2026-10-17 [APPROVED] named reviewer repair — user requested working native reviewer; complete the already authorized Codex installation with explicit role registration, preserve Claude and unrelated settings; evidence: evidence/named-role.md.
+2026-10-17 [APPROVED] named reviewer fix publication — maintainer explicitly requested recheck, commit, push and release; codex-adaptation-1.1 is a fix release of adaptation 1, preserve Claude and Latest v2.0.2; evidence: CHANGELOG.md and evidence/named-role.md.

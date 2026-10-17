@@ -85,6 +85,68 @@ class Installation(unittest.TestCase):
             result = subprocess.run([sys.executable, str(HERE / "dev_mode.py"), action], env=env, capture_output=True, text=True, check=True)
             self.assertTrue(result.stdout.startswith(expected))
 
+    def test_role_registration_preserves_config_and_repeats(self):
+        runtime = self.home / "config.toml"
+        original = '# personal\nmodel = "chosen-model"\n[agents]\nmax_threads = 3\n'
+        runtime.write_text(original)
+        runtime.chmod(0o600)
+        self.run_install()
+        result = runtime.read_text()
+        self.assertTrue(result.startswith(original))
+        data = installer.parse_toml(result)
+        self.assertEqual(data["model"], "chosen-model")
+        self.assertEqual(data["agents"]["max_threads"], 3)
+        self.assertEqual(Path(data["agents"]["payne-quality"]["config_file"]), installer.INSTANCE / "agents/payne-quality.toml")
+        self.assertEqual(runtime.stat().st_mode & 0o777, 0o600)
+        self.assertEqual([p.read_text() for p in (self.home / "payne-backups").glob("*.config.toml")], [original])
+        self.run_install()
+        self.assertEqual(runtime.read_text(), result)
+
+    def test_existing_role_preserved_or_conflict_rejected(self):
+        runtime = self.home / "config.toml"
+        for prefix in ('[agents."payne-quality"]\n', "[agents.'payne-quality']\n"):
+            original = prefix + 'config_file = "/unrelated/reviewer.toml"\n'
+            runtime.write_text(original)
+            with self.assertRaises(ValueError):
+                self.run_install()
+            self.assertEqual(runtime.read_text(), original)
+            self.assertEqual(self.config.read_text(), self.original)
+            self.assertFalse((self.home / "payne-backups").exists())
+        original = installer.register_role('', self.home).replace('description = ', 'nickname_candidates = ["Joe"]\ndescription = ')
+        runtime.write_text(original)
+        self.run_install()
+        self.assertEqual(runtime.read_text(), original)
+
+    def test_config_rollback_on_later_failure(self):
+        runtime = self.home / "config.toml"
+        for original in (None, 'model = "keep"\n'):
+            if original is None:
+                runtime.unlink(missing_ok=True)
+            else:
+                runtime.write_text(original)
+            real = installer.atomic_write
+            def fail_agents(path, content):
+                if path == self.config:
+                    raise OSError("injected AGENTS write failure")
+                return real(path, content)
+            with patch.object(installer, "atomic_write", fail_agents):
+                with self.assertRaises(OSError):
+                    self.run_install()
+            self.assertEqual(runtime.read_text() if runtime.exists() else None, original)
+            self.assertEqual(self.config.read_text(), self.original)
+            self.assertFalse((self.home / ".payne-dev-mode").exists())
+            self.assertFalse((self.skills / "payne-review").exists())
+
+    def test_invalid_or_inline_toml_rejected_without_writes(self):
+        runtime = self.home / "config.toml"
+        for original in ('model = [', 'agents = { max_threads = 3 }\n'):
+            runtime.write_text(original)
+            with self.assertRaises(ValueError):
+                self.run_install()
+            self.assertEqual(runtime.read_text(), original)
+            self.assertEqual(self.config.read_text(), self.original)
+            self.assertFalse((self.home / "payne-backups").exists())
+
 
 if __name__ == "__main__":
     unittest.main()
