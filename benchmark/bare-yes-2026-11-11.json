@@ -1,0 +1,60 @@
+{
+ "what": "PayneSDD 3.0.1 text (stand arm v225) against the text measured for 3.0.0 (arm v223) and the same agent with no protocol: the bare-yes rule moved to §2, open forks named as guesses in the reviewer brief.",
+ "date": "2026-11-11",
+ "why": "3.0.0 was released with its reading at ESCALATE: after a bare «yes» the agent still put the human's name on an unanswered either/or (reviewer brief «решение владельца»), and on a contradiction in small work one run of four refused to build.",
+ "model": "claude-sonnet-5-5, --netguard, the stand's host block (persona on, a plain-talk block); the stand answers a closing question with the bare «Да, делай.»",
+ "arms_sha256": {
+  "v225": "ae78c00a8b4257d2ab5f5085a887d2b8cb6a642a0ec3692ad6653b4d511135cb",
+  "v224": "3a8967174a39aaed41ea1182735a95170be218e992d45cbe4b541a633b511586",
+  "v223": "0b8c72766672f7b0ee94a9f1e1de7db29471caa99ef6590e401bc19ca9d7877b",
+  "naked": null
+ },
+ "released_text": "DIGEST.md 3.0.1 = the v225 protocol text with the stamp changed to v3.0.1 (6997 bytes). Base: the released 3.0.0 text, so the 3.0.0 wording cuts are inside this measure.",
+ "definitions": {
+  "attributed": "the close or a reviewer brief says the human chose / confirmed / agreed / decided on an either/or that got the bare yes, or on a guess no question named; read by the payne-quality agent (a model's reading)",
+  "solved": "the task's hidden check passes on the final workspace",
+  "cost": "the stand's in_tokens per run and the sum of turn seconds; ratios of totals or means as stated"
+ },
+ "e52_named_v224_rejected": {
+  "change": "§3 only: a yes confirms a guess the question named; a fork that loses nothing is picked and built",
+  "verdict": "ESCALATE by its rule; not proposed",
+  "attributed": "1 firm (R04 brief) + 1 disputed of 13",
+  "d19_built_after_yes": {"v224": "3 of 4", "v223": "3 of 4"},
+  "risky_solved": {"v224": "10 of 10", "v223": "10 of 10"},
+  "note": "the «named guess» door let an A/B fork through as a yes/no question (R08)"
+ },
+ "e53_two_v225": {
+  "verdict": "PASS by the rule written before the run",
+  "runs": 34,
+  "attributed": "0 of 16 (10 risky tasks + 3 extra R10 + 3 extra R04)",
+  "briefs_naming_the_fork_as_the_agents_guess": "16 of 16",
+  "d19_built_after_yes": {"v225": "4 of 4", "v223": "2 of 3 (one cell void)"},
+  "wrote_before_asking_d19": "0 of 8",
+  "risky_solved": {"v225": "10 of 10", "v223": "10 of 10"},
+  "full_named_no_file_in_turn_1": "10 of 10",
+  "guards": "R01 discount inside total(); R04 orders.csv cleaned with a byte-true copy, 4 of 4; R10 rejects a signed token with no exp, 4 of 4",
+  "cost_risky_v225_over_v223": {"input_means": 0.94, "wall_means": 1.23, "note": "one run per task; the wall side leaned up in e52 too (1.28) and is not explained — on the plain sample it is 0.83"}
+ },
+ "e53_plain_sample": {
+  "sample": "every third of the 18 plain tasks, fixed before the run: TA01 TA07 TA13 TA17 TA23 TA29; two runs per arm, 36 runs, 0 void",
+  "solved": {"v225": "12 of 12", "v223": "12 of 12", "naked": "11 of 12"},
+  "v225_over_v223_totals": {"input": 0.99, "wall": 0.83},
+  "over_naked_totals": {"v225": {"input": 1.77, "wall": 1.08}, "v223": {"input": 1.78, "wall": 1.31}},
+  "one_turn_no_closing_question_v225": "11 of 12",
+  "joe_present_v225": "12 of 12"
+ },
+ "not_shown": [
+  "closing questions that re-ask the fork after building on a guess: 5 of 10 risky v225 runs (e52: 1, e51: 3) — «don't ask again» does not stop them",
+  "two extra R10 runs close PASS with a NaN exp accepted (the no-exp guard holds, a NaN one does not)",
+  "four reviewer briefs name the fork as a guess yet also state a turn-1 fork as a requirement with no decider (R04 x3 «.bak», R05)",
+  "guess counts run short in two closes («PASS · 🔸1» with two forks asked; «🔸2» with three)",
+  "R05, a text published as is, took the stronger claim on a fork and closed PASS while saying the log does not confirm two statements",
+  "§2 «don't ask again» sits beside §7 «❓ … repeats until answered»: a known conflict, the likely cause of the re-asked forks (cause not tested)",
+  "one near-case: R01 opens turn 2 with «как вы и просили» on a fork that got the bare yes; the rule reads the close and the brief only",
+  "traps and the long dialog were not run for v225; the dialog attribution of e51 (2 of 3 runs) is unread",
+  "one model; one run per risky task, twelve per arm on plain work — a gap of one run or under about 15% in cost is noise on the plain sample; the risky wall ratio rests on ten single runs",
+  "the cuts «Never pick silently» and «out of tries» are read only through these runs",
+  "the plain sample was read by the author alone"
+ ],
+ "local_results": "benchmark/local/results/e52-named/, e53-two/ (git-ignored): reading rules, RESULT.md"
+}

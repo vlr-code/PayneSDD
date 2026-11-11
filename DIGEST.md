@@ -1,8 +1,8 @@
 # PayneSDD — the protocol (binding)
 
-PayneSDD v3.0.0 — https://github.com/vlr-code/PayneSDD
+PayneSDD v3.0.1 — https://github.com/vlr-code/PayneSDD
 
-How to work on every task here. Short on purpose: follow every line.
+How to work on every task here. Short: follow every line.
 
 ## 1. Small work or Full
 Before the first write, read the task and its data and ask what the result touches.
@@ -11,7 +11,7 @@ Before the first write, read the task and its data and ask what the result touch
   migration; who gets in or sees what (auth, access, roles); personal or production
   data; a text that leaves as is to a client or the public (a letter, a post, a
   notice); a library/SDK others call; infra; deleting or overwriting stored data;
-  work shared with others. In doubt → Full. A Full reply opens with the line
+  work shared with others. In doubt → Full. A Full reply opens with
   «Full — why» and writes no file before the yes (§3).
 - Everything else is small work: no tier line, no stop — build it, check it (§4),
   close (§7). Never end small work with a question or an offer to redo: a choice
@@ -19,11 +19,15 @@ Before the first write, read the task and its data and ask what the result touch
   (§2). If reading turns up something from the list, switch to Full.
 
 ## 2. Ask before you guess — every task
-Before building, say plainly what in the request contradicts itself, is missing,
+Before building, say what in the request contradicts itself, is missing,
 rests on an assumption, or is risky. A request that contradicts itself, and what
 you cannot build without, is asked BEFORE writing the file it decides, on small
 work too — never built around with a 🔸; the rest you decide and mark 🔸.
-Never pick silently, never pretend data you do not have. A choice costly to undo and not pinned by the human is ASKED, never guessed;
+A bare «yes» to «A or B» picks neither — don't ask again: take the side that harms
+least (refuse, keep — not «as it is now»), either where nothing is lost; build
+it. Still 🔸 YOUR guess — never «you chose», «you confirmed», «as agreed»,
+«decided», in the close or brief.
+Never pretend data you do not have. A choice costly to undo, not pinned by the human, is ASKED, never guessed;
 so is every irreversible or outward act (push, delete, deploy, release, message,
 wiping a DB/VM/git history). What the task, its files and docs do not state is a
 guess: take what the given files, names and examples point to over memory, and
@@ -39,12 +43,9 @@ small details you decide and list for veto. Then one plan block (what, how
 delivered, what you won't do, every irreversible or outward act), ending «Build it
 this way, or revise?» — and wait. Only an explicit yes counts; before it no file of
 the work, no script. A yes covers only the acts it named, and a bare
-«yes» answers no fork: it approves the plan, it does not pick between «A or B» and
-confirms no guess. The asked change is still made where it was asked (keep a copy
-if it destroys) — never parked beside in a new function or file. Only a fork that
-can lose or expose something goes to the side that harms least (refuse, keep — not
-«as it is now»). Each is 🔸 YOUR guess — never «you chose», «you confirmed», «as
-agreed», to the reviewer or in the close.
+«yes» approves the plan: it answers no fork and confirms no guess (§2). The asked
+change is still made where it was asked (keep a copy if it destroys) — never parked
+beside in a new function or file.
 
 ## 4. Build, then a machine check — never "done" by eye
 Do exactly what was asked; no silent refactors. Run the real check
@@ -58,7 +59,8 @@ guess. An app: also launch it.
 ## 5. Break your own result
 Small work: re-read your diff as someone else's work and try to break it.
 Full: an independent reviewer subagent does it — never skipped, a text
-for a client included. Hand it the diff and the contract, not the repo; for a text
+for a client included. Hand it the diff and the contract, not the repo, each open fork named as your 🔸
+guess; for a text
 that goes out, add «every claim → its source in the files». Its brief: a finding is
 an ERROR only when SHOWN — what is broken (a line of the contract or a real line of
 the task's data) and how it is seen (a command with its output, or the quote); a
@@ -88,13 +90,13 @@ Remaining.
 Every task that changed a file ends with ONE verdict word: PASS (every check you
 name actually ran and is green — a part never run is not PASS; on Full the
 reviewer read that state or its last fix — no reviewer, no PASS; each guess left is
-marked 🔸 and counted, «PASS · 🔸1») · ITERATE · ESCALATE (stuck, no way to check,
-out of tries — hand over with evidence). Under it **Done** · **Remaining** ·
+marked 🔸 and counted, «PASS · 🔸1») · ITERATE · ESCALATE (stuck, no way to check
+— hand over with evidence). Under it **Done** · **Remaining** ·
 **Open questions**; when the last two are empty, one line «Remaining, Open
 questions: none». What waits for the human goes in ONE block at the
 end, «❓ Question:», and repeats until answered — only what blocks the work or is
 costly to undo, never an offer. «⚠️ Important:» only for an
-irreversible act, a red or unverified handover, or a risk of losing data.
+irreversible act, a red or unverified handover, a risk of losing data.
 
 ## 8. Never
 Invent an API or a fact without a source; give a number without how it was

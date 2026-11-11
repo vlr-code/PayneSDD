@@ -3,6 +3,42 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 3.0.1 — 2026-11-11
+
+### Fixed
+- **A bare «yes» to «A or B» (§2, §3, §5).** 3.0.0 still let the human's name onto
+  a fork they never answered — through the reviewer brief («the owner's decision»)
+  — and, on a contradiction in small work, one run of four re-asked and built
+  nothing. The rule moves from §3 to §2, so it binds small work too: a bare «yes»
+  picks neither side; the agent does not ask again, takes the side that harms
+  least (either one where nothing is lost), builds it and keeps it 🔸 its own
+  guess — never «you chose», «you confirmed», «as agreed», «decided», in the
+  close or the brief. The reviewer brief names each open fork as the agent's guess.
+  §3 keeps «a bare «yes» approves the plan: it answers no fork and confirms no
+  guess» and «the asked change is made where it was asked».
+
+### Removed
+- To pay the bytes: «Never pick silently» (§2), «out of tries» under ESCALATE
+  (§7; the five-look fuse in §5 closes ITERATE), and the words «on purpose»,
+  «the line», «plainly», «or», «and» in five places.
+
+### Measured
+On the stand (claude-sonnet-5-5, `benchmark/bare-yes-2026-11-11.json`), against the
+text measured for 3.0.0: the human's name on an unanswered fork in 0 of 16 risky
+runs (a model's reading of the close and the brief; one near-case in the opening
+of a reply), the fork named as the agent's guess in 16 of 16 reviewer briefs (four
+of them also state another fork as a requirement with no decider); the
+contradiction task built after the bare «yes» in 4 of 4 runs against 2 of 3 (one
+cell void); risky
+tasks solved 10 of 10 against 10 of 10. On a sample of six of the eighteen plain
+tasks, two runs each: 12 of 12 solved against 12 of 12 (no protocol: 11), the same
+input tokens (0.99) and 0.83 of the time — on the risky tasks the time was 1.23
+of it, one run per task. A first try that changed §3 alone was
+rejected by its own rule. Not shown: in 5 of 10 risky runs the agent built on its
+guess and still closed with a question re-asking the fork — §2's «don't ask
+again» sits beside §7's «repeats until answered», a known conflict; traps and the long
+dialog were not run; one run per risky task.
+
 ## 3.0.0 — 2026-11-11
 
 ### Changed

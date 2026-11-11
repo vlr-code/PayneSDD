@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "That's because you don't have any. Yet."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.0.1-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -85,6 +85,17 @@ Maintainers: see [`MAINTAINING.md`](MAINTAINING.md).
 
 ## Measured
 
+**3.0.1 against the text measured for 3.0.0** (2026-11-11; claude-sonnet-5-5;
+[`benchmark/bare-yes-2026-11-11.json`](benchmark/bare-yes-2026-11-11.json)): after a
+bare «yes» the human's name on an unanswered fork in 0 of 16 risky runs (a model's
+reading of the close and the reviewer brief; one near-case outside them); the
+contradiction task built in 4 of 4 runs against 2 of 3 (one cell void); risky tasks solved 10 of
+10 against 10 of 10; on six of the eighteen plain tasks, two runs each, 12 of 12
+against 12 of 12 at 0.99 of the input tokens and 0.83 of the time (on the risky tasks the time was
+1.23 of it, one run per task).
+Not shown: 5 of 10 risky runs still close with a question re-asking the fork;
+traps and the long dialog were not run; one run per risky task.
+
 **3.0.0 against 2.0.2 and no protocol** (the 3.0.0 text before its final
 shortening, 2026-11-11; claude-sonnet-5-5, one epoch; every figure, definition and
 caveat in [`benchmark/small-or-full-2026-11-11.json`](benchmark/small-or-full-2026-11-11.json)):
@@ -149,8 +160,9 @@ rules, and the optional dev mode with `/payne-edit`.
 
 ## Status
 
-**Actively used on real projects, and dogfooded.** Latest release: **v3.0.0**.
+**Actively used on real projects, and dogfooded.** Latest release: **v3.0.1**.
 
+- **3.0.1** — a bare «yes» to «A or B» picks neither side, on small work too: the agent does not ask again, builds on the side that harms least and keeps it 🔸 its own guess, in the close and in the reviewer brief — against the text measured for 3.0.0: the human's name on an unanswered fork in 0 of 16 risky runs (a model's reading; one near-case outside the close), the contradiction task built in 4 of 4 runs against 2 of 3, risky tasks 10 of 10 against 10, six plain tasks 12 of 12 against 12 at the same tokens; still open: 5 of 10 risky runs close with a question re-asking the fork ([`benchmark/bare-yes-2026-11-11.json`](benchmark/bare-yes-2026-11-11.json));
 - **3.0.0** — small work or Full: the three tiers become two, and small work is built, checked and closed in one turn with no contract, no «ok?» and no closing question, while risky work keeps the contract, the stop for consent and an independent reviewer whose shown errors the agent fixes itself; a bare «yes» approves the plan and picks no fork; the asked change is made where it was asked — against 2.0.2 on the stand: plain tasks at 1.66× the naked agent's tokens and 1.18× its time in place of 2.36× and 2.24×, 32 of 36 solved against 29, risky tasks 10 of 10 against 9; the text before its final shortening, read ESCALATE by its rule — see Measured ([`benchmark/small-or-full-2026-11-11.json`](benchmark/small-or-full-2026-11-11.json))
 - **2.0.2** — a guess is named, marked 🔸 and told, not asked; Light gets cheaper (contract five short lines at most, the broken-state proof on Full only) — the first stand run against the same agent with no protocol, on 34 outside tasks with hidden tests (claude-sonnet-5-5, three runs each): solved 83 of 99 against 85 of 102 at 1.36× its input tokens, 1.76× its output and 1.45× its time (2.0.1: 1.60×/2.15×/1.65×), a confident «done» on broken work in 1 of 16 failed runs against 9 of 17, a closing question in 14 of 99 runs against 2.0.1's 29 of 98 (benchmark/naked-2026-10-11.json);
 - **2.0.1** — at a check point the reviewer goes first, its fixes get their own tests, and the full check runs once on the final code, alone on the machine — from a real session where checks started beside the reviewer went stale and overlapped fix-tests; on the stand's 13-turn dialog its text before the review's last fixes showed no harm (the manager held in 3 of 3 runs, nothing forgotten; the final wording not run; benchmark/checkpoint-order-2026-10-07.json);
