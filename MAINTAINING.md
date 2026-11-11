@@ -43,7 +43,7 @@ These rules reach other projects only if your host config imports this file
 and its reviewer also need `commands/payne-edit.md` and `agents/payne-quality.md`
 copied or symlinked into `~/.claude/commands/` and `~/.claude/agents/`. On when
 `~/.claude/.payne-dev-mode` exists (first line: this repo's path). Then
-every Light/Full task ends with a one-line-per-item protocol-gap report (default
+every task that changed a file ends with a one-line-per-item protocol-gap report (default
 «none», each item tied to a source, tagged 🔴/🟡/🟢), and each item is appended as
 one line to `~/.payne/inbox.md` (outside every repo, never committed, no secrets
 or project code): `<date> · <tag> · <project> · PayneSDD v<version> · <the rule> ·

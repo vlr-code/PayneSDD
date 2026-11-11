@@ -81,18 +81,18 @@ fi
 
 # AC5: the protocol stays one short file — a ceiling so it can't bloat back
 # (2.0.0 was measured at ~5 KB against 1.0.1's 12 KB digest + 70 KB full file),
-# a floor and the nine section headings so a gutted stub can't pass. AGENT.md
+# a floor and the eight section headings so a gutted stub can't pass. AGENT.md
 # is only a pointer to it.
 size="$(wc -c < "$ROOT/DIGEST.md" 2>/dev/null | tr -d ' ')"
 sections_ok=1
-for n in 1 2 3 4 5 6 7 8 9; do
+for n in 1 2 3 4 5 6 7 8; do
   grep -q "^## ${n}\. " "$ROOT/DIGEST.md" 2>/dev/null || sections_ok=0
 done
 if [ "$sections_ok" -ne 1 ]; then
-  echo "FAIL (protocol)    DIGEST.md lacks one of its sections «## 1.» … «## 9.»" >&2
+  echo "FAIL (protocol)    DIGEST.md lacks one of its sections «## 1.» … «## 8.»" >&2
   fail=1
 elif [ -n "$size" ] && [ "$size" -ge 3000 ] && [ "$size" -le 7000 ]; then
-  echo "ok   (protocol)    DIGEST.md ${size} bytes (band 3000-7000), sections 1-9 present"
+  echo "ok   (protocol)    DIGEST.md ${size} bytes (band 3000-7000), sections 1-8 present"
 else
   echo "FAIL (protocol)    DIGEST.md size '${size:-missing}' outside 3000-7000 bytes" >&2
   fail=1

@@ -3,6 +3,61 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 3.0.0 — 2026-11-11
+
+### Changed
+- **Small work or Full (DIGEST.md, all sections).** 2.0.2 cost more than twice the
+  naked agent's tokens and time on plain tasks and solved no more of them. The
+  three tiers become two. Full — money, retries, concurrency, migrations, access,
+  personal or production data, a text that goes out as is, a library, infra,
+  deleting stored data, shared work — keeps the contract, the stop for an explicit
+  yes and the machine check with a broken-state proof. Everything else is small
+  work: no tier line, no contract, no «ok?», no closing question or offer to redo;
+  it is built, checked, re-read and closed in one turn, each guess marked 🔸. A
+  request that contradicts itself is asked before the file it decides is written,
+  on small work too.
+- **The reviewer loop (§5).** On Full the independent reviewer is never skipped. A
+  finding is an ERROR only when shown (what is broken and how it is seen);
+  everything else is a NIT. The agent confirms an ERROR by writing its failing
+  test, fixes it itself and has that fix looked at again; NITs are listed, not
+  fixed; five looks is the fuse. 2.0.2's «a next round … until one finds nothing to fix (out of tries →
+  ESCALATE)» is replaced.
+- **Check points by risk (§6).** The full check and the reviewer run on a change
+  to money/access/retry/limit/delete logic, on «done», on a commit/push/release
+  or on request — no longer on every third change. A change dictated in full is
+  built at once.
+- **A bare «yes» (§3).** It approves the plan; it picks no «A or B» and confirms
+  no guess. The asked change is made where it was asked (a copy kept if it
+  destroys); only a fork that can lose or expose something goes to the side that
+  harms least.
+- **Sections.** Eight in place of nine: questions and warnings moved into the
+  close (§7); the gate checks eight.
+
+### Removed
+- The Trivial and Light tiers, the Light contract and its «doing X — ok?» line.
+  A host block that demands a tier word on every reply or a consent question on
+  small work now contradicts the protocol.
+- Rules of 2.0.2 that the new text no longer carries: «the full check runs alone
+  … stale — stop it»; «a second copy of a block → propose extracting it»; the
+  close line «changes 1–N; last review read 1–M»; the check point «before a
+  costly step»; «bury the human in shorthand» under Never; «or skip» in «never weaken or
+  skip a check»; the ❓ block's «(in their language)»; «an empty one says
+  "- none"» (now one line «Remaining, Open questions: none»).
+
+### Measured
+On the stand (claude-sonnet-5-5, one epoch, the text before its final shortening;
+`benchmark/small-or-full-2026-11-11.json`): plain tasks 32 of 36 solved against
+2.0.2's 29 and the naked agent's 32, at 1.66× the naked agent's input tokens and
+1.18× its time (2.0.2: 2.36×, 2.24×), 36 of 36 runs in one turn; risky tasks 10 of
+10 against 9 and 7; honesty traps 13 of 18 against 11 and 14 (12 of 17 without one cell re-run on a
+used workspace after a stand failure). By the rule written
+before the run the reading was ESCALATE: in 3 of 13 risky runs a bare «yes» was
+still written down as the human's confirmation of a guess (two after a yes/no
+question that named the guess). Released on the maintainer's decision with that
+known. Not shown: one model, 1–3 runs per task; a scripted bare «yes» for consent;
+the wording cuts that brought the text under 7000 bytes (7177 with the stamp →
+6999) were reviewed, not re-measured.
+
 ## 2.0.2 — 2026-10-11
 
 ### Changed

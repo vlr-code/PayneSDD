@@ -7,7 +7,7 @@
 ### — "Payne, I can't feel the spec-driven development!"<br>— "That's because you don't have any. Yet."
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.0.2-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-actively%20used-brightgreen.svg)](#status)
 
 [![⬇ Download latest release](https://img.shields.io/badge/⬇_Download-latest_release-2ea44f?style=for-the-badge)](https://github.com/vlr-code/PayneSDD/releases/latest)
@@ -29,13 +29,16 @@ An agent's "done" means nothing on its own.
 One short file of rules your agent follows. You keep writing requests in plain
 words; the protocol does the formal part:
 
-1. **It names the tricky spots and asks.** Before any plan the agent says what in
-   your request contradicts itself, is missing or risky, asks the few questions
-   that matter, and shows a plan for your "go". No code before it.
+1. **Risky work stops for your "go"; small work just gets done.** Money, access,
+   retries, migrations, a text that goes to a client — the agent writes a contract,
+   asks the forks and waits. Everything else it builds, checks and closes in one
+   turn, with each guess marked 🔸. A contradiction in the request is asked first
+   either way.
 2. **"Done" is the machine's word.** Every task ends by running your real tests or
-   build, with a map from each requirement to the check that proves it.
+   build; on risky work each requirement is mapped to the check that proves it.
 3. **The result gets attacked.** On risky work an independent reviewer subagent
-   tries to break it; every finding needs a source or it is dropped.
+   tries to break it; an error it shows is fixed after a failing test, the rest
+   is listed.
 4. **Long work stays cheap.** After the first build each change is checked by its
    own tests; the full check and the review run at check points, and nothing you
    asked for is dropped.
@@ -59,6 +62,8 @@ That's it — every session follows the protocol; `git pull` updates it everywhe
   maintained: delete it, or keep it at your own risk;
 - a talk-level block in your config keeps working on its own; its pointer to
   «AGENT.md, TALK LEVEL» is stale;
+- **from 2.x to 3.0.0:** a host block that demands a tier word on every reply or
+  a consent question on small work now contradicts the protocol — drop those lines;
 - projects no longer keep `.payne/decisions.log`;
 - dev mode in other projects needs `@/path/to/PayneSDD/MAINTAINING.md` in the host
   config next to the `DIGEST.md` line.
@@ -71,14 +76,30 @@ Maintainers: see [`MAINTAINING.md`](MAINTAINING.md).
 
 | | |
 |---|---|
-| **Tier** | Trivial / Light / Full per task. Risky work — billing, auth, migrations, public output — is always Full. |
-| **Contract** | Goal, what it must and must never do, decided edge cases, checkable criteria, what it is checked against — and the tricky spots, asked. |
-| **Consent** | Light: one line "doing X — ok?". Full: one plan block with every irreversible act named. Nothing written before "yes". |
-| **Machine check** | Tests / build / lint, each criterion mapped to its check. Never weakened to go green. |
-| **Break it** | Light: the agent re-reads its own diff. Full: an independent reviewer. |
+| **Small or Full** | Risky work — money, auth, retries, migrations, client-facing text, deleting data — is always Full. Everything else is small work: no stop, no closing question. |
+| **Contract** | Full only: goal, what it must and must never do, decided edge cases, checkable criteria, what it is checked against — and the real forks, asked. |
+| **Consent** | Full: one plan block with every irreversible act named; nothing written before "yes". A bare "yes" approves the plan — it picks no fork and confirms no guess. |
+| **Machine check** | Tests / build / lint; on Full each criterion mapped to its check. Never weakened to go green. |
+| **Break it** | Small work: the agent re-reads its own diff. Full: an independent reviewer; an error it shows is fixed by the agent after a failing test, nitpicks are listed, not fixed. |
 | **Verdict** | PASS / ITERATE / ESCALATE + Done / Remaining / Open questions; each guess marked 🔸 and counted («PASS · 🔸1»), told, not asked unless a wrong guess is costly to undo. |
 
 ## Measured
+
+**3.0.0 against 2.0.2 and no protocol** (the 3.0.0 text before its final
+shortening, 2026-11-11; claude-sonnet-5-5, one epoch; every figure, definition and
+caveat in [`benchmark/small-or-full-2026-11-11.json`](benchmark/small-or-full-2026-11-11.json)):
+on 18 plain tasks with hidden tests, two runs each, solved 32 of 36 against 29 for
+2.0.2 and 32 for the same agent with no protocol, at 1.66× the naked agent's input
+tokens and 1.18× its time (2.0.2: 2.36× and 2.24×), every run closed in one turn;
+on ten small-looking risky tasks solved 10 of 10 against 9 and 7, an independent
+reviewer in 10 of 10 (2.0.2: 6); on nine honesty traps 13 of 18 against 11 and 14 (12 of 17 without one cell
+re-run on a used workspace after a stand failure).
+Not shown: one model and 1–3 runs per task, so a gap of one or two runs is noise;
+the stand answers consent with a bare «yes»; by the rule written before the run
+the reading was ESCALATE — in 3 of 13 risky runs the agent still wrote a bare
+«yes» down as the human's confirmation of its guess; no text solves more plain
+tasks than the naked agent; the shortening to the size limit was reviewed, not
+re-measured.
 
 **Against no protocol** (unreleased text, 2026-10-11; 34 aider Python exercises
 with hidden tests, claude-sonnet-5-5, three runs per task, one epoch; every
@@ -128,8 +149,9 @@ rules, and the optional dev mode with `/payne-edit`.
 
 ## Status
 
-**Actively used on real projects, and dogfooded.** Latest release: **v2.0.2**.
+**Actively used on real projects, and dogfooded.** Latest release: **v3.0.0**.
 
+- **3.0.0** — small work or Full: the three tiers become two, and small work is built, checked and closed in one turn with no contract, no «ok?» and no closing question, while risky work keeps the contract, the stop for consent and an independent reviewer whose shown errors the agent fixes itself; a bare «yes» approves the plan and picks no fork; the asked change is made where it was asked — against 2.0.2 on the stand: plain tasks at 1.66× the naked agent's tokens and 1.18× its time in place of 2.36× and 2.24×, 32 of 36 solved against 29, risky tasks 10 of 10 against 9; the text before its final shortening, read ESCALATE by its rule — see Measured ([`benchmark/small-or-full-2026-11-11.json`](benchmark/small-or-full-2026-11-11.json))
 - **2.0.2** — a guess is named, marked 🔸 and told, not asked; Light gets cheaper (contract five short lines at most, the broken-state proof on Full only) — the first stand run against the same agent with no protocol, on 34 outside tasks with hidden tests (claude-sonnet-5-5, three runs each): solved 83 of 99 against 85 of 102 at 1.36× its input tokens, 1.76× its output and 1.45× its time (2.0.1: 1.60×/2.15×/1.65×), a confident «done» on broken work in 1 of 16 failed runs against 9 of 17, a closing question in 14 of 99 runs against 2.0.1's 29 of 98 (benchmark/naked-2026-10-11.json);
 - **2.0.1** — at a check point the reviewer goes first, its fixes get their own tests, and the full check runs once on the final code, alone on the machine — from a real session where checks started beside the reviewer went stale and overlapped fix-tests; on the stand's 13-turn dialog its text before the review's last fixes showed no harm (the manager held in 3 of 3 runs, nothing forgotten; the final wording not run; benchmark/checkpoint-order-2026-10-07.json);
 - **2.0.0** — one short protocol file: the whole protocol is `DIGEST.md` (~1.3k tokens) in place of a 3.1k-token digest plus a 16.7k-token full file (tiktoken o200k_base); on the stand, against 1.0.1 in one epoch of 27 tasks, it passed the acceptance rule, flagged contradictions as often (8 of 8 each), and used 0.56 of the input tokens in 0.63 of the mean time per run; in a 13-turn dialog it held the manager in 2 of 3 runs (1.0.1: 3 of 3) at about a quarter of the tokens and half the time (definitions in benchmark/slim-2026-10-07.json);
