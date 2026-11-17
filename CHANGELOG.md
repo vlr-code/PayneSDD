@@ -3,6 +3,46 @@
 All notable changes to PayneSDD are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 3.0.2 — 2026-11-17
+
+### Fixed
+- **The reviewer could not see what the diff does not show (§5).** A reviewer
+  handed «the diff and the contract, not the repo» named 2 of 4 hand-made bugs on
+  cases with a known answer; both misses were bugs of absence — a new format never
+  wired into the CLI, a project helper not reused — and it wrote each as a NIT «not
+  shown in the diff». It is now handed «the diff, the contract and the files the
+  diff touches or calls».
+- **The edge-case row asked for every item on every Full task (§3).** «One row:
+  boundary, empty, … — "—" where none» becomes «the edge cases it triggers, each
+  decided (from: boundary, empty, …)»: the same list, read as a source, no dashes.
+
+### Changed
+- `/payne-edit inbox`: a note becomes a rule candidate only when seen twice; what a
+  script can catch is fixed by a script, not a rule (process only, not measured).
+
+### Removed
+- To pay the bytes: «here. Short:» in the opening line and «work» in «as someone
+  else's work» (§5).
+
+### Measured
+On the stand (claude-sonnet-5-5, `benchmark/reviewer-files-2026-11-17.json`),
+against the released 3.0.1, each change alone on the ten risky tasks, three runs
+each: the shorter edge row — 0.85 of the input tokens, 0.76 of the time, 30 of 30
+solved against 29 of 29; the reviewer with files — 1.05 of the input tokens, 0.93
+of the time, 29 of 29 solved. On eight reviewer cases with a known answer, one run:
+with the files open both formerly missed bugs were named, the two formerly named
+ones too, and the same one clean change of four was flagged. Both changes together
+on six plain tasks, two runs each: 12 of 12 against 11 of 12, 1.01 of the tokens,
+1.02 of the time. A third change tried beside them — two «never» lists reworded as
+what to do — did not close the re-ask it aimed at and is not in this release; a
+variant that asks each fork with the agent's pick for a «yes» read NO-GO in a pilot on cost
+(1.32 of the input tokens). Not shown: the reviewer's gain on the stand itself
+(the risky tasks already pass); a dropped edge case — in 9 of 30 runs (counted after the
+run; 10 by the registered regex) the contract carried no edge-case heading, the cases were found decided elsewhere by reading,
+and only two of those runs sit on a task whose hidden check traps one; the two
+changes together on risky tasks; traps and the long dialog; the close still
+re-asks a fork already built.
+
 ## 3.0.1 — 2026-11-11
 
 ### Fixed

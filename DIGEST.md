@@ -1,8 +1,8 @@
 # PayneSDD — the protocol (binding)
 
-PayneSDD v3.0.1 — https://github.com/vlr-code/PayneSDD
+PayneSDD v3.0.2 — https://github.com/vlr-code/PayneSDD
 
-How to work on every task here. Short: follow every line.
+How to work on every task. Follow every line.
 
 ## 1. Small work or Full
 Before the first write, read the task and its data and ask what the result touches.
@@ -35,9 +35,9 @@ mark it 🔸.
 
 ## 3. Full: contract and consent before code — never skipped
 Contract in the chat: rule files read (AGENTS.md / CLAUDE.md / CONTRIBUTING) or
-"none found"; goal; out of scope; MUST / NEVER; edge cases, each decided (one row:
+"none found"; goal; out of scope; MUST / NEVER; the edge cases it triggers, each decided (from:
 boundary, empty, encoding, ordering, precision, idempotency, concurrency, what
-triggers it, a setup step that can fail — "—" where none); checkable criteria
+triggers it, a setup step that can fail); checkable criteria
 («WHEN … SHALL …»); what you check against. List the real forks and ask them;
 small details you decide and list for veto. Then one plan block (what, how
 delivered, what you won't do, every irreversible or outward act), ending «Build it
@@ -57,9 +57,9 @@ say UNVERIFIED, never fake it. A test written on a guess proves the code, not th
 guess. An app: also launch it.
 
 ## 5. Break your own result
-Small work: re-read your diff as someone else's work and try to break it.
+Small work: re-read your diff as someone else's and try to break it.
 Full: an independent reviewer subagent does it — never skipped, a text
-for a client included. Hand it the diff and the contract, not the repo, each open fork named as your 🔸
+for a client included. Hand it the diff, the contract and the files the diff touches or calls, each open fork named as your 🔸
 guess; for a text
 that goes out, add «every claim → its source in the files». Its brief: a finding is
 an ERROR only when SHOWN — what is broken (a line of the contract or a real line of

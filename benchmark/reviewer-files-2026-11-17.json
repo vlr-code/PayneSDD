@@ -1,0 +1,116 @@
+{
+ "what": "PayneSDD 3.0.2 text against the released 3.0.1: the reviewer gets the files the diff touches or calls (§5); the contract lists only the edge cases the change triggers (§3).",
+ "date": "2026-11-17",
+ "why": "An answer-key read of the §5 reviewer brief (diff and task only) named 2 of 4 hand-made bugs; both misses were bugs of absence the diff cannot show (a format not wired into the CLI, a project helper not reused). The edge-case row asked for nine items with «—» where none on every Full task.",
+ "model": "claude-sonnet-5-5, --netguard, the stand's host block; the stand answers a closing question with the bare «Да, делай.»; reviewer cases read by subagents on the sonnet alias",
+ "arms_sha256": {
+  "v301 (released 3.0.1)": "5fb6c007c99419e46c7e0e0d7c3d50e908fb756bee88dc677186991002f9c476",
+  "v231 (reviewer files + three label cuts)": "3f582b5b9659fae45128b5f24526b150622d7e7b973aee4f761360e219087b57",
+  "v232 (triggered edge row)": "9b726d1da348fdf313430cbaf746b8b80bcd45c957f5b07ad52a4bb07091c0e9",
+  "v233 (both + two label cuts)": "8d35366a9c2ebf438bf17e05261d37fa05e66fbd9c2fa99edb2db7413680b887",
+  "v230 (e57: both + the §2/§7 rewording)": "db593d8c216ecd98acd76da070a723bfbfca4c5be348161f5e80e859a21808c0"
+ },
+ "released_text": "DIGEST.md 3.0.2 = the v233 digest with the version stamp changed; 6995 bytes. v233 as a whole ran on plain tasks only; on risky tasks its two changes ran apart (v231, v232).",
+ "reviewer_answer_key": {
+  "material": "tasks20 T01–T04 (after ponytail's benchmark, MIT): per task a clean change, a hand-broken change, a machine-mutated change; one reviewer per case, blind to which is which, at most 12 lines back",
+  "diff_only_brief_12_cases": {
+   "hand_bugs_named": "2 of 4",
+   "machine_mutants_named": "4 of 4",
+   "clean_flagged": "1 of 4",
+   "missed": [
+    "T04 CSV format not wired into the CLI",
+    "T01 the project's own slugify not reused"
+   ],
+   "subagent_tokens": 768209
+  },
+  "with_files_brief_8_cases": {
+   "formerly_missed_named": "2 of 2",
+   "formerly_named_named": "2 of 2",
+   "clean_flagged": "1 of 4 (the same case, the same out-of-task inputs)",
+   "subagent_tokens": 515151
+  },
+  "limits": "one run per case, crude material, not the stand's own reviewer subagent; token totals are for 12 and 8 cases and are dominated by the subagent's fixed prompt"
+ },
+ "e58_part_S_risky_R01_R10_three_runs": {
+  "readable_cells": {
+   "v301": 29,
+   "v231": 29,
+   "v232": 30
+  },
+  "void": [
+   "R04/v301/run-3",
+   "R09/v231/run-2"
+  ],
+  "hidden_passes": {
+   "v301": "29 of 29",
+   "v231": "29 of 29",
+   "v232": "30 of 30"
+  },
+  "full_named_no_file_before_yes": {
+   "v301": "28 of 29 (R09 run 1 flagged by the scorer, not read further)",
+   "v231": "29 of 29",
+   "v232": "30 of 30"
+  },
+  "input_tokens_mean": {
+   "v301": 68360,
+   "v231": 71844,
+   "v232": 58364
+  },
+  "input_ratio_to_v301": {
+   "v231": 1.051,
+   "v232": 0.854
+  },
+  "wall_seconds_mean": {
+   "v301": 70.5,
+   "v231": 65.7,
+   "v232": 53.4
+  },
+  "wall_ratio_to_v301": {
+   "v231": 0.932,
+   "v232": 0.757
+  },
+  "turn1_without_an_edge_case_heading": {
+   "by_the_registered_crude_regex": {
+    "v301": "3 of 29",
+    "v231": "1 of 29",
+    "v232": "10 of 30"
+   },
+   "v232_with_the_heading_Края_counted": "9 of 30 (counted after the run)",
+   "where": "R04 ×2, R05 ×3, R06 ×3, R07 ×1 (and R08 ×1 by the regex)",
+   "read_by_eye": "all nine: five by the reviewer, four (R05 runs 2 and 3, R06 runs 1 and 2) by the author afterwards — the edge cases are decided as forks, under MUST or under «what I decide»; none dropped; R07 run 1 the thinnest"
+  },
+  "reviewer_launches_per_cell": {
+   "v301": "1×22 2×4 3×2 4×1",
+   "v231": "1×25 2×2 3×1 5×1",
+   "v232": "1×25 2×4 4×1"
+  },
+  "verdicts_by_the_registered_rule": {
+   "v231": "GO",
+   "v232": "GO"
+  }
+ },
+ "e58_part_P_plain_six_tasks_two_runs": {
+  "arms": "v233 against v301, 12 cells each, none void",
+  "hidden_passes": "12 of 12 against 11 of 12",
+  "input_ratio_of_totals": 1.008,
+  "wall_ratio_of_totals": 1.017,
+  "one_turn_no_full_named": "12 of 12 (v301 the same)",
+  "limit": "no Full named and no reviewer launched in any cell — it shows only that the changed text costs nothing on plain work"
+ },
+ "e57_bundle_v230_two_runs": {
+  "what": "both changes plus a rewording of two «never» lists, read as one",
+  "input_ratio": 0.792,
+  "wall_ratio": 0.957,
+  "hidden_passes": "19 of 19 against 19 of 19",
+  "verdict": "UNREADABLE by its rule — the closing re-ask it aimed at was not closed (6 of 19 against 9 of 19, question or invitation), so the rewording is not in 3.0.2"
+ },
+ "not_shown": [
+  "v231's benefit on the stand: risky outcomes sit at the ceiling, so it rests on the eight reviewer cases alone",
+  "a dropped edge case caught by a hidden check: of the nine heading-less v232 cells only two (R04) sit on a task whose check traps an edge case; the rest is reading",
+  "v233 as a whole on risky work",
+  "traps, the long dialog, a second model; thirty cells per arm, one epoch",
+  "the closing re-ask of a built fork stays open: 9 of 19 on 3.0.1 in e57 counting both forms"
+ ],
+ "design": "e58's design (three runs per task, the bars, the plain sample, no new tasks) is the agent's own; the maintainer approved the proposal in words, not the bars",
+ "local_results": "benchmark/local/results/e56-ask-positive, e57-three, e58-two (git-ignored): reading rules registered and hashed before the runs, RESULT.md each, reviewed by payne-quality"
+}
