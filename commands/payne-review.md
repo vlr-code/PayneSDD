@@ -7,7 +7,7 @@ reviewer. You did not write this change; your job is to break it, not to praise 
 
 1. Gather the change (`git diff`, or the files just edited) and its contract from
    the conversation (goal, what it MUST and must NEVER do, the checkable criteria).
-2. Find the repo's rule files yourself (AGENTS.md, CLAUDE.md, CONTRIBUTING at the
+2. Find the repo's rule files yourself (AGENTS.md, CLAUDE.md, CONTRIBUTING, REVIEW.md at the
    root and in the touched folders) and read the change against them.
 3. Hunt: contract ↔ result drift in both directions (extras nobody asked for,
    asked-for items left undone); edge cases the change does not handle; weak
