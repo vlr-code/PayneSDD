@@ -23,4 +23,6 @@ in — only the PayneSDD repo. Follow MAINTAINING.md in that repo:
    asked (MAINTAINING.md, Releases).
 
 `inbox`: read `~/.payne/inbox.md`, group the notes, propose which to take, and run
-each taken one through the steps above. Never rewrite the file — it is shared.
+each taken one through the steps above. A note becomes a rule candidate only when
+seen twice; what a script can catch is fixed by a script, not a rule. Never rewrite
+the file — it is shared.
