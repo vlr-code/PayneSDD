@@ -9,8 +9,8 @@ to the protocol itself. You did not author it. Stance: revise it, don't rubber-s
 
 Read the change (`git diff` in the repo you are given) and MAINTAINING.md, then check:
 1. **Brevity.** DIGEST.md is the whole protocol and must stay short (the gate's
-   band). A new or longer rule must name the failure it fixes and the run that
-   showed it; otherwise it is bloat — a finding.
+   band). A new or longer rule must name the failure it fixes, the run that
+   showed it, and the result that would retire it; otherwise it is bloat — a finding.
 2. **Coherence.** No rule contradicts another; no section repeats another; the
    protocol still asks before code, checks by machine, reviews, and closes with a
    verdict and the summary.

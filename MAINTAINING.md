@@ -10,8 +10,8 @@ runs on a user's project — that is `DIGEST.md` alone.
   passed the stand's acceptance rule against 1.0.1 at 0.56 of the input tokens
   and 0.63 of the time, and held the manager in 2 of 3 dialog runs against 3 of 3
   (`benchmark/slim-2026-10-07.json`).
-- Prefer cutting to adding. A new rule names the failure it fixes and the run
-  that showed it.
+- Prefer cutting to adding. A new rule names the failure it fixes, the run
+  that showed it, and the result that would retire it.
 
 ## Every change to the protocol
 1. Full tier: contract, plan, the maintainer's explicit yes before any edit.
